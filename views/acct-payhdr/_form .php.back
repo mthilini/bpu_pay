@@ -1,0 +1,39 @@
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
+/** @var yii\web\View $this */
+/** @var app\models\AcctPayhdr $model */
+/** @var yii\widgets\ActiveForm $form */
+?>
+
+<div class="acct-payhdr-form">
+
+    <?php $form = ActiveForm::begin(); ?>
+
+    <?= $form->field($model, 'payDate')->textInput() ?>
+
+    <?= $form->field($model, 'payVch')->textInput() ?>
+
+    <?= $form->field($model, 'payCashBk')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'payPrepared')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'payDatePrepare')->textInput() ?>
+
+    <?= $form->field($model, 'payCertify')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'payDateCertify')->textInput() ?>
+
+    <?= $form->field($model, 'payAuthorise')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'payDateAuthorise')->textInput() ?>
+
+    <div class="form-group">
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+
+</div>
