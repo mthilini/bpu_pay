@@ -32,13 +32,7 @@ $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\
     ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <style src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"></style>
-    <style src="https://cdn.datatables.net/2.1.3/css/dataTables.bootstrap4.css"></style>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/2.1.3/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.1.3/js/dataTables.bootstrap4.js"></script>
+    
 
 
 
@@ -138,7 +132,11 @@ $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\
             new DataTable('#datatable');
         });
     </script>
-
+    <style src="https://cdn.datatables.net/2.1.3/css/dataTables.bootstrap4.css"></style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/2.1.3/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.1.3/js/dataTables.bootstrap4.js"></script>
 </body>
 </html>
 <?php $this->endPage() ?>

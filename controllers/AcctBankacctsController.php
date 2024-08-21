@@ -50,31 +50,32 @@ class AcctBankacctsController extends Controller
     public function actionData()
     {
         // DB table to use
-        $table = 'datatables_demo';
+        $table = 'acct_accounts';
 
         // Table's primary key
         $primaryKey = 'id';
 
         // Array of database columns which should be read and sent back to DataTables.
-// The `db` parameter represents the column name in the database, while the `dt`
-// parameter represents the DataTables column identifier. In this case simple
-// indexes
+        // The `db` parameter represents the column name in the database, while the `dt`
+        // parameter represents the DataTables column identifier. In this case simple
+        // indexes
         $columns = array(
             array('db' => 'bactAcctCode', 'dt' => 0),
             array('db' => 'bactBankCode', 'dt' => 1),
             array('db' => 'bactBankName', 'dt' => 2),
-            array('db' => 'bactAcctNo', 'dt' => 3),            
-            array('db' => 'bactAcctNo', 'dt' => 4)            
+            array('db' => 'bactAcctNo', 'dt' => 3),
+            array('db' => 'bactAcctNo', 'dt' => 4)
         );
 
         // SQL server connection information
         $sql_details = array(
-            'user' => '',
-            'pass' => '',
-            'db' => '',
-            'host' => ''
-            // ,'charset' => 'utf8' // Depending on your PHP and MySQL config, you may need this
+            'user' => 'root',
+            'pass' => 'teenwolf',
+            'db' => 'bpuaccts',
+            'host' => 'localhost',
+            'charset' => 'utf8' // Depending on your PHP and MySQL config, you may need this
         );
+
 
 
         /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
