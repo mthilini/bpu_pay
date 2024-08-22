@@ -13,24 +13,22 @@ use yii\grid\GridView;
 $this->title = 'Cashbook Details';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="acct-bankaccts-index">
-      
-    
 
-    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
-            </tr>
-        </thead>
-        <tbody>
+<?= \nullref\datatable\DataTable::widget([
+    'tableOptions' => [
+        'class' => 'table',
+    ],
+    'columns' => [
+        'id',
+        'bactAcctCode',
+        'bactBankCode',
+        'bactBankName',
+        'bactAcctNo',
+        'bactAcctNo',
+        'bactAcctName',
+    ],
+    'data' => $dataProvider->getModels(),
+    'serverSide' => true,
+    'ajax' => __DIR__ . '/web/acct-bankaccts',
 
-        </tbody>
-    </table>
-
-</div>
+]) ?>

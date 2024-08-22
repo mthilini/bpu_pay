@@ -8,6 +8,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+use Yii;
+
 /**
  * AcctBankacctsController implements the CRUD actions for AcctBankaccts model.
  */
@@ -47,47 +49,34 @@ class AcctBankacctsController extends Controller
         ]);
     }
 
-    public function actionData()
+    public function actions()
     {
-        // DB table to use
-        $table = 'acct_accounts';
-
-        // Table's primary key
-        $primaryKey = 'id';
-
-        // Array of database columns which should be read and sent back to DataTables.
-        // The `db` parameter represents the column name in the database, while the `dt`
-        // parameter represents the DataTables column identifier. In this case simple
-        // indexes
-        $columns = array(
-            array('db' => 'bactAcctCode', 'dt' => 0),
-            array('db' => 'bactBankCode', 'dt' => 1),
-            array('db' => 'bactBankName', 'dt' => 2),
-            array('db' => 'bactAcctNo', 'dt' => 3),
-            array('db' => 'bactAcctNo', 'dt' => 4)
-        );
-
-        // SQL server connection information
-        $sql_details = array(
-            'user' => 'root',
-            'pass' => 'teenwolf',
-            'db' => 'bpuaccts',
-            'host' => 'localhost',
-            'charset' => 'utf8' // Depending on your PHP and MySQL config, you may need this
-        );
-
-
-
-        /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-         * If you just want to use the basic configuration for DataTables with PHP
-         * server-side, there is no need to edit below this line.
-         */
-
-        require('ssp.class.php');
-
-        echo json_encode(
-            SSP::simple($_GET, $sql_details, $table, $primaryKey, $columns)
-        );
+        return [
+            'datatables' => [
+                'class' => 'nullref\datatable\DataTableAction',
+                'query' => AcctBankaccts::find(),
+                'applyOrder' => function ($query, $columns, $order) {
+                    //custom ordering logic
+                    $orderBy = [];
+                    foreach ($order as $orderItem) {
+                        $orderBy[$columns[$orderItem['column']]['data']] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                    }
+                    return $query->orderBy($orderBy);
+                },
+                'applyFilter' => function ($query, $columns, $search) {
+                    //custom search logic
+                    $modelClass = $query->modelClass;
+                    $schema = $modelClass::getTableSchema()->columns;
+                    foreach ($columns as $column) {
+                        if ($column['searchable'] == 'true' && array_key_exists($column['data'], $schema) !== false) {
+                            $value = empty ($search['value']) ? $column['search']['value'] : $search['value'];
+                            $query->orFilterWhere(['like', $column['data'], $value]);
+                        }
+                    }
+                    return $query;
+                },
+            ],
+        ];
     }
 
     /**

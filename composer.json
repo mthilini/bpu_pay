@@ -68,6 +68,7 @@
     "require": {
         "mehulpatel/vspl": "dev-master",
         "yiisoft/yii2-jui": "^2.0@dev",
-        "hail812/yii2-adminlte3": "~1.1"
+        "hail812/yii2-adminlte3": "~1.1",
+        "nullref/yii2-datatables": "dev-master"
     }
 }

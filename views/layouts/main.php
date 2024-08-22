@@ -32,7 +32,7 @@ $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\
     ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    
+
 
 
 
@@ -100,6 +100,9 @@ $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\
             padding: 0.5rem;
         }
 
+        div.dt-container div.dt-length select {
+            min-width: 50px;
+        }
     </style>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -132,11 +135,12 @@ $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\
             new DataTable('#datatable');
         });
     </script>
-    <style src="https://cdn.datatables.net/2.1.3/css/dataTables.bootstrap4.css"></style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/2.1.3/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.1.3/js/dataTables.bootstrap4.js"></script>
+    <link href="https://cdn.datatables.net/v/bs4/jq-3.7.0/jszip-3.10.1/dt-2.1.4/b-3.1.1/b-colvis-3.1.1/b-html5-3.1.1/b-print-3.1.1/cr-2.0.4/date-1.5.3/fc-5.0.1/fh-4.0.1/kt-2.12.1/r-3.0.2/rg-1.5.0/rr-1.5.0/sc-2.4.3/sb-1.8.0/sp-2.3.2/sl-2.0.5/sr-1.4.1/datatables.min.css" rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/v/bs4/jq-3.7.0/jszip-3.10.1/dt-2.1.4/b-3.1.1/b-colvis-3.1.1/b-html5-3.1.1/b-print-3.1.1/cr-2.0.4/date-1.5.3/fc-5.0.1/fh-4.0.1/kt-2.12.1/r-3.0.2/rg-1.5.0/rr-1.5.0/sc-2.4.3/sb-1.8.0/sp-2.3.2/sl-2.0.5/sr-1.4.1/datatables.min.js"></script>
+
 </body>
 </html>
 <?php $this->endPage() ?>
