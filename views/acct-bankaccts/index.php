@@ -14,20 +14,28 @@ $this->title = 'Cashbook Details';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<?= \nullref\datatable\DataTable::widget([
-    'tableOptions' => [
-        'class' => 'table',
-    ],
-    'columns' => [
-        'id',
-        'bactAcctCode',
-        'bactBankCode',
-        'bactBankName',
-        'bactAcctNo',
-        'bactAcctName',
-    ],
-    'dataProvider' => $dataProvider,
-    'serverSide' => true,
-    'ajax' => Yii::getAlias('@web/acct-bankaccts/datatables'),
+<div class="card">
+    <div class="card-bofy m-2">
 
-]) ?>
+
+        <?= \nullref\datatable\DataTable::widget([
+            'tableOptions' => [
+                'class' => 'table',
+            ],
+            'columns' => [
+                'id',
+                'bactAcctCode',
+                'bactBankCode',
+                'bactBankName',
+                'bactAcctNo',
+                'bactAcctName',
+            ],
+            'dataProvider' => $dataProvider,
+            'serverSide' => true,
+            'ajax' => Yii::getAlias('@web/acct-bankaccts/datatables'),
+
+        ]) ?>
+
+
+    </div>
+</div>
