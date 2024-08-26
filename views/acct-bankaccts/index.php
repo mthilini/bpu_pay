@@ -24,11 +24,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'bactBankCode',
         'bactBankName',
         'bactAcctNo',
-        'bactAcctNo',
         'bactAcctName',
     ],
-    'data' => $dataProvider->getModels(),
+    'dataProvider' => $dataProvider,
     'serverSide' => true,
-    'ajax' => __DIR__ . '/web/acct-bankaccts',
+    'ajax' => Yii::getAlias('@web/acct-bankaccts/datatables'),
 
 ]) ?>

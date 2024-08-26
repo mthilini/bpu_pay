@@ -7,8 +7,8 @@ use yii\bootstrap4\Breadcrumbs;
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-6 d-flex align-items-center justify-content-start">
                     <h1 class="m-0">
                         <?php
                         if (!is_null($this->title)) {

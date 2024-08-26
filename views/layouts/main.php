@@ -34,10 +34,6 @@ $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 
-
-
-
-
     <style>
         body, .dropdown-item, .dropdown-item-title, .input-group > .input-group-prepend > .input-group-text {
             font-size: 70%;
