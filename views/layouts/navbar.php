@@ -150,7 +150,7 @@ use yii\helpers\Html;
             </div>
         </li>
         <li class="nav-item">
-            <?= Html::a('<i class="fas fa-sign-out-alt"></i>', ['/site/logout'], ['data-method' => 'post', 'class' => 'nav-link']) ?>
+            <?= !Yii::$app->user->isGuest ? Html::a('<i class="fas fa-sign-out-alt"></i>', ['/site/logout'], ['data-method' => 'post', 'class' => 'nav-link']) : Html::a('<i class="fas fa-sign-out-alt"></i>', ['/site/login'], ['data-method' => 'get', 'class' => 'nav-link']) ?>
         </li>
         <li class="nav-item d-none">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">

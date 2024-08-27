@@ -100,6 +100,9 @@ $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\
         div.dt-container div.dt-length select {
             min-width: 50px;
         }
+        .btn-sm {
+            padding: .05rem .5rem;
+        }
 
     </style>
 </head>

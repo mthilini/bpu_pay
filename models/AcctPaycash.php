@@ -69,10 +69,10 @@ class AcctPaycash extends \yii\db\ActiveRecord
             'id' => 'ID',
             'payCashBk' => 'Cashbook',
             'payDate' => 'Date',
-            'payVch' => 'Voucher',
+            'payVch' => 'Voucher / Receipt',
             'paySub' => 'Sub No.',
-            'payPayee' => 'Payee/Payer Name',
-            'payType' => 'Pay/Receipt Type',
+            'payPayee' => 'Payee / Payer Name',
+            'payType' => 'Pay / Receipt Type',
             'payAmount' => 'Amount',
             'payRmks' => 'Remarks',
         ];

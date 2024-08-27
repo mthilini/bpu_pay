@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\views"
+    "\\views",
+    "\\views\\layouts",
+    "\\views\\site"
   ],
-  "SelectedNode": "\\views\\layouts",
+  "SelectedNode": "\\views\\layouts\\main.php",
   "PreviewInSolutionExplorer": false
 }

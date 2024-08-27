@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'class' => 'nullref\datatable\LinkColumn',
                     'queryParams' => ['id'],
                     'render' => new JsExpression('function render(data, type, row, meta ){
-                        return "<a href=\"view?id="+row["id"]+"\" class=\"btn btn-primary btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to view details\">View</a><a href=\"update?id="+row["id"]+"\" class=\"btn btn-success btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to update details\">Update</a>"
+                        return "<a href=\"view?id="+row["id"]+"\" class=\"btn btn-info btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to view details\">View</a><a href=\"update?id="+row["id"]+"\" class=\"btn btn-warning btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to update details\">Update</a>"
                     }'),
                 ],
                 [
@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ],
             //'dataProvider' => $dataProvider,
-            //'withColumnFilter' => true,
+            'withColumnFilter' => true,
             'serverSide' => true,
             'ajax' => Yii::getAlias('@web/acct-bankaccts/datatables'),
 
