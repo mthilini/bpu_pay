@@ -28,6 +28,7 @@ class CashBookController extends Controller
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
+                        'ledgers' => ['post'],
                     ],
                 ],
             ]

@@ -38,8 +38,15 @@ use yii\helpers\Html;
     <div class="row">
         <div class="col-md-4">
             <?= $form->field($model_cash, 'payType')->dropDownList(
-                ['Cheque' => 'Cheque', 'Cash' => 'Cash', 'Direct Debit' => 'Direct Debit'],
-                ['prompt' => 'Select Cashbook']
+                ['Normal' => 'Normal', 'External Examination' => 'External Examination', 'Staff' => 'Staff'],
+                [
+                    'required' => true,
+                    'prompt' => [
+                        'text' => 'Select Receipt Type',
+                        'options' => ['disabled' => true, 'selected' => true]
+
+                    ]
+                ]
             ) ?>
         </div>
         <div class="col-md-8 col-lg-6">
