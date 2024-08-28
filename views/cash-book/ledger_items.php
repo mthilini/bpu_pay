@@ -119,23 +119,22 @@ use app\models\PayDept;
             type: "POST",
             dataType: "json",
             contentType: "application/json; charset=utf-8",
+            headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
             traditional: true,
             data: JSON.stringify(sdata),
             success: function (response) {
                 if (response.status === "OK") {
                     // do something with response.message or whatever other data on success
-                    console.log(response);
-
+        
                     /*set options */
-
+        
                     for (const [key, value] of Object.entries(response.data)) {
-                        console.log(key);
                         var option = document.createElement('option');
                         option.value = key;
                         option.innerHTML = value;
                         select.appendChild(option);
                     }
-
+        
                 } else if (response.status) {
                     // do something with response.message or whatever other data on error
                     console.log(response.status);
