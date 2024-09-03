@@ -1,11 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\config",
+    "\\assets",
     "\\views",
-    "\\views\\cash-book",
+    "\\views\\acct-bankaccts",
+    "\\views\\acct-ledgmain",
     "\\views\\layouts"
   ],
-  "SelectedNode": "\\views\\cash-book\\ledger_items.php",
+  "SelectedNode": "\\views\\acct-ledgmain\\index.php",
   "PreviewInSolutionExplorer": false
 }

@@ -17,6 +17,27 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="card">
     <div class="card-bofy m-2">
+        <!--
+        <div class="m-2">
+            <h3>Import Options</h3>
+            <div class="row">
+                <div class="col-md-6 col-lg-5 col-xl-4">
+                    <label>Range</label>
+                    <div class="row">
+                        <div class="col-6">
+                            <input class="form-control" type="text" />
+                        </div>
+                        <div class="col-6">
+                            <input class="form-control" type="text" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-sm mt-2">Excel</button>
+        </div>
+
+        <hr />
+            -->
 
         <?= \nullref\datatable\DataTable::widget([
             'tableOptions' => [
