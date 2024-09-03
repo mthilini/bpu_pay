@@ -6,6 +6,8 @@ use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
+use sdelfi\datatables\DataTables;
+
 /** @var yii\web\View $this */
 /** @var app\models\AcctLedgmainSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
@@ -21,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Acc. Ledge-main', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -35,9 +37,30 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, AcctLedgmain $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                        return Url::toRoute([$action, 'id' => $model->id]);
+                    }
             ],
+        ],
+    ]); ?>
+
+ 
+    <?= DataTables::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            //columns
+            'mainCode',
+            'mainDesc',
+            [
+                'class' => ActionColumn::className(),
+                'urlCreator' => function ($action, AcctLedgmain $model, $key, $index, $column) {
+                    return Url::toRoute([$action, 'id' => $model->id]);
+                }
+            ],
+
+            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

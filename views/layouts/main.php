@@ -86,7 +86,7 @@ $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\
         }
 
         .main-header .nav-link {
-            height: 2rem;
+            height: 1.75rem;
         }
 
         .input-group-sm > .form-control:not(textarea), .form-control {
@@ -102,6 +102,13 @@ $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\
         }
         .btn-sm {
             padding: .05rem .5rem;
+        }
+
+        .nav-link {
+            padding: .25rem 0.5rem;
+        }
+        .navbar-expand .navbar-nav {
+            padding-top : 0.25rem;
         }
 
     </style>

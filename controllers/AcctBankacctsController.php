@@ -26,7 +26,6 @@ class AcctBankacctsController extends Controller
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
-                        'delete' => ['POST'],
                     ],
                 ],
             ]
@@ -144,7 +143,7 @@ class AcctBankacctsController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
+        
         return $this->redirect(['index']);
     }
 
