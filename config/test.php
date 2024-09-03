@@ -14,6 +14,19 @@ return [
     ],
     'language' => 'en-US',
     'components' => [
+        'as beforeRequest' => [  //if guest user access site so, redirect to login page.
+            'class' => 'yii\filters\AccessControl',
+            'rules' => [
+                [
+                    'actions' => ['login', 'error'],
+                    'allow' => true,
+                ],
+                [
+                    'allow' => true,
+                    'roles' => ['@'],
+                ],
+            ],
+        ],
         'db' => $db,
         'mailer' => [
             'class' => \yii\symfonymailer\Mailer::class,
@@ -28,8 +41,16 @@ return [
         'urlManager' => [
             'showScriptName' => true,
         ],
+        // 'user' => [
+        //     'identityClass' => 'app\models\User',
+        // ],
         'user' => [
             'identityClass' => 'app\models\User',
+            //'enableSession' => true,
+            'enableAutoLogin' => true,
+            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+            //'authTimeout' => 900,
+            'loginUrl' => ['site/login'],
         ],
         'request' => [
             'cookieValidationKey' => 'test',

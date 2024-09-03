@@ -1,0 +1,13 @@
+.input-icon {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-style: solid;
+    border-width: thin;
+    border-left-width: 0px;
+    padding-right: 5px;
+    border-color: #dad0d0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
