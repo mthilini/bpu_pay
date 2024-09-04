@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-        <img src="<?=$assetDir?>/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="<?= $assetDir ?>/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
 
@@ -10,7 +10,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="<?=$assetDir?>/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="<?= $assetDir ?>/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block">Alexander Pierce</a>
@@ -66,6 +66,20 @@
                             ['label' => 'Payments', 'icon' => 'fa-regular fa-credit-card', 'url' => ['cash-book/payment']],
                             ['label' => 'Receipts', 'icon' => 'fa-regular fa-file-invoice-dollar', 'url' => ['cash-book/receipt']],
                             ['label' => 'Journal', 'icon' => 'fa-regular fa-file-invoice-dollar', 'url' => ['cash-book/journal']]
+                        ]
+                    ],
+                    [
+                        'label' => 'General Ledger',
+                        'icon' => 'fa-sharp fa-regular fa-book',
+                        'items' => [
+                            ['label' => 'Main Ledgers', 'icon' => 'fas fa-align-right', 'url' => ['/acct-ledgmain']],
+                            ['label' => 'Sub Ledgers', 'icon' => 'fas fa-align-right', 'url' => ['/acct-ledgsub']],
+                            ['label' => 'Account Ledgers', 'icon' => 'fas fa-align-right', 'url' => ['/acct-ledger']],
+                            ['label' => 'Account Program', 'icon' => 'fas fa-align-right', 'url' => ['/acct-prog']],
+                            ['label' => 'Account Project', 'icon' => 'fas fa-align-right', 'url' => ['/acct-proj']],
+                            ['label' => 'Account Votes', 'icon' => 'fas fa-align-right', 'url' => ['/acct-votes']],
+                            ['label' => 'Payment Ledger', 'icon' => 'fas fa-align-right', 'url' => ['/acct-payledg']],
+                            ['label' => 'Receipt Ledger', 'icon' => 'fas fa-align-right', 'url' => ['/acct-rctsledg']],
                         ]
                     ],
 

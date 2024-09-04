@@ -116,16 +116,16 @@
         },
         {
             "name": "bower-asset/datatables.net-bs4",
-            "version": "3.2.2",
+            "version": "1.10.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DataTables/Dist-DataTables-Bootstrap4.git",
-                "reference": "c13d88c2110baff11d8ef10e5da20de9f9e9b5fc"
+                "reference": "caf30e4608fcc24fe2effbe76c7a14f0e45ca2be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DataTables/Dist-DataTables-Bootstrap4/zipball/c13d88c2110baff11d8ef10e5da20de9f9e9b5fc",
-                "reference": "c13d88c2110baff11d8ef10e5da20de9f9e9b5fc"
+                "url": "https://api.github.com/repos/DataTables/Dist-DataTables-Bootstrap4/zipball/caf30e4608fcc24fe2effbe76c7a14f0e45ca2be",
+                "reference": "caf30e4608fcc24fe2effbe76c7a14f0e45ca2be"
             },
             "require": {
                 "bower-asset/datatables.net": ">=1.10.13",
@@ -231,13 +231,13 @@
             "version": "5.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/RobinHerbots/Inputmask.git",
-                "reference": "54b9de42114a628138d83f6571c8b07836cc0631"
+                "url": "git@github.com:RobinHerbots/Inputmask.git",
+                "reference": "5069a1acaf2682401b92ea500a35dfc5314b83dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobinHerbots/Inputmask/zipball/54b9de42114a628138d83f6571c8b07836cc0631",
-                "reference": "54b9de42114a628138d83f6571c8b07836cc0631"
+                "url": "https://api.github.com/repos/RobinHerbots/Inputmask/zipball/5069a1acaf2682401b92ea500a35dfc5314b83dc",
+                "reference": "5069a1acaf2682401b92ea500a35dfc5314b83dc"
             },
             "require": {
                 "bower-asset/jquery": ">=1.7"
@@ -249,16 +249,16 @@
         },
         {
             "name": "bower-asset/jquery",
-            "version": "3.7.1",
+            "version": "3.6.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jquery/jquery-dist.git",
-                "reference": "fde1f76e2799dd877c176abde0ec836553246991"
+                "url": "git@github.com:jquery/jquery-dist.git",
+                "reference": "91ef2d8836342875f2519b5815197ea0f23613cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/fde1f76e2799dd877c176abde0ec836553246991",
-                "reference": "fde1f76e2799dd877c176abde0ec836553246991"
+                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/91ef2d8836342875f2519b5815197ea0f23613cf",
+                "reference": "91ef2d8836342875f2519b5815197ea0f23613cf"
             },
             "type": "bower-asset",
             "license": [
@@ -585,12 +585,17 @@
             ]
         },
         {
-<<<<<<< HEAD
             "name": "npm-asset/datatables.net",
-            "version": "1.13.11",
+            "version": "1.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DataTables/Dist-DataTables.git",
+                "reference": "020e067bbb70a82b03b61fdd3a3a6568bf47e15f"
+            },
             "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/datatables.net/-/datatables.net-1.13.11.tgz"
+                "type": "zip",
+                "url": "https://api.github.com/repos/DataTables/Dist-DataTables/zipball/020e067bbb70a82b03b61fdd3a3a6568bf47e15f",
+                "reference": "020e067bbb70a82b03b61fdd3a3a6568bf47e15f"
             },
             "require": {
                 "npm-asset/jquery": ">=1.8,<5.0"
@@ -629,24 +634,24 @@
             ]
         },
         {
-=======
->>>>>>> 2aa76ee728a8cd18173e29c40467c7fd1f8a637c
             "name": "nullref/yii2-datatables",
-            "version": "v1.1.1",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/NullRefExcep/yii2-datatables.git",
-                "reference": "fbd9199bf3e0d4e366b12f52424bc6e6c7b974f0"
+                "reference": "5205ba605515582145f543c930651b60e32c48f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NullRefExcep/yii2-datatables/zipball/fbd9199bf3e0d4e366b12f52424bc6e6c7b974f0",
-                "reference": "fbd9199bf3e0d4e366b12f52424bc6e6c7b974f0",
+                "url": "https://api.github.com/repos/NullRefExcep/yii2-datatables/zipball/5205ba605515582145f543c930651b60e32c48f7",
+                "reference": "5205ba605515582145f543c930651b60e32c48f7",
                 "shasum": ""
             },
             "require": {
                 "bower-asset/datatables": "~1.10.15",
                 "bower-asset/datatables-plugins": "~1.10.15",
+                "bower-asset/datatables.net-bs4": "~1.10.15",
+                "npm-asset/datatables.net-bs5": "~1.10.15",
                 "php": ">=5.5.0",
                 "yiisoft/yii2": "~2.0.13"
             },
@@ -668,6 +673,12 @@
                 {
                     "name": "Dmytro Karpovych",
                     "email": "ZAYEC77@gmail.com"
+                },
+                {
+                    "name": "Radon8472",
+                    "email": "develop@radon-software.net",
+                    "homepage": "https://github.com/Radon8472",
+                    "role": "Contributor"
                 }
             ],
             "description": "Yii2 Extension for DataTables jQuery plug-in",
@@ -683,9 +694,9 @@
             ],
             "support": {
                 "issues": "https://github.com/NullRefExcep/yii2-datatables/issues",
-                "source": "https://github.com/NullRefExcep/yii2-datatables/tree/v1.1.1"
+                "source": "https://github.com/NullRefExcep/yii2-datatables/tree/v1.1.2"
             },
-            "time": "2019-08-01T11:52:39+00:00"
+            "time": "2022-09-28T13:09:27+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -2241,28 +2252,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-<<<<<<< HEAD
                 "reference": "ebdffc9e09585dafa71b9bffcdb0a229d4704c45"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/ebdffc9e09585dafa71b9bffcdb0a229d4704c45",
                 "reference": "ebdffc9e09585dafa71b9bffcdb0a229d4704c45",
-=======
-                "reference": "85402a822d1ecf1db1096959413d35e1c37cf1a5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/85402a822d1ecf1db1096959413d35e1c37cf1a5",
-                "reference": "85402a822d1ecf1db1096959413d35e1c37cf1a5",
->>>>>>> 2aa76ee728a8cd18173e29c40467c7fd1f8a637c
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "ext-libxml": "*",
                 "ext-xmlwriter": "*",
-<<<<<<< HEAD
                 "nikic/php-parser": "^5.1.0",
                 "php": ">=8.2",
                 "phpunit/php-file-iterator": "^5.0.1",
@@ -2272,17 +2273,6 @@
                 "sebastian/environment": "^7.2.0",
                 "sebastian/lines-of-code": "^3.0.1",
                 "sebastian/version": "^5.0.1",
-=======
-                "nikic/php-parser": "^4.19.1 || ^5.1.0",
-                "php": ">=7.3",
-                "phpunit/php-file-iterator": "^3.0.6",
-                "phpunit/php-text-template": "^2.0.4",
-                "sebastian/code-unit-reverse-lookup": "^2.0.3",
-                "sebastian/complexity": "^2.0.3",
-                "sebastian/environment": "^5.1.5",
-                "sebastian/lines-of-code": "^1.0.4",
-                "sebastian/version": "^3.0.2",
->>>>>>> 2aa76ee728a8cd18173e29c40467c7fd1f8a637c
                 "theseer/tokenizer": "^1.2.3"
             },
             "require-dev": {
@@ -2325,11 +2315,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
                 "security": "https://github.com/sebastianbergmann/php-code-coverage/security/policy",
-<<<<<<< HEAD
                 "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/11.0.6"
-=======
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.32"
->>>>>>> 2aa76ee728a8cd18173e29c40467c7fd1f8a637c
             },
             "funding": [
                 {
@@ -2337,11 +2323,7 @@
                     "type": "github"
                 }
             ],
-<<<<<<< HEAD
             "time": "2024-08-22T04:37:56+00:00"
-=======
-            "time": "2024-08-22T04:23:01+00:00"
->>>>>>> 2aa76ee728a8cd18173e29c40467c7fd1f8a637c
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -2597,21 +2579,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-<<<<<<< HEAD
-                "reference": "39448936fe923265a2d37740dca69da2f3dd0a25"
+                "reference": "a60c5c2befa33996d4cd3f146f58c84c5925cee4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/39448936fe923265a2d37740dca69da2f3dd0a25",
-                "reference": "39448936fe923265a2d37740dca69da2f3dd0a25",
-=======
-                "reference": "5ddc953c1d292bc54f12f5e810abddb156d50ff3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/5ddc953c1d292bc54f12f5e810abddb156d50ff3",
-                "reference": "5ddc953c1d292bc54f12f5e810abddb156d50ff3",
->>>>>>> 2aa76ee728a8cd18173e29c40467c7fd1f8a637c
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a60c5c2befa33996d4cd3f146f58c84c5925cee4",
+                "reference": "a60c5c2befa33996d4cd3f146f58c84c5925cee4",
                 "shasum": ""
             },
             "require": {
@@ -2624,7 +2597,6 @@
                 "myclabs/deep-copy": "^1.12.0",
                 "phar-io/manifest": "^2.0.4",
                 "phar-io/version": "^3.2.1",
-<<<<<<< HEAD
                 "php": ">=8.2",
                 "phpunit/php-code-coverage": "^11.0.6",
                 "phpunit/php-file-iterator": "^5.1.0",
@@ -2641,25 +2613,6 @@
                 "sebastian/object-enumerator": "^6.0.1",
                 "sebastian/type": "^5.0.1",
                 "sebastian/version": "^5.0.1"
-=======
-                "php": ">=7.3",
-                "phpunit/php-code-coverage": "^9.2.32",
-                "phpunit/php-file-iterator": "^3.0.6",
-                "phpunit/php-invoker": "^3.1.1",
-                "phpunit/php-text-template": "^2.0.4",
-                "phpunit/php-timer": "^5.0.3",
-                "sebastian/cli-parser": "^1.0.2",
-                "sebastian/code-unit": "^1.0.8",
-                "sebastian/comparator": "^4.0.8",
-                "sebastian/diff": "^4.0.6",
-                "sebastian/environment": "^5.1.5",
-                "sebastian/exporter": "^4.0.6",
-                "sebastian/global-state": "^5.0.7",
-                "sebastian/object-enumerator": "^4.0.4",
-                "sebastian/resource-operations": "^3.0.4",
-                "sebastian/type": "^3.2.1",
-                "sebastian/version": "^3.0.2"
->>>>>>> 2aa76ee728a8cd18173e29c40467c7fd1f8a637c
             },
             "suggest": {
                 "ext-soap": "To be able to generate mocks based on WSDL files"
@@ -2719,11 +2672,7 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2024-08-28T07:50:48+00:00"
-=======
-            "time": "2024-08-28T12:50:49+00:00"
->>>>>>> 2aa76ee728a8cd18173e29c40467c7fd1f8a637c
+            "time": "2024-09-04T06:36:39+00:00"
         },
         {
             "name": "psr/container",
@@ -4077,12 +4026,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "cc2dd55c49e04b10cec4aa6e47e099a2d1656845"
+                "reference": "ee7ee22b1dabcff731b7d79d3633c96251ad8404"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/cc2dd55c49e04b10cec4aa6e47e099a2d1656845",
-                "reference": "cc2dd55c49e04b10cec4aa6e47e099a2d1656845",
+                "url": "https://api.github.com/repos/symfony/console/zipball/ee7ee22b1dabcff731b7d79d3633c96251ad8404",
+                "reference": "ee7ee22b1dabcff731b7d79d3633c96251ad8404",
                 "shasum": ""
             },
             "require": {
@@ -4162,7 +4111,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-08-15T22:49:18+00:00"
+            "time": "2024-08-30T15:40:32+00:00"
         },
         {
             "name": "symfony/css-selector",
@@ -4527,12 +4476,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "0470b8dc10ca08d23aeaabbed5b961c928e4d89d"
+                "reference": "afa87bce0d224a744963ecc8db07b1f0f96a3518"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/0470b8dc10ca08d23aeaabbed5b961c928e4d89d",
-                "reference": "0470b8dc10ca08d23aeaabbed5b961c928e4d89d",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/afa87bce0d224a744963ecc8db07b1f0f96a3518",
+                "reference": "afa87bce0d224a744963ecc8db07b1f0f96a3518",
                 "shasum": ""
             },
             "require": {
@@ -4583,7 +4532,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-08-13T14:29:53+00:00"
+            "time": "2024-09-03T13:22:29+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -5084,12 +5033,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "70171f7b88875de55e09d8d7e73a2b8d938a8902"
+                "reference": "f74e6c4199357f1b566a67bbe834ebd7de658839"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/70171f7b88875de55e09d8d7e73a2b8d938a8902",
-                "reference": "70171f7b88875de55e09d8d7e73a2b8d938a8902",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/f74e6c4199357f1b566a67bbe834ebd7de658839",
+                "reference": "f74e6c4199357f1b566a67bbe834ebd7de658839",
                 "shasum": ""
             },
             "require": {
@@ -5105,7 +5054,7 @@
                 "symfony/http-kernel": "^6.4|^7.0",
                 "symfony/process": "^6.4|^7.0",
                 "symfony/uid": "^6.4|^7.0",
-                "twig/twig": "^3.0.4"
+                "twig/twig": "^3.12|^4.0"
             },
             "bin": [
                 "Resources/bin/var-dump-server"
@@ -5159,7 +5108,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-08-22T07:36:46+00:00"
+            "time": "2024-09-02T15:30:47+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -5547,13 +5496,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-<<<<<<< HEAD
-        "mehulpatel/vspl": 20,
-        "yiisoft/yii2-jui": 20,
-        "nullref/yii2-datatables": 20
-=======
         "mehulpatel/vspl": 20
->>>>>>> 2aa76ee728a8cd18173e29c40467c7fd1f8a637c
     },
     "prefer-stable": false,
     "prefer-lowest": false,
