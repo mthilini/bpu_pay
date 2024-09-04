@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "58615c824ab234a668ff177385ab0e3b",
+    "content-hash": "6eb92bb3692ef425c0d014b2f46c452d",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -116,109 +116,19 @@
         },
         {
             "name": "bower-asset/datatables.net-bs4",
-            "version": "3.2.2",
+            "version": "1.10.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DataTables/Dist-DataTables-Bootstrap4.git",
-                "reference": "c13d88c2110baff11d8ef10e5da20de9f9e9b5fc"
+                "reference": "caf30e4608fcc24fe2effbe76c7a14f0e45ca2be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DataTables/Dist-DataTables-Bootstrap4/zipball/c13d88c2110baff11d8ef10e5da20de9f9e9b5fc",
-                "reference": "c13d88c2110baff11d8ef10e5da20de9f9e9b5fc"
+                "url": "https://api.github.com/repos/DataTables/Dist-DataTables-Bootstrap4/zipball/caf30e4608fcc24fe2effbe76c7a14f0e45ca2be",
+                "reference": "caf30e4608fcc24fe2effbe76c7a14f0e45ca2be"
             },
             "require": {
                 "bower-asset/datatables.net": ">=1.10.13",
-                "bower-asset/jquery": ">=1.7"
-            },
-            "type": "bower-asset",
-            "license": [
-                "MIT"
-            ]
-        },
-        {
-            "name": "bower-asset/datatables.net-buttons",
-            "version": "2.3.5",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:DataTables/Dist-DataTables-Buttons.git",
-                "reference": "d3bb12d3217688771cea3fb0ec6b70600d7b70bc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/DataTables/Dist-DataTables-Buttons/zipball/d3bb12d3217688771cea3fb0ec6b70600d7b70bc",
-                "reference": "d3bb12d3217688771cea3fb0ec6b70600d7b70bc"
-            },
-            "require": {
-                "bower-asset/datatables.net": ">=1.10.9",
-                "bower-asset/jquery": ">=1.7"
-            },
-            "type": "bower-asset",
-            "license": [
-                "MIT"
-            ]
-        },
-        {
-            "name": "bower-asset/datatables.net-buttons-bs4",
-            "version": "2.3.5",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:DataTables/Dist-DataTables-Buttons-Bootstrap4.git",
-                "reference": "fe8b8642eef735fd134cfdefd68c74b4584bfdcb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/DataTables/Dist-DataTables-Buttons-Bootstrap4/zipball/fe8b8642eef735fd134cfdefd68c74b4584bfdcb",
-                "reference": "fe8b8642eef735fd134cfdefd68c74b4584bfdcb"
-            },
-            "require": {
-                "bower-asset/datatables.net-bs4": ">=1.10.13",
-                "bower-asset/datatables.net-buttons": ">=1.2.4",
-                "bower-asset/jquery": ">=1.7"
-            },
-            "type": "bower-asset",
-            "license": [
-                "MIT"
-            ]
-        },
-        {
-            "name": "bower-asset/datatables.net-select",
-            "version": "1.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/DataTables/Dist-DataTables-Select.git",
-                "reference": "0e64cb8162318603fc0557c06a42cbe9db8e18a9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/DataTables/Dist-DataTables-Select/zipball/0e64cb8162318603fc0557c06a42cbe9db8e18a9",
-                "reference": "0e64cb8162318603fc0557c06a42cbe9db8e18a9"
-            },
-            "require": {
-                "bower-asset/datatables.net": ">=1.10.9",
-                "bower-asset/jquery": ">=1.7"
-            },
-            "type": "bower-asset",
-            "license": [
-                "MIT"
-            ]
-        },
-        {
-            "name": "bower-asset/datatables.net-select-bs4",
-            "version": "1.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/DataTables/Dist-DataTables-Select-Bootstrap4.git",
-                "reference": "2218775b792a4a25f29f4c6f7c739cfdf3aa4aa8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/DataTables/Dist-DataTables-Select-Bootstrap4/zipball/2218775b792a4a25f29f4c6f7c739cfdf3aa4aa8",
-                "reference": "2218775b792a4a25f29f4c6f7c739cfdf3aa4aa8"
-            },
-            "require": {
-                "bower-asset/datatables.net-bs4": ">=1.10.13",
-                "bower-asset/datatables.net-select": ">=1.2.1",
                 "bower-asset/jquery": ">=1.7"
             },
             "type": "bower-asset",
@@ -231,13 +141,13 @@
             "version": "5.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/RobinHerbots/Inputmask.git",
-                "reference": "54b9de42114a628138d83f6571c8b07836cc0631"
+                "url": "git@github.com:RobinHerbots/Inputmask.git",
+                "reference": "5069a1acaf2682401b92ea500a35dfc5314b83dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobinHerbots/Inputmask/zipball/54b9de42114a628138d83f6571c8b07836cc0631",
-                "reference": "54b9de42114a628138d83f6571c8b07836cc0631"
+                "url": "https://api.github.com/repos/RobinHerbots/Inputmask/zipball/5069a1acaf2682401b92ea500a35dfc5314b83dc",
+                "reference": "5069a1acaf2682401b92ea500a35dfc5314b83dc"
             },
             "require": {
                 "bower-asset/jquery": ">=1.7"
@@ -585,25 +495,77 @@
             ]
         },
         {
-            "name": "nullref/yii2-datatables",
-            "version": "v1.1.1",
+            "name": "npm-asset/datatables.net",
+            "version": "1.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://github.com/NullRefExcep/yii2-datatables.git",
-                "reference": "fbd9199bf3e0d4e366b12f52424bc6e6c7b974f0"
+                "url": "https://github.com/DataTables/Dist-DataTables.git",
+                "reference": "020e067bbb70a82b03b61fdd3a3a6568bf47e15f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/NullRefExcep/yii2-datatables/zipball/fbd9199bf3e0d4e366b12f52424bc6e6c7b974f0",
-                "reference": "fbd9199bf3e0d4e366b12f52424bc6e6c7b974f0",
+                "url": "https://api.github.com/repos/DataTables/Dist-DataTables/zipball/020e067bbb70a82b03b61fdd3a3a6568bf47e15f",
+                "reference": "020e067bbb70a82b03b61fdd3a3a6568bf47e15f"
+            },
+            "require": {
+                "npm-asset/jquery": ">=1.8,<5.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/datatables.net-bs5",
+            "version": "1.10.25",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/datatables.net-bs5/-/datatables.net-bs5-1.10.25.tgz"
+            },
+            "require": {
+                "npm-asset/datatables.net": ">=1.10.15,<2.0.0",
+                "npm-asset/jquery": ">=1.7"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/jquery",
+            "version": "4.0.0-beta.2",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/jquery/-/jquery-4.0.0-beta.2.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "nullref/yii2-datatables",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/NullRefExcep/yii2-datatables.git",
+                "reference": "554162ff297387943b0114b824deed8d5c19b4d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/NullRefExcep/yii2-datatables/zipball/554162ff297387943b0114b824deed8d5c19b4d8",
+                "reference": "554162ff297387943b0114b824deed8d5c19b4d8",
                 "shasum": ""
             },
             "require": {
                 "bower-asset/datatables": "~1.10.15",
                 "bower-asset/datatables-plugins": "~1.10.15",
+                "bower-asset/datatables.net-bs4": "~1.10.15",
+                "npm-asset/datatables.net-bs5": "~1.10.15",
                 "php": ">=5.5.0",
                 "yiisoft/yii2": "~2.0.13"
             },
+            "default-branch": true,
             "type": "yii2-extension",
             "autoload": {
                 "psr-4": {
@@ -622,6 +584,18 @@
                 {
                     "name": "Dmytro Karpovych",
                     "email": "ZAYEC77@gmail.com"
+                },
+                {
+                    "name": "Radon8472",
+                    "email": "develop@radon-software.net",
+                    "homepage": "https://github.com/Radon8472",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "Oleksandr Lynnyk",
+                    "email": "alexandr.linnik@gmail.com",
+                    "homepage": "https://github.com/alxlnk",
+                    "role": "Contributor"
                 }
             ],
             "description": "Yii2 Extension for DataTables jQuery plug-in",
@@ -637,9 +611,9 @@
             ],
             "support": {
                 "issues": "https://github.com/NullRefExcep/yii2-datatables/issues",
-                "source": "https://github.com/NullRefExcep/yii2-datatables/tree/v1.1.1"
+                "source": "https://github.com/NullRefExcep/yii2-datatables/tree/master"
             },
-            "time": "2019-08-01T11:52:39+00:00"
+            "time": "2022-10-07T11:33:26+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -695,66 +669,6 @@
                 "source": "https://github.com/paragonie/random_compat"
             },
             "time": "2022-06-19T18:08:39+00:00"
-        },
-        {
-            "name": "sdelfi/yii2-widget-datatables",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sdelfi/yii2-widget-datatables.git",
-                "reference": "65dacd9e08931b02f65153ce403cf56ec2c797c7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sdelfi/yii2-widget-datatables/zipball/65dacd9e08931b02f65153ce403cf56ec2c797c7",
-                "reference": "65dacd9e08931b02f65153ce403cf56ec2c797c7",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/datatables.net": "*",
-                "bower-asset/datatables.net-bs4": "*",
-                "bower-asset/datatables.net-buttons-bs4": "*",
-                "bower-asset/datatables.net-select-bs4": "*",
-                "bower-asset/jquery": ">= 1.7.0",
-                "yiisoft/yii2": "*"
-            },
-            "default-branch": true,
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "sdelfi\\datatables\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Federico Nicolás Motta",
-                    "email": "fedemotta@gmail.com"
-                },
-                {
-                    "name": "Stanislav",
-                    "email": "delfi89@gmail.com"
-                }
-            ],
-            "description": "DataTables widget for Yii2 with Bootstrap 4",
-            "keywords": [
-                "bootstrap4",
-                "datatables",
-                "extension",
-                "javascript",
-                "jquery",
-                "library",
-                "table",
-                "yii2"
-            ],
-            "support": {
-                "issues": "https://github.com/sdelfi/yii2-widget-datatables/issues?state=open",
-                "source": "https://github.com/sdelfi/yii2-widget-datatables"
-            },
-            "time": "2018-08-31T12:07:56+00:00"
         },
         {
             "name": "yiisoft/yii2",
@@ -2494,12 +2408,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "5ddc953c1d292bc54f12f5e810abddb156d50ff3"
+                "reference": "84ad6993ce93fc2f1ac7ec0703d3a2f284594e9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/5ddc953c1d292bc54f12f5e810abddb156d50ff3",
-                "reference": "5ddc953c1d292bc54f12f5e810abddb156d50ff3",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/84ad6993ce93fc2f1ac7ec0703d3a2f284594e9c",
+                "reference": "84ad6993ce93fc2f1ac7ec0703d3a2f284594e9c",
                 "shasum": ""
             },
             "require": {
@@ -2589,7 +2503,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-08-28T12:50:49+00:00"
+            "time": "2024-09-03T09:44:33+00:00"
         },
         {
             "name": "psr/container",

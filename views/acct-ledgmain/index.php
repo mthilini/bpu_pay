@@ -6,7 +6,6 @@ use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
-use sdelfi\datatables\DataTables;
 
 /** @var yii\web\View $this */
 /** @var app\models\AcctLedgmainSearch $searchModel */
@@ -42,27 +41,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
-
- 
-    <?= DataTables::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            //columns
-            'mainCode',
-            'mainDesc',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, AcctLedgmain $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                }
-            ],
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-
 
 </div>

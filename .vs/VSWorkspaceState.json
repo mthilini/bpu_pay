@@ -2,10 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\assets",
+    "\\config",
+    "\\controllers",
     "\\views",
-    "\\views\\acct-bankaccts",
-    "\\views\\acct-ledgmain",
-    "\\views\\layouts"
+    "\\views\\acct-ledgmain"
   ],
   "SelectedNode": "\\views\\acct-ledgmain\\index.php",
   "PreviewInSolutionExplorer": false

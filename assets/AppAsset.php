@@ -26,7 +26,6 @@ class AppAsset extends AssetBundle
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        'yii\bootstrap5\BootstrapAsset',
-        'sdelfi\datatables\DataTablesAsset'
+        'yii\bootstrap5\BootstrapAsset'
     ];
 }
