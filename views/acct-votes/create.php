@@ -9,9 +9,8 @@ $this->title = 'Create Account Votes';
 $this->params['breadcrumbs'][] = ['label' => 'Acct Votes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="acct-votes-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="acct-votes-create">
 
     <?= $this->render('_form', [
         'model' => $model,

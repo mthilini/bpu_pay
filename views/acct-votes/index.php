@@ -13,15 +13,15 @@ use yii\grid\GridView;
 $this->title = 'Account Votes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="acct-votes-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="acct-votes-index">
 
     <p>
         <?= Html::a('Create Account Votes', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             //'id',
-	    'progCode',
+            'progCode',
             'projCode',
             'objCode',
             'voteCode',
@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, AcctVotes $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>
