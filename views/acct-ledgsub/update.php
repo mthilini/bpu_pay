@@ -10,9 +10,8 @@ $this->params['breadcrumbs'][] = ['label' => 'Ledger Sub Codes', 'url' => ['inde
 $this->params['breadcrumbs'][] = ['label' => $model->lsubCode, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="acct-ledgsub-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="acct-ledgsub-update">
 
     <?= $this->render('_formU', [
         'model' => $model,
