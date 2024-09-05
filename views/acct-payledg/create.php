@@ -9,9 +9,8 @@ $this->title = 'Create Payment-Ledger';
 $this->params['breadcrumbs'][] = ['label' => 'Payment-Ledgers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="acct-payledg-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="acct-payledg-create">
 
     <?= $this->render('_form', [
         'model' => $model,

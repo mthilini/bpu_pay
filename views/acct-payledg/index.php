@@ -14,14 +14,12 @@ $this->title = 'Payment-Ledgers';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="acct-payledg-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('New Payment-Ledger', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -35,10 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'paySub',
             'payLedg',
             //'payAmount',
-            ['label' => 'Amount (Rs.)',
-                'attribute' =>'payAmount',
+            [
+                'label' => 'Amount (Rs.)',
+                'attribute' => 'payAmount',
                 //'contentOptions' => ['class' => 'col-lg-1'],
-                'format'=>['currency'],
+                'format' => ['currency'],
             ],
             'payRmks',
             'payCashBk',
@@ -47,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, AcctPayledg $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>
