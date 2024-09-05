@@ -9,9 +9,8 @@ $this->title = 'Create Account Ledger';
 $this->params['breadcrumbs'][] = ['label' => 'Account Ledgers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="acct-ledger-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="acct-ledger-create">
 
     <?= $this->render('_form', [
         'model' => $model,

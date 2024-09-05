@@ -13,9 +13,8 @@ use yii\grid\GridView;
 $this->title = 'Account Ledgers';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="acct-ledger-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="acct-ledger-index">
 
     <p>
         <?= Html::a('Create Account Ledger', ['create'], ['class' => 'btn btn-success']) ?>

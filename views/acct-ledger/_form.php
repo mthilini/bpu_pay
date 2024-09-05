@@ -10,29 +10,44 @@ use app\models\AcctLedgmain;
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="acct-ledger-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+<div class="row acct-ledger-form">
+    <div class="col-md-6 col-lg-5 col-xl-5">
+        <table width="100%" xmlns="http://www.w3.org/1999/html">
+            <tr>
+                <td valign="top">
+                    <div class="box box-primary">
+                        <div class="box-body">
+                            <div class="panel-body">
 
-    <?php
-    //use app\models\AcctLedgmain;
-    $mainLedgers=AcctLedgmain::find()->all();
-    //use yii\helpers\ArrayHelper;
-    $listData=ArrayHelper::map($mainLedgers,'mainCode','mainDesc');
-    echo $form->field($model, 'mainCode')->dropDownList(
-        $listData,
-        ['prompt'=>'Select Main Ledger Code...']
-    );?>
-    <?= $form->field($model, 'ledgSub')->textInput(['maxlength' => true]) ?>
+                                <div class="user-view">
+                                    <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'ledgCode')->textInput(['maxlength' => true,'placeholder' => 'Generate Automatically based above', 'disabled' => 'disabled']) ?>
+                                    <?php
+                                    $mainLedgers = AcctLedgmain::find()->all();
+                                    $listData = ArrayHelper::map($mainLedgers, 'mainCode', 'mainDesc');
+                                    echo $form->field($model, 'mainCode')->dropDownList(
+                                        $listData,
+                                        ['prompt' => 'Select Main Ledger Code...']
+                                    ); ?>
+                                    <?= $form->field($model, 'ledgSub')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'ledgDesc')->textInput(['maxlength' => true]) ?>
+                                    <?= $form->field($model, 'ledgCode')->textInput(['maxlength' => true, 'placeholder' => 'Generate Automatically based above', 'disabled' => 'disabled']) ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+                                    <?= $form->field($model, 'ledgDesc')->textInput(['maxlength' => true]) ?>
+
+                                    <p>
+                                        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+                                        <?= Html::a('Close', ['/acct-ledger'], ['class' => 'btn btn-default pull-right']) ?>
+                                    </p>
+
+                                    <?php ActiveForm::end(); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
-
-    <?php ActiveForm::end(); ?>
-
 </div>
