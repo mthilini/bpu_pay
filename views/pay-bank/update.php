@@ -10,9 +10,8 @@ $this->params['breadcrumbs'][] = ['label' => 'Bank Information', 'url' => ['inde
 $this->params['breadcrumbs'][] = ['label' => $model->bankBank, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="pay-bank-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-bank-update">
 
     <?= $this->render('_formU', [
         'model' => $model,

@@ -54,38 +54,41 @@
                         'label' => 'Cash Book',
                         'icon' => 'fas fa-book',
                         'items' => [
-                            ['label' => 'Cashbook Details', 'icon' => 'fas fa-caret-right', 'url' => ['acct-bankaccts/index']],
-                            ['label' => 'Payments', 'icon' => 'fas fa-caret-right', 'url' => ['cash-book/payment']],
-                            ['label' => 'Receipts', 'icon' => 'fas fa-caret-right', 'url' => ['cash-book/receipt']],
-                            ['label' => 'Journal', 'icon' => 'fas fa-caret-right', 'url' => ['cash-book/journal']]
+                            ['label' => 'Cashbook Details', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-bankaccts/index']],
+                            ['label' => 'Payments', 'icon' => 'fas fa-caret-right', 'url' => ['/cash-book/payment']],
+                            ['label' => 'Receipts', 'icon' => 'fas fa-caret-right', 'url' => ['/cash-book/receipt']],
+                            ['label' => 'Journal', 'icon' => 'fas fa-caret-right', 'url' => ['/cash-book/journal']]
                         ]
                     ],
                     [
                         'label' => 'General Ledger',
                         'icon' => 'fas fa-file-alt',
                         'items' => [
-                            ['label' => 'Main Ledgers', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledgmain']],
-                            ['label' => 'Sub Ledgers', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledgsub']],
-                            ['label' => 'Account Ledgers', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledger']],
-                            ['label' => 'Account Program', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-prog']],
-                            ['label' => 'Account Project', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-proj']],
-                            ['label' => 'Account Votes', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-votes']],
-                            ['label' => 'Payment Ledger', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-payledg']],
-                            ['label' => 'Receipt Ledger', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rctsledg']],
+                            ['label' => 'Main Ledgers', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledgmain/index']],
+                            ['label' => 'Sub Ledgers', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledgsub/index']],
+                            ['label' => 'Account Ledgers', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledger/index']],
+                            ['label' => 'Account Program', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-prog/index']],
+                            ['label' => 'Account Project', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-proj/index']],
+                            ['label' => 'Account Votes', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-votes/index']],
+                            ['label' => 'Payment Ledger', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-payledg/index']],
+                            ['label' => 'Receipt Ledger', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rctsledg/index']],
                         ]
                     ],
                     [
                         'label' => 'Payroll',
                         'icon' => 'fas fa-cash-register',
                         'items' => [
-                            ['label' => 'Employee Details', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-fin-details']],
-                            ['label' => 'Standing Order Allowances', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-seml']],
-                            ['label' => 'SA-5 Allowances', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledger']],
-                            ['label' => 'Standing Order Deductions', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-prog']],
-                            ['label' => 'Banks', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-prog']],
-                            ['label' => 'Fixed Salary Fields', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-prog']],
-                            ['label' => 'Bank Standing Orders', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-prog']],
-                            ['label' => 'Pay Income', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-prog']],
+                            ['label' => 'Employee Details', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-fin-details/index']],
+                            ['label' => 'Standing Order Allowances', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-seml/index']],
+                            ['label' => 'SA-5 Allowances', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-sa5/index']],
+                            ['label' => 'Standing Order Deductions', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-sded/index']],
+                            ['label' => 'Banks', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-bank/index']],
+                            ['label' => 'Fixed Salary Fields', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-fields/index']],
+                            ['label' => 'Bank Standing Orders', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-sbnk/index']],
+                            ['label' => 'Pay Income', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-income/index']],
+                            ['label' => 'Pay Deductions', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-deductions/index']],
+                            ['label' => 'Pay Standing-Tax', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-stax/index']],
+                            ['label' => 'Pay Tax Type', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-taxtype/index']],
                         ]
                     ],
                     [

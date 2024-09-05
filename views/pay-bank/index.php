@@ -13,15 +13,15 @@ use yii\grid\GridView;
 $this->title = 'Bank Information';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pay-bank-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-bank-index">
 
     <p>
         <?= Html::a('Create New Bank', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -31,19 +31,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             [
-                'attribute' =>'bankCode',
+                'attribute' => 'bankCode',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:150px;']
             ],
             [
-                'attribute' =>'bankBranch',
+                'attribute' => 'bankBranch',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:150px;']
             ],
             [
-                'attribute' =>'bankBank',
+                'attribute' => 'bankBank',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:200px;']
             ],
             [
-                'attribute' =>'bankName',
+                'attribute' => 'bankName',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:400px;']
             ],
             //'bankAddr',
@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, PayBank $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>
