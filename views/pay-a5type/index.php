@@ -13,15 +13,15 @@ use yii\grid\GridView;
 $this->title = 'Pay A5 Types';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pay-a5type-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-a5type-index">
 
     <p>
         <?= Html::a('Create Pay A5 Type', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, PayA5type $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>

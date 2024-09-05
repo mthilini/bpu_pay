@@ -9,9 +9,8 @@ $this->title = 'Create Pay A5 Type';
 $this->params['breadcrumbs'][] = ['label' => 'Pay A5 Types', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pay-a5type-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-a5type-create">
 
     <?= $this->render('_form', [
         'model' => $model,

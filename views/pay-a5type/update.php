@@ -10,9 +10,8 @@ $this->params['breadcrumbs'][] = ['label' => 'Pay A5 Types', 'url' => ['index']]
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="pay-a5type-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-a5type-update">
 
     <?= $this->render('_form', [
         'model' => $model,
