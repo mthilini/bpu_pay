@@ -66,9 +66,8 @@
         }
     ],
     "require": {
-        "sdelfi/yii2-widget-datatables": "*",
         "mehulpatel/vspl": "dev-master",
         "hail812/yii2-adminlte3": "~1.1",
-        "nullref/yii2-datatables": "^1.1"
+        "nullref/yii2-datatables": "dev-master"
     }
 }

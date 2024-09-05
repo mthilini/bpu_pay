@@ -6,7 +6,6 @@ use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
-use sdelfi\datatables\DataTables;
 
 /** @var yii\web\View $this */
 /** @var app\models\AcctLedgmainSearch $searchModel */
@@ -49,13 +48,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
 
                             <div class="user-view">
-                                <?= DataTables::widget([
+                                <?= GridView::widget([
                                     'dataProvider' => $dataProvider,
                                     'filterModel' => $searchModel,
                                     'columns' => [
                                         ['class' => 'yii\grid\SerialColumn'],
 
-                                        //columns
+                                        //'id',
                                         'mainCode',
                                         'mainDesc',
                                         [
@@ -66,6 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         ],
                                     ],
                                 ]); ?>
+
                             </div>
                         </div>
                     </div>
