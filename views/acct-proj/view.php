@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 'method' => 'post',
                                             ],
                                         ]) ?>
-                                        <?= Html::a('Close', ['/acct-proj'], ['class' => 'btn btn-default pull-right']) ?>
+                                        <?= Html::a('Close', ['/acct-proj/index'], ['class' => 'btn btn-default pull-right']) ?>
                                     </p>
                                 </div>
                             </div>

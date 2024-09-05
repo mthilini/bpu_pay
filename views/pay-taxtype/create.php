@@ -9,9 +9,8 @@ $this->title = 'Create Pay Taxtype';
 $this->params['breadcrumbs'][] = ['label' => 'Pay Taxtypes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pay-taxtype-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-taxtype-create">
 
     <?= $this->render('_form', [
         'model' => $model,

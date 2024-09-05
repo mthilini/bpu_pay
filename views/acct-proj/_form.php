@@ -36,7 +36,7 @@ use app\models\AcctProg;
 
                                     <p>
                                         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-                                        <?= Html::a('Close', ['/acct-proj'], ['class' => 'btn btn-default pull-right']) ?>
+                                        <?= Html::a('Close', ['/acct-proj/index'], ['class' => 'btn btn-default pull-right']) ?>
                                     </p>
 
                                     <?php ActiveForm::end(); ?>

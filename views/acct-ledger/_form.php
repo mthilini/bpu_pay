@@ -38,7 +38,7 @@ use app\models\AcctLedgmain;
 
                                     <p>
                                         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-                                        <?= Html::a('Close', ['/acct-ledger'], ['class' => 'btn btn-default pull-right']) ?>
+                                        <?= Html::a('Close', ['/acct-ledger/index'], ['class' => 'btn btn-default pull-right']) ?>
                                     </p>
 
                                     <?php ActiveForm::end(); ?>

@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
 
                                     <p>
                                         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-                                        <?= Html::a('Close', ['/acct-prog'], ['class' => 'btn btn-default pull-right']) ?>
+                                        <?= Html::a('Close', ['/acct-prog/index'], ['class' => 'btn btn-default pull-right']) ?>
                                     </p>
 
                                     <?php ActiveForm::end(); ?>

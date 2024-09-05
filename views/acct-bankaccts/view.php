@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                     <p>
                                         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                                        <?= Html::a('Close', ['/acct-bankaccts'], ['class' => 'btn btn-default pull-right']) ?>
+                                        <?= Html::a('Close', ['/acct-bankaccts/index'], ['class' => 'btn btn-default pull-right']) ?>
                                     </p>
                                 </div>
                             </div>

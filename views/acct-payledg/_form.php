@@ -69,7 +69,7 @@ use app\models\AcctLedgmain;
 
                                         <p>
                                             <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-                                            <?= Html::a('Close', ['/acct-payledg'], ['class' => 'btn btn-default pull-right']) ?>
+                                            <?= Html::a('Close', ['/acct-payledg/index'], ['class' => 'btn btn-default pull-right']) ?>
                                         </p>
 
                                         <?php ActiveForm::end(); ?>
@@ -77,6 +77,7 @@ use app\models\AcctLedgmain;
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </td>
             </tr>
         </table>
