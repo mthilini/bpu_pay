@@ -14,9 +14,6 @@ $this->title = 'Account Programs';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="acct-prog-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('Create Acct Prog', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
