@@ -15,54 +15,62 @@ use sdelfi\datatables\DataTables;
 $this->title = 'Account Main Ledger Codes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="acct-ledgmain-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="row acct-ledgmain-index">
+    <table width="100%" xmlns="http://www.w3.org/1999/html">
+        <tr>
+            <td valign="top">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <div class="box-header">
+                            <span class="with-border-box">
+                                <?= Html::a('Create Acc. Ledge-main', ['create'], ['class' => 'btn btn-success']) ?>
+                            </span>
+                        </div>
+                        <div class="panel-body panel-body-index">
+                            <div class="user-view">
+                                <?= GridView::widget([
+                                    'dataProvider' => $dataProvider,
+                                    'filterModel' => $searchModel,
+                                    'columns' => [
+                                        ['class' => 'yii\grid\SerialColumn'],
 
-    <p>
-        <?= Html::a('Create Acc. Ledge-main', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+                                        //'id',
+                                        'mainCode',
+                                        'mainDesc',
+                                        [
+                                            'class' => ActionColumn::className(),
+                                            'urlCreator' => function ($action, AcctLedgmain $model, $key, $index, $column) {
+                                                return Url::toRoute([$action, 'id' => $model->id]);
+                                            }
+                                        ],
+                                    ],
+                                ]); ?>
+                            </div>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
+                            <div class="user-view">
+                                <?= DataTables::widget([
+                                    'dataProvider' => $dataProvider,
+                                    'filterModel' => $searchModel,
+                                    'columns' => [
+                                        ['class' => 'yii\grid\SerialColumn'],
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            //'id',
-            'mainCode',
-            'mainDesc',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, AcctLedgmain $model, $key, $index, $column) {
-                        return Url::toRoute([$action, 'id' => $model->id]);
-                    }
-            ],
-        ],
-    ]); ?>
-
- 
-    <?= DataTables::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            //columns
-            'mainCode',
-            'mainDesc',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, AcctLedgmain $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                }
-            ],
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-
-
+                                        //columns
+                                        'mainCode',
+                                        'mainDesc',
+                                        [
+                                            'class' => ActionColumn::className(),
+                                            'urlCreator' => function ($action, AcctLedgmain $model, $key, $index, $column) {
+                                                return Url::toRoute([$action, 'id' => $model->id]);
+                                            }
+                                        ],
+                                    ],
+                                ]); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
 </div>

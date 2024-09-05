@@ -10,9 +10,9 @@ use yii\widgets\ActiveForm;
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="acct-bankaccts-form">
+<div class="row acct-bankaccts-form">
         <div class="col-md-6 col-lg-5 col-xl-5">
-                <table xmlns="http://www.w3.org/1999/html">
+                <table width="100%" xmlns="http://www.w3.org/1999/html">
                         <tr>
                                 <td valign="top">
                                         <div class="box box-primary">
