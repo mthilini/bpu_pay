@@ -9,9 +9,8 @@ $this->title = 'Create Tbl User';
 $this->params['breadcrumbs'][] = ['label' => 'Tbl Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="tbl-user-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="tbl-user-create">
 
     <?= $this->render('_form', [
         'model' => $model,

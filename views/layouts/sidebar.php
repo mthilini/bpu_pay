@@ -54,10 +54,10 @@
                         'label' => 'Cash Book',
                         'icon' => 'fas fa-book',
                         'items' => [
-                            ['label' => 'Cashbook Details', 'icon' => 'fas fa-book-open', 'url' => ['acct-bankaccts/index']],
-                            ['label' => 'Payments', 'icon' => 'fa-regular fa-credit-card', 'url' => ['cash-book/payment']],
-                            ['label' => 'Receipts', 'icon' => 'fa-regular fa-file-invoice-dollar', 'url' => ['cash-book/receipt']],
-                            ['label' => 'Journal', 'icon' => 'fa-regular fa-file-invoice-dollar', 'url' => ['cash-book/journal']]
+                            ['label' => 'Cashbook Details', 'icon' => 'fas fa-caret-right', 'url' => ['acct-bankaccts/index']],
+                            ['label' => 'Payments', 'icon' => 'fas fa-caret-right', 'url' => ['cash-book/payment']],
+                            ['label' => 'Receipts', 'icon' => 'fas fa-caret-right', 'url' => ['cash-book/receipt']],
+                            ['label' => 'Journal', 'icon' => 'fas fa-caret-right', 'url' => ['cash-book/journal']]
                         ]
                     ],
                     [
