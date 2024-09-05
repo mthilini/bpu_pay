@@ -13,15 +13,14 @@ use yii\grid\GridView;
 $this->title = 'Receipt-Ledgers';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="acct-rctsledg-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('Create Receipt-Ledger', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -34,10 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'rctSub',
             'rctLedger',
             //'rctAmount',
-            ['label' => 'Amount (Rs.)',
-                'attribute' =>'rctAmount',
+            [
+                'label' => 'Amount (Rs.)',
+                'attribute' => 'rctAmount',
                 //'contentOptions' => ['class' => 'col-lg-1'],
-                'format'=>['currency'],
+                'format' => ['currency'],
             ],
             'rctRmks',
             'rctCashBk',
@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, AcctRctsledg $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>
