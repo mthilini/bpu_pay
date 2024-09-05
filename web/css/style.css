@@ -317,3 +317,7 @@ th {
     color: #343a40;
     border-radius: 0px !important;
 }
+
+.float-left{
+    float: left !important;
+}

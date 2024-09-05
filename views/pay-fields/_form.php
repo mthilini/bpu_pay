@@ -10,34 +10,52 @@ use app\models\PayFieldType;
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="pay-fields-form">
+<div class="row pay-fields-form">
+    <div class="col-md-6 col-lg-5 col-xl-5">
+        <table width="100%" xmlns="http://www.w3.org/1999/html">
+            <tr>
+                <td valign="top">
+                    <div class="box box-primary">
+                        <div class="box-body">
+                            <div class="panel-body">
 
-    <?php $form = ActiveForm::begin(); ?>
+                                <div class="user-view">
+                                    <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'fldCode')->textInput(['maxlength' => true]) ?>
+                                    <?= $form->field($model, 'fldCode')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'fldName')->textInput(['maxlength' => true]) ?>
+                                    <?= $form->field($model, 'fldName')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'fldUPF')->checkbox() ?>
+                                    <?= $form->field($model, 'fldUPF')->checkbox() ?>
 
-    <?= $form->field($model, 'fldETF')->checkbox() ?>
+                                    <?= $form->field($model, 'fldETF')->checkbox() ?>
 
-<?php
-	//use app\models\AcctLedgmain;
-    	$payFieldTypes=PayFieldType::find()->all();
-    	//use yii\helpers\ArrayHelper;
-    	$listData=ArrayHelper::map($payFieldTypes,'typeCode','typeName');
-    	echo $form->field($model, 'fldType')->dropDownList(
-        $listData,
-        ['prompt'=>'Select Field Type...']
-    );?>
+                                    <?php
+                                    $payFieldTypes = PayFieldType::find()->all();
+                                    $listData = ArrayHelper::map($payFieldTypes, 'typeCode', 'typeName');
+                                    echo $form->field($model, 'fldType')->dropDownList(
+                                        $listData,
+                                        ['prompt' => 'Select Field Type...']
+                                    ); ?>
 
-    <?= $form->field($model, 'fldCat')->textInput(['maxlength' => true]) ?>
+                                    <?= $form->field($model, 'fldCat')->textInput(['maxlength' => true]) ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+                                    <div class="form-group">
+
+                                    </div>
+
+                                    <?php ActiveForm::end(); ?>
+
+                                    <p>
+                                        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+                                        <?= Html::a('Close', ['/pay-fields/index'], ['class' => 'btn btn-default pull-right']) ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
-
-    <?php ActiveForm::end(); ?>
-
 </div>

@@ -9,9 +9,8 @@ $this->title = 'Create Pay Fields';
 $this->params['breadcrumbs'][] = ['label' => 'Pay Fields', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pay-fields-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-fields-create">
 
     <?= $this->render('_form', [
         'model' => $model,

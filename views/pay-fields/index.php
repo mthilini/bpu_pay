@@ -13,15 +13,15 @@ use yii\grid\GridView;
 $this->title = 'Fixed Salary Fields';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pay-fields-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-fields-index">
 
     <p>
         <?= Html::a('Create New Field', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -34,15 +34,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'fldName',
             'fldUPF:boolean',
             'fldETF:boolean',
-	    //'fldType',
-	    ['label'=>'Field Type',
-            'value'=>'payFieldType.typeName'],
+            //'fldType',
+            [
+                'label' => 'Field Type',
+                'value' => 'payFieldType.typeName'
+            ],
             'fldCat',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, PayFields $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>
