@@ -9,9 +9,8 @@ $this->title = 'Create Account Project';
 $this->params['breadcrumbs'][] = ['label' => 'Acct Proj', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="acct-proj-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="acct-proj-create">
 
     <?= $this->render('_form', [
         'model' => $model,

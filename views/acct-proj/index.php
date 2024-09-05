@@ -14,14 +14,12 @@ $this->title = 'Account Projects';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="acct-proj-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('Create Acct Project', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -30,16 +28,18 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             //'id',
-	    'progCode',
-	    ['label'=>'Program Desc',
-            'value'=>'progCode0.progDesc'],
+            'progCode',
+            [
+                'label' => 'Program Desc',
+                'value' => 'progCode0.progDesc'
+            ],
             'projCode',
             'projDesc',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, AcctProj $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>
