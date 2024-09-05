@@ -10,9 +10,8 @@ $this->params['breadcrumbs'][] = ['label' => 'Fund Management Types', 'url' => [
 $this->params['breadcrumbs'][] = ['label' => $model->fundCode, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="acct-fm-funds-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="acct-fm-funds-update">
 
     <?= $this->render('_formU', [
         'model' => $model,

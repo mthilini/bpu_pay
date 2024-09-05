@@ -14,15 +14,15 @@ use yii\grid\GridView;
 $this->title = 'Fund Management Types';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="acct-fm-funds-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="acct-fm-funds-index">
 
     <p>
         <?= Html::a('New Fund Type', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -32,39 +32,39 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             [
-                'attribute' =>'fundCode',
+                'attribute' => 'fundCode',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:120px;']
             ],
             [
-                'attribute' =>'fundName',
+                'attribute' => 'fundName',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:200px;']
             ],
             [
-                'attribute' =>'fundBankType',
+                'attribute' => 'fundBankType',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:120px;']
             ],
             [
-                'attribute' => 'fundBankCode', 
+                'attribute' => 'fundBankCode',
                 'label' => 'Bank Name',
-                'value' =>  function($model) {  
+                'value' =>  function ($model) {
                     $bankModel = new PayBank();
                     $bankName = $bankModel->getBankName($model->fundBankCode);
                     return $bankName;
                 },
-   	            'format' => 'raw',
+                'format' => 'raw',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:350px;']
             ],
             [
-                'attribute' =>'fundBankAcct',
+                'attribute' => 'fundBankAcct',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:150px;']
             ],
-            
+
             [
                 'class' => ActionColumn::className(),
                 //'class' => 'yii\grid\ActionColumn', 'template' => '{view}{update}','headerOptions' => ['style' => 'width:80px'],
                 'urlCreator' => function ($action, AcctFmFunds $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>

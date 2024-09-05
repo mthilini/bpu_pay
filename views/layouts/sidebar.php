@@ -35,34 +35,26 @@
             <?php
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
-                    [
-                        'label' => 'Starter Pages',
-                        'icon' => 'tachometer-alt',
-                        'badge' => '<span class="right badge badge-info">2</span>',
-                        'items' => [
-                            ['label' => 'Active Page', 'url' => ['site/index'], 'iconStyle' => 'far'],
-                            ['label' => 'Inactive Page', 'iconStyle' => 'far'],
-                        ]
-                    ],
-                    ['label' => 'Simple Link', 'icon' => 'th', 'badge' => '<span class="right badge badge-danger">New</span>'],
-                    ['label' => 'Yii2 PROVIDED', 'header' => true],
+                    // [
+                    //     'label' => 'Starter Pages',
+                    //     'icon' => 'tachometer-alt',
+                    //     'badge' => '<span class="right badge badge-info">2</span>',
+                    //     'items' => [
+                    //         ['label' => 'Active Page', 'url' => ['site/index'], 'iconStyle' => 'far'],
+                    //         ['label' => 'Inactive Page', 'iconStyle' => 'far'],
+                    //     ]
+                    // ],
+                    // ['label' => 'Simple Link', 'icon' => 'th', 'badge' => '<span class="right badge badge-danger">New</span>'],
+                    // ['label' => 'Yii2 PROVIDED', 'header' => true],
                     ['label' => 'Login', 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
                     ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
                     ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank'],
-
                     ['label' => 'MENU', 'header' => true],
                     [
-                        'label' => 'System Data',
-                        'icon' => 'fas fa-server',
-                        'items' => [
-                            ['label' => 'Bank Accounts', 'icon' => 'fas fa-book-open', 'url' => ['acct-bankaccts/index']],
-                            ['label' => 'Object Codes', 'icon' => 'fas fa-object-group']
-                        ]
-                    ],
-                    [
                         'label' => 'Cash Book',
-                        'icon' => 'fa-sharp fa-regular fa-book',
+                        'icon' => 'fas fa-book',
                         'items' => [
+                            ['label' => 'Cashbook Details', 'icon' => 'fas fa-book-open', 'url' => ['acct-bankaccts/index']],
                             ['label' => 'Payments', 'icon' => 'fa-regular fa-credit-card', 'url' => ['cash-book/payment']],
                             ['label' => 'Receipts', 'icon' => 'fa-regular fa-file-invoice-dollar', 'url' => ['cash-book/receipt']],
                             ['label' => 'Journal', 'icon' => 'fa-regular fa-file-invoice-dollar', 'url' => ['cash-book/journal']]
@@ -70,23 +62,53 @@
                     ],
                     [
                         'label' => 'General Ledger',
-                        'icon' => 'fa-sharp fa-regular fa-book',
+                        'icon' => 'fas fa-file-alt',
                         'items' => [
-                            ['label' => 'Main Ledgers', 'icon' => 'fas fa-align-right', 'url' => ['/acct-ledgmain']],
-                            ['label' => 'Sub Ledgers', 'icon' => 'fas fa-align-right', 'url' => ['/acct-ledgsub']],
-                            ['label' => 'Account Ledgers', 'icon' => 'fas fa-align-right', 'url' => ['/acct-ledger']],
-                            ['label' => 'Account Program', 'icon' => 'fas fa-align-right', 'url' => ['/acct-prog']],
-                            ['label' => 'Account Project', 'icon' => 'fas fa-align-right', 'url' => ['/acct-proj']],
-                            ['label' => 'Account Votes', 'icon' => 'fas fa-align-right', 'url' => ['/acct-votes']],
-                            ['label' => 'Payment Ledger', 'icon' => 'fas fa-align-right', 'url' => ['/acct-payledg']],
-                            ['label' => 'Receipt Ledger', 'icon' => 'fas fa-align-right', 'url' => ['/acct-rctsledg']],
+                            ['label' => 'Main Ledgers', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledgmain']],
+                            ['label' => 'Sub Ledgers', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledgsub']],
+                            ['label' => 'Account Ledgers', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledger']],
+                            ['label' => 'Account Program', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-prog']],
+                            ['label' => 'Account Project', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-proj']],
+                            ['label' => 'Account Votes', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-votes']],
+                            ['label' => 'Payment Ledger', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-payledg']],
+                            ['label' => 'Receipt Ledger', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rctsledg']],
                         ]
                     ],
-
-                    ['label' => 'LABELS', 'header' => true],
-                    ['label' => 'Important', 'iconStyle' => 'far', 'iconClassAdded' => 'text-danger'],
-                    ['label' => 'Warning', 'iconClass' => 'nav-icon far fa-circle text-warning'],
-                    ['label' => 'Informational', 'iconStyle' => 'far', 'iconClassAdded' => 'text-info'],
+                    [
+                        'label' => 'Payroll',
+                        'icon' => 'fas fa-cash-register',
+                        'items' => [
+                            ['label' => 'Employee Details', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-fin-details']],
+                            ['label' => 'Standing Order Allowances', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-seml']],
+                            ['label' => 'SA-5 Allowances', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledger']],
+                            ['label' => 'Standing Order Deductions', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-prog']],
+                            ['label' => 'Banks', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-prog']],
+                            ['label' => 'Fixed Salary Fields', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-prog']],
+                            ['label' => 'Bank Standing Orders', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-prog']],
+                            ['label' => 'Pay Income', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-prog']],
+                        ]
+                    ],
+                    [
+                        'label' => 'Fund Management',
+                        'icon' => 'fas fa-donate',
+                        'items' => [
+                            ['label' => 'Fund Types', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-fm-funds']],
+                            ['label' => 'Opening EPF Balances (2022)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-fm-epf-contr']],
+                        ]
+                    ],
+                    [
+                        'label' => 'System Data',
+                        'icon' => 'fas fa-server',
+                        'items' => [
+                            ['label' => 'Users', 'icon' => 'fas fa-caret-right', 'url' => ['/tbl-user/index']],
+                            ['label' => 'Pay Fields', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-fields/index']],
+                            ['label' => 'Pay A5 Types', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-a5type/index']],
+                        ]
+                    ],
+                    // ['label' => 'LABELS', 'header' => true],
+                    // ['label' => 'Important', 'iconStyle' => 'far', 'iconClassAdded' => 'text-danger'],
+                    // ['label' => 'Warning', 'iconClass' => 'nav-icon far fa-circle text-warning'],
+                    // ['label' => 'Informational', 'iconStyle' => 'far', 'iconClassAdded' => 'text-info'],
                 ],
             ]);
             ?>

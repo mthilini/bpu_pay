@@ -9,9 +9,8 @@ $this->title = 'New Fund Type';
 $this->params['breadcrumbs'][] = ['label' => 'Fund Management Types', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="acct-fm-funds-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="acct-fm-funds-create">
 
     <?= $this->render('_form', [
         'model' => $model,
