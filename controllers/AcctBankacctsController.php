@@ -6,7 +6,9 @@ use app\models\AcctBankaccts;
 use app\models\AcctBankacctsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
 
 use Yii;
 
@@ -143,8 +145,33 @@ class AcctBankacctsController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-        
+
         return $this->redirect(['index']);
+    }
+
+    public function actionReport()
+    {
+        $searchModel = new AcctBankacctsSearch();
+        $query = $searchModel->search([])->query;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $request = Yii::$app->request->get();
+        if (isset($request['a_min']) && $request['a_min'] != '' && isset($request['a_max']) && $request['a_max'] != '') {
+            if (is_numeric($request['a_min']) && is_numeric($request['a_max']))
+                $query->andFilterWhere(['between', 'id', $request['a_min'], $request['a_max']]);
+        } else
+            $dataProvider = null;
+
+
+        return $this->render('report', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'request' => $request,
+        ]);
     }
 
     /**
