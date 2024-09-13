@@ -20,9 +20,14 @@ use yii\widgets\ActiveForm;
                                 <div class="user-view">
                                     <?php $form = ActiveForm::begin(); ?>
 
-                                    <?= $form->field($model, 'bankCode')->textInput(['maxlength' => true]) ?>
-
-                                    <?= $form->field($model, 'bankBranch')->textInput(['maxlength' => true]) ?>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <?= $form->field($model, 'bankCode')->textInput(['maxlength' => true]) ?>
+                                        </div>
+                                        <div class="col-6">
+                                            <?= $form->field($model, 'bankBranch')->textInput(['maxlength' => true]) ?>
+                                        </div>
+                                    </div>
 
                                     <?= $form->field($model, 'bankName')->textInput(['maxlength' => true]) ?>
 

@@ -30,9 +30,15 @@ use app\models\AcctLedgmain;
                                         $listData,
                                         ['prompt' => 'Select Main Ledger Code...']
                                     ); ?>
-                                    <?= $form->field($model, 'ledgSub')->textInput(['maxlength' => true]) ?>
 
-                                    <?= $form->field($model, 'ledgCode')->textInput(['maxlength' => true, 'placeholder' => 'Generate Automatically based above', 'disabled' => 'disabled']) ?>
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <?= $form->field($model, 'ledgSub')->textInput(['maxlength' => true]) ?>
+                                        </div>
+                                        <div class="col-7">
+                                            <?= $form->field($model, 'ledgCode')->textInput(['maxlength' => true, 'placeholder' => 'Generate Automatically based above', 'disabled' => 'disabled']) ?>
+                                        </div>
+                                    </div>
 
                                     <?= $form->field($model, 'ledgDesc')->textInput(['maxlength' => true]) ?>
 

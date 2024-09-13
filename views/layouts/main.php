@@ -13,10 +13,15 @@ $assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/admi
 
 $publishedRes = Yii::$app->assetManager->publish('@vendor/hail812/yii2-adminlte3/src/web/js');
 $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\hail812\adminlte3\assets\AdminLteAsset']);
+$this->registerJsFile('/js/main.js');
+$this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js');
+$this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js');
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
+
 <head>
     <meta charset="<?= Yii::$app->charset ?>" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -35,39 +40,56 @@ $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\
     <?php $this->head() ?>
 
     <style>
-        body, .dropdown-item, .dropdown-item-title, .input-group > .input-group-prepend > .input-group-text {
+        body,
+        .dropdown-item,
+        .dropdown-item-title,
+        .input-group>.input-group-prepend>.input-group-text {
             font-size: 70%;
         }
 
-        .dropdown-item-title, .text-sm {
+        .dropdown-item-title,
+        .text-sm {
             font-size: 100% !important;
         }
 
-        .table th, .table td {
+        .table th,
+        .table td {
             padding: 0.2rem;
         }
 
-        .content-header h1, h2, h3, h5, h6 {
+        .content-header h1,
+        h2,
+        h3,
+        h5,
+        h6 {
             font-size: 130%;
         }
 
-        h1, h2, h3, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h5,
+        h6 {
             font-size: 100%;
         }
 
-        .navbar, .content-header {
+        .navbar,
+        .content-header {
             padding: 0 0 0 0;
         }
 
-        table.dataTable tbody th, table.dataTable tbody td {
+        table.dataTable tbody th,
+        table.dataTable tbody td {
             padding: 2px 5px;
         }
 
-        table.dataTable thead th, table.dataTable thead td {
+        table.dataTable thead th,
+        table.dataTable thead td {
             padding: 10px 5px;
         }
 
-        .table th, .table td {
+        .table th,
+        .table td {
             padding: 0.02rem 0rem;
         }
 
@@ -89,7 +111,8 @@ $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\
             height: 1.75rem;
         }
 
-        .input-group-sm > .form-control:not(textarea), .form-control {
+        .input-group-sm>.form-control:not(textarea),
+        .form-control {
             height: calc(1.375rem + 2px);
         }
 
@@ -100,6 +123,7 @@ $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\
         div.dt-container div.dt-length select {
             min-width: 50px;
         }
+
         .btn-sm {
             padding: .05rem .5rem;
         }
@@ -107,12 +131,13 @@ $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\
         .nav-link {
             padding: .25rem 0.5rem;
         }
-        .navbar-expand .navbar-nav {
-            padding-top : 0.25rem;
-        }
 
+        .navbar-expand .navbar-nav {
+            padding-top: 0.25rem;
+        }
     </style>
 </head>
+
 <body class="hold-transition sidebar-mini">
     <?php $this->beginBody() ?>
 
@@ -139,7 +164,7 @@ $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\
     <?php $this->endBody() ?>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             new DataTable('#datatable');
         });
     </script>
@@ -149,5 +174,6 @@ $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\
     <script src="https://cdn.datatables.net/v/bs4/jq-3.7.0/jszip-3.10.1/dt-2.1.4/b-3.1.1/b-colvis-3.1.1/b-html5-3.1.1/b-print-3.1.1/cr-2.0.4/date-1.5.3/fc-5.0.1/fh-4.0.1/kt-2.12.1/r-3.0.2/rg-1.5.0/rr-1.5.0/sc-2.4.3/sb-1.8.0/sp-2.3.2/sl-2.0.5/sr-1.4.1/datatables.min.js"></script>
 
 </body>
+
 </html>
 <?php $this->endPage() ?>

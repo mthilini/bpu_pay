@@ -21,21 +21,30 @@ use yii\widgets\ActiveForm;
                                                                 <div class="user-view">
                                                                         <?php $form = ActiveForm::begin(); ?>
 
-                                                                        <?= $form->field($model, 'bactAcctCode')->textInput(['maxlength' => true, 'readonly' => true]) ?>
-
-                                                                        <?= $form->field($model, 'bactBankCode')->textInput(['maxlength' => true]) ?>
+                                                                        <div class="row">
+                                                                                <div class="col-6">
+                                                                                        <?= $form->field($model, 'bactAcctCode')->textInput(['maxlength' => true, 'readonly' => true]) ?>
+                                                                                </div>
+                                                                                <div class="col-6">
+                                                                                        <?= $form->field($model, 'bactBankCode')->textInput(['maxlength' => true]) ?>
+                                                                                </div>
+                                                                        </div>
 
                                                                         <?= $form->field($model, 'bactBankName')->textInput(['maxlength' => true]) ?>
+                                                                        <div class="row">
+                                                                                <div class="col-6">
+                                                                                        <?= $form->field($model, 'bactAcctNo')->textInput(['maxlength' => true]) ?>
+                                                                                </div>
+                                                                                <div class="col-6">
+                                                                                        <?= $form->field($model, 'bactAcctName')->textInput(['maxlength' => true]) ?>
+                                                                                </div>
+                                                                        </div>
 
-                                                                        <?= $form->field($model, 'bactAcctNo')->textInput(['maxlength' => true]) ?>
+                                                                        <?= $form->field($model, 'bactVoucher')->textInput(['maxlength' => true]) ?>
 
-                                                                        <?= $form->field($model, 'bactAcctName')->textInput(['maxlength' => true]) ?>
+                                                                        <?= $form->field($model, 'bactReceipt')->textInput(['maxlength' => true]) ?>
 
-                                                                        <?= $form->field($model, 'bactVoucher')->textInput() ?>
-
-                                                                        <?= $form->field($model, 'bactReceipt')->textInput() ?>
-
-                                                                        <?= $form->field($model, 'bactJournal')->textInput() ?>
+                                                                        <?= $form->field($model, 'bactJournal')->textInput(['maxlength' => true]) ?>
 
                                                                         <?= $form->field($model, 'bactCBkLedg')->dropDownList(
                                                                                 ArrayHelper::map(AcctLedger::find()->orderBy('ledgDesc')->all(), 'ledgCode', 'ledgDesc'),

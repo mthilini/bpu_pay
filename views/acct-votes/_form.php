@@ -42,16 +42,22 @@ use app\models\AcctProj;
 
                                     <label for="<?= $model->formName() ?>-rctLedger">Project Code</label>
                                     <?= $form->field($model, 'projCode', ['inputOptions' => ['id' => 'subcat']])->label(false)->dropDownList([]); ?>
-                                    <?= $form->field($model, 'objCode')->textInput(['maxlength' => true]) ?>
 
-                                    <?= $form->field($model, 'voteCode')->textInput(['maxlength' => true]) ?>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <?= $form->field($model, 'objCode')->textInput(['maxlength' => true]) ?>
+                                        </div>
+                                        <div class="col-4">
+                                            <?= $form->field($model, 'voteCode')->textInput(['maxlength' => true]) ?>
+                                        </div>
+                                        <div class="col-4">
+                                            <?= $form->field($model, 'voteSub')->textInput(['maxlength' => true]) ?>
+                                        </div>
+                                    </div>
 
-                                    <?= $form->field($model, 'voteSub')->textInput(['maxlength' => true]) ?>
-
-                                    <!--   <?= $form->field($model, 'voteVote')->textInput(['maxlength' => true]) ?> -->
                                     <?= $form->field($model, 'voteVote')->textInput(['maxlength' => true, 'placeholder' => 'Generate Automatically based above', 'disabled' => 'disabled']) ?>
 
-                                    <?= $form->field($model, 'voteDesc')->textInput(['maxlength' => true]) ?>
+                                    <?= $form->field($model, 'voteDesc')->textarea(['maxlength' => true, 'rows' => '2']) ?>
 
                                     <p>
                                         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

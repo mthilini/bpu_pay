@@ -1,7 +1,12 @@
 {
     "name": "yiisoft/yii2-app-basic",
     "description": "Yii 2 Basic Project Template",
-    "keywords": ["yii2", "framework", "basic", "project template"],
+    "keywords": [
+        "yii2",
+        "framework",
+        "basic",
+        "project template"
+    ],
     "homepage": "https://www.yiiframework.com/",
     "type": "project",
     "license": "BSD-3-Clause",
@@ -27,7 +32,7 @@
     },
     "config": {
         "allow-plugins": {
-            "yiisoft/yii2-composer" : true
+            "yiisoft/yii2-composer": true
         },
         "process-timeout": 1800,
         "fxp-asset": {
@@ -68,6 +73,7 @@
     "require": {
         "mehulpatel/vspl": "dev-master",
         "hail812/yii2-adminlte3": "~1.1",
-        "nullref/yii2-datatables": "dev-master"
+        "nullref/yii2-datatables": "dev-master",
+        "yiisoft/yii2-jui": "~2.0.0"
     }
 }

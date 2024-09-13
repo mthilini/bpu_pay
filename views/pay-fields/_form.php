@@ -22,13 +22,16 @@ use app\models\PayFieldType;
                                 <div class="user-view">
                                     <?php $form = ActiveForm::begin(); ?>
 
-                                    <?= $form->field($model, 'fldCode')->textInput(['maxlength' => true]) ?>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <?= $form->field($model, 'fldCode')->textInput(['maxlength' => true]) ?>
+                                        </div>
+                                        <div class="col-6">
+                                            <?= $form->field($model, 'fldCat')->textInput(['maxlength' => true]) ?>
+                                        </div>
+                                    </div>
 
                                     <?= $form->field($model, 'fldName')->textInput(['maxlength' => true]) ?>
-
-                                    <?= $form->field($model, 'fldUPF')->checkbox() ?>
-
-                                    <?= $form->field($model, 'fldETF')->checkbox() ?>
 
                                     <?php
                                     $payFieldTypes = PayFieldType::find()->all();
@@ -38,10 +41,13 @@ use app\models\PayFieldType;
                                         ['prompt' => 'Select Field Type...']
                                     ); ?>
 
-                                    <?= $form->field($model, 'fldCat')->textInput(['maxlength' => true]) ?>
-
-                                    <div class="form-group">
-
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <?= $form->field($model, 'fldUPF')->checkbox() ?>
+                                        </div>
+                                        <div class="col-2">
+                                            <?= $form->field($model, 'fldETF')->checkbox() ?>
+                                        </div>
                                     </div>
 
                                     <?php ActiveForm::end(); ?>

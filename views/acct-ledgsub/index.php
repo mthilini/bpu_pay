@@ -23,6 +23,18 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="box-header">
                             <span class="with-border-box">
                                 <?= Html::a('Create Ledger Sub Code', ['create'], ['class' => 'btn btn-success']) ?>
+                                <!-- <div class="export_file">
+                                    <label for="export-file" class="export-file-btn" title="Export File"></label>
+                                    <div class="export-file-option">
+                                        <label>Export As &nbsp; &#10140;</label>
+                                        <label for="export-file" id="toPDF">
+                                            PDF <i class='fas fa-file-pdf'></i>
+                                        </label>
+                                    </div>
+                                </div> -->
+                                <button id="btnExport" class="btn btn-info" onclick="fnExcelReport();">Excel</button>
+                                <input class="btn btn-primary" type="button" onclick="generatePDF('<?= $this->title;?>', 'acct-ledgsub')" value="PDF" />
+                                <input class="btn btn-info" type="button" onclick="generateJson('<?= $this->title;?>', 'acct-ledgsub')" value="Json" />
                             </span>
                         </div>
                         <div class="panel-body panel-body-index">

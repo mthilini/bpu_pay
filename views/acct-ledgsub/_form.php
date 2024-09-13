@@ -20,9 +20,13 @@ use yii\widgets\ActiveForm;
                                 <div class="user-view">
                                     <?php $form = ActiveForm::begin(); ?>
 
-                                    <?= $form->field($model, 'lsubCode')->textInput(['maxlength' => true]) ?>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <?= $form->field($model, 'lsubCode')->textInput(['maxlength' => true]) ?>
+                                        </div>
+                                    </div>
 
-                                    <?= $form->field($model, 'lsubDesc')->textInput(['maxlength' => true]) ?>
+                                    <?= $form->field($model, 'lsubDesc')->textarea(['maxlength' => true, 'rows' => '3']) ?>
 
                                     <p>
                                         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

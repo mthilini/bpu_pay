@@ -30,9 +30,14 @@ use app\models\AcctProg;
                                         ['prompt' => 'Select Program...']
                                     ); ?>
 
-                                    <?= $form->field($model, 'projCode')->textInput(['maxlength' => true]) ?>
-
-                                    <?= $form->field($model, 'projDesc')->textInput(['maxlength' => true]) ?>
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <?= $form->field($model, 'projCode')->textInput(['maxlength' => true]) ?>
+                                        </div>
+                                        <div class="col-7">
+                                            <?= $form->field($model, 'projDesc')->textInput(['maxlength' => true]) ?>
+                                        </div>
+                                    </div>
 
                                     <p>
                                         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
