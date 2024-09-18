@@ -31,10 +31,10 @@ class AcctLedgmain extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['mainCode'], 'string', 'max' => 2,'min'=>2],
+            [['mainCode', 'mainDesc'], 'required'],
+            [['mainCode'], 'string', 'max' => 2, 'min' => 2],
             [['mainDesc'], 'string', 'max' => 75],
-            [['mainCode'], 'unique'],
-            [['mainDesc'], 'unique'],
+            [['mainCode', 'mainDesc'], 'unique']
         ];
     }
 
@@ -61,11 +61,12 @@ class AcctLedgmain extends \yii\db\ActiveRecord
     }
     //
     //
-    public function behaviors(){
+    public function behaviors()
+    {
         return [
             'auditEntryBehaviors' => [
                 'class' => AuditEntryBehaviors::class
-             ],
+            ],
         ];
     }
     //

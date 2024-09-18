@@ -92,5 +92,5 @@ function generateJson(table) {
     return data;
 }
 
-var myjson = JSON.stringify(generateJson(document.getElementsByClassName('table-striped')));
-console.log(myjson);
+// var myjson = JSON.stringify(generateJson(document.getElementsByClassName('table-striped')));
+// console.log(myjson);

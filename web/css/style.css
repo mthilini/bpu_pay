@@ -298,3 +298,7 @@ th {
 .float-left {
     float: left !important;
 }
+
+.help-block {
+    color: red;
+}

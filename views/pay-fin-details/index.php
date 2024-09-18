@@ -13,15 +13,15 @@ use yii\grid\GridView;
 $this->title = 'Employee Details (Finance)';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pay-fin-details-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-fin-details-index">
 
     <p>
         <?= Html::a('Create Emp. Details (Fin)', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -36,17 +36,21 @@ $this->params['breadcrumbs'][] = $this->title;
             //'initials',
             'epfNo',
             //'medicalFundContributor',
-            ['label'=>'Medical Fund Contributor',
-            'value' => function($model) {
-                return $model->medicalFundContributor == 1 ? 'Yes' : 'No';}
+            [
+                'label' => 'Medical Fund Contributor',
+                'value' => function ($model) {
+                    return $model->medicalFundContributor == 1 ? 'Yes' : 'No';
+                }
             ],
             'salaryBankCode',
             'bankAccountNo',
             'bankAccountName',
             //'taxConsent',
-            ['label'=>'Tax Consent',
-            'value' => function($model) {
-                return $model->taxConsent == 1 ? 'Yes' : 'No';}
+            [
+                'label' => 'Tax Consent',
+                'value' => function ($model) {
+                    return $model->taxConsent == 1 ? 'Yes' : 'No';
+                }
             ],
             'applicableTaxTable',
             //'bankLoanAmount',
@@ -60,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, PayFinDetails $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>

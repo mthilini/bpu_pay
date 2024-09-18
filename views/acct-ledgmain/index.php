@@ -48,27 +48,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                     ],
                                 ]); ?>
                             </div>
-
-                            <div class="user-view">
-                                <?= GridView::widget([
-                                    'dataProvider' => $dataProvider,
-                                    'filterModel' => $searchModel,
-                                    'columns' => [
-                                        ['class' => 'yii\grid\SerialColumn'],
-
-                                        //'id',
-                                        'mainCode',
-                                        'mainDesc',
-                                        [
-                                            'class' => ActionColumn::className(),
-                                            'urlCreator' => function ($action, AcctLedgmain $model, $key, $index, $column) {
-                                                return Url::toRoute([$action, 'id' => $model->id]);
-                                            }
-                                        ],
-                                    ],
-                                ]); ?>
-
-                            </div>
                         </div>
                     </div>
                 </div>

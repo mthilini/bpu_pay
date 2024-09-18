@@ -10,56 +10,90 @@ use app\models\PayBank;
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="pay-fin-details-form">
+<div class="row pay-fin-details-form">
+    <div class="col-md-6 col-lg-5 col-xl-5">
+        <table width="100%" xmlns="http://www.w3.org/1999/html">
+            <tr>
+                <td valign="top">
+                    <div class="box box-primary">
+                        <div class="box-body">
+                            <div class="panel-body">
+                                <div class="user-view">
+                                    <?php $form = ActiveForm::begin(); ?>
 
-    <?php $form = ActiveForm::begin(); ?>
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <?= $form->field($model, 'epfNo')->textInput(['maxlength' => true]) ?>
+                                        </div>
+                                        <div class="col-7">
+                                            <?= $form->field($model, 'medicalFundContributor')->dropDownList(['1' => 'Yes', '0' => 'No'], ['prompt' => 'Select Option']);
+                                            ?>
+                                        </div>
+                                    </div>
 
- <!--   <?//= $form->field($model, 'nic')->textInput(['maxlength' => true]) ?>
+                                    <?php
+                                    $BankBank = PayBank::find()->orderBy('bankName ASC')->all();
+                                    $listData = ArrayHelper::map($BankBank, 'bankBank', 'bankName');
+                                    echo $form->field($model, 'salaryBankCode')->dropDownList(
+                                        $listData,
+                                        ['prompt' => 'Select Bank...']
+                                    ); ?>
 
-    <?//= $form->field($model, 'title')->textInput(['maxlength' => true]) ?> 
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <?= $form->field($model, 'bankAccountNo')->textInput(['maxlength' => true]) ?>
+                                        </div>
+                                        <div class="col-7">
+                                            <?= $form->field($model, 'bankAccountName')->textInput(['maxlength' => true]) ?>
+                                        </div>
+                                    </div>
 
-    <?//= $form->field($model, 'surname')->textInput(['maxlength' => true]) ?>
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <?= $form->field($model, 'taxConsent')->dropDownList(['1' => 'Yes', '0' => 'No'], ['prompt' => 'Select Option']);
+                                            ?>
+                                        </div>
+                                        <div class="col-7">
+                                            <?= $form->field($model, 'applicableTaxTable')->textInput(['maxlength' => true]) ?>
+                                        </div>
+                                    </div>
 
-    <?//= $form->field($model, 'initials')->textInput(['maxlength' => true]) ?>
--->
-    <?= $form->field($model, 'epfNo')->textInput(['maxlength' => true]) ?>
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <label for="<?= $model->formName() ?>-bankLoanReleaseDate">Bank Loan Release Date</label>
+                                            <?= $form->field($model, 'bankLoanReleaseDate')->label(false)->widget(\yii\jui\DatePicker::classname(), [
+                                                'language' => 'en',
+                                                'dateFormat' => 'yyyy-MM-dd',
+                                                'clientOptions' => [
+                                                    'changeMonth' => true,
+                                                    'yearRange' => '1996:2099',
+                                                    'changeYear' => true,
+                                                    'showOn' => 'button',
+                                                    'buttonImage' => 'images/calendar.gif',
+                                                    'buttonImageOnly' => true,
+                                                    'buttonText' => 'Select date'
+                                                ],
+                                            ])->textInput(['type' => 'date']) ?>
+                                        </div>
+                                        <div class="col-7">
+                                            <?= $form->field($model, 'bankLoanAmount')->textInput(['value' => '000', 'maxlength' => true]);  ?>
+                                        </div>
+                                    </div>
 
- <!--   <?= $form->field($model, 'medicalFundContributor')->textInput() ?> -->
-    <?= $form->field($model, 'medicalFundContributor')->dropDownList(['1' => 'Yes', '0' => 'No'],['prompt'=>'Select Option']);
-?>
+                                    <?= $form->field($model, 'otherInfo')->textInput(['maxlength' => true]) ?>
+                                    <p>
+                                        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+                                        <?= Html::a('Close', ['/pay-fin-details/index'], ['class' => 'btn btn-default pull-right']) ?>
+                                    </p>
 
-<!--    <?= $form->field($model, 'salaryBankCode')->textInput(['maxlength' => true]) ?> -->
-<?php
-        //use app\models\AcctLedgmain;
-        $BankBank=PayBank::find()->orderBy('bankName ASC')->all();
-        //use yii\helpers\ArrayHelper;
-        $listData=ArrayHelper::map($BankBank,'bankBank','bankName');
-    echo $form->field($model, 'salaryBankCode')->dropDownList(
-        $listData,
-        ['prompt'=>'Select Bank...']
-    );?>
-
-
-    <?= $form->field($model, 'bankAccountNo')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'bankAccountName')->textInput(['maxlength' => true]) ?>
-
-    <!--<?= $form->field($model, 'taxConsent')->textInput() ?> -->
-    <?= $form->field($model, 'taxConsent')->dropDownList(['1' => 'Yes', '0' => 'No'],['prompt'=>'Select Option']);
-?>
-
-    <?= $form->field($model, 'applicableTaxTable')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'bankLoanAmount')->textInput(['value' => '000','maxlength' => true]);  ?>
-
-    <?= $form->field($model, 'bankLoanReleaseDate')->textInput(['value' => '1900-01-01']);  ?>
-
-    <?= $form->field($model, 'otherInfo')->textInput(['maxlength' => true]) ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+                                    <?php ActiveForm::end(); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
-
-    <?php ActiveForm::end(); ?>
 
 </div>

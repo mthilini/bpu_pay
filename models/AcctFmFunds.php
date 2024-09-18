@@ -37,8 +37,7 @@ class AcctFmfunds extends \yii\db\ActiveRecord
             [['fundBankCode'], 'string', 'max' => 7],
             [['fundBankAcct'], 'string', 'max' => 12],
             [['fundLedg'], 'string', 'max' => 5],
-            [['fundCode'], 'unique'],
-            [['fundName'], 'unique'],
+            [['fundCode', 'fundName'], 'unique']
         ];
     }
 

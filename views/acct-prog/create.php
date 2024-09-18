@@ -9,9 +9,8 @@ $this->title = 'Create Account Program';
 $this->params['breadcrumbs'][] = ['label' => 'Acct. Prog', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="acct-prog-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="acct-prog-create">
 
     <?= $this->render('_form', [
         'model' => $model,

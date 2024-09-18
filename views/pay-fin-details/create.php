@@ -9,9 +9,8 @@ $this->title = 'Create Employee Details (Finance)';
 $this->params['breadcrumbs'][] = ['label' => 'Pay Fin Details', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pay-fin-details-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-fin-details-create">
 
     <?= $this->render('_form', [
         'model' => $model,

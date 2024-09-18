@@ -27,10 +27,10 @@ class AcctLedgsub extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['lsubCode', 'lsubDesc'], 'required'],
             [['lsubCode'], 'string', 'max' => 2],
             [['lsubDesc'], 'string', 'max' => 100],
-            [['lsubCode'], 'unique'],
-            [['lsubDesc'], 'unique'],
+            [['lsubCode', 'lsubDesc'], 'unique']
         ];
     }
 

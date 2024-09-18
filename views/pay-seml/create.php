@@ -9,9 +9,8 @@ $this->title = 'Add Standing Order Allowance';
 $this->params['breadcrumbs'][] = ['label' => 'So Allow.', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pay-seml-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-seml-create">
 
     <?= $this->render('_form', [
         'model' => $model,

@@ -33,13 +33,12 @@ class AcctLedger extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['mainCode','ledgSub','ledgDesc'], 'required'],
+            [['mainCode', 'ledgDesc'], 'required'],
             [['mainCode'], 'string', 'max' => 2, 'min'=>2],
             [['ledgSub'], 'string', 'max' => 3],
             [['ledgCode'], 'string', 'max' => 5],
             [['ledgDesc'], 'string', 'max' => 75],
-            [['ledgDesc'], 'unique'],
-            [['ledgCode'], 'unique'],
+            [['ledgDesc', 'ledgCode'], 'unique'],
             [['mainCode'], 'exist', 'skipOnError' => true, 'targetClass' => AcctLedgmain::class, 'targetAttribute' => ['mainCode' => 'mainCode']],
         ];
     }

@@ -14,15 +14,15 @@ use app\models\Employee;
 $this->title = 'Standing Order Allowances';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pay-seml-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-seml-index">
 
     <p>
         <?= Html::a('Add SO Allowance', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -31,34 +31,37 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             //'id',
-	    'empUPFNo',
-	     //'empUPFNo',
+            'empUPFNo',
+            //'empUPFNo',
             [
                 //'attribute' => 'empUPFNo',
                 'label' => 'Emp. Name',
-                'value' =>  function($model) {
+                'value' =>  function ($model) {
                     $employeemodel = new Employee();
                     $employeeName = $employeemodel->getEmpName($model->empUPFNo);
                     return $employeeName;
-               },
-            'format' => 'raw',
+                },
+                'format' => 'raw',
             ],
             'semlRef',
-	    //'semlFld',
-	    ['label'=>'SO Allow. Field',
-            'value'=>'payField0.fldName'],
+            //'semlFld',
+            [
+                'label' => 'SO Allow. Field',
+                'value' => 'payField0.fldName'
+            ],
             'semlStart',
             'semlEnd',
-	    //'semlAmt',
-	     ['label' => 'Amount',
-                'attribute' =>'semlAmt',
-                'format'=>['currency'],
+            //'semlAmt',
+            [
+                'label' => 'Amount',
+                'attribute' => 'semlAmt',
+                'format' => ['currency'],
             ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, PaySeml $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>
