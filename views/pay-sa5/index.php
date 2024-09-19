@@ -14,15 +14,15 @@ use yii\grid\GridView;
 $this->title = 'SA-5 Allowances';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pay-sa5-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-sa5-index">
 
     <p>
         <?= Html::a('Create SA-5 Allow.', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -33,20 +33,23 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id',
             'empUPFNo',
             'sa5Ref',
-	    'sa5Fld',
-	    ['label'=>'SA5 Field Desc.',
-            'value'=>'sa5Fld0.a5Desc'],
+            'sa5Fld',
+            [
+                'label' => 'SA5 Field Desc.',
+                'value' => 'sa5Fld0.a5Desc'
+            ],
             'sa5Start',
             'sa5End',
-	    ['label'=>'SA5 Amount (Rs.)',
-	    'attribute'=>'sa5Amt',
-	    'format'=>['currency'],
-	    ],
+            [
+                'label' => 'SA5 Amount (Rs.)',
+                'attribute' => 'sa5Amt',
+                'format' => ['currency'],
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, PaySa5 $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>

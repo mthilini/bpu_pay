@@ -12,42 +12,60 @@ $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Pay Incomes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
-//
-////
-$getID= Yii::$app->request->queryParams['id'];
-$getUPFno=PayIncome::getUPFno($getID);
-$empName=Employee::getEmpName($getUPFno);
+
+$UPFno = $model->empUPFNo;
+$employeemodel = new Employee();
+$empName = $employeemodel->getEmpName($UPFno);
+
 echo "<h3>Employee Name: $empName</h3>";
 ?>
-<div class="pay-income-view">
 
-<!--    <h1><?= Html::encode($this->title) ?></h1> -->
+<div class="row pay-income-view">
+    <div class="col-md-6 col-lg-5 col-xl-4">
+        <table width="100%" xmlns="http://www.w3.org/1999/html">
+            <tr>
+                <td valign="top">
+                    <div class="box box-primary">
+                        <div class="box-body">
+                            <div class="panel-body">
+                                <div class="user-view">
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+                                    <?= DetailView::widget([
+                                        'model' => $model,
+                                        'attributes' => [
+                                            //'id',
+                                            'empUPFNo',
+                                            'incMon',
+                                            'incYear',
+                                            //'incIncome',
+                                            [
+                                                'label' => 'Income (Rs.)',
+                                                'attribute' => 'incIncome',
+                                                'format' => ['currency'],
+                                            ],
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            //'id',
-            'empUPFNo',
-            'incMon',
-            'incYear',
-	    //'incIncome',
-	    ['label' => 'Income (Rs.)',
-                'attribute' =>'incIncome',
-                'format'=>['currency'],
-            ],
+                                        ],
+                                    ]) ?>
 
-        ],
-    ]) ?>
+                                    <p>
+                                        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                                        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+                                            'class' => 'btn btn-danger',
+                                            'data' => [
+                                                'confirm' => 'Are you sure you want to delete this item?',
+                                                'method' => 'post',
+                                            ],
+                                        ]) ?>
+                                        <?= Html::a('Close', ['/pay-income/index'], ['class' => 'btn btn-default pull-right']) ?>
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
 
 </div>

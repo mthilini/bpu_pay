@@ -9,9 +9,8 @@ $this->title = 'Create Pay Stax';
 $this->params['breadcrumbs'][] = ['label' => 'Pay Staxes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pay-stax-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-stax-create">
 
     <?= $this->render('_form', [
         'model' => $model,

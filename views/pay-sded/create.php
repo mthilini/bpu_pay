@@ -9,9 +9,8 @@ $this->title = 'Add Standing Order Deduction';
 $this->params['breadcrumbs'][] = ['label' => 'SO Deduc.', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pay-sded-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-sded-create">
 
     <?= $this->render('_form', [
         'model' => $model,

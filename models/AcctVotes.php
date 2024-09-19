@@ -37,6 +37,7 @@ class AcctVotes extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['progCode', 'projCode', 'objCode', 'voteCode'], 'required'],
             [['progCode', 'projCode'], 'string', 'max' => 2, 'min'=>2],
             [['objCode'], 'string', 'max' => 3, 'min'=>3],
             [['voteCode'], 'string', 'max' => 4, 'min'=>4],

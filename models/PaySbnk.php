@@ -61,9 +61,9 @@ class PaySbnk extends \yii\db\ActiveRecord
             'sbnkRef' => 'SO Bank Ref.',
             'sbnkStart' => 'SO Start',
             'sbnkEnd' => 'SO End',
-            'sbnkAmt' => 'SO Amountt',
+            'sbnkAmt' => 'SO Amount',
             'sbnkBank' => 'SO Bank',
-            'sbnkAcct' => 'SO Acctount',
+            'sbnkAcct' => 'SO Account',
             'sbnkAName' => 'SO Account Name',
             'sbnkLoan' => 'SO Loan',
         ];

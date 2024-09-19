@@ -33,6 +33,7 @@ class PaySded extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['empUPFNo', 'sdedRef', 'sdedFld'], 'required'],
             [['sdedStart', 'sdedEnd'], 'safe'],
             [['sdedAmt'], 'number'],
             [['empUPFNo'], 'string', 'max' => 8],
@@ -71,23 +72,25 @@ class PaySded extends \yii\db\ActiveRecord
     //
     //
     //
-    public function getUPFno($ID){
+    public function getUPFno($ID)
+    {
         //Get the Employee Status (Temporary/Contract..) Name from emp_status table
         //
         $UPFno = Yii::$app->db->createCommand("SELECT empUPFNo FROM pay_sded where id='$ID'")->queryScalar();
-        if (!empty($UPFno)){
+        if (!empty($UPFno)) {
             return $UPFno;
-        }else{
+        } else {
             return NULL;
         }
     }
     //
     //
-    public function behaviors(){
-        return [ 
+    public function behaviors()
+    {
+        return [
             'auditEntryBehaviors' => [
                 'class' => AuditEntryBehaviors::class
-             ],
+            ],
         ];
     }
     //

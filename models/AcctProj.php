@@ -31,6 +31,7 @@ class AcctProj extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['progCode', 'projCode', 'projDesc'], 'required'],
             [['progCode', 'projCode'], 'string', 'max' => 2,'min'=>2],
             [['projDesc'], 'string', 'max' => 25],
             [['progCode', 'projCode'], 'unique', 'targetAttribute' => ['progCode', 'projCode']],

@@ -12,50 +12,64 @@ $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'SO Deduc', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
-//
-//
-////
-$getID= Yii::$app->request->queryParams['id'];
-$getUPFno=PaySded::getUPFno($getID);
-$empName=Employee::getEmpName($getUPFno);
+
+$getUPFno = $model->empUPFNo;
+$employeemodel = new Employee();
+$empName = $employeemodel->getEmpName($model->empUPFNo);
+
 echo "<h3>Employee Name: $empName</h3>";
 ?>
-<div class="pay-sded-view">
 
-<!--    <h1><?= Html::encode($this->title) ?></h1> -->
+<div class="row pay-sded-view">
+    <div class="col-md-6 col-lg-5 col-xl-5">
+        <table width="100%" xmlns="http://www.w3.org/1999/html">
+            <tr>
+                <td valign="top">
+                    <div class="box box-primary">
+                        <div class="box-body">
+                            <div class="panel-body">
+                                <div class="user-view">
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+                                    <?= DetailView::widget([
+                                        'model' => $model,
+                                        'attributes' => [
+                                            'empUPFNo',
+                                            'sdedRef',
+                                            [
+                                                'label' => 'SO Ded.. Field',
+                                                'value' => function ($model) {
+                                                    return $model->payField0->fldName;
+                                                },
+                                            ],
+                                            'sdedStart',
+                                            'sdedEnd',
+                                            [
+                                                'label' => 'Amount (Rs.)',
+                                                'attribute' => 'sdedAmt',
+                                                'format' => ['currency'],
+                                            ],
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            //'id',
-            'empUPFNo',
-            'sdedRef',
-	    //'sdedFld',
-	     ['label' => 'SO Ded.. Field',
-             'value' => function ($model) {
-                return $model->payField0->fldName;
-             },],
-            'sdedStart',
-            'sdedEnd',
-	    //'sdedAmt',
-	     ['label' => 'Amount (Rs.)',
-                'attribute' =>'sdedAmt',
-                //'contentOptions' => ['class' => 'col-lg-1'],
-                'format'=>['currency'],
-            ],
+                                        ],
+                                    ]) ?>
 
-        ],
-    ]) ?>
+                                    <p>
+                                        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                                        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+                                            'class' => 'btn btn-danger',
+                                            'data' => [
+                                                'confirm' => 'Are you sure you want to delete this item?',
+                                                'method' => 'post',
+                                            ],
+                                        ]) ?>
+                                        <?= Html::a('Close', ['/pay-sded/index'], ['class' => 'btn btn-default pull-right']) ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
 
 </div>

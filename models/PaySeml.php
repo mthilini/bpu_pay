@@ -33,6 +33,7 @@ class PaySeml extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['empUPFNo', 'semlRef', 'semlFld', 'semlAmt'], 'required'],
             [['semlStart', 'semlEnd'], 'safe'],
             [['semlAmt'], 'number'],
             [['empUPFNo'], 'string', 'max' => 8],

@@ -9,9 +9,8 @@ $this->title = 'Create Pay Deductions';
 $this->params['breadcrumbs'][] = ['label' => 'Pay Deductions', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pay-deductions-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-deductions-create">
 
     <?= $this->render('_form', [
         'model' => $model,

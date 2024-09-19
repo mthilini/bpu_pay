@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="row pay-taxtype-form">
-    <div class="col-md-6 col-lg-5 col-xl-5">
+    <div class="col-md-6 col-lg-5 col-xl-4">
         <table width="100%" xmlns="http://www.w3.org/1999/html">
             <tr>
                 <td valign="top">
@@ -20,9 +20,13 @@ use yii\widgets\ActiveForm;
                                 <div class="user-view">
                                     <?php $form = ActiveForm::begin(); ?>
 
-                                    <?= $form->field($model, 'taxCode')->textInput(['maxlength' => true]) ?>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <?= $form->field($model, 'taxCode')->textInput(['maxlength' => true]) ?>
+                                        </div>
+                                    </div>
 
-                                    <?= $form->field($model, 'taxDesc')->textInput(['maxlength' => true]) ?>
+                                    <?= $form->field($model, 'taxDesc')->textarea(['maxlength' => true, 'rows' => '2']) ?>
 
                                     <p>
                                         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

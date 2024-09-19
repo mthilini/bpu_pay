@@ -14,15 +14,15 @@ use app\models\Employee;
 $this->title = 'Pay Standing Order Deductions';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pay-sded-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-sded-index">
 
     <p>
         <?= Html::a('Add SO Deduction', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -32,35 +32,38 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             'empUPFNo',
-	    //'empUPFNo',
-	    [
-   		//'attribute' => 'empUPFNo',
-   		'label' => 'Emp. Name',
-   		'value' =>  function($model) {
+            //'empUPFNo',
+            [
+                //'attribute' => 'empUPFNo',
+                'label' => 'Emp. Name',
+                'value' =>  function ($model) {
                     $employeemodel = new Employee();
                     $employeeName = $employeemodel->getEmpName($model->empUPFNo);
                     return $employeeName;
-               },
-   	    'format' => 'raw',
-	    ],
+                },
+                'format' => 'raw',
+            ],
             'sdedRef',
-	    'sdedFld',
-	    ['label'=>'SO Ded. Field',
-            'value'=>'payField0.fldName'],
+            'sdedFld',
+            [
+                'label' => 'SO Ded. Field',
+                'value' => 'payField0.fldName'
+            ],
             'sdedStart',
             'sdedEnd',
-	    //'sdedAmt',
-	    ['label' => 'Amount (Rs.)',
-                'attribute' =>'sdedAmt',
+            //'sdedAmt',
+            [
+                'label' => 'Amount (Rs.)',
+                'attribute' => 'sdedAmt',
                 //'contentOptions' => ['class' => 'col-lg-1'],
-                'format'=>['currency'],
+                'format' => ['currency'],
             ],
 
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, PaySded $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>

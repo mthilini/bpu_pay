@@ -14,15 +14,15 @@ use app\models\Employee;
 $this->title = 'Pay Incomes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pay-income-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-income-index">
 
     <p>
         <?= Html::a('Create Pay Income', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -30,28 +30,29 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //'id',
-	    'empUPFNo',
-	    [
+            'empUPFNo',
+            [
                 'label' => 'Emp. Name',
-                'value' =>  function($model) {
-                        $employeemodel = new Employee();
-                        $employeeName = $employeemodel->getEmpName($model->empUPFNo);
-                        return $employeeName;
-               },
-            'format' => 'raw',
+                'value' =>  function ($model) {
+                    $employeemodel = new Employee();
+                    $employeeName = $employeemodel->getEmpName($model->empUPFNo);
+                    return $employeeName;
+                },
+                'format' => 'raw',
             ],
             'incMon',
             'incYear',
-	    //'incIncome',
-	     ['label' => 'Income (Rs.)',
-                'attribute' =>'incIncome',
-                'format'=>['currency'],
+            //'incIncome',
+            [
+                'label' => 'Income (Rs.)',
+                'attribute' => 'incIncome',
+                'format' => ['currency'],
             ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, PayIncome $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>

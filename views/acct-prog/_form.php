@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="row acct-prog-form">
-    <div class="col-md-6 col-lg-5 col-xl-5">
+    <div class="col-md-6 col-lg-5 col-xl-4">
         <table width="100%" xmlns="http://www.w3.org/1999/html">
             <tr>
                 <td valign="top">
@@ -20,7 +20,11 @@ use yii\widgets\ActiveForm;
                                 <div class="user-view">
                                     <?php $form = ActiveForm::begin(); ?>
 
-                                    <?= $form->field($model, 'progCode')->textInput(['maxlength' => true]) ?>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <?= $form->field($model, 'progCode')->textInput(['maxlength' => true]) ?>
+                                        </div>
+                                    </div>
 
                                     <?= $form->field($model, 'progDesc')->textInput(['maxlength' => true]) ?>
 

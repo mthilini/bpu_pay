@@ -40,11 +40,20 @@ use yii\widgets\ActiveForm;
                                                                                 </div>
                                                                         </div>
 
-                                                                        <?= $form->field($model, 'bactVoucher')->textInput(['maxlength' => true]) ?>
+                                                                        <div class="row">
+                                                                                <div class="col-6">
+                                                                                        <?= $form->field($model, 'bactVoucher')->textInput(['maxlength' => true]) ?>
+                                                                                </div>
+                                                                                <div class="col-6">
+                                                                                        <?= $form->field($model, 'bactReceipt')->textInput(['maxlength' => true]) ?>
+                                                                                </div>
+                                                                        </div>
 
-                                                                        <?= $form->field($model, 'bactReceipt')->textInput(['maxlength' => true]) ?>
-
-                                                                        <?= $form->field($model, 'bactJournal')->textInput(['maxlength' => true]) ?>
+                                                                        <div class="row">
+                                                                                <div class="col-6">
+                                                                                        <?= $form->field($model, 'bactJournal')->textInput(['maxlength' => true]) ?>
+                                                                                </div>
+                                                                        </div>
 
                                                                         <?= $form->field($model, 'bactCBkLedg')->dropDownList(
                                                                                 ArrayHelper::map(AcctLedger::find()->orderBy('ledgDesc')->all(), 'ledgCode', 'ledgDesc'),

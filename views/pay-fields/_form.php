@@ -50,12 +50,13 @@ use app\models\PayFieldType;
                                         </div>
                                     </div>
 
-                                    <?php ActiveForm::end(); ?>
-
                                     <p>
                                         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
                                         <?= Html::a('Close', ['/pay-fields/index'], ['class' => 'btn btn-default pull-right']) ?>
                                     </p>
+
+                                    <?php ActiveForm::end(); ?>
+
                                 </div>
                             </div>
                         </div>

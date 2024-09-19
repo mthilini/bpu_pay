@@ -9,9 +9,8 @@ $this->title = 'Create Pay Standing Order';
 $this->params['breadcrumbs'][] = ['label' => 'Pay Sbnks', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pay-sbnk-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-sbnk-create">
 
     <?= $this->render('_form', [
         'model' => $model,

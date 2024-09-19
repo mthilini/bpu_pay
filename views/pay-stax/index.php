@@ -14,15 +14,15 @@ use app\models\Employee;
 $this->title = 'Pay Staxes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pay-stax-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-stax-index">
 
     <p>
         <?= Html::a('Create Pay Stax', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -31,31 +31,35 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             //'id',
-	    'empUPFNo',
-	     [
+            'empUPFNo',
+            [
                 'label' => 'Emp. Name',
-                'value' =>  function($model) {
-                        $employeemodel = new Employee();
-                        $employeeName = $employeemodel->getEmpName($model->empUPFNo);
-                        return $employeeName;
-               },
-            'format' => 'raw',
+                'value' =>  function ($model) {
+                    $employeemodel = new Employee();
+                    $employeeName = $employeemodel->getEmpName($model->empUPFNo);
+                    return $employeeName;
+                },
+                'format' => 'raw',
             ],
             'staxRef',
-	    'staxFld',
-	    ['label'=>'Tax Field',
-            'value'=>'staxFld0.taxDesc'],
+            'staxFld',
+            [
+                'label' => 'Tax Field',
+                'value' => 'staxFld0.taxDesc'
+            ],
             'staxStart',
             'staxEnd',
-	     //'staxAmt',
-            ['label' => 'Tax Amount',
-                'attribute' =>'staxAmt',
-                'format'=>['currency'],
+            //'staxAmt',
+            [
+                'label' => 'Tax Amount',
+                'attribute' => 'staxAmt',
+                'format' => ['currency'],
             ],
             //'staxIncome',
-            ['label' => 'Tax Income',
-                'attribute' =>'staxIncome',
-                'format'=>['currency'],
+            [
+                'label' => 'Tax Income',
+                'attribute' => 'staxIncome',
+                'format' => ['currency'],
             ],
 
             'staxMoney',
@@ -63,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, PayStax $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>

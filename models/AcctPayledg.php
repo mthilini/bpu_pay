@@ -40,6 +40,7 @@ class AcctPayledg extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['payDate', 'payVch', 'payCat', 'paySub', 'payCashBk', 'payPayRct', 'payDept'], 'required'],
             [['payDate'], 'safe'],
             [['payVch'], 'integer'],
             [['payAmount'], 'number'],

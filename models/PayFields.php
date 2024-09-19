@@ -33,6 +33,7 @@ class PayFields extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['fldCode', 'fldName'], 'required'],
             [['fldUPF', 'fldETF'], 'boolean'],
             [['fldType'], 'integer'],
             [['fldCode'], 'string', 'max' => 2, 'min'=>2],

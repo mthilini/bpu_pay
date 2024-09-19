@@ -14,15 +14,15 @@ use app\models\Employee;
 $this->title = 'Pay Deductions';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pay-deductions-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="pay-deductions-index">
 
     <p>
         <?= Html::a('Create Pay Deductions', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -30,29 +30,30 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //'id',
-	    'empUPFNo',
-	    [
+            'empUPFNo',
+            [
                 'label' => 'Emp. Name',
-                'value' =>  function($model) {
-                 	$employeemodel = new Employee();
-                    	$employeeName = $employeemodel->getEmpName($model->empUPFNo);
-                    	return $employeeName;
-               },
-            'format' => 'raw',
+                'value' =>  function ($model) {
+                    $employeemodel = new Employee();
+                    $employeeName = $employeemodel->getEmpName($model->empUPFNo);
+                    return $employeeName;
+                },
+                'format' => 'raw',
             ],
             'dedMon',
             'dedYear',
-	    //'dedDeduction',
-	    ['label' => 'Deduction (Rs.)',
-                'attribute' =>'dedDeduction',
-                'format'=>['currency'],
+            //'dedDeduction',
+            [
+                'label' => 'Deduction (Rs.)',
+                'attribute' => 'dedDeduction',
+                'format' => ['currency'],
             ],
 
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, PayDeductions $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>
