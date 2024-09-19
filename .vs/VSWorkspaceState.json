@@ -2,10 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\views",
-    "\\views\\acct-bankaccts",
-    "\\views\\layouts",
-    "\\web"
+    "\\views\\cash-book"
   ],
-  "SelectedNode": "\\views\\acct-bankaccts\\index.php",
+  "SelectedNode": "\\views\\cash-book\\ledger_items.php",
   "PreviewInSolutionExplorer": false
 }

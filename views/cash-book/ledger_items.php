@@ -30,7 +30,7 @@ use app\models\PayDept;
             <div id="s_main_ledger" class="col-4">
                 <label>Main Ledger</label>
                 <select id="select_main_ledger" class="form-control" onchange="ledgeroption(this.value);">
-                    <option value="" selected disabled>Select a Main Ledger</option>
+                    <option value="" selected>Select a Main Ledger</option>
                     <?php foreach (AcctLedgmain::find()->orderBy('mainDesc')->all() as $option) { ?>
                         <option value=<?= $option->mainCode ?>><?= $option->mainDesc ?></option>
                     <?php } ?>
@@ -38,7 +38,7 @@ use app\models\PayDept;
             </div>
             <div id="s_ledger" class="col-5">
                 <label>Ledger</label>
-                <select id="select_ledger" class="form-control" onchange="ledgercode(this.value);">
+                <select id="select_ledger" class="form-control" onchange="ledgercode(this.value); setledger(this.value);">
                     <option value="" selected disabled>Select a Ledger</option>
                     <?php foreach (AcctLedger::find()->orderBy('ledgDesc')->all() as $option) { ?>
                         <option value=<?= $option->ledgCode ?>><?= $option->ledgDesc ?></option>
@@ -119,22 +119,21 @@ use app\models\PayDept;
             type: "POST",
             dataType: "json",
             contentType: "application/json; charset=utf-8",
-            headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
-            traditional: true,
+            headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+            traditional: false,
             data: JSON.stringify(sdata),
             success: function (response) {
                 if (response.status === "OK") {
                     // do something with response.message or whatever other data on success
-        
+                    //console.log(response.status);
                     /*set options */
-        
                     for (const [key, value] of Object.entries(response.data)) {
                         var option = document.createElement('option');
                         option.value = key;
                         option.innerHTML = value;
                         select.appendChild(option);
                     }
-        
+
                 } else if (response.status) {
                     // do something with response.message or whatever other data on error
                     console.log(response.status);
@@ -181,4 +180,45 @@ use app\models\PayDept;
         }
     }
 
+    function setledger(value) {
+        var sdata = {
+            ledger: value,
+            otherinfo: {
+                user: "user name",
+            }
+        };
+
+        $.ajax({
+            url: "mainledger",
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+            traditional: true,
+            data: JSON.stringify(sdata),
+            success: function (response) {
+                if (response.status === "OK") {
+                    // do something with response.message or whatever other data on success
+
+                    /*select main ledger options */
+                    for (const [key, value] of Object.entries(response.data)) {
+                        document.getElementById('select_main_ledger').value = key;
+                    }
+
+                } else if (response.status) {
+                    // do something with response.message or whatever other data on error
+                    console.log(response.status);
+                    //alert(response.status);
+                }
+                else {
+                    console.log(response);
+                }
+            },
+            error: function (response) {
+                console.log(response);
+            }
+        });
+
+        //console.log(value);
+    }
 </script>

@@ -38,8 +38,7 @@ class AcctLedger extends \yii\db\ActiveRecord
             [['ledgSub'], 'string', 'max' => 3],
             [['ledgCode'], 'string', 'max' => 5],
             [['ledgDesc'], 'string', 'max' => 75],
-            [['ledgDesc'], 'unique'],
-            [['ledgCode'], 'unique'],
+            [['ledgCode', 'ledgDesc'], 'unique'],
             [['mainCode'], 'exist', 'skipOnError' => true, 'targetClass' => AcctLedgmain::class, 'targetAttribute' => ['mainCode' => 'mainCode']],
         ];
     }
