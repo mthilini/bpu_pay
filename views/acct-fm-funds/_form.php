@@ -23,14 +23,17 @@ use yii\widgets\ActiveForm;
                                 <div class="user-view">
                                     <?php $form = ActiveForm::begin(); ?>
 
-                                    <?= $form->field($model, 'fundName')->textInput(['maxlength' => true]) ?>
+                                    <?= $form->field($model, 'fundName')->textarea(['maxlength' => true, 'rows' => '2']) ?>
 
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-3">
                                             <?= $form->field($model, 'fundCode')->textInput(['maxlength' => true]) ?>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-4">
                                             <?= $form->field($model, 'fundBankType')->textInput(['maxlength' => true]) ?>
+                                        </div>
+                                        <div class="col-5">
+                                            <?= $form->field($model, 'fundBankAcct')->textInput(['maxlength' => true]) ?>
                                         </div>
                                     </div>
 
@@ -39,8 +42,6 @@ use yii\widgets\ActiveForm;
                                         ['prompt' => 'Select Bank Name']
                                     ) ?>
 
-                                    <?= $form->field($model, 'fundBankAcct')->textInput(['maxlength' => true]) ?>
-
                                     <?= $form->field($model, 'fundLedg')->dropDownList(
                                         ArrayHelper::map(AcctLedger::find()->orderBy('ledgDesc')->all(), 'ledgCode', 'ledgDesc'),
                                         ['prompt' => 'Select Ledger Code']
@@ -48,7 +49,7 @@ use yii\widgets\ActiveForm;
 
                                     <p>
                                         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-                                        <?= Html::a('Close', ['/acct-fm-funds'], ['class' => 'btn btn-default pull-right']) ?>
+                                        <?= Html::a('Close', ['/acct-fm-funds/index'], ['class' => 'btn btn-default pull-right']) ?>
                                     </p>
 
                                     <?php ActiveForm::end(); ?>

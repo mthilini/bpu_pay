@@ -10,9 +10,8 @@ $this->params['breadcrumbs'][] = ['label' => 'Employee EPF Contribution', 'url' 
 $this->params['breadcrumbs'][] = ['label' => $model->empUPFNo, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="acct-fm-epf-contr-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="acct-fm-epf-contr-update">
 
     <?= $this->render('_formU', [
         'model' => $model,

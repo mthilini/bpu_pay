@@ -95,8 +95,8 @@
                         'label' => 'Fund Management',
                         'icon' => 'fas fa-donate',
                         'items' => [
-                            ['label' => 'Fund Types', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-fm-funds']],
-                            ['label' => 'Opening EPF Balances (2022)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-fm-epf-contr']],
+                            ['label' => 'Fund Types', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-fm-funds/index']],
+                            ['label' => 'Opening EPF Balances (2022)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-fm-epf-contr/index']],
                         ]
                     ],
                     [

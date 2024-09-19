@@ -31,6 +31,7 @@ class AcctFmfunds extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['fundCode', 'fundName', 'fundBankType', 'fundBankAcct', 'fundBankCode'], 'required'],
             [['fundCode'], 'string', 'max' => 4],
             [['fundName'], 'string', 'max' => 75],
             [['fundBankType'], 'string', 'max' => 1],
@@ -51,7 +52,7 @@ class AcctFmfunds extends \yii\db\ActiveRecord
             'fundCode' => 'Fund Code',
             'fundName' => 'Fund Name',
             'fundBankType' => 'Bank Type',
-            'fundBankCode' => 'Bank Code',
+            'fundBankCode' => 'Bank Name',
             'fundBankAcct' => 'Bank Account',
             'fundLedg' => 'Fund Ledger',
         ];

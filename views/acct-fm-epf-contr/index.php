@@ -14,15 +14,15 @@ use yii\grid\GridView;
 $this->title = 'Employee EPF Contribution';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="acct-fm-epf-contr-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="acct-fm-epf-contr-index">
 
     <p>
         <?= Html::a('New EPF Opening Balance', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -32,28 +32,28 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             [
-                'attribute' =>'empUPFNo',
+                'attribute' => 'empUPFNo',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:100px;']
             ],
             [
                 'label' => 'Emp. Name',
-                'value' =>  function($model) {
-                         $employeemodel = new Employee();
-                         $employeeName = $employeemodel->getEmpName($model->empUPFNo);
-                         return $employeeName;
-                    },
+                'value' =>  function ($model) {
+                    $employeemodel = new Employee();
+                    $employeeName = $employeemodel->getEmpName($model->empUPFNo);
+                    return $employeeName;
+                },
                 'format' => 'raw',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:350px;']
-             ],
-             [
-                'attribute' =>'epfYear',
+            ],
+            [
+                'attribute' => 'epfYear',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:100px;']
             ],
             [
-                'attribute' =>'epfBalStart',
+                'attribute' => 'epfBalStart',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:200px;text-align:right;'],
                 //['format'=>'number', 'decimals'=>2, 'decPoint'=>'.', 'thousandSep'=>','], 
-                'format'=>['currency'],         
+                'format' => ['currency'],
             ],
             //'epfJan10',
             //'epfJan15',
@@ -82,15 +82,15 @@ $this->params['breadcrumbs'][] = $this->title;
             //'epfIntrRate',
             //'epfInterest',
             [
-                'attribute' =>'epfBalEnd',
+                'attribute' => 'epfBalEnd',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:200px;text-align:right;'],
-                'format'=>['currency'],
+                'format' => ['currency'],
             ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, AcctFmEpfContr $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>

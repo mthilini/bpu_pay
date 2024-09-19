@@ -58,13 +58,22 @@ class PayBank extends \yii\db\ActiveRecord
     }
     //
     //
-    public function behaviors(){
+    public function behaviors()
+    {
         return [
             'auditEntryBehaviors' => [
                 'class' => AuditEntryBehaviors::class
-             ],
+            ],
         ];
     }
-    //
-    //
+
+    public function getBankName($bankCode)
+    {
+        $bankName = Yii::$app->db->createCommand("SELECT bankName FROM pay_bank where bankBank='$bankCode'")->queryScalar();
+        if (!empty($bankName)) {
+            return $bankName;
+        } else {
+            return NULL;
+        }
+    }
 }
