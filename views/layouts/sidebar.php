@@ -62,7 +62,7 @@
                     ],
                     [
                         'label' => 'General Ledger',
-                        'icon' => 'fas fa-file-alt',
+                        'icon' => 'fas fa-file-invoice',
                         'items' => [
                             ['label' => 'Main Ledgers', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledgmain/index']],
                             ['label' => 'Sub Ledgers', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledgsub/index']],
@@ -106,6 +106,21 @@
                             ['label' => 'Users', 'icon' => 'fas fa-caret-right', 'url' => ['/tbl-user/index']],
                             ['label' => 'Pay Fields', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-fields/index']],
                             ['label' => 'Pay A5 Types', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-a5type/index']],
+                        ]
+                    ],
+                    [
+                        'label' => 'Reports',
+                        'icon' => 'fas fa-file-alt',
+                        'items' => [
+                            ['label' => 'Cashbook Details Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-bankaccts/report']],
+                            ['label' => 'Main Ledgers Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledgmain/report']],
+                            ['label' => 'Sub Ledgers Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledgsub/report']],
+                            ['label' => 'Account Ledgers Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledger/report']],
+                            ['label' => 'Account Programs Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-prog/report']],
+                            ['label' => 'Account Projects Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-proj/report']],
+                            ['label' => 'Account Votes Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-votes/report']],
+                            ['label' => 'Payment Ledgers Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-payledg/report']],
+                            ['label' => 'Receipt Ledgers Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rctsledg/report']],
                         ]
                     ],
                     // ['label' => 'LABELS', 'header' => true],

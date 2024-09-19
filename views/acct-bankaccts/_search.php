@@ -45,7 +45,7 @@ use yii\widgets\ActiveForm;
 
         <div class="form-group">
             <?= Html::submitButton('Search', ['class' => 'btn btn-primary btn-sm']) ?>
-            <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary btn-sm']) ?>
+            <?= Html::a('Reset', ['/acct-bankaccts/report'], ['class' => 'btn btn-outline-secondary btn-sm']) ?>
         </div>
     </div>
 

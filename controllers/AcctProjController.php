@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\models\AcctProj;
 use app\models\AcctProjSearch;
+use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -130,5 +132,30 @@ class AcctProjController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionReport()
+    {
+        $searchModel = new AcctProjSearch();
+        $query = $searchModel->search([])->query;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $request = Yii::$app->request->get();
+        if (isset($request['a_min']) && $request['a_min'] != '' && isset($request['a_max']) && $request['a_max'] != '') {
+            if (is_numeric($request['a_min']) && is_numeric($request['a_max']))
+                $query->andFilterWhere(['between', 'id', $request['a_min'], $request['a_max']]);
+        } else
+            $dataProvider = null;
+
+
+        return $this->render('report', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'request' => $request,
+        ]);
     }
 }

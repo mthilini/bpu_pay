@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\models\AcctVotes;
 use app\models\AcctVotesSearch;
+use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -136,19 +138,43 @@ class AcctVotesController extends Controller
     public function actionDropdown($id)
     {
         $countPosts = \app\models\AcctProj::find()
-        ->where(['progCode' => "$id"])
-        ->count();
+            ->where(['progCode' => "$id"])
+            ->count();
 
         $posts =  \app\models\AcctProj::find()
-        ->where(['progCode' => "$id"])
-        ->orderBy('projCode ASC')
-        ->all();
+            ->where(['progCode' => "$id"])
+            ->orderBy('projCode ASC')
+            ->all();
         echo "<option value=''>-</option>";
-        if($countPosts>0){
-            foreach($posts as $post){
-                echo "<option value='".$post->projCode."'>".\Yii::t('app',$post->projDesc)."</option>";
+        if ($countPosts > 0) {
+            foreach ($posts as $post) {
+                echo "<option value='" . $post->projCode . "'>" . \Yii::t('app', $post->projDesc) . "</option>";
             }
         }
     }
-    //
+
+    public function actionReport()
+    {
+        $searchModel = new AcctVotesSearch();
+        $query = $searchModel->search([])->query;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $request = Yii::$app->request->get();
+        if (isset($request['a_min']) && $request['a_min'] != '' && isset($request['a_max']) && $request['a_max'] != '') {
+            if (is_numeric($request['a_min']) && is_numeric($request['a_max']))
+                $query->andFilterWhere(['between', 'id', $request['a_min'], $request['a_max']]);
+        } else
+            $dataProvider = null;
+
+
+        return $this->render('report', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'request' => $request,
+        ]);
+    }
 }

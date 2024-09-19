@@ -24,8 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="box-header">
                             <span class="with-border-box">
                                 <?= Html::a('Create Acc. Ledge-main', ['create'], ['class' => 'btn btn-success']) ?>
-                                <button id="btnExport" class="btn btn-info" onclick="fnExcelReport();"> Export Excel</button>
-                                <input class="btn btn-primary" type="button" onclick="generatePDF('<?= $this->title;?>', 'act-ledgmain')" value="Export PDF" />
+                                <!-- <button id="btnExport" class="btn btn-info" onclick="fnExcelReport();"> Export Excel</button>
+                                <input class="btn btn-primary" type="button" onclick="generatePDF('<?= $this->title;?>', 'act-ledgmain')" value="Export PDF" /> -->
                             </span>
                         </div>
                         <div class="panel-body panel-body-index">
