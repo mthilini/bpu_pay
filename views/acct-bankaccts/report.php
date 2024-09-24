@@ -50,10 +50,14 @@ $this->title = 'Cashbook Reports';
         $('#report').DataTable({
             layout: {
                 topStart: {
-                    buttons: ['copy', 'csv', 'excel',
+                    buttons: ['copy', 'csv',
+                        {
+                            extend: 'excelHtml5',
+                            title: (document.getElementById('a_min').value && document.getElementById('a_max').value) ? document.title + ' - ' + document.getElementById('a_min').value + ' to ' + document.getElementById('a_max').value : document.title
+                        },
                         {
                             extend: 'pdfHtml5',
-                            title: document.title
+                            title: (document.getElementById('a_min').value && document.getElementById('a_max').value) ? document.title + ' - ' + document.getElementById('a_min').value + ' to ' + document.getElementById('a_max').value : document.title
                         },
                         'print']
                 }
