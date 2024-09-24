@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\models\AcctPaycash;
 use app\models\AcctPayledg;
+use app\models\AcctRctscash;
+use app\models\AcctRctsledg;
 use app\models\AcctLedger;
 use app\models\AcctLedgmain;
 use yii\helpers\ArrayHelper;
@@ -57,8 +59,8 @@ class CashBookController extends Controller
      */
     public function actionReceipt()
     {
-        $model_cash = new AcctPaycash();
-        $model_ledger = new AcctPayledg();
+        $model_cash = new AcctRctscash();
+        $model_ledger = new AcctRctsledg();
 
         return $this->render('receipt', [
             'model_cash' => $model_cash,
