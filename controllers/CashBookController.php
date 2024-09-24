@@ -4,7 +4,10 @@ namespace app\controllers;
 
 use app\models\AcctPaycash;
 use app\models\AcctPayledg;
+use app\models\AcctRctscash;
+use app\models\AcctRctsledg;
 use app\models\AcctLedger;
+use app\models\AcctLedgmain;
 use yii\helpers\ArrayHelper;
 use app\models\AcctPaycashSearch;
 use yii\web\Controller;
@@ -56,8 +59,8 @@ class CashBookController extends Controller
      */
     public function actionReceipt()
     {
-        $model_cash = new AcctPaycash();
-        $model_ledger = new AcctPayledg();
+        $model_cash = new AcctRctscash();
+        $model_ledger = new AcctRctsledg();
 
         return $this->render('receipt', [
             'model_cash' => $model_cash,
@@ -86,13 +89,17 @@ class CashBookController extends Controller
         $receive = file_get_contents('php://input');
         $response['model'] = json_decode($receive);
 
-        $query = AcctLedger::find()->where(['mainCode' => $response['model']->main_ledger]);
+        if ($response['model']->main_ledger != '') {
+            $query = AcctLedger::find()->where(['mainCode' => $response['model']->main_ledger]);
+        } else {
+            $query = AcctLedger::find()->where([]);
+        }
 
         $provider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 0,
-            ],
+                    'pageSize' => 0,
+                ],
             'sort' => [
                 'defaultOrder' => [
                     'ledgDesc' => SORT_ASC,
@@ -110,9 +117,44 @@ class CashBookController extends Controller
             $response['status'] = "error : unable to validate";
         }
 
-        header('Content-Type: application/json; charset=utf-8');
-        echo json_encode($response);
-        return;
+        //header('Content-Type: application/json; charset=utf-8');
+        return json_encode($response);
+        //return;
+    }
+
+    public function actionMainledger()
+    {
+        $receive = file_get_contents('php://input');
+        $response['model'] = json_decode($receive);
+
+        $maincode = AcctLedger::find()->select('mainCode')->where(['ledgCode' => $response['model']->ledger])->one();
+        $query = AcctLedgmain::find()->where(['mainCode' => $maincode]);
+
+        $provider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                    'pageSize' => 0,
+                ],
+            'sort' => [
+                'defaultOrder' => [
+                    'mainDesc' => SORT_ASC,
+                ]
+            ],
+        ]);
+
+        // returns an array of Post objects
+        $ledger = $provider->getModels();
+
+        if ($ledger != null) {
+            $response['status'] = "OK";
+            $response['data'] = ArrayHelper::map($ledger, 'mainCode', 'mainDesc');
+        } else {
+            $response['status'] = "error : unable to validate";
+        }
+
+        //header('Content-Type: application/json; charset=utf-8');
+        return json_encode($response);
+        //return;
     }
 
     /**

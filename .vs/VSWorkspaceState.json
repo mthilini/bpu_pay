@@ -1,11 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\views",
-    "\\views\\acct-bankaccts",
-    "\\views\\layouts",
-    "\\web"
+    "\\controllers",
+    "\\views"
   ],
-  "SelectedNode": "\\views\\acct-bankaccts\\index.php",
+  "SelectedNode": "\\controllers\\AcctBankacctsController.php",
   "PreviewInSolutionExplorer": false
 }

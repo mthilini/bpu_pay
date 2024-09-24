@@ -62,13 +62,13 @@ use app\models\PayDept;
         <div id="vote_row" class="row"></div>
         <div class="row">
             <div class="col-6">
-                <?= $form->field($model_ledger, 'payCat')->dropDownList(
+                <?= $form->field($model_ledger, 'rctLedger')->dropDownList(
                     //ArrayHelper::map(AcctBankaccts::find()->orderBy('bactAcctName')->all(), 'bactAcctCode', 'bactAcctName'),
                     ['prompt' => 'Select Category']
                 ) ?>
             </div>
             <div class="col-6">
-                <?= $form->field($model_ledger, 'payDept')->dropDownList(
+                <?= $form->field($model_ledger, 'rctDept')->dropDownList(
                     ArrayHelper::map(PayDept::find()->orderBy('deptName')->all(), 'deptCode', 'deptName'),
                     [
                         'required' => true,
@@ -81,7 +81,7 @@ use app\models\PayDept;
             </div>
         </div>
 
-        <?= $this->render('amount_ledger_pay', [
+        <?= $this->render('amount_ledger_rct', [
             'form' => $form,
             'model_ledger' => $model_ledger
         ]) ?>

@@ -5,7 +5,7 @@
                 <i class="fas fa-times-circle" onclick="deleteRow('table_cash');" style="color:red;"></i>
             </th>
             <th>Sub</th>
-            <th>Payee/Payer</th>
+            <th>Name</th>
             <th>Cheque</th>
             <th>Amount</th>
             <th>Deduct</th>

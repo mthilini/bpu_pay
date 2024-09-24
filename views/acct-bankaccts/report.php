@@ -1,3 +1,7 @@
+<?php
+$this->title = 'Cashbook Reports';
+?>
+
 <div class="card">
     <div class="card-bofy m-2">
 
@@ -46,7 +50,17 @@
         $('#report').DataTable({
             layout: {
                 topStart: {
-                    buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    buttons: ['copy', 'csv',
+                        {
+                            extend: 'excelHtml5',
+                            title: (document.getElementById('a_min').value && document.getElementById('a_max').value) ? document.title + ' - ' + document.getElementById('a_min').value + ' to ' + document.getElementById('a_max').value : document.title
+                        },
+                        {
+                            extend: 'pdfHtml5',
+                            title: (document.getElementById('a_min').value && document.getElementById('a_max').value) ? document.title + ' - ' + document.getElementById('a_min').value + ' to ' + document.getElementById('a_max').value : document.title,
+                            messageBottom: 'System Generated Report - ' + (new Date()).toLocaleDateString() + ' ' + (new Date()).toLocaleTimeString()
+                        },
+                        'print']
                 }
             },
             columnDefs: [

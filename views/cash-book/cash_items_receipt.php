@@ -37,7 +37,7 @@ use yii\helpers\Html;
     </div>
     <div class="row">
         <div class="col-md-4">
-            <?= $form->field($model_cash, 'payType')->dropDownList(
+            <?= $form->field($model_cash, 'rctType')->dropDownList(
                 ['Normal' => 'Normal', 'External Examination' => 'External Examination', 'Staff' => 'Staff'],
                 [
                     'required' => true,
@@ -50,11 +50,11 @@ use yii\helpers\Html;
             ) ?>
         </div>
         <div class="col-md-8 col-lg-6">
-            <?= $form->field($model_cash, 'payPayee')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model_cash, 'rctName')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
 
-    <?= $this->render('amount_cash', [
+    <?= $this->render('amount_cash_rct', [
         'form' => $form,
         'model_ledger' => $model_cash
     ]) ?>

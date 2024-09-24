@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <!--header-->
-    <?= $this->render('header', [
+    <?= $this->render('header_pay', [
         'form' => $form,
         'model_cash' => $model_cash,
         //'model_ledger' => $model_ledger,
@@ -28,7 +28,7 @@ use yii\widgets\ActiveForm;
         <div class="col-md-8">
             <!--cash or ledger-->
             <!--header sub-->
-            <?= $this->render('header_sub', [
+            <?= $this->render('header_sub_pay', [
                 'form' => $form,
                 'model_cash' => $model_cash,
                 //'model_ledger' => $model_ledger,
@@ -41,7 +41,7 @@ use yii\widgets\ActiveForm;
             ]) ?>
 
             <!--ledger items-->
-            <?= $this->render('ledger_items', [
+            <?= $this->render('ledger_items_pay', [
                 'form' => $form,
                 'model_ledger' => $model_ledger,
             ]) ?>
