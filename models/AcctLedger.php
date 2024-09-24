@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use mehulpatel\mod\audit\behaviors\AuditEntryBehaviors;
 use yii\db\ActiveRecord;
+
 /**
  * This is the model class for table "acct_ledger".
  *
@@ -33,12 +34,12 @@ class AcctLedger extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['mainCode','ledgSub','ledgDesc'], 'required'],
-            [['mainCode'], 'string', 'max' => 2, 'min'=>2],
+            [['mainCode', 'ledgSub', 'ledgCode', 'ledgDesc'], 'required'],
+            [['mainCode'], 'string', 'max' => 2, 'min' => 2],
             [['ledgSub'], 'string', 'max' => 3],
             [['ledgCode'], 'string', 'max' => 5],
             [['ledgDesc'], 'string', 'max' => 75],
-            [['ledgCode', 'ledgDesc'], 'unique'],
+            [['ledgDesc', 'ledgCode'], 'unique'],
             [['mainCode'], 'exist', 'skipOnError' => true, 'targetClass' => AcctLedgmain::class, 'targetAttribute' => ['mainCode' => 'mainCode']],
         ];
     }
@@ -78,18 +79,20 @@ class AcctLedger extends \yii\db\ActiveRecord
     }
     //
     //
-    public function beforeSave($insert) {
-           $this->ledgSub=str_pad($this->ledgSub, 3, '0', STR_PAD_RIGHT); //padding upto 3 numbers
-           $this->ledgCode = $this->mainCode.$this->ledgSub;
-           return parent::beforeSave($insert);
+    public function beforeSave($insert)
+    {
+        $this->ledgSub = str_pad($this->ledgSub, 3, '0', STR_PAD_RIGHT); //padding upto 3 numbers
+        $this->ledgCode = $this->mainCode . $this->ledgSub;
+        return parent::beforeSave($insert);
     }
     //
     //
-    public function behaviors(){
-        return [ 
+    public function behaviors()
+    {
+        return [
             'auditEntryBehaviors' => [
                 'class' => AuditEntryBehaviors::class
-             ],
+            ],
         ];
     }
     //
