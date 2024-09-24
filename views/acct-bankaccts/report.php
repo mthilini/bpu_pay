@@ -1,3 +1,7 @@
+<?php
+$this->title = 'Cashbook Reports';
+?>
+
 <div class="card">
     <div class="card-bofy m-2">
 
@@ -46,7 +50,12 @@
         $('#report').DataTable({
             layout: {
                 topStart: {
-                    buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    buttons: ['copy', 'csv', 'excel',
+                        {
+                            extend: 'pdfHtml5',
+                            title: document.title
+                        },
+                        'print']
                 }
             },
             columnDefs: [
