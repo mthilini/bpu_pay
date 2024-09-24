@@ -57,7 +57,8 @@ $this->title = 'Cashbook Reports';
                         },
                         {
                             extend: 'pdfHtml5',
-                            title: (document.getElementById('a_min').value && document.getElementById('a_max').value) ? document.title + ' - ' + document.getElementById('a_min').value + ' to ' + document.getElementById('a_max').value : document.title
+                            title: (document.getElementById('a_min').value && document.getElementById('a_max').value) ? document.title + ' - ' + document.getElementById('a_min').value + ' to ' + document.getElementById('a_max').value : document.title,
+                            messageBottom: 'System Generated Report - ' + (new Date()).toLocaleDateString() + ' ' + (new Date()).toLocaleTimeString()
                         },
                         'print']
                 }
