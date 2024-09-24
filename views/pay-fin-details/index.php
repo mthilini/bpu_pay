@@ -58,7 +58,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'Currency',
                 'attribute' => 'bankLoanAmount',
             ],
-            'bankLoanReleaseDate',
+            // 'bankLoanReleaseDate',
+            [
+                'attribute' => 'SO Allow. Start',
+                'value' =>  function ($model) {
+                    $bankLoanReleaseDate = date("d/m/Y", strtotime($model->bankLoanReleaseDate));
+                    return $bankLoanReleaseDate;
+                },
+                'format' => 'raw',
+            ],
             'otherInfo',
             [
                 'class' => ActionColumn::className(),

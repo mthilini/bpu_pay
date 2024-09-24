@@ -39,7 +39,7 @@ $UPFno = $model->empUPFNo;
                                             <label for="<?= $model->formName() ?>-sbnkStart">SO Start</label>
                                             <?= $form->field($model, 'sbnkStart')->label(false)->widget(DatePicker::classname(), [
                                                 'language' => 'en',
-                                                'dateFormat' => 'yyyy-MM-dd',
+                                                'dateFormat' => 'dd/MM/yyyy',
                                                 'clientOptions' => [
                                                     'changeMonth' => true,
                                                     'yearRange' => '1996:2099',
@@ -55,7 +55,7 @@ $UPFno = $model->empUPFNo;
                                             <label for="<?= $model->formName() ?>-sbnkEnd">SO End</label>
                                             <?= $form->field($model, 'sbnkEnd')->label(false)->widget(DatePicker::classname(), [
                                                 'language' => 'en',
-                                                'dateFormat' => 'yyyy-MM-dd',
+                                                'dateFormat' => 'dd/MM/yyyy',
                                                 'clientOptions' => [
                                                     'changeMonth' => true,
                                                     'yearRange' => '1996:2099',

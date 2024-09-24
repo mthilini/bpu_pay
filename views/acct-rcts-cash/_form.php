@@ -23,7 +23,7 @@ use yii\widgets\ActiveForm;
 	<label for="<?= $model->formName() ?>-rctDate">Receipt Date</label>
     <?= $form->field($model, 'rctDate')->label(false)->widget(\yii\jui\DatePicker::classname(), [
     'language' => 'en',
-    'dateFormat' => 'yyyy-MM-dd',
+    'dateFormat' => 'dd/MM/yyyy',
 	]) ?>
 
     <?= $form->field($model, 'rctNo')->textInput() ?>

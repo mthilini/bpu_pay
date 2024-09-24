@@ -28,7 +28,7 @@ use yii\jui\DatePicker;
                                             <label for="<?= $model->formName() ?>-rctDate">Receipt Date</label>
                                             <?= $form->field($model, 'rctDate')->label(false)->widget(DatePicker::classname(), [
                                                 'language' => 'en',
-                                                'dateFormat' => 'yyyy-MM-dd',
+                                                'dateFormat' => 'dd/MM/yyyy',
                                                 'clientOptions' => [
                                                     'changeMonth' => true,
                                                     'yearRange' => '1996:2099',

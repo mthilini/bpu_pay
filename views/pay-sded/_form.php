@@ -45,7 +45,7 @@ use yii\jui\DatePicker;
                                             <label for="<?= $model->formName() ?>-sdedStart">SO Ded. Start</label>
                                             <?= $form->field($model, 'sdedStart')->label(false)->widget(DatePicker::classname(), [
                                                 'language' => 'en',
-                                                'dateFormat' => 'yyyy-MM-dd',
+                                                'dateFormat' => 'dd/MM/yyyy',
                                                 'clientOptions' => [
                                                     'changeMonth' => true,
                                                     'yearRange' => '1996:2099',
@@ -61,7 +61,7 @@ use yii\jui\DatePicker;
                                             <label for="<?= $model->formName() ?>-sdedEnd">SO Ded. End</label>
                                             <?= $form->field($model, 'sdedEnd')->label(false)->widget(DatePicker::classname(), [
                                                 'language' => 'en',
-                                                'dateFormat' => 'yyyy-MM-dd',
+                                                'dateFormat' => 'dd/MM/yyyy',
                                                 'clientOptions' => [
                                                     'changeMonth' => true,
                                                     'yearRange' => '1996:2099',

@@ -46,7 +46,7 @@ use app\models\PayFields;
                                             <label for="<?= $model->formName() ?>-semlStart">SO Allow. Start</label>
                                             <?= $form->field($model, 'semlStart')->label(false)->widget(\yii\jui\DatePicker::classname(), [
                                                 'language' => 'en',
-                                                'dateFormat' => 'yyyy-MM-dd',
+                                                'dateFormat' => 'dd/MM/yyyy',
                                                 'clientOptions' => [
                                                     'changeMonth' => true,
                                                     'yearRange' => '1996:2099',
@@ -62,7 +62,7 @@ use app\models\PayFields;
                                             <label for="<?= $model->formName() ?>-semlEnd">SO Allow. End</label>
                                             <?= $form->field($model, 'semlEnd')->label(false)->widget(\yii\jui\DatePicker::classname(), [
                                                 'language' => 'en',
-                                                'dateFormat' => 'yyyy-MM-dd',
+                                                'dateFormat' => 'dd/MM/yyyy',
                                                 'clientOptions' => [
                                                     'changeMonth' => true,
                                                     'yearRange' => '1996:2099',

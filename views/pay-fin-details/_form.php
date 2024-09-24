@@ -63,7 +63,7 @@ use app\models\PayBank;
                                             <label for="<?= $model->formName() ?>-bankLoanReleaseDate">Bank Loan Release Date</label>
                                             <?= $form->field($model, 'bankLoanReleaseDate')->label(false)->widget(\yii\jui\DatePicker::classname(), [
                                                 'language' => 'en',
-                                                'dateFormat' => 'yyyy-MM-dd',
+                                                'dateFormat' => 'dd/MM/yyyy',
                                                 'clientOptions' => [
                                                     'changeMonth' => true,
                                                     'yearRange' => '1996:2099',

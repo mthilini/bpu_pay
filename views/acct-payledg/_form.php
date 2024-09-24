@@ -27,7 +27,7 @@ use app\models\AcctLedgmain;
                                             <label for="<?= $model->formName() ?>-payDate">Payment Date</label>
                                             <?= $form->field($model, 'payDate')->label(false)->widget(\yii\jui\DatePicker::classname(), [
                                                 'language' => 'en',
-                                                'dateFormat' => 'yyyy-MM-dd',
+                                                'dateFormat' => 'dd/MM/yyyy',
                                                 'clientOptions' => [
                                                     'changeMonth' => true,
                                                     'yearRange' => '1996:2099',

@@ -45,7 +45,7 @@ class PayFinDetails extends \yii\db\ActiveRecord
             [['nic','surname', 'epfNo', 'medicalFundContributor', 'salaryBankCode', 'bankAccountNo', 'bankAccountName', 'taxConsent', 'bankLoanAmount', 'bankLoanReleaseDate'], 'required'],
             [['medicalFundContributor', 'taxConsent'], 'integer'],
             [['bankLoanAmount'], 'number'],
-            [['bankLoanReleaseDate'], 'date', 'format' => 'yyyy-mm-dd'],
+            [['bankLoanReleaseDate'], 'date', 'format' => 'dd/MM/yyyy'],
             [['nic', 'title'], 'string', 'max' => 15],
             [['bankAccountNo'], 'string', 'max' => 12, 'min'=>12],
             [['surname'], 'string', 'max' => 55],

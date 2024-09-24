@@ -49,8 +49,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'SO Allow. Field',
                 'value' => 'payField0.fldName'
             ],
-            'semlStart',
-            'semlEnd',
+            // 'semlStart',
+            [
+                'attribute' => 'SO Allow. Start',
+                'value' =>  function ($model) {
+                    $semlStart = date("d/m/Y", strtotime($model->semlStart));
+                    return $semlStart;
+                },
+                'format' => 'raw',
+            ],
+            // 'semlEnd',
+            [
+                'attribute' => 'SO Allow. End',
+                'value' =>  function ($model) {
+                    $semlEnd = date("d/m/Y", strtotime($model->semlEnd));
+                    return $semlEnd;
+                },
+                'format' => 'raw',
+            ],
             //'semlAmt',
             [
                 'label' => 'Amount',

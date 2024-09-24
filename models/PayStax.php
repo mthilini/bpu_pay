@@ -38,7 +38,7 @@ class PayStax extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['staxStart', 'staxEnd'], 'date', 'format'=>'yyyy-mm-dd'],
+            [['staxStart', 'staxEnd'], 'date', 'format'=>'dd/MM/yyyy'],
             [['staxAmt', 'staxIncome'], 'number'],
             [['empUPFNo'], 'string', 'max' => 8],
             [['staxRef'], 'string', 'max' => 10],

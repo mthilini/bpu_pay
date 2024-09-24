@@ -37,7 +37,7 @@ class PaySbnk extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['sbnkStart', 'sbnkEnd'], 'date', 'format'=>'yyyy-mm-dd'],
+            [['sbnkStart', 'sbnkEnd'], 'date', 'format'=>'dd/MM/yyyy'],
             [['sbnkAmt'], 'number'],
             [['sbnkAcct', 'sbnkAName', 'empUPFNo'], 'required'],
             [['empUPFNo'], 'string', 'max' => 8],

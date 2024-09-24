@@ -121,6 +121,9 @@
                             ['label' => 'Account Votes Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-votes/report']],
                             ['label' => 'Payment Ledgers Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-payledg/report']],
                             ['label' => 'Receipt Ledgers Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rctsledg/report']],
+
+                            ['label' => 'Employee Details (Finance) Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-fin-details/report']],
+                            ['label' => 'Standing Order Allowances Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-seml/report']],
                         ]
                     ],
                     // ['label' => 'LABELS', 'header' => true],

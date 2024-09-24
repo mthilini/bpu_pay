@@ -48,7 +48,7 @@ use yii\jui\DatePicker;
                                             <label for="<?= $model->formName() ?>-staxStart">S_Tax Start</label>
                                             <?= $form->field($model, 'staxStart')->label(false)->widget(DatePicker::classname(), [
                                                 'language' => 'en',
-                                                'dateFormat' => 'yyyy-MM-dd',
+                                                'dateFormat' => 'dd/MM/yyyy',
                                                 'clientOptions' => [
                                                     'changeMonth' => true,
                                                     'yearRange' => '1996:2099',
@@ -64,7 +64,7 @@ use yii\jui\DatePicker;
                                             <label for="<?= $model->formName() ?>-staxEnd">S_Tax End</label>
                                             <?= $form->field($model, 'staxEnd')->label(false)->widget(DatePicker::classname(), [
                                                 'language' => 'en',
-                                                'dateFormat' => 'yyyy-MM-dd',
+                                                'dateFormat' => 'dd/MM/yyyy',
                                                 'clientOptions' => [
                                                     'changeMonth' => true,
                                                     'yearRange' => '1996:2099',

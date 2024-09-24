@@ -11,45 +11,57 @@ use yii\widgets\ActiveForm;
 <div class="pay-fin-details-search">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['index'],
+        'action' => ['report'],
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <div class="m-2">
+        <div class="row">
+            <div class="col-xl-4">
+                <label for="">Bank Loan</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="row">
+                    <div class="col-3 justify-center">Release Date:</div>
+                    <div class="col-3">
+                        <label for="from">From</label>
+                        <input id="from" name="from" class="form-control" type="date" <?php if (isset($request['from'])) echo "value=\"" . $request['from'] . "\""; ?> />
+                    </div>
+                    <div class="col-3">
+                        <label for="to">To</label>
+                        <input id="to" name="to" class="form-control" type="date" <?php if (isset($request['to'])) echo "value=\"" . $request['to'] . "\""; ?> />
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="row">
+                    <div class="col-2 justify-center">Amount:</div>
+                    <div class="col-4">
+                        <label for="a_min">From</label>
+                        <input id="a_min" name="a_min" class="form-control" type="number" step="0.01" onblur="setNumberDecimal('a_min', this.value, 2);" min="0" <?php if (isset($request['a_min'])) echo "value=\"" . $request['a_min'] . "\""; ?> />
+                    </div>
+                    <div class="col-4">
+                        <label for="a_max">To</label>
+                        <input id="a_max" name="a_max" class="form-control" type="number" step="0.01" onblur="setNumberDecimal('a_max', this.value, 2);" min="0" <?php if (isset($request['a_max'])) echo "value=\"" . $request['a_max'] . "\""; ?> />
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
 
-    <?= $form->field($model, 'nic') ?>
-
-    <?= $form->field($model, 'title') ?>
-
-    <?= $form->field($model, 'surname') ?>
-
-    <?= $form->field($model, 'initials') ?>
-
-    <?php // echo $form->field($model, 'epfNo') ?>
-
-    <?php // echo $form->field($model, 'medicalFundContributor') ?>
-
-    <?php // echo $form->field($model, 'salaryBankCode') ?>
-
-    <?php // echo $form->field($model, 'bankAccountNo') ?>
-
-    <?php // echo $form->field($model, 'bankAccountName') ?>
-
-    <?php // echo $form->field($model, 'taxConsent') ?>
-
-    <?php // echo $form->field($model, 'applicableTaxTable') ?>
-
-    <?php // echo $form->field($model, 'bankLoanAmount') ?>
-
-    <?php // echo $form->field($model, 'bankLoanReleaseDate') ?>
-
-    <?php // echo $form->field($model, 'otherInfo') ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <div class="form-group">
+            <?= Html::submitButton('Search', ['class' => 'btn btn-primary btn-sm', 'style' => 'margin-right: 3px;']) ?>
+            <?= Html::a('Reset', ['/pay-fin-details/report'], ['class' => 'btn btn-secondary btn-sm']) ?>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<hr />

@@ -44,7 +44,7 @@ use yii\jui\DatePicker;
                                             <label for="<?= $model->formName() ?>-sa5Start">SA5 Start</label>
                                             <?= $form->field($model, 'sa5Start')->label(false)->widget(DatePicker::classname(), [
                                                 'language' => 'en',
-                                                'dateFormat' => 'yyyy-MM-dd',
+                                                'dateFormat' => 'dd/MM/yyyy',
                                                 'clientOptions' => [
                                                     'changeMonth' => true,
                                                     'yearRange' => '1996:2099',
@@ -60,7 +60,7 @@ use yii\jui\DatePicker;
                                             <label for="<?= $model->formName() ?>-sa5End">SA5 End</label>
                                             <?= $form->field($model, 'sa5End')->label(false)->widget(DatePicker::classname(), [
                                                 'language' => 'en',
-                                                'dateFormat' => 'yyyy-MM-dd',
+                                                'dateFormat' => 'dd/MM/yyyy',
                                                 'clientOptions' => [
                                                     'changeMonth' => true,
                                                     'yearRange' => '1996:2099',

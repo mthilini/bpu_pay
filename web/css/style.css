@@ -302,3 +302,19 @@ th {
 .help-block {
     color: red;
 }
+
+.align-right {
+    text-align: right;
+}
+
+.justify-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.justify-end {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}

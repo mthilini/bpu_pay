@@ -10,6 +10,9 @@ use yii\filters\VerbFilter;
 //
 use \app\models\AcctLedger;
 use \app\models\AcctLedgerSearch;
+use Yii;
+use yii\data\ActiveDataProvider;
+
 /**
  * AcctRctsledgController implements the CRUD actions for AcctRctsledg model.
  */
@@ -138,19 +141,44 @@ class AcctRctsledgController extends Controller
     public function actionDropdown($id)
     {
         $countPosts = \app\models\AcctLedger::find()
-        ->where(['mainCode' => "$id"])
-        ->count();
+            ->where(['mainCode' => "$id"])
+            ->count();
 
         $posts =  \app\models\AcctLedger::find()
-        ->where(['mainCode' => "$id"])
-        ->orderBy('ledgCode ASC')
-        ->all();
+            ->where(['mainCode' => "$id"])
+            ->orderBy('ledgCode ASC')
+            ->all();
         echo "<option value=''>-</option>";
-        if($countPosts>0){
-            foreach($posts as $post){
-                echo "<option value='".$post->ledgSub."'>".\Yii::t('app',$post->ledgDesc)."</option>";
+        if ($countPosts > 0) {
+            foreach ($posts as $post) {
+                echo "<option value='" . $post->ledgSub . "'>" . \Yii::t('app', $post->ledgDesc) . "</option>";
             }
         }
     }
     //
+
+    public function actionReport()
+    {
+        $searchModel = new AcctRctsledgSearch();
+        $query = $searchModel->search([])->query;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $request = Yii::$app->request->get();
+        if (isset($request['a_min']) && $request['a_min'] != '' && isset($request['a_max']) && $request['a_max'] != '') {
+            if (is_numeric($request['a_min']) && is_numeric($request['a_max']))
+                $query->andFilterWhere(['between', 'id', $request['a_min'], $request['a_max']]);
+        } else
+            $dataProvider = null;
+
+
+        return $this->render('report', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'request' => $request,
+        ]);
+    }
 }

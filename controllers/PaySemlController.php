@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\models\PaySeml;
 use app\models\PaySemlSearch;
+use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -130,5 +132,36 @@ class PaySemlController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+
+    public function actionReport()
+    {
+        $searchModel = new PaySemlSearch();
+        $query = $searchModel->search([])->query;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $request = Yii::$app->request->get();
+
+        if (!empty($request)) {
+            if (!empty($request['from']) && !empty($request['to'])) {
+                if ($request['from'] <= $request['to']) {
+                    $query->andFilterWhere(['between', 'semlStart', $request['from'], $request['to']])
+                        ->andFilterWhere(['between', 'semlEnd', $request['from'], $request['to']]);
+                }
+            }
+        } else {
+            $dataProvider = null;
+        }
+
+        return $this->render('report', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'request' => $request,
+        ]);
     }
 }

@@ -11,33 +11,35 @@ use yii\widgets\ActiveForm;
 <div class="acct-rctsledg-search">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['index'],
+        'action' => ['report'],
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <div class="m-2">
+        <div class="row">
+            <div class="col-md-6 col-lg-5 col-xl-4">
+                <label>Amount</label>
+                <div class="row">
+                    <div class="col-6">
+                        <input id="a_min" name="a_min" class="form-control" type="number" step="0.01" onblur="setNumberDecimal('a_min', this.value, 2);" min="0" <?php if (isset($request['a_min'])) echo "value=\"" . $request['a_min'] . "\""; ?> />
+                    </div>
+                    <div class="col-6">
+                        <input id="a_max" name="a_max" class="form-control" type="number" step="0.01" onblur="setNumberDecimal('a_max', this.value, 2);" min="0" <?php if (isset($request['a_max'])) echo "value=\"" . $request['a_max'] . "\""; ?> />
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <?= $form->field($model, 'rctDate') ?>
+        <br />
 
-    <?= $form->field($model, 'rctNo') ?>
-
-    <?= $form->field($model, 'rctSub') ?>
-
-    <?= $form->field($model, 'rctLedger') ?>
-
-    <?php // echo $form->field($model, 'rctAmount') ?>
-
-    <?php // echo $form->field($model, 'rctRmks') ?>
-
-    <?php // echo $form->field($model, 'rctCashBk') ?>
-
-    <?php // echo $form->field($model, 'rctDept') ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <div class="form-group">
+            <?= Html::submitButton('Search', ['class' => 'btn btn-primary btn-sm']) ?>
+            <?= Html::a('Reset', ['/acct-rctsledg/report'], ['class' => 'btn btn-outline-secondary btn-sm']) ?>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<hr />
