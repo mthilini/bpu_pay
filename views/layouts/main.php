@@ -11,8 +11,12 @@ $this->registerCssFile('https://fonts.googleapis.com/css?family=Source+Sans+Pro:
 
 $assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
 
+$this->registerCssFile(Yii::getAlias('@web') . '/css/site.css');
+$this->registerCssFile(Yii::getAlias('@web') . '/css/style.css');
+
 $publishedRes = Yii::$app->assetManager->publish('@vendor/hail812/yii2-adminlte3/src/web/js');
 $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\hail812\adminlte3\assets\AdminLteAsset']);
+
 $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js');
 $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js');
 
