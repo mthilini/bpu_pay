@@ -10,7 +10,7 @@
         <table id="report" class="table dataTable">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th></th>
                     <th>NIC</th>
                     <th>Title</th>
                     <th>Employee Name</th>
@@ -28,22 +28,24 @@
             <tbody>
                 <?php
                 if ($dataProvider != null) {
+                    $i = 0;
                     $models = $dataProvider->getModels();
                     foreach ($models as $key => $model) {
+                        $i++;
                 ?>
                         <tr>
-                            <td class="dt-center"><?= $model->id ?></td>
-                            <td><?= $model->nic ?></td>
-                            <td><?= $model->title ?></td>
-                            <td><?= $model->surname ?></td>
-                            <td><?= $model->epfNo ?></td>
-                            <td><?= $model->medicalFundContributor == 1 ? 'Yes' : 'No' ?></td>
-                            <td><?= $model->salaryBankCode ?></td>
-                            <td><?= $model->bankAccountNo ?></td>
-                            <td><?= $model->bankAccountName ?></td>
-                            <td><?= $model->taxConsent == 1 ? 'Yes' : 'No' ?></td>
-                            <td><?= $model->applicableTaxTable ?></td>
-                            <td><?= $model->bankLoanAmount ?></td>
+                            <td class="dt-center"><?= $i; ?></td>
+                            <td><?= $model->nic; ?></td>
+                            <td><?= $model->title; ?></td>
+                            <td><?= $model->surname; ?></td>
+                            <td><?= $model->epfNo; ?></td>
+                            <td><?= ($model->medicalFundContributor == 1 ? 'Yes' : 'No'); ?></td>
+                            <td><?= $model->salaryBankCode; ?></td>
+                            <td><?= $model->bankAccountNo; ?></td>
+                            <td><?= $model->bankAccountName; ?></td>
+                            <td><?= ($model->taxConsent == 1 ? 'Yes' : 'No'); ?></td>
+                            <td><?= $model->applicableTaxTable; ?></td>
+                            <td><?= $model->bankLoanAmount; ?></td>
                             <td><?= date("d/m/Y", strtotime($model->bankLoanReleaseDate)); ?></td>
                         </tr>
                 <?php

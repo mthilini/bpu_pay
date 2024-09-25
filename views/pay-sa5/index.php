@@ -38,8 +38,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'SA5 Field Desc.',
                 'value' => 'sa5Fld0.a5Desc'
             ],
-            'sa5Start',
-            'sa5End',
+            // 'sa5Start',
+            [
+                'attribute' => 'SA5 Start',
+                'value' =>  function ($model) {
+                    $sa5Start = date("d/m/Y", strtotime($model->sa5Start));
+                    return $sa5Start;
+                },
+                'format' => 'raw',
+            ],
+            // 'sa5End',
+            [
+                'attribute' => 'SA5 End',
+                'value' =>  function ($model) {
+                    $sa5End = date("d/m/Y", strtotime($model->sa5End));
+                    return $sa5End;
+                },
+                'format' => 'raw',
+            ],
             [
                 'label' => 'SA5 Amount (Rs.)',
                 'attribute' => 'sa5Amt',

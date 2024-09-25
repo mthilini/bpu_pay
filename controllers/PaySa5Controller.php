@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\models\PaySa5;
 use app\models\PaySa5Search;
+use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -130,5 +132,40 @@ class PaySa5Controller extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionReport()
+    {
+        $searchModel = new PaySa5Search();
+        $query = $searchModel->search([])->query;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $request = Yii::$app->request->get();
+        if (!empty($request)) {
+            if (!empty($request['from']) && !empty($request['to'])) {
+                if ($request['from'] <= $request['to']) {
+                    $query->andFilterWhere(['between', 'sa5Start', $request['from'], $request['to']])
+                        ->andFilterWhere(['between', 'sa5End', $request['from'], $request['to']]);
+                }
+            }
+
+            if (!empty($request['a_min']) && !empty($request['a_max'])) {
+                if (is_numeric($request['a_min']) && is_numeric($request['a_max']))
+                    $query->andFilterWhere(['between', 'sa5Amt', $request['a_min'], $request['a_max']]);
+            }
+        } else {
+            $dataProvider = null;
+        }
+
+
+        return $this->render('report', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'request' => $request,
+        ]);
     }
 }
