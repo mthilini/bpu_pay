@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\models\PaySbnk;
 use app\models\PaySbnkSearch;
+use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -146,5 +148,39 @@ class PaySbnkController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionReport()
+    {
+        $searchModel = new PaySbnkSearch();
+        $query = $searchModel->search([])->query;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $request = Yii::$app->request->get();
+        if (!empty($request)) {
+            if (!empty($request['from']) && !empty($request['to'])) {
+                if ($request['from'] <= $request['to']) {
+                    $query->andFilterWhere(['between', 'sbnkStart', $request['from'], $request['to']])
+                        ->andFilterWhere(['between', 'sbnkEnd', $request['from'], $request['to']]);
+                }
+            }
+
+            if (!empty($request['a_min']) && !empty($request['a_max'])) {
+                if (is_numeric($request['a_min']) && is_numeric($request['a_max']))
+                    $query->andFilterWhere(['between', 'sbnkAmt', $request['a_min'], $request['a_max']]);
+            }
+        } else {
+            $dataProvider = null;
+        }
+
+        return $this->render('report', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'request' => $request,
+        ]);
     }
 }
