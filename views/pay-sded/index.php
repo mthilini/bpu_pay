@@ -49,8 +49,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'SO Ded. Field',
                 'value' => 'payField0.fldName'
             ],
-            'sdedStart',
-            'sdedEnd',
+            // 'sdedStart',
+            [
+                'attribute' => 'SO Ded. Start',
+                'value' =>  function ($model) {
+                    $sdedStart = date("d/m/Y", strtotime($model->sdedStart));
+                    return $sdedStart;
+                },
+                'format' => 'raw',
+            ],
+            // 'sdedEnd',
+            [
+                'attribute' => 'SO Ded. End',
+                'value' =>  function ($model) {
+                    $sdedEnd = date("d/m/Y", strtotime($model->sdedEnd));
+                    return $sdedEnd;
+                },
+                'format' => 'raw',
+            ],
             //'sdedAmt',
             [
                 'label' => 'Amount (Rs.)',
