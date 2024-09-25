@@ -126,6 +126,7 @@
                             ['label' => 'Standing Order Allowances Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-seml/report']],
                             ['label' => 'SA-5 Allowances Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-sa5/report']],
                             ['label' => 'Standing Order Deductions Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-sded/report']],
+                            ['label' => 'Bank Standing Orders Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-sbnk/report']],
                         ]
                     ],
                     // ['label' => 'LABELS', 'header' => true],
