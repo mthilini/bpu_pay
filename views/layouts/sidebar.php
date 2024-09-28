@@ -128,6 +128,7 @@
                             ['label' => 'Standing Order Deductions Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-sded/report']],
                             ['label' => 'Bank Standing Orders Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-sbnk/report']],
                             ['label' => 'Pay Incomes Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-income/report']],
+                            ['label' => 'Pay Deductions Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-deductions/report']],
                         ]
                     ],
                     // ['label' => 'LABELS', 'header' => true],
