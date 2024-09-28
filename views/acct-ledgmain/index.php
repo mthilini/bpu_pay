@@ -1,58 +1,45 @@
 <?php
 
-use app\models\AcctLedgmain;
-use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\grid\ActionColumn;
-use yii\grid\GridView;
+use yii\web\JsExpression;
 
 /** @var yii\web\View $this */
-/** @var app\models\AcctLedgmainSearch $searchModel */
+/** @var app\models\AcctBankacctsSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = 'Account Main Ledger Codes';
 $this->params['breadcrumbs'][] = $this->title;
-
 ?>
 
-<div class="row acct-ledgmain-index">
-    <table width="100%" xmlns="http://www.w3.org/1999/html">
-        <tr>
-            <td valign="top">
-                <div class="box box-primary">
-                    <div class="box-body">
-                        <div class="box-header">
-                            <span class="with-border-box">
-                                <?= Html::a('Create Acc. Ledge-main', ['create'], ['class' => 'btn btn-success']) ?>
-                                <!-- <button id="btnExport" class="btn btn-info" onclick="fnExcelReport();"> Export Excel</button>
-                                <input class="btn btn-primary" type="button" onclick="generatePDF('<?= $this->title;?>', 'act-ledgmain')" value="Export PDF" /> -->
-                            </span>
-                        </div>
-                        <div class="panel-body panel-body-index">
-                            <div class="user-view">
-                                <?= GridView::widget([
-                                    'dataProvider' => $dataProvider,
-                                    'filterModel' => $searchModel,
-                                    'columns' => [
-                                        ['class' => 'yii\grid\SerialColumn'],
+<div class="card">
+    <div class="card-bofy m-2">
 
-                                        //'id',
-                                        'mainCode',
-                                        'mainDesc',
-                                        [
-                                            'class' => ActionColumn::className(),
-                                            'urlCreator' => function ($action, AcctLedgmain $model, $key, $index, $column) {
-                                                return Url::toRoute([$action, 'id' => $model->id]);
-                                            }
-                                        ],
-                                    ],
-                                ]); ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </td>
-        </tr>
-    </table>
-    <iframe id="txtArea1" style="display:none"></iframe>
+        <?= \nullref\datatable\DataTable::widget([
+            'tableOptions' => [
+                'class' => 'table',
+            ],
+            'columns' => [
+                'id',
+                'mainCode',
+                'mainDesc',
+                [
+                    'class' => 'nullref\datatable\LinkColumn',
+                    'queryParams' => ['id'],
+                    'render' => new JsExpression('function render(data, type, row, meta ){
+                        return "<a href=\"view?id="+row["id"]+"\" class=\"btn btn-info btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to view details\">View</a><a href=\"update?id="+row["id"]+"\" class=\"btn btn-warning btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to update details\">Update</a>"
+                    }'),
+                ],
+                [
+                    'class' => 'nullref\datatable\LinkColumn',
+                    'url' => ['delete'],
+                    'linkOptions' => ['data-confirm' => 'Are you sure you want to delete this item?', 'data-method' => 'post', 'class' => 'btn btn-danger btn-sm', 'style' => 'font-size: 9px;'],
+                    'label' => 'Delete',
+                ],
+            ],
+            'withColumnFilter' => true,
+            'serverSide' => true,
+            'ajax' => Yii::getAlias('@web/acct-ledgmain/datatables'),
+
+        ]) ?>
+
+    </div>
 </div>

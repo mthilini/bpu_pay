@@ -55,6 +55,7 @@ class AcctLedger extends \yii\db\ActiveRecord
             'ledgSub' => 'Ledger Sub',
             'ledgCode' => 'Ledger Code',
             'ledgDesc' => 'Ledger Description',
+            'mainCode0.mainDesc' => 'Main Description',
         ];
     }
 
