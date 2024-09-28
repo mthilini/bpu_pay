@@ -47,8 +47,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Tax Field',
                 'value' => 'staxFld0.taxDesc'
             ],
-            'staxStart',
-            'staxEnd',
+            // 'staxStart',
+            [
+                'attribute' => 'S_Tax Start',
+                'value' =>  function ($model) {
+                    $staxStart = date("d/m/Y", strtotime($model->staxStart));
+                    return $staxStart;
+                },
+                'format' => 'raw',
+            ],
+            // 'staxEnd',
+            [
+                'attribute' => 'S_Tax End',
+                'value' =>  function ($model) {
+                    $staxEnd = date("d/m/Y", strtotime($model->staxEnd));
+                    return $staxEnd;
+                },
+                'format' => 'raw',
+            ],
             //'staxAmt',
             [
                 'label' => 'Tax Amount',

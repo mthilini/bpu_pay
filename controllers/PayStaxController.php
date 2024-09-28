@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\models\PayStax;
 use app\models\PayStaxSearch;
+use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -130,5 +132,43 @@ class PayStaxController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionReport()
+    {
+        $searchModel = new PayStaxSearch();
+        $query = $searchModel->search([])->query;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $request = Yii::$app->request->get();
+        if (!empty($request)) {
+            if (!empty($request['from']) && !empty($request['to'])) {
+                if ($request['from'] <= $request['to']) {
+                    $query->andFilterWhere(['between', 'staxStart', $request['from'], $request['to']])
+                        ->andFilterWhere(['between', 'staxEnd', $request['from'], $request['to']]);
+                }
+            }
+
+            if (!empty($request['a_min']) && !empty($request['a_max'])) {
+                if (is_numeric($request['a_min']) && is_numeric($request['a_max']))
+                    $query->andFilterWhere(['between', 'staxAmt', $request['a_min'], $request['a_max']]);
+            }
+            if (!empty($request['i_min']) && !empty($request['i_max'])) {
+                if (is_numeric($request['i_min']) && is_numeric($request['i_max']))
+                    $query->andFilterWhere(['between', 'staxIncome', $request['i_min'], $request['i_max']]);
+            }
+        } else {
+            $dataProvider = null;
+        }
+
+        return $this->render('report', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'request' => $request,
+        ]);
     }
 }

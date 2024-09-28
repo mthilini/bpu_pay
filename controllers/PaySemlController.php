@@ -153,6 +153,11 @@ class PaySemlController extends Controller
                     $query->andFilterWhere(['between', 'semlStart', $request['from'], $request['to']])
                         ->andFilterWhere(['between', 'semlEnd', $request['from'], $request['to']]);
                 }
+
+                if (!empty($request['a_min']) && !empty($request['a_max'])) {
+                    if (is_numeric($request['a_min']) && is_numeric($request['a_max']))
+                        $query->andFilterWhere(['between', 'semlAmt', $request['a_min'], $request['a_max']]);
+                }
             }
         } else {
             $dataProvider = null;

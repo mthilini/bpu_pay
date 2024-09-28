@@ -129,6 +129,7 @@
                             ['label' => 'Bank Standing Orders Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-sbnk/report']],
                             ['label' => 'Pay Incomes Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-income/report']],
                             ['label' => 'Pay Deductions Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-deductions/report']],
+                            ['label' => 'Pay Standing-Tax Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-stax/report']],
                         ]
                     ],
                     // ['label' => 'LABELS', 'header' => true],
