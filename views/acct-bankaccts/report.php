@@ -1,5 +1,6 @@
 <?php
 $this->title = 'Cashbook Reports';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="card">
