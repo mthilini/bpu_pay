@@ -1,11 +1,6 @@
 <?php
 
-use app\models\PaySa5;
-use app\models\PayA5type;
-use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\grid\ActionColumn;
-use yii\grid\GridView;
+use yii\web\JsExpression;
 
 /** @var yii\web\View $this */
 /** @var app\models\PaySa5Search $searchModel */
@@ -15,60 +10,66 @@ $this->title = 'SA-5 Allowances';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="pay-sa5-index">
+<div class="card">
+    <div class="card-bofy m-2">
 
-    <p>
-        <?= Html::a('Create SA-5 Allow.', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); 
-    ?>
-
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            //'id',
-            'empUPFNo',
-            'sa5Ref',
-            'sa5Fld',
-            [
-                'label' => 'SA5 Field Desc.',
-                'value' => 'sa5Fld0.a5Desc'
+        <?= \nullref\datatable\DataTable::widget([
+            'tableOptions' => [
+                'class' => 'table',
             ],
-            // 'sa5Start',
-            [
-                'attribute' => 'SA5 Start',
-                'value' =>  function ($model) {
-                    $sa5Start = date("d/m/Y", strtotime($model->sa5Start));
-                    return $sa5Start;
-                },
-                'format' => 'raw',
+            'columns' => [
+                'id',
+                'empUPFNo',
+                'sa5Ref',
+                'sa5Fld',
+                'sa5Fld0.a5Desc',
+                // [
+                //     'label' => 'SA5 Field Desc.',
+                //     'value' => 'sa5Fld0.a5Desc'
+                // ],
+                'sa5Start',
+                // [
+                //     'attribute' => 'SA5 Start',
+                //     'value' =>  function ($model) {
+                //         $sa5Start = date("d/m/Y", strtotime($model->sa5Start));
+                //         return $sa5Start;
+                //     },
+                //     'format' => 'raw',
+                // ],
+                'sa5End',
+                // [
+                //     'attribute' => 'SA5 End',
+                //     'value' =>  function ($model) {
+                //         $sa5End = date("d/m/Y", strtotime($model->sa5End));
+                //         return $sa5End;
+                //     },
+                //     'format' => 'raw',
+                // ],
+                'sa5Amt',
+                // [
+                //     'label' => 'SA5 Amount (Rs.)',
+                //     'attribute' => 'sa5Amt',
+                //     'format' => ['currency'],
+                // ],
+                [
+                    'class' => 'nullref\datatable\LinkColumn',
+                    'queryParams' => ['id'],
+                    'render' => new JsExpression('function render(data, type, row, meta ){
+                        return "<a href=\"view?id="+row["id"]+"\" class=\"btn btn-info btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to view details\">View</a><a href=\"update?id="+row["id"]+"\" class=\"btn btn-warning btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to update details\">Update</a>"
+                    }'),
+                ],
+                [
+                    'class' => 'nullref\datatable\LinkColumn',
+                    'url' => ['delete'],
+                    'linkOptions' => ['data-confirm' => 'Are you sure you want to delete this item?', 'data-method' => 'post', 'class' => 'btn btn-danger btn-sm', 'style' => 'font-size: 9px;'],
+                    'label' => 'Delete',
+                ],
             ],
-            // 'sa5End',
-            [
-                'attribute' => 'SA5 End',
-                'value' =>  function ($model) {
-                    $sa5End = date("d/m/Y", strtotime($model->sa5End));
-                    return $sa5End;
-                },
-                'format' => 'raw',
-            ],
-            [
-                'label' => 'SA5 Amount (Rs.)',
-                'attribute' => 'sa5Amt',
-                'format' => ['currency'],
-            ],
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, PaySa5 $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                }
-            ],
-        ],
-    ]); ?>
+            'withColumnFilter' => true,
+            'serverSide' => true,
+            'ajax' => Yii::getAlias('@web/pay-sa5/datatables'),
 
+        ]) ?>
 
+    </div>
 </div>

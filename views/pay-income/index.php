@@ -1,61 +1,61 @@
 <?php
 
-use app\models\PayIncome;
-use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\grid\ActionColumn;
-use yii\grid\GridView;
-use app\models\Employee;
+use yii\web\JsExpression;
 
 /** @var yii\web\View $this */
-/** @var app\models\PayIncomeSearch $searchModel */
+/** @var app\models\AcctBankacctsSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = 'Pay Incomes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="pay-income-index">
+<div class="card">
+    <div class="card-bofy m-2">
 
-    <p>
-        <?= Html::a('Create Pay Income', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); 
-    ?>
-
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            //'id',
-            'empUPFNo',
-            [
-                'label' => 'Emp. Name',
-                'value' =>  function ($model) {
-                    $employeemodel = new Employee();
-                    $employeeName = $employeemodel->getEmpName($model->empUPFNo);
-                    return $employeeName;
-                },
-                'format' => 'raw',
+        <?= \nullref\datatable\DataTable::widget([
+            'tableOptions' => [
+                'class' => 'table',
             ],
-            'incMon',
-            'incYear',
-            //'incIncome',
-            [
-                'label' => 'Income (Rs.)',
-                'attribute' => 'incIncome',
-                'format' => ['currency'],
+            'columns' => [
+                'id',
+                'empUPFNo',
+                // [
+                //     'label' => 'Emp. Name',
+                //     'value' =>  function ($model) {
+                //         $employeemodel = new Employee();
+                //         $employeeName = $employeemodel->getEmpName($model->empUPFNo);
+                //         return $employeeName;
+                //     },
+                //     'format' => 'raw',
+                // ],
+                'incMon',
+                'incYear',
+                'incIncome',
+                // [
+                //     'label' => 'Income (Rs.)',
+                //     'attribute' => 'incIncome',
+                //     'format' => ['currency'],
+                // ],
+                [
+                    'class' => 'nullref\datatable\LinkColumn',
+                    'queryParams' => ['id'],
+                    'render' => new JsExpression('function render(data, type, row, meta ){
+                        return "<a href=\"view?id="+row["id"]+"\" class=\"btn btn-info btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to view details\">View</a><a href=\"update?id="+row["id"]+"\" class=\"btn btn-warning btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to update details\">Update</a>"
+                    }'),
+                ],
+                [
+                    'class' => 'nullref\datatable\LinkColumn',
+                    'url' => ['delete'],
+                    'linkOptions' => ['data-confirm' => 'Are you sure you want to delete this item?', 'data-method' => 'post', 'class' => 'btn btn-danger btn-sm', 'style' => 'font-size: 9px;'],
+                    'label' => 'Delete',
+                ],
             ],
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, PayIncome $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                }
-            ],
-        ],
-    ]); ?>
+            'withColumnFilter' => true,
+            'serverSide' => true,
+            'ajax' => Yii::getAlias('@web/pay-income/datatables'),
 
+        ]) ?>
 
+    </div>
 </div>

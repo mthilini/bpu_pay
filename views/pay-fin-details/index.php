@@ -1,10 +1,6 @@
 <?php
 
-use app\models\PayFinDetails;
-use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\grid\ActionColumn;
-use yii\grid\GridView;
+use yii\web\JsExpression;
 
 /** @var yii\web\View $this */
 /** @var app\models\PayFinDetailsSearch $searchModel */
@@ -14,68 +10,64 @@ $this->title = 'Employee Details (Finance)';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="pay-fin-details-index">
+<div class="card">
+    <div class="card-bofy m-2">
 
-    <p>
-        <?= Html::a('Create Emp. Details (Fin)', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); 
-    ?>
-
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            //'id',
-            'nic',
-            'title',
-            'surname',
-            //'initials',
-            'epfNo',
-            //'medicalFundContributor',
-            [
-                'label' => 'Medical Fund Contributor',
-                'value' => function ($model) {
-                    return $model->medicalFundContributor == 1 ? 'Yes' : 'No';
-                }
+        <?= \nullref\datatable\DataTable::widget([
+            'tableOptions' => [
+                'class' => 'table',
             ],
-            'salaryBankCode',
-            'bankAccountNo',
-            'bankAccountName',
-            //'taxConsent',
-            [
-                'label' => 'Tax Consent',
-                'value' => function ($model) {
-                    return $model->taxConsent == 1 ? 'Yes' : 'No';
-                }
+            'columns' => [
+                'id',
+                'nic',
+                'title',
+                'surname',
+                'epfNo',
+                // [
+                //     'label' => 'Medical Fund Contributor',
+                //     'value' => function ($model) {
+                //         return $model->medicalFundContributor == 1 ? 'Yes' : 'No';
+                //     }
+                // ],
+                'salaryBankCode',
+                'bankAccountNo',
+                'bankAccountName',
+                // [
+                //     'label' => 'Tax Consent',
+                //     'value' => function ($model) {
+                //         return $model->taxConsent == 1 ? 'Yes' : 'No';
+                //     }
+                // ],
+                'applicableTaxTable',
+                // [
+                //     'attribute' => 'SO Allow. Start',
+                //     'value' =>  function ($model) {
+                //         $bankLoanReleaseDate = date("d/m/Y", strtotime($model->bankLoanReleaseDate));
+                //         return $bankLoanReleaseDate;
+                //     },
+                //     'format' => 'raw',
+                // ],
+                'otherInfo',
+                [
+                    'class' => 'nullref\datatable\LinkColumn',
+                    'queryParams' => ['id'],
+                    'render' => new JsExpression('function render(data, type, row, meta ){
+                        return "<a href=\"view?id="+row["id"]+"\" class=\"btn btn-info btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to view details\">View</a><a href=\"update?id="+row["id"]+"\" class=\"btn btn-warning btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to update details\">Update</a>"
+                    }'),
+                ],
+                [
+                    'class' => 'nullref\datatable\LinkColumn',
+                    'url' => ['delete'],
+                    'linkOptions' => ['data-confirm' => 'Are you sure you want to delete this item?', 'data-method' => 'post', 'class' => 'btn btn-danger btn-sm', 'style' => 'font-size: 9px;'],
+                    'label' => 'Delete',
+                ],
             ],
-            'applicableTaxTable',
-            //'bankLoanAmount',
-            [
-                'format' => 'Currency',
-                'attribute' => 'bankLoanAmount',
-            ],
-            // 'bankLoanReleaseDate',
-            [
-                'attribute' => 'SO Allow. Start',
-                'value' =>  function ($model) {
-                    $bankLoanReleaseDate = date("d/m/Y", strtotime($model->bankLoanReleaseDate));
-                    return $bankLoanReleaseDate;
-                },
-                'format' => 'raw',
-            ],
-            'otherInfo',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, PayFinDetails $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                }
-            ],
-        ],
-    ]); ?>
+            //'dataProvider' => $dataProvider,
+            'withColumnFilter' => true,
+            'serverSide' => true,
+            'ajax' => Yii::getAlias('@web/pay-fin-details/datatables'),
 
+        ]) ?>
 
+    </div>
 </div>
