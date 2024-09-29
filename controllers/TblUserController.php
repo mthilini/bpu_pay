@@ -47,6 +47,36 @@ class TblUserController extends Controller
         ]);
     }
 
+    public function actions()
+    {
+        return [
+            'datatables' => [
+                'class' => 'nullref\datatable\DataTableAction',
+                'query' => TblUser::find(),
+                'applyOrder' => function ($query, $columns, $order) {
+                    //custom ordering logic
+                    $orderBy = [];
+                    foreach ($order as $orderItem) {
+                        $orderBy[$columns[$orderItem['column']]['data']] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                    }
+                    return $query->orderBy($orderBy);
+                },
+                'applyFilter' => function ($query, $columns, $search) {
+                    //custom search logic
+                    $modelClass = $query->modelClass;
+                    $schema = $modelClass::getTableSchema()->columns;
+                    foreach ($columns as $column) {
+                        if ($column['searchable'] == 'true' && array_key_exists($column['data'], $schema) !== false) {
+                            $value = empty($search['value']) ? $column['search']['value'] : $search['value'];
+                            $query->andFilterWhere(['like', $column['data'], $value]);
+                        }
+                    }
+                    return $query;
+                },
+            ],
+        ];
+    }
+
     /**
      * Displays a single TblUser model.
      * @param int $id ID
@@ -141,17 +171,17 @@ class TblUserController extends Controller
             $duallistbox_demo1 = $data['duallistbox_demo1'];
             $roleID  = \Yii::$app->session['roleID'];
         }
-	//echo "Success-roleID-$roleID.<br>";
-	//
-	if ($roleID=="Sys_Admin"){ //skipping changes to sys_admin
+        //echo "Success-roleID-$roleID.<br>";
+        //
+        if ($roleID == "Sys_Admin") { //skipping changes to sys_admin
             return $this->redirect(['admin/role']);
         }
         //first remove the existing items for this role in the table
-        $authChildDelSql="delete from auth_item_child where parent='$roleID'";
+        $authChildDelSql = "delete from auth_item_child where parent='$roleID'";
         \Yii::$app->db->createCommand($authChildDelSql)->execute();
         //
         //add newly assigned items to the table under this role
-        foreach ( $duallistbox_demo1 as $value) {
+        foreach ($duallistbox_demo1 as $value) {
             //echo "$value <br>";
             //add newly assigned items to the table under this role
             $authChildAddSql = "insert into auth_item_child (parent,child) values('$roleID','$value')";
