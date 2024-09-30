@@ -18,12 +18,30 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'table',
             ],
             'columns' => [
-                'id',
-                'mainCode',
-                'mainCode0.mainDesc',
-                'ledgSub',
-                'ledgCode',
-                'ledgDesc',
+                [
+                    'title' => 'ID',
+                    'data' => 'id',
+                ],
+                [
+                    'title' => 'Main Code',
+                    'data' => 'mainCode',
+                ],
+                [
+                    'title' => 'Main Description',
+                    'data' => 'mainCode0.mainDesc',
+                ],
+                [
+                    'title' => 'Ledger Sub',
+                    'data' => 'ledgSub',
+                ],
+                [
+                    'title' => 'Ledger Code',
+                    'data' => 'ledgCode',
+                ],
+                [
+                    'title' => 'Ledger Description',
+                    'data' => 'ledgDesc',
+                ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',
                     'queryParams' => ['id'],

@@ -1,6 +1,7 @@
 <?php
 
 use yii\web\JsExpression;
+use app\models\Employee;
 
 /** @var yii\web\View $this */
 /** @var app\models\PaySemlSearch $searchModel */
@@ -8,6 +9,7 @@ use yii\web\JsExpression;
 
 $this->title = 'Standing Order Allowances';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 
 <div class="card">
@@ -17,9 +19,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'tableOptions' => [
                 'class' => 'table',
             ],
+            // 'data' => $dataProvider->getModels(),
             'columns' => [
-                'id',
-                'empUPFNo',
+                [
+                    'title' => 'ID',
+                    'data' => 'id',
+                    'sClass' => 'align-center',
+                ],
+                [
+                    'title' => 'Emp Upf No',
+                    'data' => 'empUPFNo',
+                ],
                 // [
                 //     'label' => 'Emp. Name',
                 //     'value' =>  function ($model) {
@@ -29,36 +39,46 @@ $this->params['breadcrumbs'][] = $this->title;
                 //     },
                 //     'format' => 'raw',
                 // ],
-                'semlRef',
-                'payField0.fldName',
+                [
+                    'title' => 'SO Allow. Ref',
+                    'data' => 'semlRef',
+                ],
+                [
+                    'title' => 'SO Allow. Field',
+                    'data' => 'payField0.fldName',
+                ],
+                [
+                    'title' => 'SO Allow. Start',
+                    'data' => 'semlStart',
+                    'sClass' => 'align-center',
+                ],
                 // [
-                //     'label' => 'SO Allow. Field',
-                //     'value' => 'payField0.fldName'
-                // ],
-                'semlStart',
-                // [
-                //     'attribute' => 'SO Allow. Start',
+                //     'attribute' => '',
                 //     'value' =>  function ($model) {
                 //         $semlStart = date("d/m/Y", strtotime($model->semlStart));
                 //         return $semlStart;
                 //     },
                 //     'format' => 'raw',
                 // ],
-                'semlEnd',
+                [
+                    'title' => 'SO Allow. End',
+                    'data' => 'semlEnd',
+                    'sClass' => 'align-center',
+                ],
                 // [
-                //     'attribute' => 'SO Allow. End',
+                //     'attribute' => '',
                 //     'value' =>  function ($model) {
                 //         $semlEnd = date("d/m/Y", strtotime($model->semlEnd));
                 //         return $semlEnd;
                 //     },
                 //     'format' => 'raw',
                 // ],
-                'semlAmt',
-                // [
-                //     'label' => 'Amount',
-                //     'attribute' => 'semlAmt',
-                //     'format' => ['currency'],
-                // ],
+                [
+                    'title' => 'Amount',
+                    'data' => 'semlAmt',
+                    'format' => ['currency'],
+                    'sClass' => 'align-right',
+                ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',
                     'queryParams' => ['id'],

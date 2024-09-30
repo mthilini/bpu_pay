@@ -18,11 +18,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'table',
             ],
             'columns' => [
-                'id',
+                [
+                    'title' => 'ID',
+                    'data' => 'id',
+                    'sClass' => 'align-center',
+                ],
                 'fundCode',
                 'fundName',
-                'fundBankType',
-                'fundBankCode',
+                [
+                    'title' => 'Bank Type',
+                    'data' => 'fundBankType',
+                ],
+                [
+                    'title' => 'Bank Name',
+                    'data' => 'fundBankCode',
+                ],
                 // [
                 //     'attribute' => 'fundBankCode',
                 //     'label' => 'Bank Name',
@@ -34,13 +44,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 //     'format' => 'raw',
                 //     'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:350px;']
                 // ],
-                'fundBankAcct',
+                [
+                    'title' => 'Bank Account',
+                    'data' => 'fundBankAcct',
+                ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',
                     'queryParams' => ['id'],
                     'render' => new JsExpression('function render(data, type, row, meta ){
                         return "<a href=\"view?id="+row["id"]+"\" class=\"btn btn-info btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to view details\">View</a><a href=\"update?id="+row["id"]+"\" class=\"btn btn-warning btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to update details\">Update</a>"
                     }'),
+                    'sClass' => 'align-center view-edit-div',
                 ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',

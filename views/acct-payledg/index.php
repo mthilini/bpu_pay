@@ -18,15 +18,42 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'table',
             ],
             'columns' => [
-                'id',
-                'payDate',
-                'payVch',
-                'paySub',
-                'payLedg',
-                'payAmount',
-                'payRmks',
-                'payCashBk',
-                'payDept',
+                [
+                    'title' => 'ID',
+                    'data' => 'id',
+                ],
+                [
+                    'title' => 'Payment Date',
+                    'data' => 'payDate',
+                ],
+                [
+                    'title' => 'Payment Voucher',
+                    'data' => 'payVch',
+                ],
+                [
+                    'title' => 'Payment Sub',
+                    'data' => 'paySub',
+                ],
+                [
+                    'title' => 'Ledger',
+                    'data' => 'payLedg',
+                ],
+                [
+                    'title' => 'Amount',
+                    'data' => 'payAmount',
+                ],
+                [
+                    'title' => 'Remarks',
+                    'data' => 'payRmks',
+                ],
+                [
+                    'title' => 'Cashbook',
+                    'data' => 'payCashBk',
+                ],
+                [
+                    'title' => 'Department',
+                    'data' => 'payDept',
+                ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',
                     'queryParams' => ['id'],

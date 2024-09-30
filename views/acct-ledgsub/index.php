@@ -18,9 +18,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'table',
             ],
             'columns' => [
-                'id',
-                'lsubCode',
-                'lsubDesc',
+                [
+                    'title' => 'ID',
+                    'data' => 'id',
+                ],
+                [
+                    'title' => 'Ledger Sub Code',
+                    'data' => 'lsubCode',
+                ],
+                [
+                    'title' => 'Ledger Sub Description',
+                    'data' => 'lsubDesc',
+                ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',
                     'queryParams' => ['id'],

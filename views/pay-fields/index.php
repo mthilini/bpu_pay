@@ -18,25 +18,45 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'table',
             ],
             'columns' => [
-                'id',
-                'fldCode',
-                'fldName',
+                [
+                    'title' => 'ID',
+                    'data' => 'id',
+                ],
+                [
+                    'title' => 'Field Code',
+                    'data' => 'fldCode',
+                ],
+                [
+                    'title' => 'Field Name',
+                    'data' => 'fldName',
+                ],
                 // 'fldUPF:boolean',
-                'fldUPF',
+                [
+                    'title' => 'UPF',
+                    'data' => 'fldUPF',
+                    'filter' => ['true' => 'Yes', 'false' => 'No'],
+                ],
                 // 'fldETF:boolean',
-                'fldETF',
-                'payFieldType.typeName',
-                // [
-                //     'label' => 'Field Type',
-                //     'value' => 'payFieldType.typeName'
-                // ],
-                'fldCat',
+                [
+                    'title' => 'ETF',
+                    'data' => 'fldETF',
+                    'filter' => ['true' => 'Yes', 'false' => 'No'],
+                ],
+                [
+                    'title' => 'Field Type',
+                    'data' => 'payFieldType.typeName',
+                ],
+                [
+                    'title' => 'Category',
+                    'data' => 'fldCat',
+                ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',
                     'queryParams' => ['id'],
                     'render' => new JsExpression('function render(data, type, row, meta ){
                         return "<a href=\"view?id="+row["id"]+"\" class=\"btn btn-info btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to view details\">View</a><a href=\"update?id="+row["id"]+"\" class=\"btn btn-warning btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to update details\">Update</a>"
                     }'),
+                    'sClass' => 'align-center view-edit-div',
                 ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',

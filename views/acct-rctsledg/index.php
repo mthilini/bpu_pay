@@ -18,15 +18,42 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'table',
             ],
             'columns' => [
-                'id',
-                'rctDate',
-                'rctNo',
-                'rctSub',
-                'rctLedger',
-                'rctAmount',
-                'rctRmks',
-                'rctCashBk',
-                'rctDept',
+                [
+                    'title' => 'ID',
+                    'data' => 'id',
+                ],
+                [
+                    'title' => 'Receipt Date',
+                    'data' => 'rctDate',
+                ],
+                [
+                    'title' => 'Receipt No',
+                    'data' => 'rctNo',
+                ],
+                [
+                    'title' => 'Receipt Sub',
+                    'data' => 'rctSub',
+                ],
+                [
+                    'title' => 'Ledger',
+                    'data' => 'rctLedger',
+                ],
+                [
+                    'title' => 'Amount',
+                    'data' => 'rctAmount',
+                ],
+                [
+                    'title' => 'Remarks',
+                    'data' => 'rctRmks',
+                ],
+                [
+                    'title' => 'Cashbook',
+                    'data' => 'rctCashBk',
+                ],
+                [
+                    'title' => 'Deparment',
+                    'data' => 'rctDept',
+                ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',
                     'queryParams' => ['id'],

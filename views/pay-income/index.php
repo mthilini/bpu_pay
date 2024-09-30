@@ -18,8 +18,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'table',
             ],
             'columns' => [
-                'id',
-                'empUPFNo',
+                [
+                    'title' => 'ID',
+                    'data' => 'id',
+                    'sClass' => 'align-center',
+                ],
+                [
+                    'title' => 'Emp. UPF No',
+                    'data' => 'empUPFNo',
+                ],
                 // [
                 //     'label' => 'Emp. Name',
                 //     'value' =>  function ($model) {
@@ -29,14 +36,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 //     },
                 //     'format' => 'raw',
                 // ],
-                'incMon',
-                'incYear',
-                'incIncome',
-                // [
-                //     'label' => 'Income (Rs.)',
-                //     'attribute' => 'incIncome',
-                //     'format' => ['currency'],
-                // ],
+                [
+                    'title' => 'Month',
+                    'data' => 'incMon',
+                    'sClass' => 'align-right',
+                ],
+                [
+                    'title' => 'Year',
+                    'data' => 'incYear',
+                    'sClass' => 'align-right',
+                ],
+                [
+                    'title' => 'Income (Rs.)',
+                    'data' => 'incIncome',
+                    'format' => ['currency'],
+                    'sClass' => 'align-right',
+                ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',
                     'queryParams' => ['id'],

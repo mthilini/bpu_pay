@@ -18,36 +18,62 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'table',
             ],
             'columns' => [
-                'id',
-                'nic',
+                [
+                    'title' => 'ID',
+                    'data' => 'id',
+                ],
+                [
+                    'title' => 'NIC',
+                    'data' => 'nic',
+                ],
                 'title',
-                'surname',
-                'epfNo',
+                [
+                    'title' => 'Employee Name',
+                    'data' => 'surname',
+                ],
+                [
+                    'title' => 'EPF No',
+                    'data' => 'epfNo',
+                ],
                 // [
-                //     'label' => 'Medical Fund Contributor',
-                //     'value' => function ($model) {
-                //         return $model->medicalFundContributor == 1 ? 'Yes' : 'No';
-                //     }
+                //     'title' => 'Medical Fund Contributor',
+                //     // 'data' => function ($model) {
+                //     //     return $model->medicalFundContributor == 1 ? 'Yes' : 'No';
+                //     // }
                 // ],
-                'salaryBankCode',
-                'bankAccountNo',
-                'bankAccountName',
+                [
+                    'title' => 'Salary Bank Code',
+                    'data' => 'salaryBankCode',
+                ],
+                [
+                    'title' => 'Bank Account No',
+                    'data' => 'bankAccountNo',
+                ],
+                [
+                    'title' => 'Bank Account Name',
+                    'data' => 'bankAccountName',
+                ],
                 // [
-                //     'label' => 'Tax Consent',
-                //     'value' => function ($model) {
-                //         return $model->taxConsent == 1 ? 'Yes' : 'No';
-                //     }
+                //     'title' => 'Tax Consent',
+                //     // 'data' => function ($model) {
+                //     //     return $model->taxConsent == 1 ? 'Yes' : 'No';
+                //     // }
                 // ],
-                'applicableTaxTable',
+                [
+                    'title' => 'Applicable Tax Table',
+                    'data' => 'applicableTaxTable',
+                ],
                 // [
-                //     'attribute' => 'SO Allow. Start',
-                //     'value' =>  function ($model) {
-                //         $bankLoanReleaseDate = date("d/m/Y", strtotime($model->bankLoanReleaseDate));
-                //         return $bankLoanReleaseDate;
-                //     },
-                //     'format' => 'raw',
+                //     'title' => 'SO Allow. Start',
+                //     // 'data' =>  function ($model) {
+                //     //     $bankLoanReleaseDate = date("d/m/Y", strtotime($model->bankLoanReleaseDate));
+                //     //     return $bankLoanReleaseDate;
+                //     // },
                 // ],
-                'otherInfo',
+                [
+                    'title' => 'Other Info',
+                    'data' => 'otherInfo',
+                ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',
                     'queryParams' => ['id'],
@@ -62,7 +88,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'Delete',
                 ],
             ],
-            //'dataProvider' => $dataProvider,
             'withColumnFilter' => true,
             'serverSide' => true,
             'ajax' => Yii::getAlias('@web/pay-fin-details/datatables'),

@@ -18,25 +18,32 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'table',
             ],
             'columns' => [
-                'id',
+                [
+                    'title' => 'ID',
+                    'data' => 'id',
+                    'sClass' => 'align-center',
+                ],
                 'username',
                 'email',
-                'created_at',
-                // [
-                //     'attribute'      => 'created_at',
-                //     'format' => ['date', 'php:Y-m-d H:i:s'],
-                // ],
-                'updated_at',
-                // [
-                //     'attribute'      => 'updated_at',
-                //     'format' => ['date', 'php:Y-m-d H:i:s'],
-                // ],
+                [
+                    'title' => 'Created At',
+                    'data' => 'created_at',
+                    'sClass' => 'align-center',
+                    'format' => ['date', 'php:Y-m-d H:i:s'],
+                ],
+                [
+                    'title' => 'Updated At',
+                    'data' => 'updated_at',
+                    'sClass' => 'align-center',
+                    'format' => ['date', 'php:Y-m-d H:i:s'],
+                ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',
                     'queryParams' => ['id'],
                     'render' => new JsExpression('function render(data, type, row, meta ){
                         return "<a href=\"view?id="+row["id"]+"\" class=\"btn btn-info btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to view details\">View</a><a href=\"update?id="+row["id"]+"\" class=\"btn btn-warning btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to update details\">Update</a>"
                     }'),
+                    'sClass' => 'align-center view-edit-div',
                 ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',

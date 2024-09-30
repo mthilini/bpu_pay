@@ -18,14 +18,38 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'table',
             ],
             'columns' => [
-                'id',
-                'progCode',
-                'projCode',
-                'objCode',
-                'voteCode',
-                'voteSub',
-                'voteVote',
-                'voteDesc',
+                [
+                    'title' => 'ID',
+                    'data' => 'id',
+                ],
+                [
+                    'title' => 'Program Code',
+                    'data' => 'progCode',
+                ],
+                [
+                    'title' => 'Project Code',
+                    'data' => 'projCode',
+                ],
+                [
+                    'title' => 'Object Code',
+                    'data' => 'objCode',
+                ],
+                [
+                    'title' => 'Vote Code',
+                    'data' => 'voteCode',
+                ],
+                [
+                    'title' => 'Vote Sub',
+                    'data' => 'voteSub',
+                ],
+                [
+                    'title' => 'Vote Vote',
+                    'data' => 'voteVote',
+                ],
+                [
+                    'title' => 'Vote Description',
+                    'data' => 'voteDesc',
+                ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',
                     'queryParams' => ['id'],
@@ -40,7 +64,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'Delete',
                 ],
             ],
-            //'dataProvider' => $dataProvider,
             'withColumnFilter' => true,
             'serverSide' => true,
             'ajax' => Yii::getAlias('@web/acct-votes/datatables'),

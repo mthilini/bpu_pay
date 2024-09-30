@@ -18,10 +18,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'table',
             ],
             'columns' => [
-                'id',
-                'bankCode',
-                'bankBranch',
-                'bankBank',
+                [
+                    'title' => 'ID',
+                    'data' => 'id',
+                    'sClass' => 'align-center',
+                ],
+                [
+                    'title' => 'Main Bank Code',
+                    'data' => 'bankCode',
+                ],
+                [
+                    'title' => 'Branch Code',
+                    'data' => 'bankBranch',
+                ],
+                [
+                    'title' => 'Bank Code',
+                    'data' => 'bankBank',
+                ],
                 'bankName',
                 [
                     'class' => 'nullref\datatable\LinkColumn',

@@ -18,39 +18,59 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'table',
             ],
             'columns' => [
-                'id',
-                'empUPFNo',
-                'sa5Ref',
-                'sa5Fld',
-                'sa5Fld0.a5Desc',
+                [
+                    'title' => 'ID',
+                    'data' => 'id',
+                    'sClass' => 'align-center',
+                ],
+                [
+                    'title' => 'Emp Upf No',
+                    'data' => 'empUPFNo',
+                ],
+                [
+                    'title' => 'SA5 Ref',
+                    'data' => 'sa5Ref',
+                ],
+                [
+                    'title' => 'SA5 Field',
+                    'data' => 'sa5Fld',
+                ],
+                [
+                    'title' => 'SA5 Field Desc.',
+                    'data' => 'sa5Fld0.a5Desc',
+                ],
+                [
+                    'title' => 'SA5 Start',
+                    'data' => 'sa5Start',
+                    'sClass' => 'align-center',
+                ],
                 // [
-                //     'label' => 'SA5 Field Desc.',
-                //     'value' => 'sa5Fld0.a5Desc'
-                // ],
-                'sa5Start',
-                // [
-                //     'attribute' => 'SA5 Start',
+                //     'attribute' => '',
                 //     'value' =>  function ($model) {
                 //         $sa5Start = date("d/m/Y", strtotime($model->sa5Start));
                 //         return $sa5Start;
                 //     },
                 //     'format' => 'raw',
                 // ],
-                'sa5End',
+                [
+                    'title' => 'SA5 End',
+                    'data' => 'sa5End',
+                    'sClass' => 'align-center',
+                ],
                 // [
-                //     'attribute' => 'SA5 End',
+                //     'attribute' => '',
                 //     'value' =>  function ($model) {
                 //         $sa5End = date("d/m/Y", strtotime($model->sa5End));
                 //         return $sa5End;
                 //     },
                 //     'format' => 'raw',
                 // ],
-                'sa5Amt',
-                // [
-                //     'label' => 'SA5 Amount (Rs.)',
-                //     'attribute' => 'sa5Amt',
-                //     'format' => ['currency'],
-                // ],
+                [
+                    'title' => 'SA5 Amount (Rs.)',
+                    'data' => 'sa5Amt',
+                    'format' => ['currency'],
+                    'sClass' => 'align-right',
+                ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',
                     'queryParams' => ['id'],

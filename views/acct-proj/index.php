@@ -18,11 +18,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'table',
             ],
             'columns' => [
-                'id',
-                'progCode',
-                'progCode0.progDesc',
-                'projCode',
-                'projDesc',
+                [
+                    'title' => 'ID',
+                    'data' => 'id',
+                ],
+                [
+                    'title' => 'Program Code',
+                    'data' => 'progCode',
+                ],
+                [
+                    'title' => 'Program Description',
+                    'data' => 'progCode0.progDesc',
+                ],
+                [
+                    'title' => 'Project Code',
+                    'data' => 'projCode',
+                ],
+                [
+                    'title' => 'Project Description',
+                    'data' => 'projDesc',
+                ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',
                     'queryParams' => ['id'],

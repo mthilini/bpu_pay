@@ -18,8 +18,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'table',
             ],
             'columns' => [
-                'id',
-                'empUPFNo',
+                [
+                    'title' => 'ID',
+                    'data' => 'id',
+                    'sClass' => 'align-center',
+                ],
+                [
+                    'title' => 'Emp UPF No',
+                    'data' => 'empUPFNo',
+                ],
                 // [
                 //     'label' => 'Emp. Name',
                 //     'value' =>  function ($model) {
@@ -29,23 +36,36 @@ $this->params['breadcrumbs'][] = $this->title;
                 //     },
                 //     'format' => 'raw',
                 // ],
-                'staxRef',
-                'staxFld',
-                'staxFld0.taxDesc',
+                [
+                    'title' => 'S_Tax Ref',
+                    'data' => 'staxRef',
+                ],
+                [
+                    'title' => 'S_Tax Field',
+                    'data' => 'staxFld',
+                ],
+                [
+                    'title' => 'Tax Field',
+                    'data' => 'staxFld0.taxDesc',
+                ],
+                [
+                    'title' => 'S_Tax Start',
+                    'data' => 'staxStart',
+                    'sClass' => 'align-center',
+                ],
+                [
+                    'title' => 'S_Tax End',
+                    'data' => 'staxEnd',
+                    'sClass' => 'align-center',
+                ],
                 // [
-                //     'label' => 'Tax Field',
-                //     'value' => 'staxFld0.taxDesc'
-                // ],
-                'staxStart',
-                // [
-                //     'attribute' => 'S_Tax Start',
+                //     'attribute' => '',
                 //     'value' =>  function ($model) {
                 //         $staxStart = date("d/m/Y", strtotime($model->staxStart));
                 //         return $staxStart;
                 //     },
                 //     'format' => 'raw',
                 // ],
-                'staxEnd',
                 // [
                 //     'attribute' => 'S_Tax End',
                 //     'value' =>  function ($model) {
@@ -54,17 +74,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 //     },
                 //     'format' => 'raw',
                 // ],
-                'staxAmt',
-                // [
-                //     'label' => 'Tax Amount',
-                //     'attribute' => 'staxAmt',
-                //     'format' => ['currency'],
-                // ],
-                'staxIncome',
                 [
-                    'label' => 'Tax Income',
-                    'attribute' => 'staxIncome',
+                    'title' => 'Tax Amount',
+                    'data' => 'staxAmt',
                     'format' => ['currency'],
+                    'sClass' => 'align-center',
+                ],
+                [
+                    'title' => 'Tax Income',
+                    'data' => 'staxIncome',
+                    'format' => ['currency'],
+                    'sClass' => 'align-center',
                 ],
                 'staxMoney',
                 [
@@ -81,7 +101,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'Delete',
                 ],
             ],
-            //'dataProvider' => $dataProvider,
             'withColumnFilter' => true,
             'serverSide' => true,
             'ajax' => Yii::getAlias('@web/pay-stax/datatables'),

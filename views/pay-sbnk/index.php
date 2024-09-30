@@ -18,8 +18,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'table',
             ],
             'columns' => [
-                'id',
-                'empUPFNo',
+                [
+                    'title' => 'ID',
+                    'data' => 'id',
+                    'sClass' => 'align-center',
+                ],
+                [
+                    'title' => 'Emp. EPF No',
+                    'data' => 'empUPFNo',
+                ],
                 // [
                 //     'label' => 'Emp. Name',
                 //     'value' =>  function ($model) {
@@ -29,26 +36,43 @@ $this->params['breadcrumbs'][] = $this->title;
                 //     },
                 //     'format' => 'raw',
                 // ],
-                'sbnkRef',
-                'sbnkStart',
-                'sbnkEnd',
-                'sbnkAmt',
-                // [
-                //     'label' => 'Amount (Rs.)',
-                //     'attribute' => 'sbnkAmt',
-                //     //'contentOptions' => ['class' => 'col-lg-1'],
-                //     'format' => ['currency'],
-                // ],
-                'sbnkBank',
-                'sbnkAcct',
-                'sbnkAName',
-                'sbnkLoan',
-                // [
-                //     'label' => 'SO Loan',
-                //     'value' => function ($model) {
-                //         return $model->sbnkLoan == 1 ? 'Yes' : 'No';
-                //     }
-                // ],
+                [
+                    'title' => 'SO Bank Ref.',
+                    'data' => 'sbnkRef',
+                ],
+                [
+                    'title' => 'SO Start',
+                    'data' => 'sbnkStart',
+                    'sClass' => 'align-center',
+                ],
+                [
+                    'title' => 'SO End',
+                    'data' => 'sbnkEnd',
+                    'sClass' => 'align-center',
+                ],
+                [
+                    'title' => 'Amount (Rs.)',
+                    'data' => 'sbnkAmt',
+                    'format' => ['currency'],
+                    'sClass' => 'align-right',
+                ],
+                [
+                    'title' => 'SO Bank',
+                    'data' => 'sbnkBank',
+                ],
+                [
+                    'title' => 'SO Account',
+                    'data' => 'sbnkAcct',
+                ],
+                [
+                    'title' => 'SO Account Name',
+                    'data' => 'sbnkAName',
+                ],
+                [
+                    'title' => 'SO Loan',
+                    'data' => 'sbnkLoan',
+                    'filter' => ['1' => 'Yes', '0' => 'No'],
+                ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',
                     'queryParams' => ['id', 'empUPFNo'],

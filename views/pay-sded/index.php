@@ -18,8 +18,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'table',
             ],
             'columns' => [
-                'id',
-                'empUPFNo',
+                [
+                    'title' => 'ID',
+                    'data' => 'id',
+                    'sClass' => 'align-center',
+                ],
+                [
+                    'title' => 'Emp Upf No',
+                    'data' => 'empUPFNo',
+                ],
                 // [
                 //     //'attribute' => 'empUPFNo',
                 //     'label' => 'Emp. Name',
@@ -30,38 +37,50 @@ $this->params['breadcrumbs'][] = $this->title;
                 //     },
                 //     'format' => 'raw',
                 // ],
-                'sdedRef',
-                'sdedFld',
-                'payField0.fldName',
+                [
+                    'title' => 'SO Ded. Ref',
+                    'data' => 'sdedRef',
+                ],
+                [
+                    'title' => 'SO Ded. Fld',
+                    'data' => 'sdedFld',
+                ],
+                [
+                    'title' => 'SO Ded. Field',
+                    'data' => 'payField0.fldName',
+                ],
+                [
+                    'title' => 'SO Ded. Start',
+                    'data' => 'sdedStart',
+                    'sClass' => 'align-center',
+                ],
                 // [
-                //     'label' => 'SO Ded. Field',
-                //     'value' => 'payField0.fldName'
-                // ],
-                'sdedStart',
-                // [
-                //     'attribute' => 'SO Ded. Start',
+                //     'attribute' => '',
                 //     'value' =>  function ($model) {
                 //         $sdedStart = date("d/m/Y", strtotime($model->sdedStart));
                 //         return $sdedStart;
                 //     },
                 //     'format' => 'raw',
                 // ],
-                'sdedEnd',
+                [
+                    'title' => 'SO Ded. End',
+                    'data' => 'sdedEnd',
+                    'sClass' => 'align-center',
+                ],
                 // [
-                //     'attribute' => 'SO Ded. End',
+                //     'attribute' => '',
                 //     'value' =>  function ($model) {
                 //         $sdedEnd = date("d/m/Y", strtotime($model->sdedEnd));
                 //         return $sdedEnd;
                 //     },
                 //     'format' => 'raw',
                 // ],
-                'sdedAmt',
-                // [
-                //     'label' => 'Amount (Rs.)',
-                //     'attribute' => 'sdedAmt',
-                //     //'contentOptions' => ['class' => 'col-lg-1'],
-                //     'format' => ['currency'],
-                // ],
+                [
+                    'title' => 'Amount (Rs.)',
+                    'data' => 'sdedAmt',
+                    'sClass' => 'align-right',
+                    'format' => ['currency'],
+                ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',
                     'queryParams' => ['id'],
