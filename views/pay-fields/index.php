@@ -30,17 +30,31 @@ $this->params['breadcrumbs'][] = $this->title;
                     'title' => 'Field Name',
                     'data' => 'fldName',
                 ],
-                // 'fldUPF:boolean',
                 [
                     'title' => 'UPF',
                     'data' => 'fldUPF',
-                    'filter' => ['true' => 'Yes', 'false' => 'No'],
+                    "render" => new JsExpression('function(data, type, full){
+                                    if (data == true) {
+                                        return "Yes";
+                                    } else {
+                                        return "No";             
+                                    }
+                                }'),
+                    'sClass' => 'align-center',
+                    'filter' => [true => 'Yes', false => 'No'],
                 ],
-                // 'fldETF:boolean',
                 [
                     'title' => 'ETF',
                     'data' => 'fldETF',
-                    'filter' => ['true' => 'Yes', 'false' => 'No'],
+                    "render" => new JsExpression('function(data, type, full){
+                                    if (data == true) {
+                                        return "Yes";
+                                    } else {
+                                        return "No";             
+                                    }
+                                }'),
+                    'sClass' => 'align-center',
+                    'filter' => [true => 'Yes', false => 'No'],
                 ],
                 [
                     'title' => 'Field Type',

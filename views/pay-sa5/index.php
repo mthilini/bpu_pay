@@ -49,6 +49,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                         return moment(new Date(data)).format("DD/MM/YYYY");             
                                     }
                                 }'),
+                    'renderFilter' => new \yii\web\JsExpression('function() { ' .
+                        'return jQuery(\'<input type="date" id="w5" class="form-control" style="width: 85px;" />\'); ' .
+                        '}'),
                     'sClass' => 'align-center',
                 ],
                 [
@@ -61,6 +64,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                         return moment(new Date(data)).format("DD/MM/YYYY");             
                                     }
                                 }'),
+                    'renderFilter' => new \yii\web\JsExpression('function() { ' .
+                        'return jQuery(\'<input type="date" id="w6" class="form-control" style="width: 85px;" />\'); ' .
+                        '}'),
                     'sClass' => 'align-center',
                 ],
                 [

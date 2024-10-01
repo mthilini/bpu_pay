@@ -50,7 +50,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                     'title' => 'S_Tax Start',
-                    'data' => 'staxStart',"render" => new JsExpression('function(data, type, full){
+                    'data' => 'staxStart',
+                    "render" => new JsExpression('function(data, type, full){
                                     if (type == "display") {
                                         return moment(new Date(data)).locale("el").format("DD/MM/YYYY");
                                     } else {
@@ -58,10 +59,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                     }
                                 }'),
                     'sClass' => 'align-center',
+                    'renderFilter' => new \yii\web\JsExpression('function() { ' .
+                        'return jQuery(\'<input type="date" id="w5" class="form-control" style="width: 85px;" />\'); ' .
+                        '}'),
                 ],
                 [
                     'title' => 'S_Tax End',
-                    'data' => 'staxEnd',"render" => new JsExpression('function(data, type, full){
+                    'data' => 'staxEnd',
+                    "render" => new JsExpression('function(data, type, full){
                                     if (type == "display") {
                                         return moment(new Date(data)).locale("el").format("DD/MM/YYYY");
                                     } else {
@@ -69,6 +74,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                     }
                                 }'),
                     'sClass' => 'align-center',
+                    'renderFilter' => new \yii\web\JsExpression('function() { ' .
+                        'return jQuery(\'<input type="date" id="w6" class="form-control" style="width: 85px;"/>\'); ' .
+                        '}'),
                 ],
                 [
                     'title' => 'Tax Amount',
