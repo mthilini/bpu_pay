@@ -50,29 +50,27 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'title' => 'SO Allow. Start',
                     'data' => 'semlStart',
+                    "render" => new JsExpression('function(data, type, full){
+                                    if (type == "display") {
+                                        return moment(new Date(data)).locale("el").format("DD/MM/YYYY");
+                                    } else {
+                                        return moment(new Date(data)).format("DD/MM/YYYY");             
+                                    }
+                                }'),
                     'sClass' => 'align-center',
                 ],
-                // [
-                //     'attribute' => '',
-                //     'value' =>  function ($model) {
-                //         $semlStart = date("d/m/Y", strtotime($model->semlStart));
-                //         return $semlStart;
-                //     },
-                //     'format' => 'raw',
-                // ],
                 [
                     'title' => 'SO Allow. End',
                     'data' => 'semlEnd',
+                    "render" => new JsExpression('function(data, type, full){
+                                    if (type == "display") {
+                                        return moment(new Date(data)).locale("el").format("DD/MM/YYYY");
+                                    } else {
+                                        return moment(new Date(data)).format("DD/MM/YYYY");             
+                                    }
+                                }'),
                     'sClass' => 'align-center',
                 ],
-                // [
-                //     'attribute' => '',
-                //     'value' =>  function ($model) {
-                //         $semlEnd = date("d/m/Y", strtotime($model->semlEnd));
-                //         return $semlEnd;
-                //     },
-                //     'format' => 'raw',
-                // ],
                 [
                     'title' => 'Amount',
                     'data' => 'semlAmt',

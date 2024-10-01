@@ -28,7 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'data' => 'empUPFNo',
                 ],
                 // [
-                //     //'attribute' => 'empUPFNo',
                 //     'label' => 'Emp. Name',
                 //     'value' =>  function ($model) {
                 //         $employeemodel = new Employee();
@@ -52,29 +51,27 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'title' => 'SO Ded. Start',
                     'data' => 'sdedStart',
+                    "render" => new JsExpression('function(data, type, full){
+                                    if (type == "display") {
+                                        return moment(new Date(data)).locale("el").format("DD/MM/YYYY");
+                                    } else {
+                                        return moment(new Date(data)).format("DD/MM/YYYY");             
+                                    }
+                                }'),
                     'sClass' => 'align-center',
                 ],
-                // [
-                //     'attribute' => '',
-                //     'value' =>  function ($model) {
-                //         $sdedStart = date("d/m/Y", strtotime($model->sdedStart));
-                //         return $sdedStart;
-                //     },
-                //     'format' => 'raw',
-                // ],
                 [
                     'title' => 'SO Ded. End',
                     'data' => 'sdedEnd',
+                    "render" => new JsExpression('function(data, type, full){
+                                    if (type == "display") {
+                                        return moment(new Date(data)).locale("el").format("DD/MM/YYYY");
+                                    } else {
+                                        return moment(new Date(data)).format("DD/MM/YYYY");             
+                                    }
+                                }'),
                     'sClass' => 'align-center',
                 ],
-                // [
-                //     'attribute' => '',
-                //     'value' =>  function ($model) {
-                //         $sdedEnd = date("d/m/Y", strtotime($model->sdedEnd));
-                //         return $sdedEnd;
-                //     },
-                //     'format' => 'raw',
-                // ],
                 [
                     'title' => 'Amount (Rs.)',
                     'data' => 'sdedAmt',

@@ -21,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'title' => 'ID',
                     'data' => 'id',
+                    'sClass' => 'align-center',
                 ],
                 [
                     'title' => 'Program Code',
@@ -44,6 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'render' => new JsExpression('function render(data, type, row, meta ){
                         return "<a href=\"view?id="+row["id"]+"\" class=\"btn btn-info btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to view details\">View</a><a href=\"update?id="+row["id"]+"\" class=\"btn btn-warning btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to update details\">Update</a>"
                     }'),
+                    'sClass' => 'view-edit-div',
                 ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',

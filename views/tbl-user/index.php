@@ -28,14 +28,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'title' => 'Created At',
                     'data' => 'created_at',
+                    "render" => new JsExpression('function(data, type, full){
+                                    if (type == "display") {
+                                        return moment(new Date(data)).locale("el").format("DD/MM/YYYY hh:mm:ss");
+                                    } else {
+                                        return moment(new Date(data)).format("DD/MM/YYYY hh:mm:ss");             
+                                    }
+                                }'),
                     'sClass' => 'align-center',
-                    'format' => ['date', 'php:Y-m-d H:i:s'],
                 ],
                 [
                     'title' => 'Updated At',
                     'data' => 'updated_at',
+                    "render" => new JsExpression('function(data, type, full){
+                                    if (type == "display") {
+                                        return moment(new Date(data)).locale("el").format("DD/MM/YYYY hh:mm:ss");
+                                    } else {
+                                        return moment(new Date(data)).format("DD/MM/YYYY hh:mm:ss");             
+                                    }
+                                }'),
                     'sClass' => 'align-center',
-                    'format' => ['date', 'php:Y-m-d H:i:s'],
                 ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',

@@ -40,31 +40,29 @@ $this->params['breadcrumbs'][] = $this->title;
                     'data' => 'sa5Fld0.a5Desc',
                 ],
                 [
-                    'title' => 'SA5 Start',
-                    'data' => 'sa5Start',
+                    "title" => "SA5 Start",
+                    'data' => "sa5Start",
+                    "render" => new JsExpression('function(data, type, full){
+                                    if (type == "display") {
+                                        return moment(new Date(data)).locale("el").format("DD/MM/YYYY");
+                                    } else {
+                                        return moment(new Date(data)).format("DD/MM/YYYY");             
+                                    }
+                                }'),
                     'sClass' => 'align-center',
                 ],
-                // [
-                //     'attribute' => '',
-                //     'value' =>  function ($model) {
-                //         $sa5Start = date("d/m/Y", strtotime($model->sa5Start));
-                //         return $sa5Start;
-                //     },
-                //     'format' => 'raw',
-                // ],
                 [
-                    'title' => 'SA5 End',
-                    'data' => 'sa5End',
+                    'title' => "SA5 End",
+                    "data" => "sa5End",
+                    "render" => new JsExpression('function(data, type, full){
+                                    if (type == "display") {
+                                        return moment(new Date(data)).locale("el").format("DD/MM/YYYY");
+                                    } else {
+                                        return moment(new Date(data)).format("DD/MM/YYYY");             
+                                    }
+                                }'),
                     'sClass' => 'align-center',
                 ],
-                // [
-                //     'attribute' => '',
-                //     'value' =>  function ($model) {
-                //         $sa5End = date("d/m/Y", strtotime($model->sa5End));
-                //         return $sa5End;
-                //     },
-                //     'format' => 'raw',
-                // ],
                 [
                     'title' => 'SA5 Amount (Rs.)',
                     'data' => 'sa5Amt',

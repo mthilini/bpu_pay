@@ -21,10 +21,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'title' => 'ID',
                     'data' => 'id',
+                    'sClass' => 'align-center',
                 ],
                 [
-                    'title' => 'Payment Date',
-                    'data' => 'payDate',
+                    "title" => "Payment Date",
+                    'data' => "payDate",
+                    "render" => new JsExpression('function(data, type, full){
+                                    if (type == "display") {
+                                        return moment(new Date(data)).locale("el").format("DD/MM/YYYY");
+                                    } else {
+                                        return moment(new Date(data)).format("DD/MM/YYYY");             
+                                    }
+                                }'),
+                    'sClass' => 'align-center',
                 ],
                 [
                     'title' => 'Payment Voucher',
@@ -41,6 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'title' => 'Amount',
                     'data' => 'payAmount',
+                    'sClass' => 'align-right',
                 ],
                 [
                     'title' => 'Remarks',

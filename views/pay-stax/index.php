@@ -50,30 +50,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                     'title' => 'S_Tax Start',
-                    'data' => 'staxStart',
+                    'data' => 'staxStart',"render" => new JsExpression('function(data, type, full){
+                                    if (type == "display") {
+                                        return moment(new Date(data)).locale("el").format("DD/MM/YYYY");
+                                    } else {
+                                        return moment(new Date(data)).format("DD/MM/YYYY");             
+                                    }
+                                }'),
                     'sClass' => 'align-center',
                 ],
                 [
                     'title' => 'S_Tax End',
-                    'data' => 'staxEnd',
+                    'data' => 'staxEnd',"render" => new JsExpression('function(data, type, full){
+                                    if (type == "display") {
+                                        return moment(new Date(data)).locale("el").format("DD/MM/YYYY");
+                                    } else {
+                                        return moment(new Date(data)).format("DD/MM/YYYY");             
+                                    }
+                                }'),
                     'sClass' => 'align-center',
                 ],
-                // [
-                //     'attribute' => '',
-                //     'value' =>  function ($model) {
-                //         $staxStart = date("d/m/Y", strtotime($model->staxStart));
-                //         return $staxStart;
-                //     },
-                //     'format' => 'raw',
-                // ],
-                // [
-                //     'attribute' => 'S_Tax End',
-                //     'value' =>  function ($model) {
-                //         $staxEnd = date("d/m/Y", strtotime($model->staxEnd));
-                //         return $staxEnd;
-                //     },
-                //     'format' => 'raw',
-                // ],
                 [
                     'title' => 'Tax Amount',
                     'data' => 'staxAmt',

@@ -43,11 +43,25 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'title' => 'SO Start',
                     'data' => 'sbnkStart',
+                    "render" => new JsExpression('function(data, type, full){
+                                    if (type == "display") {
+                                        return moment(new Date(data)).locale("el").format("DD/MM/YYYY");
+                                    } else {
+                                        return moment(new Date(data)).format("DD/MM/YYYY");             
+                                    }
+                                }'),
                     'sClass' => 'align-center',
                 ],
                 [
                     'title' => 'SO End',
                     'data' => 'sbnkEnd',
+                    "render" => new JsExpression('function(data, type, full){
+                                    if (type == "display") {
+                                        return moment(new Date(data)).locale("el").format("DD/MM/YYYY");
+                                    } else {
+                                        return moment(new Date(data)).format("DD/MM/YYYY");             
+                                    }
+                                }'),
                     'sClass' => 'align-center',
                 ],
                 [

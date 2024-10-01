@@ -63,13 +63,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     'title' => 'Applicable Tax Table',
                     'data' => 'applicableTaxTable',
                 ],
-                // [
-                //     'title' => 'SO Allow. Start',
-                //     // 'data' =>  function ($model) {
-                //     //     $bankLoanReleaseDate = date("d/m/Y", strtotime($model->bankLoanReleaseDate));
-                //     //     return $bankLoanReleaseDate;
-                //     // },
-                // ],
+                [
+                    "title" => "Bank Loan Release Date",
+                    'data' => "bankLoanReleaseDate",
+                    "render" => new JsExpression('function(data, type, full){
+                                    if (type == "display") {
+                                        return moment(new Date(data)).locale("el").format("DD/MM/YYYY");
+                                    } else {
+                                        return moment(new Date(data)).format("DD/MM/YYYY");             
+                                    }
+                                }'),
+                    'sClass' => 'align-center',
+                ],
                 [
                     'title' => 'Other Info',
                     'data' => 'otherInfo',

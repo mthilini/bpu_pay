@@ -26,6 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'title' => 'ID',
                     'data' => 'id',
+                    'sClass' => 'align-center',
                 ],
                 [
                     'title' => 'Cashbook',

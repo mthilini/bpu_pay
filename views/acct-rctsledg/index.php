@@ -21,10 +21,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'title' => 'ID',
                     'data' => 'id',
+                    'sClass' => 'align-center',
                 ],
                 [
                     'title' => 'Receipt Date',
                     'data' => 'rctDate',
+                    "render" => new JsExpression('function(data, type, full){
+                                    if (type == "display") {
+                                        return moment(new Date(data)).locale("el").format("DD/MM/YYYY");
+                                    } else {
+                                        return moment(new Date(data)).format("DD/MM/YYYY");             
+                                    }
+                                }'),
+                    'sClass' => 'align-center',
                 ],
                 [
                     'title' => 'Receipt No',
@@ -41,6 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'title' => 'Amount',
                     'data' => 'rctAmount',
+                    'sClass' => 'align-right',
                 ],
                 [
                     'title' => 'Remarks',
@@ -68,7 +78,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => 'Delete',
                 ],
             ],
-            //'dataProvider' => $dataProvider,
             'withColumnFilter' => true,
             'serverSide' => true,
             'ajax' => Yii::getAlias('@web/acct-rctsledg/datatables'),

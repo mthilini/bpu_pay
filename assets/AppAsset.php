@@ -24,6 +24,7 @@ class AppAsset extends AssetBundle
         'css/style.css',
     ];
     public $js = [
+        'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
