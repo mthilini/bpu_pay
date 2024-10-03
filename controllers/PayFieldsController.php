@@ -76,6 +76,8 @@ class PayFieldsController extends Controller
 
                             if ($column['data'] == 'payFieldType.typeName') {
                                 $query->andFilterWhere(['like', 'pay_fieldType.typeName', $value]);
+                            } else if (($column['data'] == 'fldUPF' || $column['data'] == 'fldETF') && ($value == '0' || $value == '1')) {
+                                $query->andFilterWhere(['=', $column['data'], $value]);
                             } else {
                                 $query->andFilterWhere(['like', $column['data'], $value]);
                             }

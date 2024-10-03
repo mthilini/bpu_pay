@@ -47,14 +47,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     'title' => 'ETF',
                     'data' => 'fldETF',
                     "render" => new JsExpression('function(data, type, full){
-                                    if (data == true) {
+                                    if (data == "1") {
                                         return "Yes";
                                     } else {
                                         return "No";             
                                     }
                                 }'),
                     'sClass' => 'align-center',
-                    'filter' => [true => 'Yes', false => 'No'],
+                    'filter' => ['1' => 'Yes', '0' => 'No'],
                 ],
                 [
                     'title' => 'Field Type',
