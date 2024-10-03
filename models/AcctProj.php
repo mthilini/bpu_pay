@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use mehulpatel\mod\audit\behaviors\AuditEntryBehaviors;
 use yii\db\ActiveRecord;
+
 /**
  * This is the model class for table "acct_proj".
  *
@@ -32,7 +33,7 @@ class AcctProj extends \yii\db\ActiveRecord
     {
         return [
             [['progCode', 'projCode', 'projDesc'], 'required'],
-            [['progCode', 'projCode'], 'string', 'max' => 2,'min'=>2],
+            [['progCode', 'projCode'], 'string', 'max' => 2, 'min' => 2],
             [['projDesc'], 'string', 'max' => 25],
             [['progCode', 'projCode'], 'unique', 'targetAttribute' => ['progCode', 'projCode']],
         ];
@@ -59,6 +60,11 @@ class AcctProj extends \yii\db\ActiveRecord
     {
         return $this->hasOne(AcctProg::class, ['progCode' => 'progCode']);
     }
+
+    public function getAcctProg()
+    {
+        return $this->hasOne(AcctProg::className(), ['progCode' => 'progCode']);
+    }
     /**
      * Gets query for [[AcctVotes]].
      *
@@ -70,11 +76,12 @@ class AcctProj extends \yii\db\ActiveRecord
     }
     //
     //
-    public function behaviors(){
-        return [ 
+    public function behaviors()
+    {
+        return [
             'auditEntryBehaviors' => [
                 'class' => AuditEntryBehaviors::class
-             ],
+            ],
         ];
     }
     //

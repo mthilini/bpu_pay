@@ -52,12 +52,16 @@ class PayFieldsController extends Controller
         return [
             'datatables' => [
                 'class' => 'nullref\datatable\DataTableAction',
-                'query' => PayFields::find(),
+                'query' => PayFields::find()->innerJoinWith('payFieldType'),
                 'applyOrder' => function ($query, $columns, $order) {
                     //custom ordering logic
                     $orderBy = [];
                     foreach ($order as $orderItem) {
-                        $orderBy[$columns[$orderItem['column']]['data']] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                        if ($columns[$orderItem['column']]['data'] == 'payFieldType.typeName') {
+                            $orderBy['pay_fieldType.typeName'] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                        } else {
+                            $orderBy[$columns[$orderItem['column']]['data']] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                        }
                     }
                     return $query->orderBy($orderBy);
                 },

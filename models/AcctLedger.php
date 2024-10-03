@@ -78,6 +78,11 @@ class AcctLedger extends \yii\db\ActiveRecord
     {
         return $this->hasOne(AcctLedgmain::class, ['mainCode' => 'mainCode']);
     }
+
+    public function getAcctLedgmain()
+    {
+        return $this->hasOne(AcctLedgmain::className(), ['mainCode' => 'mainCode']);
+    }
     //
     //
     public function beforeSave($insert)

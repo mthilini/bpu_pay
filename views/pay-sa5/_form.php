@@ -44,7 +44,6 @@ use yii\jui\DatePicker;
                                             <label for="<?= $model->formName() ?>-sa5Start">SA5 Start</label>
                                             <?= $form->field($model, 'sa5Start')->label(false)->widget(DatePicker::classname(), [
                                                 'language' => 'en',
-                                                'dateFormat' => 'dd/MM/yyyy',
                                                 'clientOptions' => [
                                                     'changeMonth' => true,
                                                     'yearRange' => '1996:2099',
@@ -52,7 +51,8 @@ use yii\jui\DatePicker;
                                                     'showOn' => 'button',
                                                     'buttonImage' => 'images/calendar.gif',
                                                     'buttonImageOnly' => true,
-                                                    'buttonText' => 'Select date'
+                                                    'buttonText' => 'Select date',
+                                                    'dateFormat' => 'dd/mm/yyyy',
                                                 ],
                                             ])->textInput(['type' => 'date']) ?>
                                         </div>
@@ -60,7 +60,6 @@ use yii\jui\DatePicker;
                                             <label for="<?= $model->formName() ?>-sa5End">SA5 End</label>
                                             <?= $form->field($model, 'sa5End')->label(false)->widget(DatePicker::classname(), [
                                                 'language' => 'en',
-                                                'dateFormat' => 'dd/MM/yyyy',
                                                 'clientOptions' => [
                                                     'changeMonth' => true,
                                                     'yearRange' => '1996:2099',
@@ -68,6 +67,7 @@ use yii\jui\DatePicker;
                                                     'showOn' => 'button',
                                                     'buttonImage' => 'images/calendar.gif',
                                                     'buttonImageOnly' => true,
+                                                    'dateFormat' => 'dd/mm/yyyy',
                                                     'buttonText' => 'Select date'
                                                 ],
                                             ])->textInput(['type' => 'date']) ?>

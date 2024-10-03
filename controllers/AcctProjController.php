@@ -54,12 +54,16 @@ class AcctProjController extends Controller
         return [
             'datatables' => [
                 'class' => 'nullref\datatable\DataTableAction',
-                'query' => AcctProj::find(),
+                'query' => AcctProj::find()->innerJoinWith('acctProg'),
                 'applyOrder' => function ($query, $columns, $order) {
                     //custom ordering logic
                     $orderBy = [];
                     foreach ($order as $orderItem) {
-                        $orderBy[$columns[$orderItem['column']]['data']] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                        if ($columns[$orderItem['column']]['data'] == 'acctProg.progDesc') {
+                            $orderBy['acct_prog.progDesc'] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                        } else {
+                            $orderBy[$columns[$orderItem['column']]['data']] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                        }
                     }
                     return $query->orderBy($orderBy);
                 },

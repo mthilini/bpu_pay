@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                     'title' => 'Tax Field',
-                    'data' => 'staxFld0.taxDesc',
+                    'data' => 'payTaxtype.taxDesc',
                 ],
                 [
                     'title' => 'S_Tax Start',

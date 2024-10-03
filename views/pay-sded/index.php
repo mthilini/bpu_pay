@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                     'title' => 'SO Ded. Field',
-                    'data' => 'payField0.fldName',
+                    'data' => 'payFields.fldName',
                 ],
                 [
                     'title' => 'SO Ded. Start',

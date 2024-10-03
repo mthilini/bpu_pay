@@ -54,12 +54,16 @@ class PaySdedController extends Controller
         return [
             'datatables' => [
                 'class' => 'nullref\datatable\DataTableAction',
-                'query' => PaySded::find(),
+                'query' => PaySded::find()->innerJoinWith('payFields'),
                 'applyOrder' => function ($query, $columns, $order) {
                     //custom ordering logic
                     $orderBy = [];
                     foreach ($order as $orderItem) {
-                        $orderBy[$columns[$orderItem['column']]['data']] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                        if ($columns[$orderItem['column']]['data'] == 'payFields.fldName') {
+                            $orderBy['pay_fields.fldName'] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                        } else {
+                            $orderBy[$columns[$orderItem['column']]['data']] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                        }
                     }
                     return $query->orderBy($orderBy);
                 },

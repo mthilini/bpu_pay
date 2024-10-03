@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                     'title' => 'Main Description',
-                    'data' => 'mainCode0.mainDesc',
+                    'data' => 'acctLedgmain.mainDesc',
                 ],
                 [
                     'title' => 'Ledger Sub',

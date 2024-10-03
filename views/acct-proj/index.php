@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                     'title' => 'Program Description',
-                    'data' => 'progCode0.progDesc',
+                    'data' => 'acctProg.progDesc',
                 ],
                 [
                     'title' => 'Project Code',

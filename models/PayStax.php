@@ -86,6 +86,11 @@ class PayStax extends \yii\db\ActiveRecord
     {
         return $this->hasOne(PayTaxtype::class, ['taxCode' => 'staxFld']);
     }
+
+    public function getPayTaxtype()
+    {
+        return $this->hasOne(PayTaxtype::className(), ['taxCode' => 'staxFld']);
+    }
     //
     //
     public function getUPFno($ID){

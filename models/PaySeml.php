@@ -70,6 +70,11 @@ class PaySeml extends \yii\db\ActiveRecord
         return $this->hasOne(PayFields::class, ['fldCode' => 'semlFld']);
     }
 
+    public function getPayFields()
+    {
+        return $this->hasOne(PayFields::className(), ['fldCode' => 'semlFld']);
+    }
+
     public function getUPFno($ID)
     {
         //Get the Employee Status (Temporary/Contract..) Name from emp_status table

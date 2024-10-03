@@ -54,12 +54,16 @@ class PaySa5Controller extends Controller
         return [
             'datatables' => [
                 'class' => 'nullref\datatable\DataTableAction',
-                'query' => PaySa5::find(),
+                'query' => PaySa5::find()->innerJoinWith('payA5type'),
                 'applyOrder' => function ($query, $columns, $order) {
                     //custom ordering logic
                     $orderBy = [];
                     foreach ($order as $orderItem) {
-                        $orderBy[$columns[$orderItem['column']]['data']] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                        if ($columns[$orderItem['column']]['data'] == 'payA5type.a5Desc') {
+                            $orderBy['pay_a5type.a5Desc'] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                        } else {
+                            $orderBy[$columns[$orderItem['column']]['data']] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                        }
                     }
                     return $query->orderBy($orderBy);
                 },
@@ -67,8 +71,10 @@ class PaySa5Controller extends Controller
                     //custom search logic
                     $modelClass = $query->modelClass;
                     $schema = $modelClass::getTableSchema()->columns;
+
                     foreach ($columns as $column) {
                         if ($column['searchable'] == 'true' && array_key_exists($column['data'], $schema) !== false) {
+
                             $value = empty($search['value']) ? $column['search']['value'] : $search['value'];
                             $query->andFilterWhere(['like', $column['data'], $value]);
                         }
