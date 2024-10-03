@@ -35,12 +35,19 @@ $this->params['breadcrumbs'][] = $this->title;
                     'title' => 'EPF No',
                     'data' => 'epfNo',
                 ],
-                // [
-                //     'title' => 'Medical Fund Contributor',
-                //     // 'data' => function ($model) {
-                //     //     return $model->medicalFundContributor == 1 ? 'Yes' : 'No';
-                //     // }
-                // ],
+                [
+                    'title' => 'Medical Fund Contributor',
+                    'data' => 'medicalFundContributor',
+                    "render" => new JsExpression('function(data, type, full){
+                                    if (data == true) {
+                                        return "Yes";
+                                    } else {
+                                        return "No";             
+                                    }
+                                }'),
+                    'sClass' => 'align-center',
+                    'filter' => [true => 'Yes', false => 'No'],
+                ],
                 [
                     'title' => 'Salary Bank Code',
                     'data' => 'salaryBankCode',
@@ -53,12 +60,19 @@ $this->params['breadcrumbs'][] = $this->title;
                     'title' => 'Bank Account Name',
                     'data' => 'bankAccountName',
                 ],
-                // [
-                //     'title' => 'Tax Consent',
-                //     // 'data' => function ($model) {
-                //     //     return $model->taxConsent == 1 ? 'Yes' : 'No';
-                //     // }
-                // ],
+                [
+                    'title' => 'Tax Consent',
+                    'data' => 'taxConsent',
+                    "render" => new JsExpression('function(data, type, full){
+                                    if (data == true) {
+                                        return "Yes";
+                                    } else {
+                                        return "No";             
+                                    }
+                                }'),
+                    'sClass' => 'align-center',
+                    'filter' => [true => 'Yes', false => 'No'],
+                ],
                 [
                     'title' => 'Applicable Tax Table',
                     'data' => 'applicableTaxTable',
@@ -74,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     }
                                 }'),
                     'renderFilter' => new \yii\web\JsExpression('function() { ' .
-                        'return jQuery(\'<input type="date" id="w9" class="form-control" style="width: 85px;" />\'); ' .
+                        'return jQuery(\'<input type="date" id="w10" class="form-control" style="width: 85px;" />\'); ' .
                         '}'),
                     'sClass' => 'align-center',
                 ],
