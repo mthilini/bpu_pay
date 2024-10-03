@@ -69,10 +69,16 @@ class PayFieldsController extends Controller
                     //custom search logic
                     $modelClass = $query->modelClass;
                     $schema = $modelClass::getTableSchema()->columns;
+
                     foreach ($columns as $column) {
-                        if ($column['searchable'] == 'true' && array_key_exists($column['data'], $schema) !== false) {
+                        if ($column['searchable'] == 'true' && (array_key_exists($column['data'], $schema) !== false || $column['data'] == 'payFieldType.typeName')) {
                             $value = empty($search['value']) ? $column['search']['value'] : $search['value'];
-                            $query->andFilterWhere(['like', $column['data'], $value]);
+
+                            if ($column['data'] == 'payFieldType.typeName') {
+                                $query->andFilterWhere(['like', 'pay_fieldType.typeName', $value]);
+                            } else {
+                                $query->andFilterWhere(['like', $column['data'], $value]);
+                            }
                         }
                     }
                     return $query;

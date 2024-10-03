@@ -72,9 +72,14 @@ class PayStaxController extends Controller
                     $modelClass = $query->modelClass;
                     $schema = $modelClass::getTableSchema()->columns;
                     foreach ($columns as $column) {
-                        if ($column['searchable'] == 'true' && array_key_exists($column['data'], $schema) !== false) {
+                        if ($column['searchable'] == 'true' && (array_key_exists($column['data'], $schema) !== false || $column['data'] == 'payTaxtype.taxDesc')) {
                             $value = empty($search['value']) ? $column['search']['value'] : $search['value'];
-                            $query->andFilterWhere(['like', $column['data'], $value]);
+
+                            if ($column['data'] == 'payTaxtype.taxDesc') {
+                                $query->andFilterWhere(['like', 'pay_taxtype.taxDesc', $value]);
+                            } else {
+                                $query->andFilterWhere(['like', $column['data'], $value]);
+                            }
                         }
                     }
                     return $query;
