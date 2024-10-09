@@ -42,11 +42,11 @@ use yii\widgets\ActiveForm;
                 <div class="row">
                     <div class="col-2 justify-center">Amount:</div>
                     <div class="col-4">
-                        <label for="a_min">From</label>
+                        <label for="a_min">Min</label>
                         <input id="a_min" name="a_min" class="form-control" type="number" step="0.01" onblur="setNumberDecimal('a_min', this.value, 2);" min="0" <?php if (isset($request['a_min'])) echo "value=\"" . $request['a_min'] . "\""; ?> />
                     </div>
                     <div class="col-4">
-                        <label for="a_max">To</label>
+                        <label for="a_max">Max</label>
                         <input id="a_max" name="a_max" class="form-control" type="number" step="0.01" onblur="setNumberDecimal('a_max', this.value, 2);" min="0" <?php if (isset($request['a_max'])) echo "value=\"" . $request['a_max'] . "\""; ?> />
                     </div>
                 </div>

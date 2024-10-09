@@ -83,26 +83,33 @@ class PaySa5 extends \yii\db\ActiveRecord
     {
         return $this->hasOne(PayA5type::class, ['a5Code' => 'sa5Fld']);
     }
+
+    public function getPayA5type()
+    {
+        return $this->hasOne(PayA5type::className(), ['a5Code' => 'sa5Fld']);
+    }
     //
     //
     //
-    public function getUPFno($ID){
+    public function getUPFno($ID)
+    {
         //Get the Employee Status (Temporary/Contract..) Name from emp_status table
         //
         $UPFno = Yii::$app->db->createCommand("SELECT empUPFNo FROM pay_sa5 where id='$ID'")->queryScalar();
-        if (!empty($UPFno)){
+        if (!empty($UPFno)) {
             return $UPFno;
-        }else{
+        } else {
             return NULL;
         }
     }
     //
     //
-    public function behaviors(){
+    public function behaviors()
+    {
         return [
             'auditEntryBehaviors' => [
                 'class' => AuditEntryBehaviors::class
-             ],
+            ],
         ];
     }
     //

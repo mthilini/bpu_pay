@@ -55,6 +55,7 @@ class AcctLedger extends \yii\db\ActiveRecord
             'ledgSub' => 'Ledger Sub',
             'ledgCode' => 'Ledger Code',
             'ledgDesc' => 'Ledger Description',
+            'mainCode0.mainDesc' => 'Main Description',
         ];
     }
 
@@ -76,6 +77,11 @@ class AcctLedger extends \yii\db\ActiveRecord
     public function getMainCode0()
     {
         return $this->hasOne(AcctLedgmain::class, ['mainCode' => 'mainCode']);
+    }
+
+    public function getAcctLedgmain()
+    {
+        return $this->hasOne(AcctLedgmain::className(), ['mainCode' => 'mainCode']);
     }
     //
     //

@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\models\PayIncome;
 use app\models\PayIncomeSearch;
+use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -45,6 +47,36 @@ class PayIncomeController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actions()
+    {
+        return [
+            'datatables' => [
+                'class' => 'nullref\datatable\DataTableAction',
+                'query' => PayIncome::find(),
+                'applyOrder' => function ($query, $columns, $order) {
+                    //custom ordering logic
+                    $orderBy = [];
+                    foreach ($order as $orderItem) {
+                        $orderBy[$columns[$orderItem['column']]['data']] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                    }
+                    return $query->orderBy($orderBy);
+                },
+                'applyFilter' => function ($query, $columns, $search) {
+                    //custom search logic
+                    $modelClass = $query->modelClass;
+                    $schema = $modelClass::getTableSchema()->columns;
+                    foreach ($columns as $column) {
+                        if ($column['searchable'] == 'true' && array_key_exists($column['data'], $schema) !== false) {
+                            $value = empty($search['value']) ? $column['search']['value'] : $search['value'];
+                            $query->andFilterWhere(['like', $column['data'], $value]);
+                        }
+                    }
+                    return $query;
+                },
+            ],
+        ];
     }
 
     /**
@@ -130,5 +162,32 @@ class PayIncomeController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionReport()
+    {
+        $searchModel = new PayIncomeSearch();
+        $query = $searchModel->search([])->query;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $request = Yii::$app->request->get();
+        if (!empty($request)) {
+            if (!empty($request['a_min']) && !empty($request['a_max'])) {
+                if (is_numeric($request['a_min']) && is_numeric($request['a_max']))
+                    $query->andFilterWhere(['between', 'incIncome', $request['a_min'], $request['a_max']]);
+            }
+        } else {
+            $dataProvider = null;
+        }
+
+        return $this->render('report', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'request' => $request,
+        ]);
     }
 }

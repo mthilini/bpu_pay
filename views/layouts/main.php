@@ -16,9 +16,10 @@ $this->registerCssFile(Yii::getAlias('@web') . '/css/style.css');
 
 $publishedRes = Yii::$app->assetManager->publish('@vendor/hail812/yii2-adminlte3/src/web/js');
 $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\hail812\adminlte3\assets\AdminLteAsset']);
-$this->registerJsFile(Yii::getAlias('@web') . '/js/main.js');
+
 $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js');
 $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js');
+$this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js');
 
 ?>
 <?php $this->beginPage() ?>

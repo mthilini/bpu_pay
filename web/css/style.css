@@ -307,6 +307,10 @@ th {
     text-align: right;
 }
 
+.align-center {
+    text-align: center;
+}
+
 .justify-center {
     display: flex;
     justify-content: center;
@@ -317,4 +321,8 @@ th {
     display: flex;
     justify-content: center;
     align-items: end;
+}
+
+.view-edit-div {
+    width: 135px !important;
 }

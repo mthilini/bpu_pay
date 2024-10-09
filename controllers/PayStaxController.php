@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\models\PayStax;
 use app\models\PayStaxSearch;
+use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -45,6 +47,45 @@ class PayStaxController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actions()
+    {
+        return [
+            'datatables' => [
+                'class' => 'nullref\datatable\DataTableAction',
+                'query' => PayStax::find()->innerJoinWith('payTaxtype'),
+                'applyOrder' => function ($query, $columns, $order) {
+                    //custom ordering logic
+                    $orderBy = [];
+                    foreach ($order as $orderItem) {
+                        if ($columns[$orderItem['column']]['data'] == 'payTaxtype.taxDesc') {
+                            $orderBy['pay_taxtype.taxDesc'] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                        } else {
+                            $orderBy[$columns[$orderItem['column']]['data']] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                        }
+                    }
+                    return $query->orderBy($orderBy);
+                },
+                'applyFilter' => function ($query, $columns, $search) {
+                    //custom search logic
+                    $modelClass = $query->modelClass;
+                    $schema = $modelClass::getTableSchema()->columns;
+                    foreach ($columns as $column) {
+                        if ($column['searchable'] == 'true' && (array_key_exists($column['data'], $schema) !== false || $column['data'] == 'payTaxtype.taxDesc')) {
+                            $value = empty($search['value']) ? $column['search']['value'] : $search['value'];
+
+                            if ($column['data'] == 'payTaxtype.taxDesc') {
+                                $query->andFilterWhere(['like', 'pay_taxtype.taxDesc', $value]);
+                            } else {
+                                $query->andFilterWhere(['like', $column['data'], $value]);
+                            }
+                        }
+                    }
+                    return $query;
+                },
+            ],
+        ];
     }
 
     /**
@@ -130,5 +171,43 @@ class PayStaxController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionReport()
+    {
+        $searchModel = new PayStaxSearch();
+        $query = $searchModel->search([])->query;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $request = Yii::$app->request->get();
+        if (!empty($request)) {
+            if (!empty($request['from']) && !empty($request['to'])) {
+                if ($request['from'] <= $request['to']) {
+                    $query->andFilterWhere(['between', 'staxStart', $request['from'], $request['to']])
+                        ->andFilterWhere(['between', 'staxEnd', $request['from'], $request['to']]);
+                }
+            }
+
+            if (!empty($request['a_min']) && !empty($request['a_max'])) {
+                if (is_numeric($request['a_min']) && is_numeric($request['a_max']))
+                    $query->andFilterWhere(['between', 'staxAmt', $request['a_min'], $request['a_max']]);
+            }
+            if (!empty($request['i_min']) && !empty($request['i_max'])) {
+                if (is_numeric($request['i_min']) && is_numeric($request['i_max']))
+                    $query->andFilterWhere(['between', 'staxIncome', $request['i_min'], $request['i_max']]);
+            }
+        } else {
+            $dataProvider = null;
+        }
+
+        return $this->render('report', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'request' => $request,
+        ]);
     }
 }

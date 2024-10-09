@@ -69,6 +69,11 @@ class PaySded extends \yii\db\ActiveRecord
     {
         return $this->hasOne(PayFields::class, ['fldCode' => 'sdedFld']);
     }
+
+    public function getPayFields()
+    {
+        return $this->hasOne(PayFields::className(), ['fldCode' => 'sdedFld']);
+    }
     //
     //
     //

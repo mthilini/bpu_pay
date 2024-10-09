@@ -47,6 +47,36 @@ class PayA5typeController extends Controller
         ]);
     }
 
+    public function actions()
+    {
+        return [
+            'datatables' => [
+                'class' => 'nullref\datatable\DataTableAction',
+                'query' => PayA5type::find(),
+                'applyOrder' => function ($query, $columns, $order) {
+                    //custom ordering logic
+                    $orderBy = [];
+                    foreach ($order as $orderItem) {
+                        $orderBy[$columns[$orderItem['column']]['data']] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                    }
+                    return $query->orderBy($orderBy);
+                },
+                'applyFilter' => function ($query, $columns, $search) {
+                    //custom search logic
+                    $modelClass = $query->modelClass;
+                    $schema = $modelClass::getTableSchema()->columns;
+                    foreach ($columns as $column) {
+                        if ($column['searchable'] == 'true' && array_key_exists($column['data'], $schema) !== false) {
+                            $value = empty($search['value']) ? $column['search']['value'] : $search['value'];
+                            $query->andFilterWhere(['like', $column['data'], $value]);
+                        }
+                    }
+                    return $query;
+                },
+            ],
+        ];
+    }
+
     /**
      * Displays a single PayA5type model.
      * @param int $id ID

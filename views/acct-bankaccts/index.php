@@ -17,18 +17,37 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="card">
     <div class="card-bofy m-2">
-       
+
         <?= \nullref\datatable\DataTable::widget([
             'tableOptions' => [
                 'class' => 'table',
             ],
             'columns' => [
-                'id',
-                'bactAcctCode',
-                'bactBankCode',
-                'bactBankName',
-                'bactAcctNo',
-                'bactAcctName',
+                [
+                    'title' => 'ID',
+                    'data' => 'id',
+                    'sClass' => 'align-center',
+                ],
+                [
+                    'title' => 'Cashbook',
+                    'data' => 'bactAcctCode',
+                ],
+                [
+                    'title' => 'Bank Code',
+                    'data' => 'bactBankCode',
+                ],
+                [
+                    'title' => 'Bank Name',
+                    'data' => 'bactBankName',
+                ],
+                [
+                    'title' => 'Account No.',
+                    'data' => 'bactAcctNo',
+                ],
+                [
+                    'title' => 'Account Name',
+                    'data' => 'bactAcctName',
+                ],
                 [
                     'class' => 'nullref\datatable\LinkColumn',
                     'queryParams' => ['id'],
@@ -52,5 +71,3 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </div>
 </div>
-
-

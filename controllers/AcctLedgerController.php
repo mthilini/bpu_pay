@@ -49,6 +49,45 @@ class AcctLedgerController extends Controller
         ]);
     }
 
+    public function actions()
+    {
+        return [
+            'datatables' => [
+                'class' => 'nullref\datatable\DataTableAction',
+                'query' => AcctLedger::find()->innerJoinWith('acctLedgmain'),
+                'applyOrder' => function ($query, $columns, $order) {
+                    //custom ordering logic
+                    $orderBy = [];
+                    foreach ($order as $orderItem) {
+                        if ($columns[$orderItem['column']]['data'] == 'acctLedgmain.mainDesc') {
+                            $orderBy['acct_ledgmain.mainDesc'] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                        } else {
+                            $orderBy[$columns[$orderItem['column']]['data']] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                        }
+                    }
+                    return $query->orderBy($orderBy);
+                },
+                'applyFilter' => function ($query, $columns, $search) {
+                    //custom search logic
+                    $modelClass = $query->modelClass;
+                    $schema = $modelClass::getTableSchema()->columns;
+                    foreach ($columns as $column) {
+                        if ($column['searchable'] == 'true' && (array_key_exists($column['data'], $schema) !== false) || $column['data'] == 'acctLedgmain.mainDesc') {
+                            $value = empty($search['value']) ? $column['search']['value'] : $search['value'];
+
+                            if ($column['data'] == 'acctLedgmain.mainDesc') {
+                                $query->andFilterWhere(['like', 'acct_ledgmain.mainDesc', $value]);
+                            } else {
+                                $query->andFilterWhere(['like', $column['data'], $value]);
+                            }
+                        }
+                    }
+                    return $query;
+                },
+            ],
+        ];
+    }
+
     /**
      * Displays a single AcctLedger model.
      * @param int $id ID

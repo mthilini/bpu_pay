@@ -49,6 +49,46 @@ class AcctProjController extends Controller
         ]);
     }
 
+    public function actions()
+    {
+        return [
+            'datatables' => [
+                'class' => 'nullref\datatable\DataTableAction',
+                'query' => AcctProj::find()->innerJoinWith('acctProg'),
+                'applyOrder' => function ($query, $columns, $order) {
+                    //custom ordering logic
+                    $orderBy = [];
+                    foreach ($order as $orderItem) {
+                        if ($columns[$orderItem['column']]['data'] == 'acctProg.progDesc') {
+                            $orderBy['acct_prog.progDesc'] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                        } else {
+                            $orderBy[$columns[$orderItem['column']]['data']] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                        }
+                    }
+                    return $query->orderBy($orderBy);
+                },
+                'applyFilter' => function ($query, $columns, $search) {
+                    //custom search logic
+                    $modelClass = $query->modelClass;
+                    $schema = $modelClass::getTableSchema()->columns;
+
+                    foreach ($columns as $column) {
+                        if ($column['searchable'] == 'true' && (array_key_exists($column['data'], $schema) !== false || $column['data'] == 'acctProg.progDesc')) {
+                            $value = empty($search['value']) ? $column['search']['value'] : $search['value'];
+
+                            if ($column['data'] == 'acctProg.progDesc') {
+                                $query->andFilterWhere(['like', 'acct_prog.progDesc', $value]);
+                            } else {
+                                $query->andFilterWhere(['like', $column['data'], $value]);
+                            }
+                        }
+                    }
+                    return $query;
+                },
+            ],
+        ];
+    }
+
     /**
      * Displays a single AcctProj model.
      * @param int $id ID

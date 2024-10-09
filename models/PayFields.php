@@ -65,7 +65,7 @@ class PayFields extends \yii\db\ActiveRecord
      */
     public function getPayFieldType()
     {
-        return $this->hasOne(PayFieldType::class, ['typeCode' => 'fldType']);
+        return $this->hasOne(PayFieldType::className(), ['typeCode' => 'fldType']);
     }
     //
     //

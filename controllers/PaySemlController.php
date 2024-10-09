@@ -49,6 +49,46 @@ class PaySemlController extends Controller
         ]);
     }
 
+    public function actions()
+    {
+        return [
+            'datatables' => [
+                'class' => 'nullref\datatable\DataTableAction',
+                'query' => PaySeml::find()->innerJoinWith('payFields'),
+                'applyOrder' => function ($query, $columns, $order) {
+                    //custom ordering logic
+                    $orderBy = [];
+                    foreach ($order as $orderItem) {
+                        if ($columns[$orderItem['column']]['data'] == 'payFields.fldName') {
+                            $orderBy['pay_fields.fldName'] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                        } else {
+                            $orderBy[$columns[$orderItem['column']]['data']] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
+                        }
+                    }
+                    return $query->orderBy($orderBy);
+                },
+                'applyFilter' => function ($query, $columns, $search) {
+                    //custom search logic
+                    $modelClass = $query->modelClass;
+                    $schema = $modelClass::getTableSchema()->columns;
+
+                    foreach ($columns as $column) {
+                        if ($column['searchable'] == 'true' && (array_key_exists($column['data'], $schema) !== false || $column['data'] == 'payFields.fldName')) {
+                            $value = empty($search['value']) ? $column['search']['value'] : $search['value'];
+
+                            if ($column['data'] == 'payFields.fldName') {
+                                $query->andFilterWhere(['like', 'pay_fields.fldName', $value]);
+                            } else {
+                                $query->andFilterWhere(['like', $column['data'], $value]);
+                            }
+                        }
+                    }
+                    return $query;
+                },
+            ],
+        ];
+    }
+
     /**
      * Displays a single PaySeml model.
      * @param int $id ID
@@ -152,6 +192,11 @@ class PaySemlController extends Controller
                 if ($request['from'] <= $request['to']) {
                     $query->andFilterWhere(['between', 'semlStart', $request['from'], $request['to']])
                         ->andFilterWhere(['between', 'semlEnd', $request['from'], $request['to']]);
+                }
+
+                if (!empty($request['a_min']) && !empty($request['a_max'])) {
+                    if (is_numeric($request['a_min']) && is_numeric($request['a_max']))
+                        $query->andFilterWhere(['between', 'semlAmt', $request['a_min'], $request['a_max']]);
                 }
             }
         } else {

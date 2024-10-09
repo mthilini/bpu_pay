@@ -71,7 +71,7 @@ class AcctBankacctsController extends Controller
                     foreach ($columns as $column) {
                         if ($column['searchable'] == 'true' && array_key_exists($column['data'], $schema) !== false) {
                             $value = empty ($search['value']) ? $column['search']['value'] : $search['value'];
-                            $query->orFilterWhere(['like', $column['data'], $value]);
+                            $query->andFilterWhere(['like', $column['data'], $value]);
                         }
                     }
                     return $query;

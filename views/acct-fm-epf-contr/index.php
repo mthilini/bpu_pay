@@ -1,99 +1,79 @@
 <?php
 
-use app\models\AcctFmEpfContr;
-use app\models\Employee;
-use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\grid\ActionColumn;
-use yii\grid\GridView;
+use yii\web\JsExpression;
 
 /** @var yii\web\View $this */
-/** @var app\models\PayFmEpfContrSearch $searchModel */
+/** @var app\models\AcctBankacctsSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = 'Employee EPF Contribution';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="acct-fm-epf-contr-index">
+<div class="card">
+    <div class="card-bofy m-2">
 
-    <p>
-        <?= Html::a('New EPF Opening Balance', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+        <?= \nullref\datatable\DataTable::widget([
+            'tableOptions' => [
+                'class' => 'table',
+            ],
+            'columns' => [
+                [
+                    'title' => 'ID',
+                    'data' => 'id',
+                    'sClass' => 'align-center',
+                ],
+                [
+                    'title' => 'EPF No',
+                    'data' => 'empUPFNo',
+                ],
+                // [
+                //     'label' => 'Emp. Name',
+                //     'value' =>  function ($model) {
+                //         $employeemodel = new Employee();
+                //         $employeeName = $employeemodel->getEmpName($model->empUPFNo);
+                //         return $employeeName;
+                //     },
+                //     'format' => 'raw',
+                // ],
+                [
+                    'title' => 'Year',
+                    'data' => 'epfYear',
+                    'sClass' => 'align-right',
+                ],
+                [
+                    'title' => 'Starting Balance',
+                    'data' => 'epfBalStart',
+                    'format' => ['currency'],
+                    'sClass' => 'align-right',
+                ],
+                [
+                    'title' => 'Closing Balance',
+                    'data' => 'epfBalEnd',
+                    'format' => ['currency'],
+                    'sClass' => 'align-right',
+                ],
+                [
+                    'class' => 'nullref\datatable\LinkColumn',
+                    'queryParams' => ['id'],
+                    'render' => new JsExpression('function render(data, type, row, meta ){
+                        return "<a href=\"view?id="+row["id"]+"\" class=\"btn btn-info btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to view details\">View</a><a href=\"update?id="+row["id"]+"\" class=\"btn btn-warning btn-sm mr-1\" style=\"font-size: 9px;\" title=\"Click to update details\">Update</a>"
+                    }'),
+                    'sClass' => 'align-center view-edit-div',
+                ],
+                [
+                    'class' => 'nullref\datatable\LinkColumn',
+                    'url' => ['delete'],
+                    'linkOptions' => ['data-confirm' => 'Are you sure you want to delete this item?', 'data-method' => 'post', 'class' => 'btn btn-danger btn-sm', 'style' => 'font-size: 9px;'],
+                    'label' => 'Delete',
+                ],
+            ],
+            //'dataProvider' => $dataProvider,
+            'withColumnFilter' => true,
+            'serverSide' => true,
+            'ajax' => Yii::getAlias('@web/acct-fm-epf-contr/datatables'),
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); 
-    ?>
+        ]) ?>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            //'id',
-            [
-                'attribute' => 'empUPFNo',
-                'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:100px;']
-            ],
-            [
-                'label' => 'Emp. Name',
-                'value' =>  function ($model) {
-                    $employeemodel = new Employee();
-                    $employeeName = $employeemodel->getEmpName($model->empUPFNo);
-                    return $employeeName;
-                },
-                'format' => 'raw',
-                'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:350px;']
-            ],
-            [
-                'attribute' => 'epfYear',
-                'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:100px;']
-            ],
-            [
-                'attribute' => 'epfBalStart',
-                'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:200px;text-align:right;'],
-                //['format'=>'number', 'decimals'=>2, 'decPoint'=>'.', 'thousandSep'=>','], 
-                'format' => ['currency'],
-            ],
-            //'epfJan10',
-            //'epfJan15',
-            //'epfFeb10',
-            //'epfFeb15',
-            //'epfMar10',
-            //'epfMar15',
-            //'epfApr10',
-            //'epfApr15',
-            //'epfMay10',
-            //'epfMay15',
-            //'epfJun10',
-            //'epfJun15',
-            //'epfJul10',
-            //'epfJul15',
-            //'epfAug10',
-            //'epfAug15',
-            //'epfSep10',
-            //'epfSep15',
-            //'epfOct10',
-            //'epfOct15',
-            //'epfNov10',
-            //'epfNov15',
-            //'epfDec10',
-            //'epfDec15',
-            //'epfIntrRate',
-            //'epfInterest',
-            [
-                'attribute' => 'epfBalEnd',
-                'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:200px;text-align:right;'],
-                'format' => ['currency'],
-            ],
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, AcctFmEpfContr $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                }
-            ],
-        ],
-    ]); ?>
-
-
+    </div>
 </div>
