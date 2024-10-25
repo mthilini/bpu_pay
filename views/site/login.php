@@ -2,13 +2,14 @@
 
 use yii\helpers\Html;
 
-$this->registerCssFile('/css/login.css');
+$this->registerCssFile(Yii::getAlias('@web') . '/css/login.css');
+$this->title = 'Login';
 
 ?>
 <div class="site-login">
     <div class="login-header">BPU - Accounts System</div>
-    <div class="login-body">
-        <div class="card">
+    <div class="row login-body d-flex justify-content-center">
+        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-10 card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
 
