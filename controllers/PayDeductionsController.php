@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Employee;
 use app\models\PayDeductions;
 use app\models\PayDeductionsSearch;
 use Yii;
@@ -189,5 +190,18 @@ class PayDeductionsController extends Controller
             'dataProvider' => $dataProvider,
             'request' => $request,
         ]);
+    }
+
+    public function actionEmployee($empUPFNo)
+    {
+
+        $empName = "Name NOT in HR Info";
+        $EmpName = Yii::$app->db2->createCommand("SELECT concat(empTitle,' ',namewithinitials) as empName FROM employees where empUPFNo='$empUPFNo'")->queryScalar();
+        if (!empty($EmpName)) {
+            $empName = $EmpName;
+        }
+
+        return $empName;
+        
     }
 }

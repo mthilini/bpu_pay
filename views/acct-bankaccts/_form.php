@@ -42,16 +42,16 @@ use yii\widgets\ActiveForm;
 
                                                                         <div class="row">
                                                                                 <div class="col-6">
-                                                                                        <?= $form->field($model, 'bactVoucher')->textInput(['maxlength' => true]) ?>
+                                                                                        <?= $form->field($model, 'bactVoucher')->textInput(['maxlength' => 11]) ?>
                                                                                 </div>
                                                                                 <div class="col-6">
-                                                                                        <?= $form->field($model, 'bactReceipt')->textInput(['maxlength' => true]) ?>
+                                                                                        <?= $form->field($model, 'bactReceipt')->textInput(['maxlength' => 11]) ?>
                                                                                 </div>
                                                                         </div>
 
                                                                         <div class="row">
                                                                                 <div class="col-6">
-                                                                                        <?= $form->field($model, 'bactJournal')->textInput(['maxlength' => true]) ?>
+                                                                                        <?= $form->field($model, 'bactJournal')->textInput(['maxlength' => 11]) ?>
                                                                                 </div>
                                                                         </div>
 

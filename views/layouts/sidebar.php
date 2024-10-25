@@ -46,9 +46,9 @@
                     // ],
                     // ['label' => 'Simple Link', 'icon' => 'th', 'badge' => '<span class="right badge badge-danger">New</span>'],
                     // ['label' => 'Yii2 PROVIDED', 'header' => true],
-                    ['label' => 'Login', 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
-                    ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
-                    ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank'],
+                    // ['label' => 'Login', 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
+                    // ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
+                    // ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank'],
                     ['label' => 'MENU', 'header' => true],
                     [
                         'label' => 'Cash Book',
@@ -119,8 +119,6 @@
                             ['label' => 'Account Programs Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-prog/report']],
                             ['label' => 'Account Projects Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-proj/report']],
                             ['label' => 'Account Votes Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-votes/report']],
-                            ['label' => 'Payment Ledgers Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-payledg/report']],
-                            ['label' => 'Receipt Ledgers Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rctsledg/report']],
 
                             ['label' => 'Employee Details (Finance) Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-fin-details/report']],
                             ['label' => 'Standing Order Allowances Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-seml/report']],
@@ -130,6 +128,12 @@
                             ['label' => 'Pay Incomes Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-income/report']],
                             ['label' => 'Pay Deductions Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-deductions/report']],
                             ['label' => 'Pay Standing-Tax Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-stax/report']],
+
+                            ['label' => 'Payment Cash Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-paycash/report']],
+                            ['label' => 'Receipt Cash Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rcts-cash/report']],
+                            ['label' => 'Main Cash Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-maincash/report']],
+                            ['label' => 'Payment Ledgers Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-payledg/report']],
+                            ['label' => 'Receipt Ledgers Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rctsledg/report']],
                         ]
                     ],
                     // ['label' => 'LABELS', 'header' => true],

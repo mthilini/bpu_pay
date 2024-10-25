@@ -3,24 +3,17 @@
 namespace app\controllers;
 
 use app\models\AcctBankaccts;
-use app\models\AcctRctsledg;
-use app\models\AcctRctsledgSearch;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-
+use app\models\AcctMaincash;
+use app\models\AcctMaincashSearch;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
-/**
- * AcctRctsledgController implements the CRUD actions for AcctRctsledg model.
- */
-class AcctRctsledgController extends Controller
+class AcctMaincashController extends Controller
 {
-    /**
-     * @inheritDoc
-     */
     public function behaviors()
     {
         return array_merge(
@@ -37,13 +30,13 @@ class AcctRctsledgController extends Controller
     }
 
     /**
-     * Lists all AcctRctsledg models.
+     * Lists all AcctMaincash models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new AcctRctsledgSearch();
+        $searchModel = new AcctMaincashSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -52,38 +45,8 @@ class AcctRctsledgController extends Controller
         ]);
     }
 
-    public function actions()
-    {
-        return [
-            'datatables' => [
-                'class' => 'nullref\datatable\DataTableAction',
-                'query' => AcctRctsledg::find(),
-                'applyOrder' => function ($query, $columns, $order) {
-                    //custom ordering logic
-                    $orderBy = [];
-                    foreach ($order as $orderItem) {
-                        $orderBy[$columns[$orderItem['column']]['data']] = $orderItem['dir'] == 'asc' ? SORT_ASC : SORT_DESC;
-                    }
-                    return $query->orderBy($orderBy);
-                },
-                'applyFilter' => function ($query, $columns, $search) {
-                    //custom search logic
-                    $modelClass = $query->modelClass;
-                    $schema = $modelClass::getTableSchema()->columns;
-                    foreach ($columns as $column) {
-                        if ($column['searchable'] == 'true' && array_key_exists($column['data'], $schema) !== false) {
-                            $value = empty($search['value']) ? $column['search']['value'] : $search['value'];
-                            $query->andFilterWhere(['like', $column['data'], $value]);
-                        }
-                    }
-                    return $query;
-                },
-            ],
-        ];
-    }
-
     /**
-     * Displays a single AcctRctsledg model.
+     * Displays a single AcctMaincash model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -96,13 +59,13 @@ class AcctRctsledgController extends Controller
     }
 
     /**
-     * Creates a new AcctRctsledg model.
+     * Creates a new AcctMaincash model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new AcctRctsledg();
+        $model = new AcctMaincash();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -118,7 +81,7 @@ class AcctRctsledgController extends Controller
     }
 
     /**
-     * Updates an existing AcctRctsledg model.
+     * Updates an existing AcctMaincash model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -138,7 +101,7 @@ class AcctRctsledgController extends Controller
     }
 
     /**
-     * Deletes an existing AcctRctsledg model.
+     * Deletes an existing AcctMaincash model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -152,43 +115,25 @@ class AcctRctsledgController extends Controller
     }
 
     /**
-     * Finds the AcctRctsledg model based on its primary key value.
+     * Finds the AcctMaincash model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return AcctRctsledg the loaded model
+     * @return AcctMaincash the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = AcctRctsledg::findOne(['id' => $id])) !== null) {
+        if (($model = AcctMaincash::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-    
-    public function actionDropdown($id)
-    {
-        $countPosts = \app\models\AcctLedger::find()
-            ->where(['mainCode' => "$id"])
-            ->count();
-
-        $posts =  \app\models\AcctLedger::find()
-            ->where(['mainCode' => "$id"])
-            ->orderBy('ledgCode ASC')
-            ->all();
-        echo "<option value=''>-</option>";
-        if ($countPosts > 0) {
-            foreach ($posts as $post) {
-                echo "<option value='" . $post->ledgSub . "'>" . \Yii::t('app', $post->ledgDesc) . "</option>";
-            }
-        }
-    }
 
     public function actionReport()
     {
 
-        $searchModel = new AcctRctsledgSearch();
+        $searchModel = new AcctMaincashSearch();
         $query = $searchModel->search([])->query;
 
         $dataProvider = new ActiveDataProvider([
@@ -200,22 +145,22 @@ class AcctRctsledgController extends Controller
         if (!empty($request)) {
             if (!empty($request['from']) && !empty($request['to'])) {
                 if ($request['from'] <= $request['to']) {
-                    $query->andFilterWhere(['between', 'rctDate', $request['from'], $request['to']]);
+                    $query->andFilterWhere(['between', 'mainDate', $request['from'], $request['to']]);
                 }
             }
 
             if (!empty($request['cashbook'])) {
                 $query->andFilterWhere([
-                    'rctCashBk' => $request['cashbook']
+                    'mainCashBk' => $request['cashbook']
                 ]);
             }
         } else {
             $dataProvider = null;
         }
         $query->orderBy([
-            'rctDate' => SORT_ASC,
-            'rctNo' => SORT_ASC,
-            'rctSub' => SORT_ASC
+            'mainDate' => SORT_ASC,
+            'mainVchRct' => SORT_ASC,
+            'mainSub' => SORT_ASC
         ]);
 
         $cashbookItems = ArrayHelper::map(AcctBankaccts::find()->orderBy('bactAcctCode')->all(), 'id', 'bactAcctCode');

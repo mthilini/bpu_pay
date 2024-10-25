@@ -304,11 +304,11 @@ th {
 }
 
 .align-right {
-    text-align: right;
+    text-align: right !important;
 }
 
 .align-center {
-    text-align: center;
+    text-align: center !important;
 }
 
 .justify-center {
@@ -325,4 +325,13 @@ th {
 
 .view-edit-div {
     width: 135px !important;
+}
+
+.grand-tot {
+    text-align: right !important;
+    border-color: #212529 !important;
+    border-bottom-style: solid !important;
+    border-bottom-width: medium !important;
+    border-top-style: solid !important;
+    border-top-width: thin !important;
 }

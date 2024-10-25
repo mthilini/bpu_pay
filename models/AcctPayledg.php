@@ -43,7 +43,7 @@ class AcctPayledg extends \yii\db\ActiveRecord
             [['payDate', 'payVch', 'payCat', 'paySub', 'payCashBk', 'payPayRct', 'payDept'], 'required'],
             [['payDate'], 'safe'],
             [['payVch'], 'integer'],
-            [['payAmount'], 'number'],
+            [['payAmount'], 'number', 'numberPattern' => '/^\s*[-+]?[0-9]*[.,]?[0-9]+([eE][-+]?[0-9]+)?\s*$/'],
             [['paySub', 'payCat', 'payCashBk'], 'string', 'max' => 2],
             [['payLedg'], 'string', 'max' => 17],
             [['payRmks'], 'string', 'max' => 100],
@@ -102,5 +102,10 @@ class AcctPayledg extends \yii\db\ActiveRecord
     public function getPayVch0()
     {
         return $this->hasOne(AcctPayhdr::class, ['payVch' => 'payVch']);
+    }
+
+    public function getAcctLedgerDesc()
+    {
+        return $this->hasOne(AcctLedger::className(), ['ledgCode' => 'payLedg']);
     }
 }

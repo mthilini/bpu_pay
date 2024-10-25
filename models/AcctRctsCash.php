@@ -38,14 +38,14 @@ class AcctRctscash extends \yii\db\ActiveRecord
         return [
             [['rctDate'], 'safe'],
             [['rctNo'], 'integer'],
-            [['rctAmount'], 'number'],
+            [['rctAmount', 'rctDeduct'], 'number'],
             [['rctSub', 'rctCashBk'], 'string', 'max' => 2],
             [['rctType'], 'string', 'max' => 12],
             [['rctName'], 'string', 'max' => 150],
             [['rctRmks'], 'string', 'max' => 100],
-            [['rctNo', 'rctSub'], 'unique', 'targetAttribute' => ['rctNo', 'rctSub']],
+            [['rctNo', 'rctSub', 'rctType'], 'unique', 'targetAttribute' => ['rctNo', 'rctSub', 'rctType']],
             [['rctCashBk'], 'exist', 'skipOnError' => true, 'targetClass' => AcctBankaccts::class, 'targetAttribute' => ['rctCashBk' => 'bactAcctCode']],
-        /*    [['rctNo'], 'exist', 'skipOnError' => true, 'targetClass' => AcctRctshdr::class, 'targetAttribute' => ['rctNo' => 'rctNo']],   */
+            /*    [['rctNo'], 'exist', 'skipOnError' => true, 'targetClass' => AcctRctshdr::class, 'targetAttribute' => ['rctNo' => 'rctNo']],   */
         ];
     }
 

@@ -19,7 +19,8 @@ class AcctPaycashSearch extends AcctPaycash
         return [
             [['id', 'payVch'], 'integer'],
             [['payDate', 'paySub', 'payType', 'payRmks', 'payCashBk', 'payPayee'], 'safe'],
-            [['payAmount'], 'number'],
+            [['payAmount', 'payDeduct'], 'number'],
+            [['payVch', 'paySub', 'payType'], 'unique'],
         ];
     }
 
@@ -63,6 +64,7 @@ class AcctPaycashSearch extends AcctPaycash
             'payDate' => $this->payDate,
             'payVch' => $this->payVch,
             'payAmount' => $this->payAmount,
+            'payDeduct' => $this->payDeduct,
         ]);
 
         $query->andFilterWhere(['like', 'paySub', $this->paySub])

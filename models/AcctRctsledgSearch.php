@@ -41,7 +41,7 @@ class AcctRctsledgSearch extends AcctRctsledg
      */
     public function search($params)
     {
-        $query = AcctRctsledg::find();
+        $query = AcctRctsledg::find()->innerJoinWith('acctLedgerDesc');
 
         // add conditions that should always apply here
 

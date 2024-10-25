@@ -101,4 +101,9 @@ class AcctRctsledg extends \yii\db\ActiveRecord
     {
         return $this->hasOne(AcctRctshdr::class, ['rctNo' => 'rctNo']);
     }
+
+    public function getAcctLedgerDesc()
+    {
+        return $this->hasOne(AcctLedger::className(), ['ledgCode' => 'rctLedger']);
+    }
 }

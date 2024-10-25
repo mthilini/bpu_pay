@@ -1,6 +1,6 @@
 <?php
 
-$this->title = 'Receipt Ledgers Report';
+$this->title = 'Receipt Cash Report';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -18,14 +18,15 @@ $this->params['breadcrumbs'][] = $this->title;
         <table id="report" class="table dataTable">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>#</th>
                     <th>Date</th>
-                    <th>Receipt No</th>
-                    <th>Receipt Sub</th>
-                    <th>Category</th>
-                    <th>Ledger</th>
-                    <th>Ledger Description</th>
-                    <th>Amount (Rs.)</th>
+                    <th>Receipt</th>
+                    <th>Sub</th>
+                    <th>Rct Type</th>
+                    <th>Rct Category</th>
+                    <th>Payer Name</th>
+                    <th>Amount</th>
+                    <th>Deduction</th>
                     <th>Remarks</th>
                     <th>Cashbook</th>
                 </tr>
@@ -39,14 +40,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         $i++;
                 ?>
                         <tr>
-                            <td class="dt-center"><?= $i ?></td>
+                            <td class="dt-center"><?= $i; ?></td>
                             <td><?= $model->rctDate ?></td>
                             <td><?= $model->rctNo ?></td>
                             <td><?= $model->rctSub ?></td>
+                            <td><?= $model->rctType ?></td>
                             <td><?= $model->rctCat ?></td>
-                            <td><?= $model->rctLedger ?></td>
-                            <td><?= $model->acctLedgerDesc->ledgDesc ?></td>
-                            <td><?= number_format($model->rctAmount, 2, '.', ',') ?></td>
+                            <td><?= $model->rctName ?></td>
+                            <td style="text-align: right !important;"><?= number_format($model->rctAmount, 2, '.', ',') ?></td>
+                            <td style="text-align: right !important;"><?= number_format($model->rctDeduct, 2, '.', ',') ?></td>
                             <td><?= $model->rctRmks ?></td>
                             <td><?= $model->rctCashBk ?></td>
                         </tr>
@@ -66,30 +68,31 @@ $this->params['breadcrumbs'][] = $this->title;
                 topStart: {
                     buttons: [{
                             extend: 'copyHtml5',
-                            title: 'Receipt Ledgers Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Receipt Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'csvHtml5',
-                            title: 'Receipt Ledgers Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Receipt Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'excelHtml5',
-                            title: 'Receipt Ledgers Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Receipt Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'pdfHtml5',
-                            title: 'Receipt Ledgers Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Receipt Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             orientation: "landscape",
                             customize: function(doc) {
                                 var rowCount = doc.content[1].table.body.length;
                                 for (i = 1; i < rowCount - 1; i++) {
                                     doc.content[1].table.body[i][7].alignment = 'right';
+                                    doc.content[1].table.body[i][8].alignment = 'right';
                                 };
                             }
                         },
                         {
                             extend: 'print',
-                            title: 'Receipt Ledgers Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Receipt Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\nFrom: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             pageSize: "A3",
                             orientation: "landscape",
                             columnDefs: [{
@@ -97,7 +100,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     className: 'text-left'
                                 },
                                 {
-                                    targets: [7],
+                                    targets: [7, 8],
                                     className: 'text-right'
                                 }
                             ]

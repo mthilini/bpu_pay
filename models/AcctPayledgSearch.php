@@ -41,7 +41,7 @@ class AcctPayledgSearch extends AcctPayledg
      */
     public function search($params)
     {
-        $query = AcctPayledg::find();
+        $query = AcctPayledg::find()->innerJoinWith('acctLedgerDesc');
 
         // add conditions that should always apply here
 

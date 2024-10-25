@@ -39,7 +39,7 @@ class AcctPaycash extends \yii\db\ActiveRecord
         return [
             [['payDate'], 'safe'],
             [['payVch'], 'integer'],
-            [['payAmount'], 'number'],
+            [['payAmount', 'payDeduct'], 'number'],
             [['paySub', 'payCashBk'], 'string', 'max' => 2],
             [['payType'], 'string', 'max' => 12],
             /*
@@ -54,7 +54,7 @@ class AcctPaycash extends \yii\db\ActiveRecord
             */
             [['payRmks'], 'string', 'max' => 100],
             [['payPayee'], 'string', 'max' => 150],
-            [['payVch', 'paySub'], 'unique', 'targetAttribute' => ['payVch', 'paySub']],
+            [['payVch', 'paySub', 'payType'], 'unique', 'targetAttribute' => ['payVch', 'paySub', 'payType']],
             [['payCashBk'], 'exist', 'skipOnError' => true, 'targetClass' => AcctBankaccts::class, 'targetAttribute' => ['payCashBk' => 'bactAcctCode']],
             /*[['payVch'], 'exist', 'skipOnError' => true, 'targetClass' => AcctPayhdr::class, 'targetAttribute' => ['payVch' => 'payVch'] ], */
         ];

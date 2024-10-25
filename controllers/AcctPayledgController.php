@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\AcctBankaccts;
 use app\models\AcctPayledg;
 use app\models\AcctPayledgSearch;
 use yii\web\Controller;
@@ -12,6 +13,7 @@ use \app\models\AcctLedger;
 use \app\models\AcctLedgerSearch;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 
 /**
  * AcctPayledgController implements the CRUD actions for AcctPayledg model.
@@ -189,6 +191,7 @@ class AcctPayledgController extends Controller
 
     public function actionReport()
     {
+
         $searchModel = new AcctPayledgSearch();
         $query = $searchModel->search([])->query;
 
@@ -198,17 +201,34 @@ class AcctPayledgController extends Controller
         ]);
 
         $request = Yii::$app->request->get();
-        if (isset($request['a_min']) && $request['a_min'] != '' && isset($request['a_max']) && $request['a_max'] != '') {
-            if (is_numeric($request['a_min']) && is_numeric($request['a_max']))
-                $query->andFilterWhere(['between', 'id', $request['a_min'], $request['a_max']]);
-        } else
-            $dataProvider = null;
+        if (!empty($request)) {
+            if (!empty($request['from']) && !empty($request['to'])) {
+                if ($request['from'] <= $request['to']) {
+                    $query->andFilterWhere(['between', 'payDate', $request['from'], $request['to']]);
+                }
+            }
 
+            if (!empty($request['cashbook'])) {
+                $query->andFilterWhere([
+                    'payCashBk' => $request['cashbook']
+                ]);
+            }
+        } else {
+            $dataProvider = null;
+        }
+        $query->orderBy([
+            'payDate' => SORT_ASC,
+            'payVch' => SORT_ASC,
+            'paySub' => SORT_ASC
+        ]);
+
+        $cashbookItems = ArrayHelper::map(AcctBankaccts::find()->orderBy('bactAcctCode')->all(), 'id', 'bactAcctCode');
 
         return $this->render('report', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'request' => $request,
+            'cashbooks' => $cashbookItems
         ]);
     }
 }

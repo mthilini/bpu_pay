@@ -25,6 +25,10 @@ $config = [
                 ],
             ],
         ],
+
+        'formatter' => [
+            'dateFormat' => 'dd/MM/yyyy',
+        ],
         'db' => $db,
     ],
     'params' => $params,

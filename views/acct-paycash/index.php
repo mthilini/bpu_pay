@@ -21,7 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('New Payment', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -31,42 +32,42 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             [
-                'attribute' =>'payDate',
+                'attribute' => 'payDate',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:100px;']
             ],
             [
-                'attribute' =>'payVch',
+                'attribute' => 'payVch',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:100px;']
             ],
             [
-                'attribute' =>'paySub',
+                'attribute' => 'paySub',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:50px;']
             ],
             [
-                'attribute' =>'payPayee',
+                'attribute' => 'payPayee',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:200px;']
             ],
             [
-                'attribute' =>'payType',
+                'attribute' => 'payType',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:100px;']
             ],
             [
-                'attribute' =>'payAmount',
+                'attribute' => 'payAmount',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:150px;']
             ],
             [
-                'attribute' =>'payRmks',
+                'attribute' => 'payRmks',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:150px;']
             ],
             [
-                'attribute' =>'payCashBk',
+                'attribute' => 'payCashBk',
                 'contentOptions' => ['style' => 'font-size:14px;display:table-cell;width:5px;']
             ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, AcctPaycash $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>

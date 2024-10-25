@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Employee;
 use yii\web\JsExpression;
 
 /** @var yii\web\View $this */
@@ -26,6 +27,27 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'title' => 'Emp. UPF No',
                     'data' => 'empUPFNo',
+                ],
+                [
+                    'title' => 'Emp. Name',
+                    'data' => 'empUPFNo',
+                    "render" => new JsExpression('function(data, type, full){
+                                    // var ename = "Name NOT in HR Info";
+                                    jQuery.ajax({
+                                        method: "POST",
+                                        url: "employee?empUPFNo=" + data,
+                                        headers: {
+                                            "X-CSRF-TOKEN": $("meta[name=\'csrf-token\']").attr("content")
+                                        },
+                                        success: function (ename) {
+                                            return ename;
+                                        },
+                                        error: function (xhr, ajaxOptions, thrownError) {
+                                            return "Name NOT in HR Info";
+                                        }
+                                    });
+                                    // return ename
+                                }'),
                 ],
                 // [
                 //     'label' => 'Emp. Name',

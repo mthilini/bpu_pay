@@ -17,24 +17,34 @@ use yii\widgets\ActiveForm;
 
     <div class="m-2">
         <div class="row">
-            <div class="col-md-6 col-lg-5 col-xl-4">
-                <label>Amount</label>
+            <div class="col-2">
+                <label>Cashbook</label>
+                <select name="cashbook" id="cashbook" class="form-control">
+                    <option></option>
+                    <?php if ($cashbooks != null) {
+                        foreach ($cashbooks as $key => $cashbook) {
+                    ?>
+                            <option <?= (!empty($request['cashbook']) && $request['cashbook'] == $cashbook) ? 'selected="selected"' : '' ?>><?= $cashbook; ?></option>
+                    <?php }
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="col-3">
+                <label>Date</label>
                 <div class="row">
                     <div class="col-6">
-                        <input id="a_min" name="a_min" class="form-control" type="number" step="0.01" onblur="setNumberDecimal('a_min', this.value, 2);" min="0" <?php if (isset($request['a_min'])) echo "value=\"" . $request['a_min'] . "\""; ?> />
+                        <input id="from" name="from" class="form-control" type="date" <?php if (!empty($request['from'])) echo "value=\"" . $request['from'] . "\""; ?> />
                     </div>
                     <div class="col-6">
-                        <input id="a_max" name="a_max" class="form-control" type="number" step="0.01" onblur="setNumberDecimal('a_max', this.value, 2);" min="0" <?php if (isset($request['a_max'])) echo "value=\"" . $request['a_max'] . "\""; ?> />
+                        <input id="to" name="to" class="form-control" type="date" <?php if (!empty($request['to'])) echo "value=\"" . $request['to'] . "\""; ?> />
                     </div>
                 </div>
             </div>
-        </div>
-
-        <br />
-
-        <div class="form-group">
-            <?= Html::submitButton('Search', ['class' => 'btn btn-primary btn-sm']) ?>
-            <?= Html::a('Reset', ['/acct-rctsledg/report'], ['class' => 'btn btn-outline-secondary btn-sm']) ?>
+            <div class="form-group col-2">
+                <?= Html::submitButton('Search', ['class' => 'btn btn-primary btn-sm']) ?>
+                <?= Html::a('Reset', ['/acct-rctsledg/report'], ['class' => 'btn btn-secondary btn-sm']) ?>
+            </div>
         </div>
     </div>
 

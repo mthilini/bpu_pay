@@ -63,6 +63,7 @@ class PayDeductions extends \yii\db\ActiveRecord
     {
         return $this->hasOne(PayPayhd::class, ['empUPFNo' => 'empUPFNo']);
     }
+    
     //
     //
     //

@@ -54,7 +54,7 @@ use app\models\PayFields;
                                                     'showOn' => 'button',
                                                     'buttonImage' => 'images/calendar.gif',
                                                     'buttonImageOnly' => true,
-                                                    'buttonText' => 'Select date'
+                                                    'buttonText' => 'Select date',
                                                 ],
                                             ])->textInput(['type' => 'date']) ?>
                                         </div>

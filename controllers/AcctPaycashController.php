@@ -2,11 +2,15 @@
 
 namespace app\controllers;
 
+use app\models\AcctBankaccts;
 use app\models\AcctPaycash;
 use app\models\AcctPaycashSearch;
+use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * AcctPaycashController implements the CRUD actions for AcctPaycash model.
@@ -130,5 +134,46 @@ class AcctPaycashController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionReport()
+    {
+
+        $searchModel = new AcctPaycashSearch();
+        $query = $searchModel->search([])->query;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $request = Yii::$app->request->get();
+        if (!empty($request)) {
+            if (!empty($request['from']) && !empty($request['to'])) {
+                if ($request['from'] <= $request['to']) {
+                    $query->andFilterWhere(['between', 'payDate', $request['from'], $request['to']]);
+                }
+            }
+
+            if (!empty($request['cashbook'])) {
+                $query->andFilterWhere(['payCashBk' => $request['cashbook']]);
+            }
+        } else {
+            $dataProvider = null;
+        }
+        $query->orderBy([
+            'payDate' => SORT_ASC,
+            'payVch' => SORT_ASC,
+            'paySub' => SORT_ASC
+        ]);
+
+        $cashbookItems = ArrayHelper::map(AcctBankaccts::find()->orderBy('bactAcctCode')->all(), 'id', 'bactAcctCode');
+
+        return $this->render('report', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'request' => $request,
+            'cashbooks' => $cashbookItems
+        ]);
     }
 }

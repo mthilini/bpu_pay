@@ -12,6 +12,11 @@ class Employee extends \yii\db\ActiveRecord
 {
     /**
      */
+    public static function tableName()
+    {
+        return 'employees';
+    }
+
     public function getDepartment($deptID)
     {
         //Get the Department Name from departments table
@@ -102,5 +107,4 @@ class Employee extends \yii\db\ActiveRecord
             return "Name NOT in HR Info";
         }
     }
-    
 }

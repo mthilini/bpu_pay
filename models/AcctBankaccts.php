@@ -50,6 +50,7 @@ class AcctBankaccts extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            // [['bactAcctCode'], 'required'],
             [['bactVoucher', 'bactReceipt', 'bactJournal'], 'integer'],
             [['bactAcctCode'], 'string', 'max' => 2],
             [['bactBankCode'], 'string', 'max' => 7],
@@ -164,11 +165,12 @@ class AcctBankaccts extends \yii\db\ActiveRecord
     }
     //
     //
-    public function behaviors(){
+    public function behaviors()
+    {
         return [
             'auditEntryBehaviors' => [
                 'class' => AuditEntryBehaviors::class
-             ],
+            ],
         ];
     }
     //

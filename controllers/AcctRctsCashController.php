@@ -2,11 +2,15 @@
 
 namespace app\controllers;
 
+use app\models\AcctBankaccts;
 use app\models\AcctRctsCash;
 use app\models\AcctRctsCashSearch;
+use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * AcctRctsCashController implements the CRUD actions for AcctRctsCash model.
@@ -130,5 +134,47 @@ class AcctRctsCashController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+
+    public function actionReport()
+    {
+
+        $searchModel = new AcctRctsCashSearch();
+        $query = $searchModel->search([])->query;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $request = Yii::$app->request->get();
+        if (!empty($request)) {
+            if (!empty($request['from']) && !empty($request['to'])) {
+                if ($request['from'] <= $request['to']) {
+                    $query->andFilterWhere(['between', 'rctDate', $request['from'], $request['to']]);
+                }
+            }
+
+            if (!empty($request['cashbook'])) {
+                $query->andFilterWhere(['rctCashBk' => $request['cashbook']]);
+            }
+        } else {
+            $dataProvider = null;
+        }
+        $query->orderBy([
+            'rctDate' => SORT_ASC,
+            'rctNo' => SORT_ASC,
+            'rctSub' => SORT_ASC
+        ]);
+
+        $cashbookItems = ArrayHelper::map(AcctBankaccts::find()->orderBy('bactAcctCode')->all(), 'id', 'bactAcctCode');
+
+        return $this->render('report', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'request' => $request,
+            'cashbooks' => $cashbookItems
+        ]);
     }
 }

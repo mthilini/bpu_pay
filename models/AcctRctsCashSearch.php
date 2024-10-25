@@ -19,7 +19,8 @@ class AcctRctsCashSearch extends AcctRctsCash
         return [
             [['id', 'rctNo'], 'integer'],
             [['rctDate', 'rctSub', 'rctType', 'rctName', 'rctRmks', 'rctCashBk'], 'safe'],
-            [['rctAmount'], 'number'],
+            [['rctAmount', 'rctDeduct'], 'number'],
+            [['rctNo', 'rctSub', 'rctType'], 'unique']
         ];
     }
 
@@ -63,6 +64,7 @@ class AcctRctsCashSearch extends AcctRctsCash
             'rctDate' => $this->rctDate,
             'rctNo' => $this->rctNo,
             'rctAmount' => $this->rctAmount,
+            'rctDeduct' => $this->rctDeduct,
         ]);
 
         $query->andFilterWhere(['like', 'rctSub', $this->rctSub])

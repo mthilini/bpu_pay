@@ -1,6 +1,6 @@
 <?php
 
-$this->title = 'Payment Ledger Report';
+$this->title = 'Payment Cash Report';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -18,14 +18,15 @@ $this->params['breadcrumbs'][] = $this->title;
         <table id="report" class="table dataTable">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>#</th>
                     <th>Date</th>
-                    <th>Pay Voucher</th>
-                    <th>Pay Sub</th>
-                    <th>Category</th>
-                    <th>Ledger</th>
-                    <th>Ledger Description</th>
-                    <th>Amount (Rs.)</th>
+                    <th>Voucher</th>
+                    <th>Sub No.</th>
+                    <th>Pay Type</th>
+                    <th>Pay Category</th>
+                    <th>Payee Name</th>
+                    <th>Amount</th>
+                    <th>Deduction</th>
                     <th>Remarks</th>
                     <th>Cashbook</th>
                 </tr>
@@ -39,14 +40,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         $i++;
                 ?>
                         <tr>
-                            <td class="dt-center"><?= $i ?></td>
+                            <td class="dt-center"><?= $i; ?></td>
                             <td><?= $model->payDate ?></td>
                             <td><?= $model->payVch ?></td>
                             <td><?= $model->paySub ?></td>
+                            <td><?= $model->payType ?></td>
                             <td><?= $model->payCat ?></td>
-                            <td><?= $model->payLedg ?></td>
-                            <td><?= $model->acctLedgerDesc->ledgDesc ?></td>
+                            <td><?= $model->payPayee ?></td>
                             <td><?= number_format($model->payAmount, 2, '.', ',') ?></td>
+                            <td><?= $model->payDeduct ?></td>
                             <td><?= $model->payRmks ?></td>
                             <td><?= $model->payCashBk ?></td>
                         </tr>
@@ -66,19 +68,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 topStart: {
                     buttons: [{
                             extend: 'copyHtml5',
-                            title: 'Payment Ledger Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Payment Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'csvHtml5',
-                            title: 'Payment Ledger Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Payment Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'excelHtml5',
-                            title: 'Payment Ledger Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Payment Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'pdfHtml5',
-                            title: 'Payment Ledger Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Payment Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             orientation: "landscape",
                             customize: function(doc) {
                                 var rowCount = doc.content[1].table.body.length;
@@ -89,22 +91,22 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                         {
                             extend: 'print',
-                            title: 'Payment Ledger Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\nFrom: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Payment Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\nFrom: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             pageSize: "A3",
                             orientation: "landscape",
+                            columnDefs: [{
+                                    targets: '_all',
+                                    className: 'text-left'
+                                },
+                                {
+                                    targets: [7],
+                                    className: 'text-right'
+                                }
+                            ]
                         }
                     ],
                 },
             },
-            // columnDefs: [{
-            //         targets: '_all',
-            //         className: 'text-left'
-            //     },
-            //     {
-            //         targets: [0],
-            //         className: 'text-center'
-            //     }
-            // ]
         });
     });
 </script>

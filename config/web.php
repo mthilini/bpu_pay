@@ -50,6 +50,9 @@ $config = [
             'showScriptName' => false,
             'rules' => [],
         ],
+        'formatter' => [
+            'dateFormat' => 'dd/MM/yyyy',
+        ],
     ],
     'params' => $params,
 ];

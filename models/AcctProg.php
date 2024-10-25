@@ -3,8 +3,6 @@
 namespace app\models;
 
 use Yii;
-use mehulpatel\mod\audit\behaviors\AuditEntryBehaviors;
-use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "acct_prog".
@@ -59,16 +57,4 @@ class AcctProg extends \yii\db\ActiveRecord
     {
         return $this->hasMany(AcctVotes::class, ['projCode' => 'progCode']);
     }
-    //
-    //
-    public function behaviors()
-    {
-        return [
-            'auditEntryBehaviors' => [
-                'class' => AuditEntryBehaviors::class
-            ],
-        ];
-    }
-    //
-    //
 }
