@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var app\models\AcctPayledgSearch $model */
+/** @var app\models\AcctMainLedgSearch $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="acct-payledg-search">
+<div class="acct-mainledg-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['report'],
@@ -43,7 +43,7 @@ use yii\widgets\ActiveForm;
             </div>
             <div class="form-group col-2">
                 <?= Html::submitButton('Search', ['class' => 'btn btn-primary btn-sm']) ?>
-                <?= Html::a('Reset', ['/acct-payledg/report'], ['class' => 'btn btn-secondary btn-sm']) ?>
+                <?= Html::a('Reset', ['/acct-mainledg/report'], ['class' => 'btn btn-secondary btn-sm']) ?>
             </div>
         </div>
     </div>

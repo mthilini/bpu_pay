@@ -18,13 +18,13 @@ use yii\widgets\ActiveForm;
     <div class="m-2">
         <div class="row">
             <div class="col-2">
-                <label>Cashbook</label>
-                <select name="cashbook" id="cashbook" class="form-control">
+                <label>Ledger</label>
+                <select name="ledger" id="ledger" class="form-control">
                     <option></option>
-                    <?php if ($cashbooks != null) {
-                        foreach ($cashbooks as $key => $cashbook) {
+                    <?php if ($ledgers != null) {
+                        foreach ($ledgers as $key => $ledger) {
                     ?>
-                            <option <?= (!empty($request['cashbook']) && $request['cashbook'] == $cashbook) ? 'selected="selected"' : '' ?>><?= $cashbook; ?></option>
+                            <option <?= (!empty($request['ledger']) && $request['ledger'] == $ledger) ? 'selected="selected"' : '' ?>><?= $ledger; ?></option>
                     <?php }
                     }
                     ?>

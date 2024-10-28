@@ -128,12 +128,19 @@
                             ['label' => 'Pay Incomes Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-income/report']],
                             ['label' => 'Pay Deductions Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-deductions/report']],
                             ['label' => 'Pay Standing-Tax Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-stax/report']],
-
+                        ]
+                    ],
+                    [
+                        'label' => 'System Reports',
+                        'icon' => 'fas fa-file-alt',
+                        'items' => [
                             ['label' => 'Payment Cash Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-paycash/report']],
                             ['label' => 'Receipt Cash Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rcts-cash/report']],
                             ['label' => 'Main Cash Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-maincash/report']],
                             ['label' => 'Payment Ledgers Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-payledg/report']],
                             ['label' => 'Receipt Ledgers Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rctsledg/report']],
+                            ['label' => 'Main Ledgers Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-mainledg/report']],
+                            ['label' => 'Trial Detail Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-trialdtl/report']],
                         ]
                     ],
                     // ['label' => 'LABELS', 'header' => true],

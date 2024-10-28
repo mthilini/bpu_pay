@@ -84,7 +84,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             orientation: "landscape",
                             customize: function(doc) {
                                 var rowCount = doc.content[1].table.body.length;
-                                for (i = 1; i < rowCount - 1; i++) {
+                                for (i = 1; i < rowCount; i++) {
+                                    doc.content[1].table.body[i][2].alignment = 'right';
                                     doc.content[1].table.body[i][7].alignment = 'right';
                                     doc.content[1].table.body[i][8].alignment = 'right';
                                 };
@@ -92,7 +93,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                         {
                             extend: 'print',
-                            title: 'Receipt Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\nFrom: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Receipt Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             pageSize: "A3",
                             orientation: "landscape",
                             columnDefs: [{
@@ -100,7 +101,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     className: 'text-left'
                                 },
                                 {
-                                    targets: [7, 8],
+                                    targets: [2, 7, 8],
                                     className: 'text-right'
                                 }
                             ]

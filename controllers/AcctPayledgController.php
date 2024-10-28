@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-use app\models\AcctBankaccts;
 use app\models\AcctPayledg;
 use app\models\AcctPayledgSearch;
 use yii\web\Controller;
@@ -208,9 +207,9 @@ class AcctPayledgController extends Controller
                 }
             }
 
-            if (!empty($request['cashbook'])) {
+            if (!empty($request['ledger'])) {
                 $query->andFilterWhere([
-                    'payCashBk' => $request['cashbook']
+                    'payLedg' => $request['ledger']
                 ]);
             }
         } else {
@@ -222,13 +221,13 @@ class AcctPayledgController extends Controller
             'paySub' => SORT_ASC
         ]);
 
-        $cashbookItems = ArrayHelper::map(AcctBankaccts::find()->orderBy('bactAcctCode')->all(), 'id', 'bactAcctCode');
+        $ledgerItems = ArrayHelper::map(AcctLedger::find()->orderBy('ledgCode')->all(), 'id', 'ledgCode');
 
         return $this->render('report', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'request' => $request,
-            'cashbooks' => $cashbookItems
+            'ledgers' => $ledgerItems
         ]);
     }
 }

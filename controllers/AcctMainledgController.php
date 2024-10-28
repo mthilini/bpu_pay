@@ -2,26 +2,19 @@
 
 namespace app\controllers;
 
-use app\models\AcctBankaccts;
 use app\models\AcctLedger;
-use app\models\AcctRctsledg;
-use app\models\AcctRctsledgSearch;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-
+use app\models\AcctMainledg;
+use app\models\AcctMainledgSearch;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
-/**
- * AcctRctsledgController implements the CRUD actions for AcctRctsledg model.
- */
-class AcctRctsledgController extends Controller
+class AcctMainledgController extends Controller
 {
-    /**
-     * @inheritDoc
-     */
+
     public function behaviors()
     {
         return array_merge(
@@ -38,13 +31,13 @@ class AcctRctsledgController extends Controller
     }
 
     /**
-     * Lists all AcctRctsledg models.
+     * Lists all AcctPayledg models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new AcctRctsledgSearch();
+        $searchModel = new AcctMainledgSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -58,7 +51,7 @@ class AcctRctsledgController extends Controller
         return [
             'datatables' => [
                 'class' => 'nullref\datatable\DataTableAction',
-                'query' => AcctRctsledg::find(),
+                'query' => AcctMainledg::find(),
                 'applyOrder' => function ($query, $columns, $order) {
                     //custom ordering logic
                     $orderBy = [];
@@ -84,7 +77,7 @@ class AcctRctsledgController extends Controller
     }
 
     /**
-     * Displays a single AcctRctsledg model.
+     * Displays a single AcctPayledg model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -97,13 +90,13 @@ class AcctRctsledgController extends Controller
     }
 
     /**
-     * Creates a new AcctRctsledg model.
+     * Creates a new AcctPayledg model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new AcctRctsledg();
+        $model = new AcctMainledg();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -119,7 +112,7 @@ class AcctRctsledgController extends Controller
     }
 
     /**
-     * Updates an existing AcctRctsledg model.
+     * Updates an existing AcctPayledg model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -139,7 +132,7 @@ class AcctRctsledgController extends Controller
     }
 
     /**
-     * Deletes an existing AcctRctsledg model.
+     * Deletes an existing AcctPayledg model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -153,21 +146,23 @@ class AcctRctsledgController extends Controller
     }
 
     /**
-     * Finds the AcctRctsledg model based on its primary key value.
+     * Finds the AcctPayledg model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return AcctRctsledg the loaded model
+     * @return AcctPayledg the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = AcctRctsledg::findOne(['id' => $id])) !== null) {
+        if (($model = AcctMainledg::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
+    //
+    //
+    //Dependant Dropdown list for ledger-sub, filter ledger-sub according to ledgerMain
     public function actionDropdown($id)
     {
         $countPosts = \app\models\AcctLedger::find()
@@ -189,7 +184,7 @@ class AcctRctsledgController extends Controller
     public function actionReport()
     {
 
-        $searchModel = new AcctRctsledgSearch();
+        $searchModel = new AcctMainledgSearch();
         $query = $searchModel->search([])->query;
 
         $dataProvider = new ActiveDataProvider([
@@ -201,31 +196,31 @@ class AcctRctsledgController extends Controller
         if (!empty($request)) {
             if (!empty($request['from']) && !empty($request['to'])) {
                 if ($request['from'] <= $request['to']) {
-                    $query->andFilterWhere(['between', 'rctDate', $request['from'], $request['to']]);
+                    $query->andFilterWhere(['between', 'mainDate', $request['from'], $request['to']]);
                 }
             }
 
             if (!empty($request['ledger'])) {
                 $query->andFilterWhere([
-                    'rctLedger' => $request['ledger']
+                    'mainLedg' => $request['ledger']
                 ]);
             }
         } else {
             $dataProvider = null;
         }
         $query->orderBy([
-            'rctDate' => SORT_ASC,
-            'rctNo' => SORT_ASC,
-            'rctSub' => SORT_ASC
+            'mainDate' => SORT_ASC,
+            'mainVchRct' => SORT_ASC,
+            'mainSub' => SORT_ASC
         ]);
 
-        $ledgerItems = ArrayHelper::map(AcctLedger::find()->orderBy('ledgCode')->all(), 'id', 'ledgCode');
+        $ledgersItems = ArrayHelper::map(AcctLedger::find()->orderBy('ledgCode')->all(), 'id', 'ledgCode');
 
         return $this->render('report', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'request' => $request,
-            'ledgers' => $ledgerItems
+            'ledgers' => $ledgersItems
         ]);
     }
 }

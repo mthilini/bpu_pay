@@ -2,26 +2,15 @@
 
 namespace app\controllers;
 
-use app\models\AcctBankaccts;
-use app\models\AcctLedger;
-use app\models\AcctRctsledg;
-use app\models\AcctRctsledgSearch;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-
+use app\models\AcctTrialdtl;
+use app\models\AcctTrialdtlSearch;
 use Yii;
 use yii\data\ActiveDataProvider;
-use yii\helpers\ArrayHelper;
+use yii\filters\VerbFilter;
+use yii\web\NotFoundHttpException;
 
-/**
- * AcctRctsledgController implements the CRUD actions for AcctRctsledg model.
- */
-class AcctRctsledgController extends Controller
+class AcctTrialdtlController extends \yii\web\Controller
 {
-    /**
-     * @inheritDoc
-     */
     public function behaviors()
     {
         return array_merge(
@@ -37,14 +26,9 @@ class AcctRctsledgController extends Controller
         );
     }
 
-    /**
-     * Lists all AcctRctsledg models.
-     *
-     * @return string
-     */
     public function actionIndex()
     {
-        $searchModel = new AcctRctsledgSearch();
+        $searchModel = new AcctTrialdtlSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -58,7 +42,7 @@ class AcctRctsledgController extends Controller
         return [
             'datatables' => [
                 'class' => 'nullref\datatable\DataTableAction',
-                'query' => AcctRctsledg::find(),
+                'query' => AcctTrialdtl::find(),
                 'applyOrder' => function ($query, $columns, $order) {
                     //custom ordering logic
                     $orderBy = [];
@@ -83,12 +67,6 @@ class AcctRctsledgController extends Controller
         ];
     }
 
-    /**
-     * Displays a single AcctRctsledg model.
-     * @param int $id ID
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionView($id)
     {
         return $this->render('view', [
@@ -96,14 +74,9 @@ class AcctRctsledgController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new AcctRctsledg model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
     public function actionCreate()
     {
-        $model = new AcctRctsledg();
+        $model = new AcctTrialdtl();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -118,13 +91,6 @@ class AcctRctsledgController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing AcctRctsledg model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -138,13 +104,6 @@ class AcctRctsledgController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing AcctRctsledg model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -152,16 +111,9 @@ class AcctRctsledgController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the AcctRctsledg model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id ID
-     * @return AcctRctsledg the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
-        if (($model = AcctRctsledg::findOne(['id' => $id])) !== null) {
+        if (($model = AcctTrialdtl::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
@@ -189,7 +141,7 @@ class AcctRctsledgController extends Controller
     public function actionReport()
     {
 
-        $searchModel = new AcctRctsledgSearch();
+        $searchModel = new AcctTrialdtlSearch();
         $query = $searchModel->search([])->query;
 
         $dataProvider = new ActiveDataProvider([
@@ -201,31 +153,32 @@ class AcctRctsledgController extends Controller
         if (!empty($request)) {
             if (!empty($request['from']) && !empty($request['to'])) {
                 if ($request['from'] <= $request['to']) {
-                    $query->andFilterWhere(['between', 'rctDate', $request['from'], $request['to']]);
+                    $query->andFilterWhere(['between', 'trialdtlDate', $request['from'], $request['to']]);
                 }
             }
 
-            if (!empty($request['ledger'])) {
+            if (!empty($request['month'])) {
                 $query->andFilterWhere([
-                    'rctLedger' => $request['ledger']
+                    'trialdtlMonth' => $request['month']
+                ]);
+            }
+            if (!empty($request['tb'])) {
+                $query->andFilterWhere([
+                    'trialdtlTB' => $request['tb']
                 ]);
             }
         } else {
             $dataProvider = null;
         }
         $query->orderBy([
-            'rctDate' => SORT_ASC,
-            'rctNo' => SORT_ASC,
-            'rctSub' => SORT_ASC
+            'ledgCode' => SORT_ASC,
+            'trialdtlDate' => SORT_ASC,
         ]);
-
-        $ledgerItems = ArrayHelper::map(AcctLedger::find()->orderBy('ledgCode')->all(), 'id', 'ledgCode');
 
         return $this->render('report', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'request' => $request,
-            'ledgers' => $ledgerItems
         ]);
     }
 }

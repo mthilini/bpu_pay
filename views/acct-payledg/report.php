@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?=
         $this->render('_search', [
             'request' => $request,
-            'cashbooks' => $cashbooks
+            'ledgers' => $ledgers
         ]);
         ?>
 
@@ -66,30 +66,31 @@ $this->params['breadcrumbs'][] = $this->title;
                 topStart: {
                     buttons: [{
                             extend: 'copyHtml5',
-                            title: 'Payment Ledger Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Payment Ledger Report' + ($('#ledger').val() != '' ? ' - ' + $('#ledger').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'csvHtml5',
-                            title: 'Payment Ledger Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Payment Ledger Report' + ($('#ledger').val() != '' ? ' - ' + $('#ledger').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'excelHtml5',
-                            title: 'Payment Ledger Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Payment Ledger Report' + ($('#ledger').val() != '' ? ' - ' + $('#ledger').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'pdfHtml5',
-                            title: 'Payment Ledger Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Payment Ledger Report' + ($('#ledger').val() != '' ? ' - ' + $('#ledger').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             orientation: "landscape",
                             customize: function(doc) {
                                 var rowCount = doc.content[1].table.body.length;
-                                for (i = 1; i < rowCount - 1; i++) {
+                                for (i = 1; i < rowCount; i++) {
+                                    doc.content[1].table.body[i][2].alignment = 'right';
                                     doc.content[1].table.body[i][7].alignment = 'right';
                                 };
                             }
                         },
                         {
                             extend: 'print',
-                            title: 'Payment Ledger Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\nFrom: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Payment Ledger Report' + ($('#ledger').val() != '' ? ' - ' + $('#ledger').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             pageSize: "A3",
                             orientation: "landscape",
                         }
