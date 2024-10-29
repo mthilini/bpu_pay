@@ -93,19 +93,16 @@ $this->params['breadcrumbs'][] = $this->title;
                             title: 'Payment Ledger Report' + ($('#ledger').val() != '' ? ' - ' + $('#ledger').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             pageSize: "A3",
                             orientation: "landscape",
+                            customize: function(win) {
+                                $(win.document.body).find('table tbody td:nth-child(1)').css('text-align', 'center');
+                                $(win.document.body).find('table tbody td:nth-child(2)').css('text-align', 'center');
+                                $(win.document.body).find('table tbody td:nth-child(3)').css('text-align', 'right');
+                                $(win.document.body).find('table tbody td:nth-child(8)').css('text-align', 'right');
+                            }
                         }
                     ],
                 },
             },
-            // columnDefs: [{
-            //         targets: '_all',
-            //         className: 'text-left'
-            //     },
-            //     {
-            //         targets: [0],
-            //         className: 'text-center'
-            //     }
-            // ]
         });
     });
 </script>

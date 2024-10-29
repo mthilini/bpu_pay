@@ -66,9 +66,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <tfoot>
                 <tr>
                     <td colspan="2"></td>
-                    <td style="text-align: right;"><label for="">Grand Total :</label></td>
-                    <td><?= number_format($totDebit, 2, '.', ','); ?></td>
-                    <td><?= number_format($totCredit, 2, '.', ','); ?></td>
+                    <td class="grand-tot" style="text-align: right;"><label>Grand Total :</label></td>
+                    <td class="grand-tot"><label><?= number_format($totDebit, 2, '.', ','); ?></label></td>
+                    <td class="grand-tot"><label><?= number_format($totCredit, 2, '.', ','); ?></label></td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -96,8 +96,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                         {
                             extend: 'pdfHtml5',
-                            title: 'Trial Detail Report' + ($('#month').val() != '' ? ' Month: ' + $('#month').val() : '') + ($('#tb').val() != '' ? ' TB: ' + $('#tb').val() : ''),
-                            orientation: "landscape",
+                            title: 'Trial Detail Report' + ($('#month').val() != '' ? ' - Month:' + $('#month').val() : '') + ($('#tb').val() != '' ? ' - TB:' + $('#tb').val() : ''),
+                            // orientation: "landscape",
                             customize: function(doc) {
                                 var rowCount = doc.content[1].table.body.length;
                                 for (i = 1; i < rowCount - 1; i++) {
@@ -110,22 +110,19 @@ $this->params['breadcrumbs'][] = $this->title;
                                 doc.content[1].table.body[rowCount - 1][2].alignment = 'right';
                                 doc.content[1].table.body[rowCount - 1][3].alignment = 'right';
                                 doc.content[1].table.body[rowCount - 1][4].alignment = 'right';
-                            }
+                            } 
                         },
                         {
                             extend: 'print',
                             title: 'Trial Detail Report' + ($('#month').val() != '' ? ' Month: ' + $('#month').val() : '') + ($('#tb').val() != '' ? ' TB: ' + $('#tb').val() : ''),
                             pageSize: "A3",
                             orientation: "landscape",
-                            columnDefs: [{
-                                    targets: [3, 4, 5],
-                                    className: 'text-right'
-                                },
-                                {
-                                    targets: [6],
-                                    className: 'text-center'
-                                }
-                            ]
+                            customize: function(win) {
+                                $(win.document.body).find('table tbody td:nth-child(1)').css('text-align', 'center');
+                                $(win.document.body).find('table tbody td:nth-child(4)').css('text-align', 'right');
+                                $(win.document.body).find('table tbody td:nth-child(5)').css('text-align', 'right');
+                                $(win.document.body).find('table tbody td:nth-child(6)').css('text-align', 'right');
+                            }
                         }
                     ],
                 },
