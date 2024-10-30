@@ -14,6 +14,7 @@ function setNumberDecimal(id, value, limit) {
 
 $(document).ready(function () {
     $('.datatable').DataTable({
-        responsive: true
+        responsive: true,
+        "autoWidth": false,
     });
 });

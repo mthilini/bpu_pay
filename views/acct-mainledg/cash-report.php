@@ -1,6 +1,6 @@
 <?php
 
-$this->title = 'Main Cash Report';
+$this->title = 'Main Ledger Report (Cashbook Wise)';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -9,7 +9,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="card-bofy m-2">
 
         <?=
-        $this->render('_search', [
+        $this->render('_cash-search', [
             'request' => $request,
             'cashbooks' => $cashbooks
         ]);
@@ -22,11 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th rowspan="2">Date</th>
                     <th rowspan="2">Receipt</th>
                     <th rowspan="2">Sub</th>
-                    <th rowspan="2">Type</th>
+                    <th rowspan="2">Ledger</th>
+                    <th rowspan="2">Ledger Desc</th>
                     <th rowspan="2">Category</th>
-                    <th rowspan="2">Name</th>
                     <th style="text-align: center;" colspan="2">Amount</th>
-                    <th rowspan="2">Deduction</th>
                     <th rowspan="2">Remarks</th>
                     <th rowspan="2">Cashbook</th>
                     <th rowspan="2">Tot. Amnt</th>
@@ -54,9 +53,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?= $model->mainDate; ?></td>
                             <td><?= $model->mainVchRct; ?></td>
                             <td><?= $model->mainSub; ?></td>
-                            <td><?= $model->mainType; ?></td>
+                            <td><?= $model->mainLedg; ?></td>
+                            <td><?= $model->acctLedgerDesc->ledgDesc; ?></td>
                             <td><?= $model->mainCat; ?></td>
-                            <td><?= $model->mainName; ?></td>
                             <?php
                             $amount = $model->mainAmount;
                             if ($model->mainPayRct == 'P') {
@@ -71,7 +70,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <td>&nbsp;</td>
                                 <td style="text-align: right;"><?= number_format($amount, 2, '.', ','); ?></td>
                             <?php } ?>
-                            <td style="text-align: right !important;"><?= $model->mainDeduct; ?></td>
                             <td><?= $model->mainRmks; ?></td>
                             <td><?= $model->mainCashBk; ?></td>
                             <td><?= number_format($totAmount, 2, '.', ','); ?></td>
@@ -84,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="10">&nbsp;</td>
+                    <td colspan="9">&nbsp;</td>
                     <td colspan="2" class="grand-tot"><label for="tot_header">Grand Total :</label></td>
                     <td class="grand-tot"><label for="tot"><?= number_format($totAmount, 2, '.', ','); ?></label></td>
                 </tr>
@@ -96,24 +94,23 @@ $this->params['breadcrumbs'][] = $this->title;
 <script>
     $(document).ready(function() {
         $('#report').DataTable({
-            "autoWidth": false,
             layout: {
                 topStart: {
                     buttons: [{
                             extend: 'copyHtml5',
-                            title: 'Main Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Main Ledger Report (Cashbook Wise)' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'csvHtml5',
-                            title: 'Main Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Main Ledger Report (Cashbook Wise)' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'excelHtml5',
-                            title: 'Main Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Main Ledger Report (Cashbook Wise)' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'pdfHtml5',
-                            title: 'Main Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Main Ledger Report (Cashbook Wise)' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             orientation: "landscape",
                             customize: function(doc) {
                                 var rowCount = doc.content[1].table.body.length;
@@ -121,18 +118,17 @@ $this->params['breadcrumbs'][] = $this->title;
                                     doc.content[1].table.body[i][2].alignment = 'right';
                                     doc.content[1].table.body[i][7].alignment = 'right';
                                     doc.content[1].table.body[i][8].alignment = 'right';
-                                    doc.content[1].table.body[i][9].alignment = 'right';
-                                    doc.content[1].table.body[i][12].alignment = 'right';
+                                    doc.content[1].table.body[i][11].alignment = 'right';
                                 };
 
                                 doc.content[1].table.body[0][7].alignment = 'center';
-                                doc.content[1].table.body[rowCount - 1][10].alignment = 'right';
-                                doc.content[1].table.body[rowCount - 1][12].alignment = 'right';
+                                doc.content[1].table.body[rowCount - 1][9].alignment = 'right';
+                                doc.content[1].table.body[rowCount - 1][11].alignment = 'right';
                             }
                         },
                         {
                             extend: 'print',
-                            title: 'Main Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Main Ledger Report (Cashbook Wise)' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             pageSize: "A3",
                             orientation: "landscape",
                             customize: function(win) {
@@ -144,8 +140,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 $(win.document.body).find('table tbody td:nth-child(3)').css('text-align', 'right');
                                 $(win.document.body).find('table tbody td:nth-child(8)').css('text-align', 'right');
                                 $(win.document.body).find('table tbody td:nth-child(9)').css('text-align', 'right');
-                                $(win.document.body).find('table tbody td:nth-child(10)').css('text-align', 'right');
-                                $(win.document.body).find('table tbody td:nth-child(13)').css('text-align', 'right');
+                                $(win.document.body).find('table tbody td:nth-child(12)').css('text-align', 'right');
                             }
                         }
                     ],
@@ -154,9 +149,7 @@ $this->params['breadcrumbs'][] = $this->title;
             columnDefs: [{
                 targets: [1],
                 className: 'text-center',
-                width: '100px',
-                'max-width': '100px',
-                'white-space': 'nowrap'
+                width: '63px'
             }]
         });
     });

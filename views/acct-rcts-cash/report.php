@@ -64,6 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <script>
     $(document).ready(function() {
         $('#report').DataTable({
+            "autoWidth": false,
             layout: {
                 topStart: {
                     buttons: [{
@@ -98,7 +99,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             orientation: "landscape",
                             customize: function(win) {
                                 $(win.document.body).find('table tbody td:nth-child(1)').css('text-align', 'center');
-                                $(win.document.body).find('table tbody td:nth-child(2)').css('text-align', 'center');
+                                $(win.document.body).find('table tbody td:nth-child(2)').css({
+                                    'text-align': 'center',
+                                    'white-space': 'nowrap'
+                                });
                                 $(win.document.body).find('table tbody td:nth-child(3)').css('text-align', 'right');
                                 $(win.document.body).find('table tbody td:nth-child(8)').css('text-align', 'right');
                                 $(win.document.body).find('table tbody td:nth-child(9)').css('text-align', 'right');
@@ -106,6 +110,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     ],
                 },
+                columnDefs: [{
+                    targets: [1],
+                    className: 'text-center',
+                    width: '63px',
+                    'white-space': 'nowrap'
+                }]
             },
         });
     });

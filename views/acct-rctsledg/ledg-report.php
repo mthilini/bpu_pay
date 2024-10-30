@@ -1,6 +1,6 @@
 <?php
 
-$this->title = 'Payment Cash Report';
+$this->title = 'Receipt Ledgers Report (Ledger Wise)';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -9,24 +9,23 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="card-bofy m-2">
 
         <?=
-        $this->render('_search', [
+        $this->render('_ledg-search', [
             'request' => $request,
-            'cashbooks' => $cashbooks
+            'ledgers' => $ledgers
         ]);
         ?>
 
         <table id="report" class="table dataTable">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>ID</th>
                     <th>Date</th>
-                    <th>Voucher</th>
-                    <th>Sub No.</th>
-                    <th>Pay Type</th>
-                    <th>Pay Category</th>
-                    <th>Payee Name</th>
-                    <th>Amount</th>
-                    <th>Deduction</th>
+                    <th>Receipt No</th>
+                    <th>Receipt Sub</th>
+                    <th>Category</th>
+                    <th>Ledger</th>
+                    <th>Ledger Description</th>
+                    <th>Amount (Rs.)</th>
                     <th>Remarks</th>
                     <th>Cashbook</th>
                 </tr>
@@ -40,17 +39,16 @@ $this->params['breadcrumbs'][] = $this->title;
                         $i++;
                 ?>
                         <tr>
-                            <td class="dt-center"><?= $i; ?></td>
-                            <td><?= $model->payDate ?></td>
-                            <td><?= $model->payVch ?></td>
-                            <td><?= $model->paySub ?></td>
-                            <td><?= $model->payType ?></td>
-                            <td><?= $model->payCat ?></td>
-                            <td><?= $model->payPayee ?></td>
-                            <td><?= number_format($model->payAmount, 2, '.', ',') ?></td>
-                            <td><?= $model->payDeduct ?></td>
-                            <td><?= $model->payRmks ?></td>
-                            <td><?= $model->payCashBk ?></td>
+                            <td class="dt-center"><?= $i ?></td>
+                            <td><?= $model->rctDate ?></td>
+                            <td><?= $model->rctNo ?></td>
+                            <td><?= $model->rctSub ?></td>
+                            <td><?= $model->rctCat ?></td>
+                            <td><?= $model->rctLedger ?></td>
+                            <td><?= $model->acctLedgerDesc->ledgDesc ?></td>
+                            <td><?= number_format($model->rctAmount, 2, '.', ',') ?></td>
+                            <td><?= $model->rctRmks ?></td>
+                            <td><?= $model->rctCashBk ?></td>
                         </tr>
                 <?php
                     }
@@ -64,50 +62,45 @@ $this->params['breadcrumbs'][] = $this->title;
 <script>
     $(document).ready(function() {
         $('#report').DataTable({
-            "autoWidth": false,
             layout: {
                 topStart: {
                     buttons: [{
                             extend: 'copyHtml5',
-                            title: 'Payment Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Receipt Ledgers Report (Ledger Wise)' + ($('#ledger').val() != '' ? ' - ' + $('#ledger').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'csvHtml5',
-                            title: 'Payment Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Receipt Ledgers Report (Ledger Wise)' + ($('#ledger').val() != '' ? ' - ' + $('#ledger').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'excelHtml5',
-                            title: 'Payment Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Receipt Ledgers Report (Ledger Wise)' + ($('#ledger').val() != '' ? ' - ' + $('#ledger').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'pdfHtml5',
-                            title: 'Payment Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Receipt Ledgers Report (Ledger Wise)' + ($('#ledger').val() != '' ? ' - ' + $('#ledger').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             orientation: "landscape",
                             customize: function(doc) {
                                 var rowCount = doc.content[1].table.body.length;
                                 for (i = 1; i < rowCount; i++) {
-                                    doc.content[1].table.body[i][0].alignment = 'right';
-                                    doc.content[1].table.body[i][1].alignment = 'center';
                                     doc.content[1].table.body[i][2].alignment = 'right';
                                     doc.content[1].table.body[i][7].alignment = 'right';
-                                    doc.content[1].table.body[i][8].alignment = 'right';
                                 };
                             }
                         },
                         {
                             extend: 'print',
-                            title: 'Payment Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Receipt Ledgers Report (Ledger Wise)' + ($('#ledger').val() != '' ? ' - ' + $('#ledger').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             pageSize: "A3",
                             orientation: "landscape",
                             customize: function(win) {
-                                $(win.document.body).find('table tbody td:nth-child(1)').css('text-align', 'right');
+                                $(win.document.body).find('table tbody td:nth-child(1)').css('text-align', 'center');
                                 $(win.document.body).find('table tbody td:nth-child(2)').css({
                                     'text-align': 'center',
                                     'white-space': 'nowrap'
                                 });
                                 $(win.document.body).find('table tbody td:nth-child(3)').css('text-align', 'right');
                                 $(win.document.body).find('table tbody td:nth-child(8)').css('text-align', 'right');
-                                $(win.document.body).find('table tbody td:nth-child(9)').css('text-align', 'right');
                             }
                         }
                     ],

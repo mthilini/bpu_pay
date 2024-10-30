@@ -186,7 +186,50 @@ class AcctRctsledgController extends Controller
         }
     }
 
-    public function actionReport()
+    public function actionCashReport()
+    {
+
+        $searchModel = new AcctRctsledgSearch();
+        $query = $searchModel->search([])->query;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $request = Yii::$app->request->get();
+        if (!empty($request)) {
+            if (!empty($request['from']) && !empty($request['to'])) {
+                if ($request['from'] <= $request['to']) {
+                    $query->andFilterWhere(['between', 'rctDate', $request['from'], $request['to']]);
+                }
+            }
+
+            if (!empty($request['cashbook'])) {
+                $query->andFilterWhere([
+                    'rctCashBk' => $request['cashbook']
+                ]);
+            }
+        } else {
+            $dataProvider = null;
+        }
+        $query->orderBy([
+            'rctDate' => SORT_ASC,
+            'rctNo' => SORT_ASC,
+            'rctSub' => SORT_ASC
+        ]);
+
+        $cashbookItems = ArrayHelper::map(AcctBankaccts::find()->orderBy('bactAcctCode')->all(), 'id', 'bactAcctCode');
+
+        return $this->render('cash-report', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'request' => $request,
+            'cashbooks' => $cashbookItems
+        ]);
+    }
+
+    public function actionLedgReport()
     {
 
         $searchModel = new AcctRctsledgSearch();
@@ -221,7 +264,7 @@ class AcctRctsledgController extends Controller
 
         $ledgerItems = ArrayHelper::map(AcctLedger::find()->orderBy('ledgCode')->all(), 'id', 'ledgCode');
 
-        return $this->render('report', [
+        return $this->render('ledg-report', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'request' => $request,

@@ -1,6 +1,6 @@
 <?php
 
-$this->title = 'Receipt Ledgers Report';
+$this->title = 'Receipt Ledgers Report (Cashbook Wise)';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -9,9 +9,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="card-bofy m-2">
 
         <?=
-        $this->render('_search', [
+        $this->render('_cash-search', [
             'request' => $request,
-            'ledgers' => $ledgers
+            'cashbooks' => $cashbooks
         ]);
         ?>
 
@@ -66,19 +66,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 topStart: {
                     buttons: [{
                             extend: 'copyHtml5',
-                            title: 'Receipt Ledgers Report' + ($('#ledger').val() != '' ? ' - ' + $('#ledger').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Receipt Ledgers Report (Cashbook Wise)' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'csvHtml5',
-                            title: 'Receipt Ledgers Report' + ($('#ledger').val() != '' ? ' - ' + $('#ledger').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Receipt Ledgers Report (Cashbook Wise)' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'excelHtml5',
-                            title: 'Receipt Ledgers Report' + ($('#ledger').val() != '' ? ' - ' + $('#ledger').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Receipt Ledgers Report (Cashbook Wise)' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'pdfHtml5',
-                            title: 'Receipt Ledgers Report' + ($('#ledger').val() != '' ? ' - ' + $('#ledger').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Receipt Ledgers Report (Cashbook Wise)' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             orientation: "landscape",
                             customize: function(doc) {
                                 var rowCount = doc.content[1].table.body.length;
@@ -90,12 +90,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                         {
                             extend: 'print',
-                            title: 'Receipt Ledgers Report' + ($('#ledger').val() != '' ? ' - ' + $('#ledger').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Receipt Ledgers Report (Cashbook Wise)' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             pageSize: "A3",
                             orientation: "landscape",
                             customize: function(win) {
                                 $(win.document.body).find('table tbody td:nth-child(1)').css('text-align', 'center');
-                                $(win.document.body).find('table tbody td:nth-child(2)').css('text-align', 'center');
+                                $(win.document.body).find('table tbody td:nth-child(2)').css({
+                                    'text-align': 'center',
+                                    'white-space': 'nowrap'
+                                });
                                 $(win.document.body).find('table tbody td:nth-child(3)').css('text-align', 'right');
                                 $(win.document.body).find('table tbody td:nth-child(8)').css('text-align', 'right');
                             }
@@ -103,6 +106,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                 },
             },
+            columnDefs: [{
+                targets: [1],
+                className: 'text-center',
+                width: '63px'
+            }]
         });
     });
 </script>

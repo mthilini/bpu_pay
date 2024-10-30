@@ -2,9 +2,8 @@
 $this->title = 'BPU Finance System';
 $this->params['breadcrumbs'] = [['label' => $this->title]];
 ?>
-
 <div class="container-fluid">
-    <!-- <div class="row">
+    <div class="row">
         <div class="col-lg-6">
             <?= \hail812\adminlte\widgets\Alert::widget([
                 'type' => 'success',
@@ -16,7 +15,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                 'body' => 'There is a problem that we need to fix. A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.'
             ]) ?>
         </div>
-    </div> -->
+    </div>
 
     <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
@@ -40,7 +39,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
             <?= \hail812\adminlte\widgets\InfoBox::widget([
                 'text' => 'Bookmarks',
                 'number' => '410',
-                'theme' => 'success',
+                 'theme' => 'success',
                 'icon' => 'far fa-flag',
             ]) ?>
         </div>
@@ -78,7 +77,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                 ]
             ]) ?>
             <?= \hail812\adminlte\widgets\Ribbon::widget([
-                'id' => $infoBox->id . '-ribbon',
+                'id' => $infoBox->id.'-ribbon',
                 'text' => 'Ribbon',
             ]) ?>
             <?php \hail812\adminlte\widgets\InfoBox::end() ?>
@@ -114,7 +113,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                 'theme' => 'success'
             ]) ?>
             <?= \hail812\adminlte\widgets\Ribbon::widget([
-                'id' => $smallBox->id . '-ribbon',
+                'id' => $smallBox->id.'-ribbon',
                 'text' => 'Ribbon',
                 'theme' => 'warning',
                 'size' => 'lg',

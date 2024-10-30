@@ -335,3 +335,11 @@ th {
     border-top-style: solid !important;
     border-top-width: thin !important;
 }
+
+.show {
+    display: block !important;
+}
+
+.hide {
+    display: none !important;
+}
