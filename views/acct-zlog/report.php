@@ -58,6 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
     $(document).ready(function() {
         $('#report').DataTable({
             "autoWidth": false,
+            "pageLength": 20,
             layout: {
                 topStart: {
                     buttons: [{
