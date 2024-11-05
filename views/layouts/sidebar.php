@@ -166,6 +166,14 @@
                             ['label' => 'Trial Balance', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-trialdtl/report']],
                         ]
                     ],
+                    [
+                        'label' => 'Log Files',
+                        'icon' => 'fas fa-file-alt',
+                        'items' => [
+                            ['label' => 'Data Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-zlog/report']],
+                            ['label' => 'User Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-zloguser/report']],
+                        ]
+                    ],
                     // ['label' => 'LABELS', 'header' => true],
                     // ['label' => 'Important', 'iconStyle' => 'far', 'iconClassAdded' => 'text-danger'],
                     // ['label' => 'Warning', 'iconClass' => 'nav-icon far fa-circle text-warning'],
