@@ -11,35 +11,45 @@ use yii\widgets\ActiveForm;
 <div class="acct-payhdr-search">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['index'],
+        'action' => ['report'],
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'payDate') ?>
-
-    <?= $form->field($model, 'payVch') ?>
-
-    <?= $form->field($model, 'payCashBk') ?>
-
-    <?= $form->field($model, 'payPrepared') ?>
-
-    <?php // echo $form->field($model, 'payDatePrepare') ?>
-
-    <?php // echo $form->field($model, 'payCertify') ?>
-
-    <?php // echo $form->field($model, 'payDateCertify') ?>
-
-    <?php // echo $form->field($model, 'payAuthorise') ?>
-
-    <?php // echo $form->field($model, 'payDateAuthorise') ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+    <div class="m-2">
+        <div class="row">
+            <div class="col-2">
+                <label>Cashbook</label>
+                <select name="cashbook" id="cashbook" class="form-control">
+                    <option></option>
+                    <?php if ($cashbooks != null) {
+                        foreach ($cashbooks as $key => $cashbook) {
+                    ?>
+                            <option <?= (!empty($request['cashbook']) && $request['cashbook'] == $cashbook) ? 'selected="selected"' : '' ?>><?= $cashbook; ?></option>
+                    <?php }
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="col-3">
+                <label>Date</label>
+                <div class="row">
+                    <div class="col-6">
+                        <input id="from" name="from" class="form-control" type="date" <?php if (!empty($request['from'])) echo "value=\"" . $request['from'] . "\""; ?> />
+                    </div>
+                    <div class="col-6">
+                        <input id="to" name="to" class="form-control" type="date" <?php if (!empty($request['to'])) echo "value=\"" . $request['to'] . "\""; ?> />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-2">
+                <?= Html::submitButton('Search', ['class' => 'btn btn-primary btn-sm']) ?>
+                <?= Html::a('Reset', ['/acct-payhdr/report'], ['class' => 'btn btn-secondary btn-sm']) ?>
+            </div>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<hr />

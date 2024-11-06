@@ -1,6 +1,6 @@
 <?php
 
-$this->title = 'User Log Report';
+$this->title = 'User Log Details';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -46,57 +46,109 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <script>
     $(document).ready(function() {
+        $('#report thead tr')
+            .clone(true)
+            .addClass('filters')
+            .appendTo('#report thead');
+
         $('#report').DataTable({
             "autoWidth": false,
-            "pageLength": 20,
-            layout: {
-                topStart: {
-                    buttons: [{
-                            extend: 'copyHtml5',
-                            title: 'User Log Report',
-                        },
-                        {
-                            extend: 'csvHtml5',
-                            title: 'User Log Report',
-                        },
-                        {
-                            extend: 'excelHtml5',
-                            title: 'User Log Report',
-                        },
-                        {
-                            extend: 'pdfHtml5',
-                            title: 'User Log Report',
-                            customize: function(doc) {
-                                var rowCount = doc.content[1].table.body.length;
-                                for (i = 1; i < rowCount; i++) {
-                                    doc.content[1].table.body[i][0].alignment = 'right';
-                                    doc.content[1].table.body[i][1].alignment = 'center';
-                                    doc.content[1].table.body[i][5].alignment = 'center';
-                                };
-                            }
-                        },
-                        {
-                            extend: 'print',
-                            title: 'User Log Report',
-                            customize: function(win) {
-                                $(win.document.body).find('table tbody td:nth-child(1)').css('text-align', 'center');
-                                $(win.document.body).find('table tbody td:nth-child(2)').css({
-                                    'text-align': 'center',
-                                    'white-space': 'nowrap'
-                                });
-                                $(win.document.body).find('table tbody td:nth-child(6)').css('text-align', 'center');
-                            }
-                        }
-                    ],
-                },
+            fixedColumns: true,
+            orderCellsTop: true,
+            fixedHeader: true,
+            initComplete: function() {
+                var api = this.api();
+
+                api
+                    .columns(':not(.no_filter)')
+                    .eq(0)
+                    .each(function(colIdx) {
+                        var cell = $('.filters th').eq(
+                            $(api.column(colIdx).header()).index()
+                        );
+
+                        $(cell).html('<div style="text-align: center;"><input type="text" style="width:100% !important;"/></div>');
+
+                        $('input', $('.filters th').eq($(api.column(colIdx).header()).index()))
+                            .off('keyup change')
+                            .on('keyup change', function(e) {
+                                e.stopPropagation();
+
+                                var regexr = '({search})';
+
+                                var cursorPosition = this.selectionStart;
+                                api
+                                    .column(colIdx)
+                                    .search(
+                                        this.value != '' ?
+                                        regexr.replace('{search}', '(((' + this.value + ')))') :
+                                        '',
+                                        this.value != '',
+                                        this.value == ''
+                                    )
+                                    .draw();
+
+                                $(this)
+                                    .focus()[0]
+                                    .setSelectionRange(cursorPosition, cursorPosition);
+                            });
+                    });
             },
+            // layout: {
+            //     topStart: {
+            //         buttons: [{
+            //                 extend: 'copyHtml5',
+            //                 title: 'User Log Report',
+            //             },
+            //             {
+            //                 extend: 'csvHtml5',
+            //                 title: 'User Log Report',
+            //             },
+            //             {
+            //                 extend: 'excelHtml5',
+            //                 title: 'User Log Report',
+            //             },
+            //             {
+            //                 extend: 'pdfHtml5',
+            //                 title: 'User Log Report',
+            //                 customize: function(doc) {
+            //                     var rowCount = doc.content[1].table.body.length;
+            //                     for (i = 1; i < rowCount; i++) {
+            //                         doc.content[1].table.body[i][0].alignment = 'right';
+            //                         doc.content[1].table.body[i][1].alignment = 'center';
+            //                         doc.content[1].table.body[i][5].alignment = 'center';
+            //                     };
+            //                 }
+            //             },
+            //             {
+            //                 extend: 'print',
+            //                 title: 'User Log Report',
+            //                 customize: function(win) {
+            //                     $(win.document.body).find('table tbody td:nth-child(1)').css('text-align', 'center');
+            //                     $(win.document.body).find('table tbody td:nth-child(2)').css({
+            //                         'text-align': 'center',
+            //                         'white-space': 'nowrap'
+            //                     });
+            //                     $(win.document.body).find('table tbody td:nth-child(6)').css('text-align', 'center');
+            //                 }
+            //             }
+            //         ],
+            //     },
+            // },
             columnDefs: [{
-                targets: [1],
-                className: 'text-center',
-                width: '110px',
-                'max-width': '110px',
-                'white-space': 'nowrap'
-            }]
+                    targets: [0],
+                    width: '60px',
+                    'max-width': '110px',
+                    'white-space': 'nowrap'
+                },
+                {
+                    targets: [1],
+                    className: 'text-center',
+                    width: '110px',
+                    'max-width': '110px',
+                    'white-space': 'nowrap'
+                }
+            ]
         });
     });
 </script>

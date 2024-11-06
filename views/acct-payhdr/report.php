@@ -1,6 +1,6 @@
 <?php
 
-$this->title = 'Data Log Details';
+$this->title = 'HDR Payments Details';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -8,20 +8,19 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="card">
     <div class="card-bofy m-2">
 
-        <table id="report" class="table dataTable">
+        <table id="report" class="table dataTable nowrap">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>Date</th>
-                    <th>User</th>
-                    <th>Description</th>
-                    <th>Receipt</th>
-                    <th>Sub</th>
-                    <th>Amount</th>
-                    <th>Process</th>
-                    <th>Remarks</th>
+                    <th>Voucher</th>
                     <th>Cashbook</th>
-                    <th>Version</th>
+                    <th>Prepared</th>
+                    <th>Prepare Date</th>
+                    <th>Certify</th>
+                    <th>Certify Date</th>
+                    <th>Authorise</th>
+                    <th>Authorise Date</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,16 +33,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 ?>
                         <tr>
                             <td class="dt-center"><?= $i; ?></td>
-                            <td><?= $model->logDate; ?></td>
-                            <td><?= $model->logUser; ?></td>
-                            <td><?= $model->logDesc; ?></td>
-                            <td><?= $model->logVchRct; ?></td>
-                            <td><?= $model->logSub; ?></td>
-                            <td><?= number_format($model->logAmount, 2, '.', ','); ?></td>
-                            <td><?= $model->logProcess; ?></td>
-                            <td><?= $model->logRmks; ?></td>
-                            <td><?= $model->logCashBk; ?></td>
-                            <td><?= $model->logVersion; ?></td>
+                            <td><?= $model->payDate; ?></td>
+                            <td><?= $model->payVch; ?></td>
+                            <td><?= $model->payCashBk; ?></td>
+                            <td><?= $model->payPrepared; ?></td>
+                            <td><?= $model->payDatePrepare; ?></td>
+                            <td><?= $model->payCertify; ?></td>
+                            <td><?= $model->payDateCertify; ?></td>
+                            <td><?= $model->payAuthorise; ?></td>
+                            <td><?= $model->payDateAuthorise; ?></td>
                         </tr>
                 <?php
                     }
@@ -108,43 +106,45 @@ $this->params['breadcrumbs'][] = $this->title;
             //     topStart: {
             //         buttons: [{
             //                 extend: 'copyHtml5',
-            //                 title: 'Data Log Report',
+            //                 title: 'HDR Payment Report',
             //             },
             //             {
             //                 extend: 'csvHtml5',
-            //                 title: 'Data Log Report',
+            //                 title: 'HDR Payment Report',
             //             },
             //             {
             //                 extend: 'excelHtml5',
-            //                 title: 'Data Log Report',
+            //                 title: 'HDR Payment Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
             //             },
             //             {
             //                 extend: 'pdfHtml5',
-            //                 title: 'Data Log Report',
+            //                 title: 'HDR Payment Report',
             //                 orientation: "landscape",
             //                 customize: function(doc) {
             //                     var rowCount = doc.content[1].table.body.length;
             //                     for (i = 1; i < rowCount; i++) {
             //                         doc.content[1].table.body[i][0].alignment = 'right';
             //                         doc.content[1].table.body[i][1].alignment = 'center';
-            //                         doc.content[1].table.body[i][4].alignment = 'right';
-            //                         doc.content[1].table.body[i][6].alignment = 'right';
-            //                         doc.content[1].table.body[i][10].alignment = 'center';
+            //                         doc.content[1].table.body[i][2].alignment = 'right';
+            //                         doc.content[1].table.body[i][5].alignment = 'center';
+            //                         doc.content[1].table.body[i][7].alignment = 'center';
+            //                         doc.content[1].table.body[i][9].alignment = 'center';
             //                     };
             //                 }
             //             },
             //             {
             //                 extend: 'print',
-            //                 title: 'Data Log Report',
+            //                 title: 'HDR Payment Report',
             //                 customize: function(win) {
             //                     $(win.document.body).find('table tbody td:nth-child(1)').css('text-align', 'center');
             //                     $(win.document.body).find('table tbody td:nth-child(2)').css({
             //                         'text-align': 'center',
             //                         'white-space': 'nowrap'
             //                     });
-            //                     $(win.document.body).find('table tbody td:nth-child(5)').css('text-align', 'right');
-            //                     $(win.document.body).find('table tbody td:nth-child(7)').css('text-align', 'right');
-            //                     $(win.document.body).find('table tbody td:nth-child(11)').css('text-align', 'center');
+            //                     $(win.document.body).find('table tbody td:nth-child(3)').css('text-align', 'right');
+            //                     $(win.document.body).find('table tbody td:nth-child(6)').css('text-align', 'center');
+            //                     $(win.document.body).find('table tbody td:nth-child(8)').css('text-align', 'center');
+            //                     $(win.document.body).find('table tbody td:nth-child(10)').css('text-align', 'center');
             //                 }
             //             }
             //         ],
@@ -153,8 +153,8 @@ $this->params['breadcrumbs'][] = $this->title;
             columnDefs: [{
                 targets: [1],
                 className: 'text-center',
-                width: '70px',
-                'max-width': '70px',
+                width: '65px',
+                'max-width': '65px',
                 'white-space': 'nowrap'
             }]
         });

@@ -172,6 +172,9 @@
                         'items' => [
                             ['label' => 'Data Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-zlog/report']],
                             ['label' => 'User Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-zloguser/report']],
+                            ['label' => 'Payments Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-payhdr/report']],
+                            ['label' => 'Receipts Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rctshdr/report']],
+                            ['label' => 'Journals Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnlhdr/report']],
                         ]
                     ],
                     // ['label' => 'LABELS', 'header' => true],

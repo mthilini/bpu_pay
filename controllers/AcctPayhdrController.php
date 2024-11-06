@@ -1,5 +1,8 @@
 <?php
+
 namespace app\controllers;
+
+use app\models\AcctBankaccts;
 use Yii;
 //
 use app\models\AcctPayhdr;
@@ -12,11 +15,10 @@ use yii\helpers\ArrayHelper;
 //
 use app\models\AcctPaycash;
 use app\models\AcctPayledg;
-use app\models\AcctPaycashSearch;
-use app\models\AcctPayledgSearch;
+use Exception;
 //
-use yii\db\ActiveRecord;
 use yii\base\Model;
+use yii\data\ActiveDataProvider;
 
 /**
  * AcctPayhdrController implements the CRUD actions for AcctPayhdr model.
@@ -71,7 +73,7 @@ class AcctPayhdrController extends Controller
         return $this->render('view', [
             'model' => $model,
             'payCashes' => $payCashes,
-            'payLedgers'=>$payLedgers,
+            'payLedgers' => $payLedgers,
         ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -201,5 +203,30 @@ class AcctPayhdrController extends Controller
     {
         $model = AcctPayledg::find()->where(['payVch' => $id])->all();
         return $model;
+    }
+
+    public function actionReport()
+    {
+
+        $searchModel = new AcctPayhdrSearch();
+        $query = $searchModel->search([])->query;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $request = Yii::$app->request->get();
+
+        $query->orderBy([
+            'payDate' => SORT_ASC,
+            'payVch' => SORT_ASC,
+        ]);
+
+        return $this->render('report', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'request' => $request,
+        ]);
     }
 }
