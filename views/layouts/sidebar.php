@@ -160,6 +160,18 @@
                         ]
                     ],
                     [
+                        'label' => 'Journal Reports',
+                        'icon' => 'fas fa-file-alt',
+                        'items' => [
+                            ['label' => 'Debits (Cashbook Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/debit-cash-report']],
+                            ['label' => 'Credits (Cashbook Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/credit-cash-report']],
+                            ['label' => 'Debits & Credits (Cashbook Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/credit-debit-cash-report']],
+                            ['label' => 'Debits (Ledger Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/debit-ledg-report']],
+                            ['label' => 'Credits (Ledger Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/credit-ledg-report']],
+                            ['label' => 'Debits & Credits (Ledger Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/credit-debit-ledg-report']],
+                        ]
+                    ],
+                    [
                         'label' => 'Trial Account',
                         'icon' => 'fas fa-file-alt',
                         'items' => [
