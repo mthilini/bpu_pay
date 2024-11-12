@@ -29,14 +29,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th rowspan="2">Remarks</th>
                     <th rowspan="2">Cashbook</th>
                     <th rowspan="2">Department</th>
+                    <th rowspan="2">Net Balance (Rs.)</th>
                 </tr>
                 <tr>
-                    <th style="text-align: center;">Debit</th>
                     <th style="text-align: center;">Credit</th>
+                    <th style="text-align: center;">Debit</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
+                $totAmount = 0.00;
                 if ($dataProvider != null) {
                     $i = 0;
                     $models = $dataProvider->getModels();
@@ -54,23 +56,35 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?php
                             $amount = $model->jnlAmount;
                             if ($model->jnlPayRct == 'P') {
+                                $pAmount = $model->jnlAmount;
+                                $totAmount -= $pAmount;
                             ?>
-                                <td style="text-align: right;"><?= number_format($amount, 2, '.', ','); ?></td>
                                 <td>&nbsp;</td>
-                            <?php } else { ?>
+                                <td style="text-align: right;"><?= number_format($pAmount, 2, '.', ','); ?></td>
+                            <?php } else {
+                                $rAmount = $model->jnlAmount;
+                                $totAmount += $rAmount;
+                            ?>
+                                <td style="text-align: right;"><?= number_format($rAmount, 2, '.', ','); ?></td>
                                 <td>&nbsp;</td>
-                                <td style="text-align: right;"><?= number_format($amount, 2, '.', ','); ?></td>
                             <?php } ?>
-
                             <td><?= $model->jnlRmks ?></td>
                             <td><?= $model->jnlCashBk ?></td>
                             <td><?= $model->jnlDept ?></td>
+                            <td style="text-align: right;"><?= number_format($totAmount, 2, '.', ','); ?></td>
                         </tr>
                 <?php
                     }
                 }
                 ?>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="10">&nbsp;</td>
+                    <td colspan="2" class="grand-tot"><label for="tot_header">Closing Balance:</label></td>
+                    <td class="grand-tot"><label for="tot"><?= number_format($totAmount, 2, '.', ','); ?></label></td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div>
@@ -105,6 +119,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                     doc.content[1].table.body[i][7].alignment = 'right';
                                     doc.content[1].table.body[i][8].alignment = 'right';
                                 };
+                                doc.content[1].table.body[rowCount - 1][10].alignment = 'right';
+                                doc.content[1].table.body[rowCount - 1][12].alignment = 'right';
                             }
                         },
                         {
@@ -137,7 +153,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     width: '63px'
                 },
                 {
-                    targets: [0, 2, 7, 8],
+                    targets: [0, 2, 7, 8, 12],
                     className: 'text-right',
                 },
                 {

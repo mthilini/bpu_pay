@@ -33,11 +33,13 @@ $this->params['breadcrumbs'][] = $this->title;
             </thead>
             <tbody>
                 <?php
+                $totCredit = 0.00;
                 if ($dataProvider != null) {
                     $i = 0;
                     $models = $dataProvider->getModels();
                     foreach ($models as $key => $model) {
                         $i++;
+                        $totCredit += $model->jnlAmount;
                 ?>
                         <tr>
                             <td class="dt-center"><?= $i ?></td>
@@ -57,6 +59,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
                 ?>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">&nbsp;</td>
+                    <td class="grand-tot" colspan="2"><label for="tot_header">Total Credit:</label></td>
+                    <td class="grand-tot"><label for="tot"><?= number_format($totCredit, 2, '.', ','); ?></label></td>
+                    <td colspan="3">&nbsp;</td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div>
@@ -84,12 +94,15 @@ $this->params['breadcrumbs'][] = $this->title;
                             orientation: "landscape",
                             customize: function(doc) {
                                 var rowCount = doc.content[1].table.body.length;
-                                for (i = 1; i < rowCount; i++) {
+                                for (i = 1; i < rowCount - 1; i++) {
                                     doc.content[1].table.body[i][0].alignment = 'right';
                                     doc.content[1].table.body[i][1].alignment = 'center';
                                     doc.content[1].table.body[i][2].alignment = 'right';
                                     doc.content[1].table.body[i][7].alignment = 'right';
                                 };
+
+                                doc.content[1].table.body[rowCount - 1][5].alignment = 'right';
+                                doc.content[1].table.body[rowCount - 1][7].alignment = 'right';
                             }
                         },
                         {
