@@ -20,13 +20,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 <tr>
                     <th>#</th>
                     <th>Date</th>
-                    <th>Voucher</th>
+                    <th style="text-align: center">Voucher</th>
                     <th>Sub No.</th>
-                    <th>Pay Type</th>
-                    <th>Pay Category</th>
+                    <th>
+                        <label>Category</label>
+                        <br>
+                        <label>Pay Type</label>
+                    </th>
                     <th>Payee Name</th>
-                    <th>Amount</th>
-                    <th>Deduction</th>
+                    <th style="text-align: center">Amount</th>
+                    <th style="text-align: center">Deduction</th>
                     <th>Remarks</th>
                     <th>Cashbook</th>
                 </tr>
@@ -44,8 +47,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?= $model->payDate ?></td>
                             <td><?= $model->payVch ?></td>
                             <td><?= $model->paySub ?></td>
-                            <td><?= $model->payType ?></td>
-                            <td><?= $model->payCat ?></td>
+                            <td>
+                                <b><?= ($model->payCat != '') ? $model->payCat : '' ?></b>
+                                <br>
+                                <div><?= ($model->payType != '') ? $model->payType : '' ?></div>
+                            </td>
                             <td><?= $model->payPayee ?></td>
                             <td><?= number_format($model->payAmount, 2, '.', ',') ?></td>
                             <td><?= $model->payDeduct ?></td>
@@ -89,8 +95,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                     doc.content[1].table.body[i][0].alignment = 'right';
                                     doc.content[1].table.body[i][1].alignment = 'center';
                                     doc.content[1].table.body[i][2].alignment = 'right';
+                                    doc.content[1].table.body[i][6].alignment = 'right';
                                     doc.content[1].table.body[i][7].alignment = 'right';
-                                    doc.content[1].table.body[i][8].alignment = 'right';
                                 };
                             }
                         },
@@ -99,25 +105,43 @@ $this->params['breadcrumbs'][] = $this->title;
                             title: 'Payment Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             pageSize: "A3",
                             orientation: "landscape",
+                            exportOptions: {
+                                stripHtml: false
+                            },
                             customize: function(win) {
                                 $(win.document.body).find('table tbody td:nth-child(1)').css('text-align', 'right');
                                 $(win.document.body).find('table tbody td:nth-child(2)').css({
                                     'text-align': 'center',
-                                    'white-space': 'nowrap'
+                                    'white-space': 'nowrap',
                                 });
                                 $(win.document.body).find('table tbody td:nth-child(3)').css('text-align', 'right');
+                                $(win.document.body).find('table tbody td:nth-child(7)').css('text-align', 'right');
                                 $(win.document.body).find('table tbody td:nth-child(8)').css('text-align', 'right');
-                                $(win.document.body).find('table tbody td:nth-child(9)').css('text-align', 'right');
                             }
                         }
                     ],
                 },
             },
             columnDefs: [{
-                targets: [1],
-                className: 'text-center',
-                width: '63px'
-            }]
+                    targets: [1],
+                    className: 'text-center',
+                    width: '63px'
+                },
+                {
+                    targets: [4],
+                    width: '65px',
+                    'max-width': '78px'
+                },
+                {
+                    orderable: true,
+                    className: 'reorder',
+                    targets: [0, 1, 9]
+                },
+                {
+                    orderable: false,
+                    targets: '_all'
+                }
+            ]
         });
     });
 </script>

@@ -32,10 +32,12 @@ $this->params['breadcrumbs'][] = $this->title;
             </thead>
             <tbody>
                 <?php
+                $totReceipt = 0.00;
                 if ($dataProvider != null) {
                     $i = 0;
                     $models = $dataProvider->getModels();
                     foreach ($models as $key => $model) {
+                        $totReceipt += $model->rctAmount;
                         $i++;
                 ?>
                         <tr>
@@ -55,6 +57,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
                 ?>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">&nbsp;</td>
+                    <td class="grand-tot"><label for="tot_header">Total Receipt:</label></td>
+                    <td class="grand-tot"><label for="tot"><?= number_format($totReceipt, 2, '.', ','); ?></label></td>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div>
@@ -82,10 +92,14 @@ $this->params['breadcrumbs'][] = $this->title;
                             orientation: "landscape",
                             customize: function(doc) {
                                 var rowCount = doc.content[1].table.body.length;
-                                for (i = 1; i < rowCount; i++) {
+                                for (i = 1; i < rowCount - 1; i++) {
+                                    doc.content[1].table.body[i][0].alignment = 'right';
+                                    doc.content[1].table.body[i][1].alignment = 'center';
                                     doc.content[1].table.body[i][2].alignment = 'right';
                                     doc.content[1].table.body[i][7].alignment = 'right';
                                 };
+                                doc.content[1].table.body[rowCount - 1][6].alignment = 'right';
+                                doc.content[1].table.body[rowCount - 1][7].alignment = 'right';
                             }
                         },
                         {
@@ -107,10 +121,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             },
             columnDefs: [{
-                targets: [1],
-                className: 'text-center',
-                width: '63px'
-            }]
+                    targets: [1],
+                    className: 'text-center',
+                    width: '63px'
+                },
+                {
+                    orderable: true,
+                    className: 'reorder',
+                    targets: [0, 1, 5, 9]
+                },
+                {
+                    orderable: false,
+                    targets: '_all'
+                }
+            ]
         });
     });
 </script>

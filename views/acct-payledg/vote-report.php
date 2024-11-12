@@ -1,6 +1,6 @@
 <?php
 
-$this->title = 'Journal Credit Report (Cashbook Wise)';
+$this->title = 'Payment Ledger Report (Vote Wise)';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -9,50 +9,48 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="card-bofy m-2">
 
         <?=
-        $this->render('_credit-cash-search', [
+        $this->render('_vote-search', [
             'request' => $request,
-            'cashbooks' => $cashbooks
+            'votes' => $votes,
         ]);
         ?>
 
         <table id="report" class="table dataTable">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>ID</th>
                     <th>Date</th>
-                    <th>Journal No.</th>
+                    <th>Voucher</th>
                     <th>Sub</th>
-                    <th>Ledger</th>
-                    <th>Ledger Description</th>
                     <th>Category</th>
+                    <th>Vote</th>
+                    <th>Vote Description</th>
                     <th>Amount (Rs.)</th>
                     <th>Remarks</th>
                     <th>Cashbook</th>
-                    <th>Department</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                $totCredit = 0.00;
+                $totPayment = 0.00;
                 if ($dataProvider != null) {
                     $i = 0;
                     $models = $dataProvider->getModels();
                     foreach ($models as $key => $model) {
+                        $totPayment += $model->payAmount;
                         $i++;
-                        $totCredit += $model->jnlAmount;
                 ?>
                         <tr>
                             <td class="dt-center"><?= $i ?></td>
-                            <td><?= $model->jnlDate ?></td>
-                            <td><?= $model->jnlNo ?></td>
-                            <td><?= $model->jnlSub ?></td>
-                            <td><?= $model->jnlLedg ?></td>
-                            <td><?= $model->acctLedgerDesc->ledgDesc ?></td>
-                            <td><?= $model->jnlCat ?></td>
-                            <td><?= number_format($model->jnlAmount, 2, '.', ',') ?></td>
-                            <td><?= $model->jnlRmks ?></td>
-                            <td><?= $model->jnlCashBk ?></td>
-                            <td><?= $model->jnlDept ?></td>
+                            <td><?= $model->payDate ?></td>
+                            <td><?= $model->payVch ?></td>
+                            <td><?= $model->paySub ?></td>
+                            <td><?= $model->payCat ?></td>
+                            <td style="white-space: nowrap;"><?= $model->payLedg ?></td>
+                            <td><?= $model->acctVoteDesc->voteDesc ?></td>
+                            <td><?= number_format($model->payAmount, 2, '.', ',') ?></td>
+                            <td><?= $model->payRmks ?></td>
+                            <td><?= $model->payCashBk ?></td>
                         </tr>
                 <?php
                     }
@@ -61,10 +59,10 @@ $this->params['breadcrumbs'][] = $this->title;
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="5">&nbsp;</td>
-                    <td colspan="2" class="grand-tot"><label for="tot_header">Total Credit:</label></td>
-                    <td class="grand-tot"><label for="tot"><?= number_format($totCredit, 2, '.', ','); ?></label></td>
-                    <td colspan="3">&nbsp;</td>
+                    <td colspan="6">&nbsp;</td>
+                    <td class="grand-tot"><label for="tot_header">Total Payment:</label></td>
+                    <td class="grand-tot"><label for="tot"><?= number_format($totPayment, 2, '.', ','); ?></label></td>
+                    <td colspan="2">&nbsp;</td>
                 </tr>
             </tfoot>
         </table>
@@ -78,19 +76,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 topStart: {
                     buttons: [{
                             extend: 'copyHtml5',
-                            title: 'Journal Credit Report (Cashbook Wise)' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Payment Ledger Report (Vote Wise)' + ($('#vote').val() != '' ? ' - ' + $('#vote').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'csvHtml5',
-                            title: 'Journal Credit Report (Cashbook Wise)' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Payment Ledger Report (Vote Wise)' + ($('#vote').val() != '' ? ' - ' + $('#vote').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'excelHtml5',
-                            title: 'Journal Credit Report (Cashbook Wise)' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Payment Ledger Report (Vote Wise)' + ($('#vote').val() != '' ? ' - ' + $('#vote').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'pdfHtml5',
-                            title: 'Journal Credit Report (Cashbook Wise)' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Payment Ledger Report (Vote Wise)' + ($('#vote').val() != '' ? ' - ' + $('#vote').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             orientation: "landscape",
                             customize: function(doc) {
                                 var rowCount = doc.content[1].table.body.length;
@@ -100,13 +98,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                     doc.content[1].table.body[i][2].alignment = 'right';
                                     doc.content[1].table.body[i][7].alignment = 'right';
                                 };
-                                doc.content[1].table.body[rowCount - 1][5].alignment = 'right';
+                                doc.content[1].table.body[rowCount - 1][6].alignment = 'right';
                                 doc.content[1].table.body[rowCount - 1][7].alignment = 'right';
                             }
                         },
                         {
                             extend: 'print',
-                            title: 'Journal Credit Report (Cashbook Wise)' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Payment Ledger Report (Vote Wise)' + ($('#vote').val() != '' ? ' - ' + $('#vote').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             pageSize: "A3",
                             orientation: "landscape",
                             customize: function(win) {
@@ -116,6 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'white-space': 'nowrap'
                                 });
                                 $(win.document.body).find('table tbody td:nth-child(3)').css('text-align', 'right');
+                                $(win.document.body).find('table tbody td:nth-child(6)').css('white-space', 'nowrap');
                                 $(win.document.body).find('table tbody td:nth-child(8)').css('text-align', 'right');
                             }
                         }
@@ -123,22 +122,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             },
             columnDefs: [{
-                    targets: '_all',
-                    className: 'text-left'
-                },
-                {
                     targets: [1],
                     className: 'text-center',
                     width: '63px'
                 },
                 {
-                    targets: [0, 2, 7],
-                    className: 'text-right',
-                },
-                {
                     orderable: true,
                     className: 'reorder',
-                    targets: [0, 1, 4, 9]
+                    targets: [0, 1, 5, 9]
                 },
                 {
                     orderable: false,

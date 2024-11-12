@@ -65,4 +65,19 @@ class AcctJnl extends \yii\db\ActiveRecord
             'jnlDept' => 'Jnl Dept',
         ];
     }
+
+    public static function primaryKey()
+    {
+        return ["id"];
+    }
+
+    public function getAcctLedgerDesc()
+    {
+        return $this->hasOne(AcctLedger::className(), ['ledgCode' => 'jnlLedg']);
+    }
+    
+    public function getAcctVoteDesc()
+    {
+        return $this->hasOne(AcctVotes::className(), ['voteVote' => 'jnlLedg']);
+    }
 }

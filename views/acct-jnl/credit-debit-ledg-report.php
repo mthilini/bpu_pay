@@ -23,8 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th rowspan="2">Journal No.</th>
                     <th rowspan="2">Sub</th>
                     <th rowspan="2">Ledger</th>
+                    <th rowspan="2">Ledger Desc</th>
                     <th rowspan="2">Category</th>
-                    <th colspan="2">Amount (Rs.)</th>
+                    <th colspan="2" style="text-align: center;">Amount (Rs.)</th>
                     <th rowspan="2">Remarks</th>
                     <th rowspan="2">Cashbook</th>
                     <th rowspan="2">Department</th>
@@ -48,6 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?= $model->jnlNo ?></td>
                             <td><?= $model->jnlSub ?></td>
                             <td><?= $model->jnlLedg ?></td>
+                            <td><?= $model->acctLedgerDesc->ledgDesc ?></td>
                             <td><?= $model->jnlCat ?></td>
                             <?php
                             $amount = $model->jnlAmount;
@@ -100,8 +102,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                     doc.content[1].table.body[i][0].alignment = 'right';
                                     doc.content[1].table.body[i][1].alignment = 'center';
                                     doc.content[1].table.body[i][2].alignment = 'right';
-                                    doc.content[1].table.body[i][6].alignment = 'right';
                                     doc.content[1].table.body[i][7].alignment = 'right';
+                                    doc.content[1].table.body[i][8].alignment = 'right';
                                 };
                             }
                         },
@@ -117,8 +119,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'white-space': 'nowrap'
                                 });
                                 $(win.document.body).find('table tbody td:nth-child(3)').css('text-align', 'right');
-                                $(win.document.body).find('table tbody td:nth-child(7)').css('text-align', 'right');
                                 $(win.document.body).find('table tbody td:nth-child(8)').css('text-align', 'right');
+                                $(win.document.body).find('table tbody td:nth-child(9)').css('text-align', 'right');
                             }
                         }
                     ],
@@ -134,8 +136,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     width: '63px'
                 },
                 {
-                    targets: [0, 2, 6],
+                    targets: [0, 2, 7, 8],
                     className: 'text-right',
+                },
+                {
+                    orderable: true,
+                    className: 'reorder',
+                    targets: [0, 1, 4, 10]
+                },
+                {
+                    orderable: false,
+                    targets: '_all'
                 }
             ]
         });

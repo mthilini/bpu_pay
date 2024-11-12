@@ -1,6 +1,6 @@
 <?php
 
-$this->title = 'Main Ledger Report (Cashbook Wise)';
+$this->title = 'Main Ledger Report (Vote Wise)';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -9,9 +9,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="card-bofy m-2">
 
         <?=
-        $this->render('_cash-search', [
+        $this->render('_vote-search', [
             'request' => $request,
-            'cashbooks' => $cashbooks
+            'votes' => $votes
         ]);
         ?>
 
@@ -22,8 +22,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th rowspan="2">Date</th>
                     <th rowspan="2">Receipt</th>
                     <th rowspan="2">Sub</th>
-                    <th rowspan="2">Ledger</th>
-                    <th rowspan="2">Ledger Desc</th>
+                    <th rowspan="2">Vote</th>
+                    <th rowspan="2">Vote Desc</th>
                     <th rowspan="2">Category</th>
                     <th style="text-align: center;" colspan="2">Amount</th>
                     <th rowspan="2">Remarks</th>
@@ -49,8 +49,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?= $model->mainDate; ?></td>
                             <td><?= $model->mainVchRct; ?></td>
                             <td><?= $model->mainSub; ?></td>
-                            <td><?= $model->mainLedg; ?></td>
-                            <td><?= $model->acctLedgerDesc->ledgDesc; ?></td>
+                            <td style="white-space: nowrap"><?= $model->mainLedg; ?></td>
+                            <td><?= $model->acctVoteDesc->voteDesc; ?></td>
                             <td><?= $model->mainCat; ?></td>
                             <?php
                             if ($model->mainPayRct == 'P') {
@@ -94,22 +94,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 topStart: {
                     buttons: [{
                             extend: 'copyHtml5',
-                            title: 'Main Ledger Report (Cashbook Wise)' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Main Ledger Report (Vote Wise)' + ($('#vote').val() != '' ? ' - ' + $('#vote').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'csvHtml5',
-                            title: 'Main Ledger Report (Cashbook Wise)' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Main Ledger Report (Vote Wise)' + ($('#vote').val() != '' ? ' - ' + $('#vote').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'excelHtml5',
-                            title: 'Main Ledger Report (Cashbook Wise)' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Main Ledger Report (Vote Wise)' + ($('#vote').val() != '' ? ' - ' + $('#vote').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                         },
                         {
                             extend: 'pdfHtml5',
-                            title: 'Main Ledger Report (Cashbook Wise)' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Main Ledger Report (Vote Wise)' + ($('#vote').val() != '' ? ' - ' + $('#vote').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             orientation: "landscape",
-                            pageSize: "A3",
-                            pageSize: 'LEGAL',
                             customize: function(doc) {
                                 var rowCount = doc.content[1].table.body.length;
                                 for (i = 2; i < rowCount - 1; i++) {
@@ -126,7 +124,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                         {
                             extend: 'print',
-                            title: 'Main Ledger Report (Cashbook Wise)' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
+                            title: 'Main Ledger Report (Vote Wise)' + ($('#vote').val() != '' ? ' - ' + $('#vote').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             pageSize: "A3",
                             orientation: "landscape",
                             customize: function(win) {
@@ -136,6 +134,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'white-space': 'nowrap'
                                 });
                                 $(win.document.body).find('table tbody td:nth-child(3)').css('text-align', 'right');
+                                $(win.document.body).find('table tbody td:nth-child(5)').css('white-space', 'nowrap');
                                 $(win.document.body).find('table tbody td:nth-child(8)').css('text-align', 'right');
                                 $(win.document.body).find('table tbody td:nth-child(9)').css('text-align', 'right');
                                 $(win.document.body).find('table tbody td:nth-child(12)').css('text-align', 'right');

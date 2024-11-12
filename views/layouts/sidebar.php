@@ -157,6 +157,9 @@
                             ['label' => 'Payments (Ledger Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-payledg/ledg-report']],
                             ['label' => 'Receipts (Ledger Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rctsledg/ledg-report']],
                             ['label' => 'Payments & Receipts (Ledger Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-mainledg/ledg-report']],
+                            ['label' => 'Payments (Vote Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-payledg/vote-report']],
+                            ['label' => 'Receipts (Vote Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rctsledg/vote-report']],
+                            ['label' => 'Payments & Receipts (Vote Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-mainledg/vote-report']],
                         ]
                     ],
                     [
@@ -169,6 +172,9 @@
                             ['label' => 'Debits (Ledger Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/debit-ledg-report']],
                             ['label' => 'Credits (Ledger Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/credit-ledg-report']],
                             ['label' => 'Debits & Credits (Ledger Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/credit-debit-ledg-report']],
+                            ['label' => 'Debits (Vote Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/debit-vote-report']],
+                            ['label' => 'Credits (Vote Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/credit-vote-report']],
+                            ['label' => 'Debits & Credits (Vote Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/credit-debit-vote-report']],
                         ]
                     ],
                     [

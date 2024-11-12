@@ -6,6 +6,7 @@ use app\models\AcctBankaccts;
 use app\models\AcctLedger;
 use app\models\AcctMainledg;
 use app\models\AcctMainledgSearch;
+use app\models\AcctVotes;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
@@ -265,6 +266,49 @@ class AcctMainledgController extends Controller
             'dataProvider' => $dataProvider,
             'request' => $request,
             'ledgers' => $ledgersItems
+        ]);
+    }
+
+    public function actionVoteReport()
+    {
+
+        $searchModel = new AcctMainledgSearch();
+        $query = $searchModel->vsearch([])->query;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $request = Yii::$app->request->get();
+        if (!empty($request)) {
+            if (!empty($request['from']) && !empty($request['to'])) {
+                if ($request['from'] <= $request['to']) {
+                    $query->andFilterWhere(['between', 'mainDate', $request['from'], $request['to']]);
+                }
+            }
+
+            if (!empty($request['vote'])) {
+                $query->andFilterWhere([
+                    'mainLedg' => $request['vote']
+                ]);
+            }
+        } else {
+            $dataProvider = null;
+        }
+        $query->orderBy([
+            'mainDate' => SORT_ASC,
+            'mainVchRct' => SORT_ASC,
+            'mainSub' => SORT_ASC
+        ]);
+
+        $voteItems = ArrayHelper::map(AcctVotes::find()->orderBy('voteVote')->all(), 'id', 'voteVote');
+
+        return $this->render('vote-report', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'request' => $request,
+            'votes' => $voteItems,
         ]);
     }
 }

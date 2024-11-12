@@ -147,6 +147,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/m
 
     <div class="wrapper">
         <!-- Navbar -->
+        <?= $this->render('navbar', ['assetDir' => $assetDir]) ?>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
@@ -161,6 +162,7 @@ $this->registerJsFile('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/m
         <!-- /.control-sidebar -->
 
         <!-- Main Footer -->
+        <?= $this->render('footer') ?>
     </div>
 
     <?php $this->endBody() ?>

@@ -75,4 +75,9 @@ class AcctMainledg extends \yii\db\ActiveRecord
     {
         return $this->hasOne(AcctLedger::className(), ['ledgCode' => 'mainLedg']);
     }
+    
+    public function getAcctVoteDesc()
+    {
+        return $this->hasOne(AcctVotes::className(), ['voteVote' => 'mainLedg']);
+    }
 }

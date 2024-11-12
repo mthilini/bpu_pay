@@ -4,27 +4,28 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var app\models\AcctRctsCashSearch $model */
+/** @var app\models\AcctJnlSearch $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="acct-rcts-cash-search">
+<div class="acct-jnl-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['report'],
         'method' => 'get',
+        'action' => ['/acct-jnl/credit-vote-report'],
     ]); ?>
 
     <div class="m-2">
         <div class="row">
             <div class="col-2">
-                <label>Cashbook</label>
-                <select name="cashbook" id="cashbook" class="form-control">
+                <label>Vote</label>
+                <select name="vote" id="vote" class="form-control">
                     <option></option>
-                    <?php if ($cashbooks != null) {
-                        foreach ($cashbooks as $key => $cashbook) {
+                    <?php if ($votes != null) {
+                        foreach ($votes as $key => $vote) {
                     ?>
-                            <option <?= (!empty($request['cashbook']) && $request['cashbook'] == $cashbook) ? 'selected="selected"' : '' ?>><?= $cashbook; ?></option>
+                            <option <?= (!empty($request['vote']) && $request['vote'] == $vote) ? 'selected="selected"' : '' ?>><?= $vote; ?></option>
                     <?php }
                     }
                     ?>
@@ -41,9 +42,9 @@ use yii\widgets\ActiveForm;
                     </div>
                 </div>
             </div>
-            <div class="form-group col-2">
+            <div class="form-group">
                 <?= Html::submitButton('Search', ['class' => 'btn btn-primary btn-sm']) ?>
-                <?= Html::a('Reset', ['/acct-rcts-cash/report'], ['class' => 'btn btn-secondary btn-sm']) ?>
+                <?= Html::a('Reset', ['/acct-jnl/credit-vote-report'], ['class' => 'btn btn-secondary btn-sm']) ?>
             </div>
         </div>
     </div>

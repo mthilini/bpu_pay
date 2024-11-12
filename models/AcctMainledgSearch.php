@@ -68,4 +68,33 @@ class AcctMainledgSearch extends AcctMainledg
 
         return $dataProvider;
     }
+
+    public function vsearch($params)
+    {
+        $query = AcctMainledg::find()->innerJoinWith('acctVoteDesc');
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'mainDate' => $this->mainDate,
+            'mainVchRct' => $this->mainVchRct,
+        ]);
+
+        $query->andFilterWhere(['like', 'mainSub', $this->mainSub])
+            ->andFilterWhere(['like', 'mainCat', $this->mainCat])
+            ->andFilterWhere(['like', 'mainCashBk', $this->mainCashBk])
+            ->andFilterWhere(['like', 'mainRmks', $this->mainRmks])
+            ->andFilterWhere(['like', 'mainPayRct', $this->mainPayRct])
+            ->andFilterWhere(['like', 'mainDept', $this->mainDept]);
+
+        return $dataProvider;
+    }
 }

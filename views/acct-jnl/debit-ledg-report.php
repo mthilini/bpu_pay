@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th>Journal No.</th>
                     <th>Sub</th>
                     <th>Ledger</th>
+                    <th>Ledger Description</th>
                     <th>Category</th>
                     <th>Amount (Rs.)</th>
                     <th>Remarks</th>
@@ -44,6 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?= $model->jnlNo ?></td>
                             <td><?= $model->jnlSub ?></td>
                             <td><?= $model->jnlLedg ?></td>
+                            <td><?= $model->acctLedgerDesc->ledgDesc ?></td>
                             <td><?= $model->jnlCat ?></td>
                             <td><?= number_format($model->jnlAmount, 2, '.', ',') ?></td>
                             <td><?= $model->jnlRmks ?></td>
@@ -86,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     doc.content[1].table.body[i][0].alignment = 'right';
                                     doc.content[1].table.body[i][1].alignment = 'center';
                                     doc.content[1].table.body[i][2].alignment = 'right';
-                                    doc.content[1].table.body[i][6].alignment = 'right';
+                                    doc.content[1].table.body[i][7].alignment = 'right';
                                 };
                             }
                         },
@@ -102,24 +104,30 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'white-space': 'nowrap'
                                 });
                                 $(win.document.body).find('table tbody td:nth-child(3)').css('text-align', 'right');
-                                $(win.document.body).find('table tbody td:nth-child(7)').css('text-align', 'right');
+                                $(win.document.body).find('table tbody td:nth-child(8)').css('text-align', 'right');
                             }
                         }
                     ],
                 },
             },
-            columnDefs: [{
-                    targets: '_all',
-                    className: 'text-left'
-                },
+            columnDefs: [
                 {
                     targets: [1],
                     className: 'text-center',
                     width: '63px'
                 },
                 {
-                    targets: [0, 2, 6],
+                    targets: [0, 2, 7],
                     className: 'text-right',
+                },
+                {
+                    orderable: true,
+                    className: 'reorder',
+                    targets: [0, 1, 4, 9]
+                },
+                {
+                    orderable: false,
+                    targets: '_all'
                 }
             ]
         });

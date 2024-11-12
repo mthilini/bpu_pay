@@ -106,4 +106,9 @@ class AcctRctsledg extends \yii\db\ActiveRecord
     {
         return $this->hasOne(AcctLedger::className(), ['ledgCode' => 'rctLedger']);
     }
+
+    public function getAcctVoteDesc()
+    {
+        return $this->hasOne(AcctVotes::className(), ['voteVote' => 'rctLedger']);
+    }
 }

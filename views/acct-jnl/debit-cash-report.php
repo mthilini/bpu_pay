@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th>Journal No.</th>
                     <th>Sub</th>
                     <th>Ledger</th>
+                    <th>Ledger Description</th>
                     <th>Category</th>
                     <th>Amount (Rs.)</th>
                     <th>Remarks</th>
@@ -32,11 +33,13 @@ $this->params['breadcrumbs'][] = $this->title;
             </thead>
             <tbody>
                 <?php
+                $totDebit = 0.00;
                 if ($dataProvider != null) {
                     $i = 0;
                     $models = $dataProvider->getModels();
                     foreach ($models as $key => $model) {
                         $i++;
+                        $totDebit += $model->jnlAmount;
                 ?>
                         <tr>
                             <td class="dt-center"><?= $i ?></td>
@@ -44,6 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?= $model->jnlNo ?></td>
                             <td><?= $model->jnlSub ?></td>
                             <td><?= $model->jnlLedg ?></td>
+                            <td><?= $model->acctLedgerDesc->ledgDesc ?></td>
                             <td><?= $model->jnlCat ?></td>
                             <td><?= number_format($model->jnlAmount, 2, '.', ',') ?></td>
                             <td><?= $model->jnlRmks ?></td>
@@ -55,6 +59,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
                 ?>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">&nbsp;</td>
+                    <td colspan="2" class="grand-tot"><label for="tot_header">Total Debit:</label></td>
+                    <td class="grand-tot"><label for="tot"><?= number_format($totDebit, 2, '.', ','); ?></label></td>
+                    <td colspan="3">&nbsp;</td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div>
@@ -82,12 +94,14 @@ $this->params['breadcrumbs'][] = $this->title;
                             orientation: "landscape",
                             customize: function(doc) {
                                 var rowCount = doc.content[1].table.body.length;
-                                for (i = 1; i < rowCount; i++) {
+                                for (i = 1; i < rowCount - 1; i++) {
                                     doc.content[1].table.body[i][0].alignment = 'right';
                                     doc.content[1].table.body[i][1].alignment = 'center';
                                     doc.content[1].table.body[i][2].alignment = 'right';
-                                    doc.content[1].table.body[i][6].alignment = 'right';
-                                };
+                                    doc.content[1].table.body[i][7].alignment = 'right';
+                                }
+                                doc.content[1].table.body[rowCount - 1][5].alignment = 'right';
+                                doc.content[1].table.body[rowCount - 1][7].alignment = 'right';
                             }
                         },
                         {
@@ -102,7 +116,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'white-space': 'nowrap'
                                 });
                                 $(win.document.body).find('table tbody td:nth-child(3)').css('text-align', 'right');
-                                $(win.document.body).find('table tbody td:nth-child(7)').css('text-align', 'right');
+                                $(win.document.body).find('table tbody td:nth-child(8)').css('text-align', 'right');
                             }
                         }
                     ],
@@ -118,8 +132,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     width: '63px'
                 },
                 {
-                    targets: [0, 2, 6],
+                    targets: [0, 2, 7],
                     className: 'text-right',
+                },
+                {
+                    orderable: true,
+                    className: 'reorder',
+                    targets: [0, 1, 4, 9]
+                },
+                {
+                    orderable: false,
+                    targets: '_all'
                 }
             ]
         });

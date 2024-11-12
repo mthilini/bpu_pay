@@ -28,25 +28,21 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th style="text-align: center;" colspan="2">Amount</th>
                     <th rowspan="2">Remarks</th>
                     <th rowspan="2">Cashbook</th>
-                    <th rowspan="2">Tot. Amnt</th>
+                    <th rowspan="2">Net Balance (Rs.)</th>
                 </tr>
                 <tr>
-                    <th style="text-align: center;">Payment</th>
                     <th style="text-align: center;">Receipt</th>
+                    <th style="text-align: center;">Payment</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                $ptotal = 0.00;
-                $rtotal = 0.00;
-                $gtotal = 0.00;
                 $totAmount = 0.00;
                 if ($dataProvider != null) {
                     $i = 0;
                     $models = $dataProvider->getModels();
                     foreach ($models as $key => $model) {
                         $i++;
-                        $totAmount += $model->mainAmount;
                 ?>
                         <tr>
                             <td class="dt-center"><?= $i; ?></td>
@@ -57,25 +53,25 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?= $model->acctLedgerDesc->ledgDesc; ?></td>
                             <td><?= $model->mainCat; ?></td>
                             <?php
-                            $amount = $model->mainAmount;
                             if ($model->mainPayRct == 'P') {
-                                $ptotal += $amount;
+                                $pAmount = $model->mainAmount;
+                                $totAmount -= $pAmount;
                             ?>
-                                <td style="text-align: right;"><?= number_format($amount, 2, '.', ','); ?></td>
                                 <td>&nbsp;</td>
+                                <td style="text-align: right;"><?= number_format($pAmount, 2, '.', ','); ?></td>
                             <?php
                             } else {
-                                $rtotal += $amount;
+                                $rAmount = $model->mainAmount;
+                                $totAmount += $rAmount;
                             ?>
+                                <td style="text-align: right;"><?= number_format($rAmount, 2, '.', ','); ?></td>
                                 <td>&nbsp;</td>
-                                <td style="text-align: right;"><?= number_format($amount, 2, '.', ','); ?></td>
                             <?php } ?>
                             <td><?= $model->mainRmks; ?></td>
                             <td><?= $model->mainCashBk; ?></td>
                             <td><?= number_format($totAmount, 2, '.', ','); ?></td>
                         </tr>
                 <?php
-                        $gtotal += $amount;
                     }
                 }
                 ?>
@@ -83,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <tfoot>
                 <tr>
                     <td colspan="9">&nbsp;</td>
-                    <td colspan="2" class="grand-tot"><label for="tot_header">Grand Total :</label></td>
+                    <td colspan="2" class="grand-tot"><label for="tot_header">Closing Balance:</label></td>
                     <td class="grand-tot"><label for="tot"><?= number_format($totAmount, 2, '.', ','); ?></label></td>
                 </tr>
             </tfoot>
@@ -112,6 +108,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             extend: 'pdfHtml5',
                             title: 'Main Ledger Report (Ledger Wise)' + ($('#ledger').val() != '' ? ' - ' + $('#ledger').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             orientation: "landscape",
+                            pageSize: "A3",
+                            pageSize: 'LEGAL',
                             customize: function(doc) {
                                 var rowCount = doc.content[1].table.body.length;
                                 for (i = 2; i < rowCount - 1; i++) {
@@ -147,10 +145,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             },
             columnDefs: [{
-                targets: [1],
-                className: 'text-center',
-                width: '63px'
-            }]
+                    targets: [1],
+                    className: 'text-center',
+                    width: '63px'
+                },
+                {
+                    orderable: true,
+                    className: 'reorder',
+                    targets: [0, 1, 4, 10]
+                },
+                {
+                    orderable: false,
+                    targets: '_all'
+                }
+            ]
         });
     });
 </script>

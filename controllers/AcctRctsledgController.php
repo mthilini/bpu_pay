@@ -6,6 +6,7 @@ use app\models\AcctBankaccts;
 use app\models\AcctLedger;
 use app\models\AcctRctsledg;
 use app\models\AcctRctsledgSearch;
+use app\models\AcctVotes;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -269,6 +270,49 @@ class AcctRctsledgController extends Controller
             'dataProvider' => $dataProvider,
             'request' => $request,
             'ledgers' => $ledgerItems
+        ]);
+    }
+
+    public function actionVoteReport()
+    {
+
+        $searchModel = new AcctRctsledgSearch();
+        $query = $searchModel->vsearch([])->query;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $request = Yii::$app->request->get();
+        if (!empty($request)) {
+            if (!empty($request['from']) && !empty($request['to'])) {
+                if ($request['from'] <= $request['to']) {
+                    $query->andFilterWhere(['between', 'rctDate', $request['from'], $request['to']]);
+                }
+            }
+
+            if (!empty($request['vote'])) {
+                $query->andFilterWhere([
+                    'rctLedger' => $request['vote']
+                ]);
+            }
+        } else {
+            $dataProvider = null;
+        }
+        $query->orderBy([
+            'rctDate' => SORT_ASC,
+            'rctNo' => SORT_ASC,
+            'rctSub' => SORT_ASC
+        ]);
+
+        $voteItems = ArrayHelper::map(AcctVotes::find()->orderBy('voteVote')->all(), 'id', 'voteVote');
+
+        return $this->render('vote-report', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'request' => $request,
+            'votes' => $voteItems,
         ]);
     }
 }

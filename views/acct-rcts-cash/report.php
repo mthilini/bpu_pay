@@ -20,13 +20,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 <tr>
                     <th>#</th>
                     <th>Date</th>
-                    <th>Receipt</th>
+                    <th style="text-align: center">Receipt</th>
                     <th>Sub</th>
-                    <th>Rct Type</th>
-                    <th>Rct Category</th>
+                    <th>
+                        <label>Category</label>
+                        <br>
+                        <label>Rct Type</label>
+                    </th>
                     <th>Payer Name</th>
-                    <th>Amount</th>
-                    <th>Deduction</th>
+                    <th style="text-align: center">Amount</th>
+                    <th style="text-align: center">Deduction</th>
                     <th>Remarks</th>
                     <th>Cashbook</th>
                 </tr>
@@ -44,8 +47,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?= $model->rctDate ?></td>
                             <td><?= $model->rctNo ?></td>
                             <td><?= $model->rctSub ?></td>
-                            <td><?= $model->rctType ?></td>
-                            <td><?= $model->rctCat ?></td>
+                            <td>
+                                <b><?= ($model->rctCat != '') ? $model->rctCat : '' ?></b>
+                                <br>
+                                <div><?= ($model->rctType != '') ? $model->rctType : '' ?></div>
+                            </td>
                             <td><?= $model->rctName ?></td>
                             <td style="text-align: right !important;"><?= number_format($model->rctAmount, 2, '.', ',') ?></td>
                             <td style="text-align: right !important;"><?= number_format($model->rctDeduct, 2, '.', ',') ?></td>
@@ -86,9 +92,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             customize: function(doc) {
                                 var rowCount = doc.content[1].table.body.length;
                                 for (i = 1; i < rowCount; i++) {
+                                    doc.content[1].table.body[i][0].alignment = 'right';
+                                    doc.content[1].table.body[i][1].alignment = 'center';
                                     doc.content[1].table.body[i][2].alignment = 'right';
+                                    doc.content[1].table.body[i][6].alignment = 'right';
                                     doc.content[1].table.body[i][7].alignment = 'right';
-                                    doc.content[1].table.body[i][8].alignment = 'right';
                                 };
                             }
                         },
@@ -97,6 +105,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             title: 'Receipt Cash Report' + ($('#cashbook').val() != '' ? ' - ' + $('#cashbook').val() : '') + (($('#from').val() != '' && $('#to').val() != '') ? '\n From: ' + $('#from').val() + ' - To: ' + $('#to').val() : ''),
                             pageSize: "A3",
                             orientation: "landscape",
+                            exportOptions: {
+                                stripHtml: false
+                            },
                             customize: function(win) {
                                 $(win.document.body).find('table tbody td:nth-child(1)').css('text-align', 'center');
                                 $(win.document.body).find('table tbody td:nth-child(2)').css({
@@ -104,18 +115,38 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'white-space': 'nowrap'
                                 });
                                 $(win.document.body).find('table tbody td:nth-child(3)').css('text-align', 'right');
+                                $(win.document.body).find('table tbody td:nth-child(7)').css('text-align', 'right');
                                 $(win.document.body).find('table tbody td:nth-child(8)').css('text-align', 'right');
-                                $(win.document.body).find('table tbody td:nth-child(9)').css('text-align', 'right');
                             }
                         }
                     ],
                 },
                 columnDefs: [{
-                    targets: [1],
-                    className: 'text-center',
-                    width: '63px',
-                    'white-space': 'nowrap'
-                }]
+                        targets: [1],
+                        className: 'text-center',
+                        width: '63px',
+                        'white-space': 'nowrap'
+                    },
+                    {
+                        targets: [3],
+                        width: '55px',
+                        'max-width': '55px',
+                    },
+                    {
+                        targets: [4],
+                        width: '65px',
+                        'max-width': '78px'
+                    },
+                    {
+                        orderable: false,
+                        targets: '_all'
+                    },
+                    {
+                        orderable: true,
+                        className: 'reorder',
+                        targets: [0, 1, 9]
+                    },
+                ]
             },
         });
     });

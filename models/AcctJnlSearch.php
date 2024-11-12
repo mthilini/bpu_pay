@@ -28,7 +28,38 @@ class AcctJnlSearch extends AcctJnl
 
     public function search($params)
     {
-        $query = AcctJnl::find();
+        $query = AcctJnl::find()->innerJoinWith('acctLedgerDesc');
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'jnlDate' => $this->jnlDate,
+            'jnlAmount' => $this->jnlAmount,
+        ]);
+
+        $query->andFilterWhere(['like', 'jnlSub', $this->jnlSub])
+            ->andFilterWhere(['like', 'jnlCat', $this->jnlCat])
+            ->andFilterWhere(['like', 'jnlCashBk', $this->jnlCashBk])
+            ->andFilterWhere(['like', 'jnlRmks', $this->jnlRmks])
+            ->andFilterWhere(['like', 'jnlPayRct', $this->jnlPayRct])
+            ->andFilterWhere(['like', 'jnlDept', $this->jnlDept])
+            ->andFilterWhere(['like', 'jnlLedg', $this->jnlLedg]);
+
+        return $dataProvider;
+    }
+
+    public function vsearch($params)
+    {
+        $query = AcctJnl::find()->innerJoinWith('acctVoteDesc');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
