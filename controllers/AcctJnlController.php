@@ -22,7 +22,7 @@ class AcctJnlController extends Controller
     {
 
         $searchModel = new AcctJnlSearch();
-        $query = $searchModel->search([])->query;
+        $query = $searchModel->zsearch([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -73,7 +73,7 @@ class AcctJnlController extends Controller
     {
 
         $searchModel = new AcctJnlSearch();
-        $query = $searchModel->search([])->query;
+        $query = $searchModel->zsearch([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -124,7 +124,7 @@ class AcctJnlController extends Controller
     {
 
         $searchModel = new AcctJnlSearch();
-        $query = $searchModel->search([])->query;
+        $query = $searchModel->zsearch([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

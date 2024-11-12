@@ -22,8 +22,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th rowspan="2">Date</th>
                     <th rowspan="2">Journal No.</th>
                     <th rowspan="2">Sub</th>
-                    <th rowspan="2">Ledger</th>
-                    <th rowspan="2">Ledger Desc</th>
+                    <th rowspan="2">Ledger / Vote</th>
+                    <th rowspan="2">Ledger / Vote Desc</th>
                     <th rowspan="2">Category</th>
                     <th colspan="2" style="text-align: center;">Amount (Rs.)</th>
                     <th rowspan="2">Remarks</th>
@@ -50,8 +50,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?= $model->jnlDate ?></td>
                             <td><?= $model->jnlNo ?></td>
                             <td><?= $model->jnlSub ?></td>
-                            <td><?= $model->jnlLedg ?></td>
-                            <td><?= $model->acctLedgerDesc->ledgDesc ?></td>
+                            <td style="white-space: nowrap;"><?= $model->jnlLedg ?></td>
+                            <td><?= $model->acctZledgDesc->zledgDesc ?></td>
                             <td><?= $model->jnlCat ?></td>
                             <?php
                             if ($model->jnlPayRct == 'P') {
@@ -139,6 +139,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'white-space': 'nowrap'
                                 });
                                 $(win.document.body).find('table tbody td:nth-child(3)').css('text-align', 'right');
+                                $(win.document.body).find('table tbody td:nth-child(5)').css('white-space', 'nowrap');
                                 $(win.document.body).find('table tbody td:nth-child(8)').css('text-align', 'right');
                                 $(win.document.body).find('table tbody td:nth-child(9)').css('text-align', 'right');
                                 $(win.document.body).find('table tbody td:nth-child(13)').css('text-align', 'right');

@@ -22,8 +22,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th>Date</th>
                     <th>Journal No.</th>
                     <th>Sub</th>
-                    <th>Ledger</th>
-                    <th>Ledger Description</th>
+                    <th>Ledger / Vote</th>
+                    <th>Ledger / Vote Description</th>
                     <th>Category</th>
                     <th>Amount (Rs.)</th>
                     <th>Remarks</th>
@@ -46,8 +46,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?= $model->jnlDate ?></td>
                             <td><?= $model->jnlNo ?></td>
                             <td><?= $model->jnlSub ?></td>
-                            <td><?= $model->jnlLedg ?></td>
-                            <td><?= $model->acctLedgerDesc->ledgDesc ?></td>
+                            <td style="white-space: nowrap;"><?= $model->jnlLedg ?></td>
+                            <td><?= $model->acctZledgDesc->zledgDesc ?></td>
                             <td><?= $model->jnlCat ?></td>
                             <td><?= number_format($model->jnlAmount, 2, '.', ',') ?></td>
                             <td><?= $model->jnlRmks ?></td>
@@ -116,6 +116,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'white-space': 'nowrap'
                                 });
                                 $(win.document.body).find('table tbody td:nth-child(3)').css('text-align', 'right');
+                                $(win.document.body).find('table tbody td:nth-child(5)').css('white-space', 'nowrap');
                                 $(win.document.body).find('table tbody td:nth-child(8)').css('text-align', 'right');
                             }
                         }
