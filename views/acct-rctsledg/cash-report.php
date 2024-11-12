@@ -23,8 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th>Receipt No</th>
                     <th>Receipt Sub</th>
                     <th>Category</th>
-                    <th>Ledger</th>
-                    <th>Ledger Description</th>
+                    <th>Ledger / Vote</th>
+                    <th>Ledger / Vote Description</th>
                     <th>Amount (Rs.)</th>
                     <th>Remarks</th>
                     <th>Cashbook</th>
@@ -46,8 +46,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?= $model->rctNo ?></td>
                             <td><?= $model->rctSub ?></td>
                             <td><?= $model->rctCat ?></td>
-                            <td><?= $model->rctLedger ?></td>
-                            <td><?= $model->acctLedgerDesc->ledgDesc ?></td>
+                            <td style="white-space: nowrap;"><?= $model->rctLedger ?></td>
+                            <td><?= $model->acctZledgDesc->zledgDesc ?></td>
                             <td><?= number_format($model->rctAmount, 2, '.', ',') ?></td>
                             <td><?= $model->rctRmks ?></td>
                             <td><?= $model->rctCashBk ?></td>
@@ -114,6 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'white-space': 'nowrap'
                                 });
                                 $(win.document.body).find('table tbody td:nth-child(3)').css('text-align', 'right');
+                                $(win.document.body).find('table tbody td:nth-child(6)').css('white-space', 'nowrap');
                                 $(win.document.body).find('table tbody td:nth-child(8)').css('text-align', 'right');
                             }
                         }

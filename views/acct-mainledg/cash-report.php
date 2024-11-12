@@ -22,8 +22,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th rowspan="2">Date</th>
                     <th rowspan="2">Receipt</th>
                     <th rowspan="2">Sub</th>
-                    <th rowspan="2">Ledger</th>
-                    <th rowspan="2">Ledger Desc</th>
+                    <th rowspan="2">Ledger / Vote</th>
+                    <th rowspan="2">Ledger / Vote Desc</th>
                     <th rowspan="2">Category</th>
                     <th style="text-align: center;" colspan="2">Amount</th>
                     <th rowspan="2">Remarks</th>
@@ -49,8 +49,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?= $model->mainDate; ?></td>
                             <td><?= $model->mainVchRct; ?></td>
                             <td><?= $model->mainSub; ?></td>
-                            <td><?= $model->mainLedg; ?></td>
-                            <td><?= $model->acctLedgerDesc->ledgDesc; ?></td>
+                            <td style="white-space: nowrap;"><?= $model->mainLedg; ?></td>
+                            <td><?= $model->acctZledgDesc->zledgDesc; ?></td>
                             <td><?= $model->mainCat; ?></td>
                             <?php
                             if ($model->mainPayRct == 'P') {
@@ -136,6 +136,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'white-space': 'nowrap'
                                 });
                                 $(win.document.body).find('table tbody td:nth-child(3)').css('text-align', 'right');
+                                $(win.document.body).find('table tbody td:nth-child(5)').css('white-space', 'nowrap');
                                 $(win.document.body).find('table tbody td:nth-child(8)').css('text-align', 'right');
                                 $(win.document.body).find('table tbody td:nth-child(9)').css('text-align', 'right');
                                 $(win.document.body).find('table tbody td:nth-child(12)').css('text-align', 'right');

@@ -193,7 +193,7 @@ class AcctPayledgController extends Controller
     {
 
         $searchModel = new AcctPayledgSearch();
-        $query = $searchModel->search([])->query;
+        $query = $searchModel->zsearch([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

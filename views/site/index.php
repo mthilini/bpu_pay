@@ -12,9 +12,10 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                 <source src="https://www.youtube.com/watch?v=oYvsx711VAE" type="video/ogg">
                 Your browser does not support the video tag.
             </video> -->
-            <video width="100%" height="400" controls>
+            <!-- <video width="100%" height="400" controls>
                 <source src="https://www.youtube.com/watch?v=oYvsx711VAE" type="video/mp4">
-            </video>
+            </video> -->
+            <iframe width="420" height="315" src="https://www.youtube.com/watch?v=oYvsx711VAE" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 

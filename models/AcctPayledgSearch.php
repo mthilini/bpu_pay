@@ -103,4 +103,34 @@ class AcctPayledgSearch extends AcctPayledg
 
         return $dataProvider;
     }
+
+    public function zsearch($params)
+    {
+        $query = AcctPayledg::find()->innerJoinWith('acctZledgDesc');
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'payDate' => $this->payDate,
+            'payVch' => $this->payVch,
+            'payAmount' => $this->payAmount,
+        ]);
+
+        $query->andFilterWhere(['like', 'paySub', $this->paySub])
+            ->andFilterWhere(['like', 'payLedg', $this->payLedg])
+            ->andFilterWhere(['like', 'payRmks', $this->payRmks])
+            ->andFilterWhere(['like', 'payCashBk', $this->payCashBk])
+            ->andFilterWhere(['like', 'payDept', $this->payDept]);
+
+        return $dataProvider;
+    }
 }

@@ -113,4 +113,9 @@ class AcctPayledg extends \yii\db\ActiveRecord
     {
         return $this->hasOne(AcctVotes::className(), ['voteVote' => 'payLedg']);
     }
+
+    public function getAcctZledgDesc()
+    {
+        return $this->hasOne(AcctZledg::className(), ['zledgCode' => 'payLedg']);
+    }
 }

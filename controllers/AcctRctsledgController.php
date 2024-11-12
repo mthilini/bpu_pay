@@ -191,7 +191,7 @@ class AcctRctsledgController extends Controller
     {
 
         $searchModel = new AcctRctsledgSearch();
-        $query = $searchModel->search([])->query;
+        $query = $searchModel->zsearch([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

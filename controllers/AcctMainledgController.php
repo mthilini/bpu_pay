@@ -187,7 +187,7 @@ class AcctMainledgController extends Controller
     {
 
         $searchModel = new AcctMainledgSearch();
-        $query = $searchModel->search([])->query;
+        $query = $searchModel->zsearch([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
