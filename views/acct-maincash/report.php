@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </thead>
             <tbody>
                 <?php
-                $totAmount = 0.00;
+                $totAmount = !empty($openingBalance) ? $openingBalance : 0.00;
                 if ($dataProvider != null) {
                     $i = 0;
                     $models = $dataProvider->getModels();
@@ -87,9 +87,11 @@ $this->params['breadcrumbs'][] = $this->title;
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="9">&nbsp;</td>
-                    <td colspan="2" class="grand-tot"><label for="tot_header">Closing Balance :</label></td>
-                    <td class="grand-tot"><label for="tot"><?= number_format($totAmount, 2, '.', ','); ?></label></td>
+                    <td class="grand-tot balance" colspan="5" style="text-align: right;"><label for="openingBalance">Opening Balance <?= (!empty($request['from'])) ? ' For ' . $request['from'] : ''; ?> (Rs.) : </label></td>
+                    <td class="grand-tot balance" style="text-align: left !important;"><label for="openingBalance"><?=  number_format($openingBalance, 2, '.', ','); ?></label></td>
+                    <td colspan="3"></td>
+                    <td colspan="2" class="grand-tot balance"><label for="tot_header">Closing Balance :</label></td>
+                    <td class="grand-tot balance"><label for="tot"><?= number_format($totAmount, 2, '.', ','); ?></label></td>
                 </tr>
             </tfoot>
         </table>
@@ -174,7 +176,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 {
                     orderable: true,
                     className: 'reorder',
-                    targets: [0, 1, 10]
+                    targets: [0, 1, 2, 10]
                 },
                 {
                     orderable: false,

@@ -5,6 +5,8 @@ namespace app\controllers;
 use app\models\AcctBankaccts;
 use app\models\AcctMaincash;
 use app\models\AcctMaincashSearch;
+use app\models\Common;
+use DateTime;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
@@ -141,11 +143,59 @@ class AcctMaincashController extends Controller
             'pagination' => false,
         ]);
 
+        $openingBalance = 0.00;
         $request = Yii::$app->request->get();
         if (!empty($request)) {
             if (!empty($request['from']) && !empty($request['to'])) {
                 if ($request['from'] <= $request['to']) {
                     $query->andFilterWhere(['between', 'mainDate', $request['from'], $request['to']]);
+
+                    $from = $request['from'];
+                    $fromDate = date($from);
+                    $year = date('Y', strtotime($fromDate));
+                    $yearStartDate = date($year . '-01-01');
+
+                    $preYear = intval($year) - 1;
+
+                    $model = new Common();
+                    $yrParams = [
+                        'year' => $preYear,
+                        'table' => 'acct_cashbal',
+                        'sum' => 'balClosing',
+                        'field' => 'balDate'
+                    ];
+                    if (!empty($request['cashbook'])) {
+                        $yrParams['cashbookColumn'] = 'balCashBk';
+                        $yrParams['cashbook'] = $request['cashbook'];
+                    }
+                    $preYearBalance = $model->getTotalClosingYearEndBalance($yrParams);
+
+                    $preyearTotClosingBalance = !empty($preYearBalance) ? $preYearBalance : 0.00;
+
+                    if ($fromDate == $yearStartDate) {
+                        $openingBalance = $preyearTotClosingBalance;
+                    } else {
+                        $date = new DateTime($fromDate);
+                        $to = $date->modify("-1 days")->format('Y-m-d');
+
+                        $pParams = [
+                            'from' => $yearStartDate,
+                            'to' => $to,
+                            'table' => 'acct_maincash',
+                            'check' => 'mainPayRct',
+                            'field' => 'mainAmount',
+                            'dateField' => 'mainDate',
+                        ];
+                        if (!empty($request['cashbook'])) {
+                            $pParams['cashbookColumn'] = 'mainCashBk';
+                            $pParams['cashbook'] = $request['cashbook'];
+                        }
+
+                        $preBalance = $model->getPreviousBalance($pParams);
+                        $preTotClosingBalance = !empty($preBalance) ? $preBalance : 0.00;
+
+                        $openingBalance = $preyearTotClosingBalance + $preTotClosingBalance;
+                    }
                 }
             }
 
@@ -169,6 +219,7 @@ class AcctMaincashController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'request' => $request,
+            'openingBalance' => $openingBalance,
             'cashbooks' => $cashbookItems
         ]);
     }

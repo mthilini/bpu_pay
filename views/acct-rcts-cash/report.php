@@ -36,11 +36,13 @@ $this->params['breadcrumbs'][] = $this->title;
             </thead>
             <tbody>
                 <?php
+                $totAmount = 0.00;
                 if ($dataProvider != null) {
                     $i = 0;
                     $models = $dataProvider->getModels();
                     foreach ($models as $key => $model) {
                         $i++;
+                        $totAmount += $model->rctAmount;
                 ?>
                         <tr>
                             <td class="dt-center"><?= $i; ?></td>
@@ -63,6 +65,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
                 ?>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4"></td>
+                    <td colspan="2" class="grand-tot balance"><label for="tot_header">Total Receipt :</label></td>
+                    <td class="grand-tot balance"><label for="tot"><?= number_format($totAmount, 2, '.', ','); ?></label></td>
+                    <td colspan="3"></td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div>
@@ -91,13 +101,15 @@ $this->params['breadcrumbs'][] = $this->title;
                             orientation: "landscape",
                             customize: function(doc) {
                                 var rowCount = doc.content[1].table.body.length;
-                                for (i = 1; i < rowCount; i++) {
+                                for (i = 1; i < rowCount - 1; i++) {
                                     doc.content[1].table.body[i][0].alignment = 'right';
                                     doc.content[1].table.body[i][1].alignment = 'center';
                                     doc.content[1].table.body[i][2].alignment = 'right';
                                     doc.content[1].table.body[i][6].alignment = 'right';
                                     doc.content[1].table.body[i][7].alignment = 'right';
                                 };
+                                doc.content[1].table.body[rowCount - 1][4].alignment = 'right';
+                                doc.content[1].table.body[rowCount - 1][7].alignment = 'right';
                             }
                         },
                         {
@@ -144,7 +156,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     {
                         orderable: true,
                         className: 'reorder',
-                        targets: [0, 1, 9]
+                        targets: [0, 1, 2, 9]
                     },
                 ]
             },
