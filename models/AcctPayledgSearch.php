@@ -41,42 +41,7 @@ class AcctPayledgSearch extends AcctPayledg
      */
     public function search($params)
     {
-        $query = AcctPayledg::find()->innerJoinWith('acctLedgerDesc');
-
-        // add conditions that should always apply here
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
-
-        $this->load($params);
-
-        if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
-            return $dataProvider;
-        }
-
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'payDate' => $this->payDate,
-            'payVch' => $this->payVch,
-            'payAmount' => $this->payAmount,
-        ]);
-
-        $query->andFilterWhere(['like', 'paySub', $this->paySub])
-            ->andFilterWhere(['like', 'payLedg', $this->payLedg])
-            ->andFilterWhere(['like', 'payRmks', $this->payRmks])
-            ->andFilterWhere(['like', 'payCashBk', $this->payCashBk])
-            ->andFilterWhere(['like', 'payDept', $this->payDept]);
-
-        return $dataProvider;
-    }
-
-    public function vsearch($params)
-    {
-        $query = AcctPayledg::find()->innerJoinWith('acctVoteDesc');
+        $query = AcctPayledg::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -106,6 +71,7 @@ class AcctPayledgSearch extends AcctPayledg
 
     public function zsearch($params)
     {
+
         $query = AcctPayledg::find()->innerJoinWith('acctZledgDesc');
 
         $dataProvider = new ActiveDataProvider([
@@ -133,4 +99,67 @@ class AcctPayledgSearch extends AcctPayledg
 
         return $dataProvider;
     }
+
+    public function lsearch($params)
+    {
+
+        $query = AcctPayledg::find()->innerJoinWith('acctLedgerDesc');
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'payDate' => $this->payDate,
+            'payVch' => $this->payVch,
+            'payAmount' => $this->payAmount,
+        ]);
+
+        $query->andFilterWhere(['like', 'paySub', $this->paySub])
+            ->andFilterWhere(['like', 'payLedg', $this->payLedg])
+            ->andFilterWhere(['like', 'payRmks', $this->payRmks])
+            ->andFilterWhere(['like', 'payCashBk', $this->payCashBk])
+            ->andFilterWhere(['like', 'payDept', $this->payDept]);
+
+        return $dataProvider;
+    }
+
+    public function vsearch($params)
+    {
+
+        $query = AcctPayledg::find()->innerJoinWith('acctVoteDesc');
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'payDate' => $this->payDate,
+            'payVch' => $this->payVch,
+            'payAmount' => $this->payAmount,
+        ]);
+
+        $query->andFilterWhere(['like', 'paySub', $this->paySub])
+            ->andFilterWhere(['like', 'payLedg', $this->payLedg])
+            ->andFilterWhere(['like', 'payRmks', $this->payRmks])
+            ->andFilterWhere(['like', 'payCashBk', $this->payCashBk])
+            ->andFilterWhere(['like', 'payDept', $this->payDept]);
+
+        return $dataProvider;
+    }
+
 }

@@ -128,7 +128,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 {
                     orderable: true,
                     className: 'reorder',
-                    targets: [0, 1, 5, 9]
+                    targets: [0, 1, 2, 5, 9]
                 },
                 {
                     orderable: false,

@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?= $model->mainVchRct; ?></td>
                             <td><?= $model->mainSub; ?></td>
                             <td><?= $model->mainLedg; ?></td>
-                            <td><?= $model->acctLedgerDesc->ledgDesc; ?></td>
+                            <td><?= $model->acctZledgDesc->zledgDesc; ?></td>
                             <td><?= $model->mainCat; ?></td>
                             <?php
                             if ($model->mainPayRct == 'P') {
@@ -152,7 +152,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 {
                     orderable: true,
                     className: 'reorder',
-                    targets: [0, 1, 4, 10]
+                    targets: [0, 1, 2, 4, 10]
                 },
                 {
                     orderable: false,

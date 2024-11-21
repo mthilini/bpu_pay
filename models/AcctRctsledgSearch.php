@@ -39,11 +39,9 @@ class AcctRctsledgSearch extends AcctRctsledg
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function zsearch($params)
     {
-        $query = AcctRctsledg::find()->innerJoinWith('acctLedgerDesc');
-
-        // add conditions that should always apply here
+        $query = AcctRctsledg::find()->innerJoinWith('acctZledgDesc');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -52,12 +50,39 @@ class AcctRctsledgSearch extends AcctRctsledg
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
 
-        // grid filtering conditions
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'rctDate' => $this->rctDate,
+            'rctNo' => $this->rctNo,
+            'rctAmount' => $this->rctAmount,
+        ]);
+
+        $query->andFilterWhere(['like', 'rctSub', $this->rctSub])
+            ->andFilterWhere(['like', 'rctLedger', $this->rctLedger])
+            ->andFilterWhere(['like', 'rctRmks', $this->rctRmks])
+            ->andFilterWhere(['like', 'rctCashBk', $this->rctCashBk])
+            ->andFilterWhere(['like', 'rctDept', $this->rctDept]);
+
+        return $dataProvider;
+    }
+
+    public function lsearch($params)
+    {
+        $query = AcctRctsledg::find()->innerJoinWith('acctLedgerDesc');
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            return $dataProvider;
+        }
+
         $query->andFilterWhere([
             'id' => $this->id,
             'rctDate' => $this->rctDate,
@@ -77,36 +102,6 @@ class AcctRctsledgSearch extends AcctRctsledg
     public function vsearch($params)
     {
         $query = AcctRctsledg::find()->innerJoinWith('acctVoteDesc');
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
-
-        $this->load($params);
-
-        if (!$this->validate()) {
-            return $dataProvider;
-        }
-
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'rctDate' => $this->rctDate,
-            'rctNo' => $this->rctNo,
-            'rctAmount' => $this->rctAmount,
-        ]);
-
-        $query->andFilterWhere(['like', 'rctSub', $this->rctSub])
-            ->andFilterWhere(['like', 'rctLedger', $this->rctLedger])
-            ->andFilterWhere(['like', 'rctRmks', $this->rctRmks])
-            ->andFilterWhere(['like', 'rctCashBk', $this->rctCashBk])
-            ->andFilterWhere(['like', 'rctDept', $this->rctDept]);
-
-        return $dataProvider;
-    }
-
-    public function zsearch($params)
-    {
-        $query = AcctRctsledg::find()->innerJoinWith('acctZledgDesc');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

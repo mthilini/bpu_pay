@@ -216,6 +216,7 @@ class AcctMainledgController extends Controller
             'mainSub' => SORT_ASC
         ]);
 
+        // echo $query->createCommand()->getRawSql();exit;
         $cashbookItems = ArrayHelper::map(AcctBankaccts::find()->orderBy('bactAcctCode')->all(), 'id', 'bactAcctCode');
 
         return $this->render('cash-report', [
@@ -230,7 +231,7 @@ class AcctMainledgController extends Controller
     {
 
         $searchModel = new AcctMainledgSearch();
-        $query = $searchModel->search([])->query;
+        $query = $searchModel->lsearch([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -259,6 +260,7 @@ class AcctMainledgController extends Controller
             'mainSub' => SORT_ASC
         ]);
 
+        echo $query->createCommand()->getRawSql();exit;
         $ledgersItems = ArrayHelper::map(AcctLedger::find()->orderBy('ledgCode')->all(), 'id', 'ledgCode');
 
         return $this->render('ledg-report', [

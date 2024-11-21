@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\AcctJnl;
 use app\models\AcctJnlSearch;
 use app\models\AcctLedger;
 use app\models\AcctVotes;
@@ -22,7 +23,7 @@ class AcctJnlController extends Controller
     {
 
         $searchModel = new AcctJnlSearch();
-        $query = $searchModel->zsearch([])->query;
+        $query = $searchModel->search([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -54,8 +55,8 @@ class AcctJnlController extends Controller
             'jnlNo' => SORT_ASC,
             'jnlSub' => SORT_ASC
         ]);
-
-        $cashbooksQuery = (new Query())->select('jnlCashBk')->from('acct_jnl')->where(['jnlPayRct' => 'R'])->orderBy('jnlCashBk')->distinct()->all();
+        // echo $query->createCommand()->getRawSql();exit;
+        $cashbooksQuery = AcctJnl::find()->select('jnlCashBk')->where(['jnlPayRct' => 'R'])->orderBy('jnlCashBk')->distinct()->all();
         $cashbookItems = [];
         foreach ($cashbooksQuery as $cashbook) {
             $cashbookItems[] = $cashbook['jnlCashBk'];
@@ -73,7 +74,7 @@ class AcctJnlController extends Controller
     {
 
         $searchModel = new AcctJnlSearch();
-        $query = $searchModel->zsearch([])->query;
+        $query = $searchModel->search([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -106,7 +107,7 @@ class AcctJnlController extends Controller
             'jnlSub' => SORT_ASC
         ]);
 
-        $cashbooksQuery = (new Query())->select('jnlCashBk')->from('acct_jnl')->where(['jnlPayRct' => 'P'])->orderBy('jnlCashBk')->distinct()->all();
+        $cashbooksQuery = AcctJnl::find()->select('jnlCashBk')->where(['jnlPayRct' => 'P'])->orderBy('jnlCashBk')->distinct()->all();
         $cashbookItems = [];
         foreach ($cashbooksQuery as $cashbook) {
             $cashbookItems[] = $cashbook['jnlCashBk'];
@@ -154,12 +155,12 @@ class AcctJnlController extends Controller
             'jnlSub' => SORT_ASC
         ]);
 
-        $cashbooksQuery = (new Query())->select('jnlCashBk')->from('acct_jnl')->orderBy('jnlCashBk')->distinct()->all();
+        $cashbooksQuery = AcctJnl::find()->select('jnlCashBk')->orderBy('jnlCashBk')->distinct()->all();
         $cashbookItems = [];
         foreach ($cashbooksQuery as $cashbook) {
             $cashbookItems[] = $cashbook['jnlCashBk'];
         }
-
+        // echo $query->createCommand()->getRawSql();exit;
         return $this->render('credit-debit-cash-report', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -172,7 +173,7 @@ class AcctJnlController extends Controller
     {
 
         $searchModel = new AcctJnlSearch();
-        $query = $searchModel->search([])->query;
+        $query = $searchModel->lsearch([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -206,7 +207,7 @@ class AcctJnlController extends Controller
         ]);
 
         $ledgerItems = ArrayHelper::map(AcctLedger::find()->orderBy('ledgCode')->all(), 'id', 'ledgCode');
-
+        // echo $query->createCommand()->getRawSql();exit;
         return $this->render('credit-ledg-report', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -219,7 +220,7 @@ class AcctJnlController extends Controller
     {
 
         $searchModel = new AcctJnlSearch();
-        $query = $searchModel->search([])->query;
+        $query = $searchModel->lsearch([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -266,7 +267,7 @@ class AcctJnlController extends Controller
     {
 
         $searchModel = new AcctJnlSearch();
-        $query = $searchModel->search([])->query;
+        $query = $searchModel->lsearch([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
