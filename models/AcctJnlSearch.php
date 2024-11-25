@@ -90,10 +90,12 @@ class AcctJnlSearch extends AcctJnl
 
     public function lsearch($params)
     {
-        $query = AcctJnl::find()->innerJoinWith('acctLedgerDesc');
+        $query = AcctJnl::find()->from('acct_jnl')->where('Length(`jnlLedg`) <= 5');
+        //$query = AcctJnl::find()->from('acct_jnl')->where('Length(`jnlLedg`) <= 5')->join('INNER JOIN', 'acct_ledger', 'acct_jnl.jnlLedg = acct_ledger.ledgCode');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => false,
         ]);
 
         $this->load($params);
