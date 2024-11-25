@@ -35,7 +35,7 @@ class AcctJnl extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'jnlNo'], 'integer'],
+            [['jnlNo'], 'integer'],
             [['jnlDate'], 'safe'],
             [['jnlAmount'], 'number'],
             [['jnlSub', 'jnlCat', 'jnlCashBk'], 'string', 'max' => 2],

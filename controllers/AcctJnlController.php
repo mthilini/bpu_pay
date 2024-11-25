@@ -6,6 +6,7 @@ use app\models\AcctJnl;
 use app\models\AcctJnlSearch;
 use app\models\AcctLedger;
 use app\models\AcctVotes;
+use app\models\AcctZledg;
 use yii\web\Controller;
 
 use Yii;
@@ -125,15 +126,13 @@ class AcctJnlController extends Controller
     {
 
         $searchModel = new AcctJnlSearch();
-        $query = $searchModel->zsearch([])->query;
-
+        $query = $searchModel->search([])->query;
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => false,
         ]);
 
         $request = Yii::$app->request->get();
-
         if (!empty($request)) {
             if (!empty($request['from']) && !empty($request['to'])) {
                 if ($request['from'] <= $request['to']) {
@@ -160,7 +159,7 @@ class AcctJnlController extends Controller
         foreach ($cashbooksQuery as $cashbook) {
             $cashbookItems[] = $cashbook['jnlCashBk'];
         }
-        // echo $query->createCommand()->getRawSql();exit;
+
         return $this->render('credit-debit-cash-report', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
