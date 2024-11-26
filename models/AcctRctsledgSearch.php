@@ -39,9 +39,9 @@ class AcctRctsledgSearch extends AcctRctsledg
      *
      * @return ActiveDataProvider
      */
-    public function zsearch($params)
+    public function search($params)
     {
-        $query = AcctRctsledg::find()->innerJoinWith('acctZledgDesc');
+        $query = AcctRctsledg::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -69,63 +69,4 @@ class AcctRctsledgSearch extends AcctRctsledg
         return $dataProvider;
     }
 
-    public function lsearch($params)
-    {
-        $query = AcctRctsledg::find()->innerJoinWith('acctLedgerDesc');
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
-
-        $this->load($params);
-
-        if (!$this->validate()) {
-            return $dataProvider;
-        }
-
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'rctDate' => $this->rctDate,
-            'rctNo' => $this->rctNo,
-            'rctAmount' => $this->rctAmount,
-        ]);
-
-        $query->andFilterWhere(['like', 'rctSub', $this->rctSub])
-            ->andFilterWhere(['like', 'rctLedger', $this->rctLedger])
-            ->andFilterWhere(['like', 'rctRmks', $this->rctRmks])
-            ->andFilterWhere(['like', 'rctCashBk', $this->rctCashBk])
-            ->andFilterWhere(['like', 'rctDept', $this->rctDept]);
-
-        return $dataProvider;
-    }
-
-    public function vsearch($params)
-    {
-        $query = AcctRctsledg::find()->innerJoinWith('acctVoteDesc');
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
-
-        $this->load($params);
-
-        if (!$this->validate()) {
-            return $dataProvider;
-        }
-
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'rctDate' => $this->rctDate,
-            'rctNo' => $this->rctNo,
-            'rctAmount' => $this->rctAmount,
-        ]);
-
-        $query->andFilterWhere(['like', 'rctSub', $this->rctSub])
-            ->andFilterWhere(['like', 'rctLedger', $this->rctLedger])
-            ->andFilterWhere(['like', 'rctRmks', $this->rctRmks])
-            ->andFilterWhere(['like', 'rctCashBk', $this->rctCashBk])
-            ->andFilterWhere(['like', 'rctDept', $this->rctDept]);
-
-        return $dataProvider;
-    }
 }

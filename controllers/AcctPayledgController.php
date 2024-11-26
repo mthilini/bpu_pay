@@ -193,7 +193,7 @@ class AcctPayledgController extends Controller
     {
 
         $searchModel = new AcctPayledgSearch();
-        $query = $searchModel->zsearch([])->query;
+        $query = $searchModel->search([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -236,7 +236,7 @@ class AcctPayledgController extends Controller
     {
 
         $searchModel = new AcctPayledgSearch();
-        $query = $searchModel->lsearch([])->query;
+        $query = $searchModel->search([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -259,11 +259,12 @@ class AcctPayledgController extends Controller
         } else {
             $dataProvider = null;
         }
-        $query->orderBy([
-            'payDate' => SORT_ASC,
-            'payVch' => SORT_ASC,
-            'paySub' => SORT_ASC
-        ]);
+        $query->andFilterWhere(['NOT LIKE', 'payLedg', '%-%', false])
+            ->orderBy([
+                'payDate' => SORT_ASC,
+                'payVch' => SORT_ASC,
+                'paySub' => SORT_ASC
+            ]);
 
         $ledgerItems = ArrayHelper::map(AcctLedger::find()->orderBy('ledgCode')->all(), 'id', 'ledgCode');
 
@@ -279,7 +280,7 @@ class AcctPayledgController extends Controller
     {
 
         $searchModel = new AcctPayledgSearch();
-        $query = $searchModel->vsearch([])->query;
+        $query = $searchModel->search([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -302,11 +303,12 @@ class AcctPayledgController extends Controller
         } else {
             $dataProvider = null;
         }
-        $query->orderBy([
-            'payDate' => SORT_ASC,
-            'payVch' => SORT_ASC,
-            'paySub' => SORT_ASC
-        ]);
+        $query->andFilterWhere(['LIKE', 'payLedg', '%-%', false])
+            ->orderBy([
+                'payDate' => SORT_ASC,
+                'payVch' => SORT_ASC,
+                'paySub' => SORT_ASC
+            ]);
 
         $voteItems = ArrayHelper::map(AcctVotes::find()->orderBy('voteVote')->all(), 'id', 'voteVote');
 

@@ -79,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <tfoot>
                 <tr>
                     <td colspan="9">&nbsp;</td>
-                    <td colspan="2" class="grand-tot"><label for="tot_header">Closing Balance:</label></td>
+                    <td colspan="2" class="grand-tot"><label for="tot_header">Total Net Balance:</label></td>
                     <td class="grand-tot"><label for="tot"><?= number_format($totAmount, 2, '.', ','); ?></label></td>
                 </tr>
             </tfoot>

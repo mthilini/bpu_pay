@@ -56,13 +56,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?php
                             $amount = $model->jnlAmount;
                             if ($model->jnlPayRct == 'P') {
-                                $pAmount = $model->jnlAmount;
+                                $pAmount = $amount;
                                 $totAmount -= $pAmount;
                             ?>
                                 <td>&nbsp;</td>
                                 <td style="text-align: right;"><?= number_format($pAmount, 2, '.', ','); ?></td>
                             <?php } else {
-                                $rAmount = $model->jnlAmount;
+                                $rAmount = $amount;
                                 $totAmount += $rAmount;
                             ?>
                                 <td style="text-align: right;"><?= number_format($rAmount, 2, '.', ','); ?></td>
@@ -81,7 +81,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <tfoot>
                 <tr>
                     <td colspan="10">&nbsp;</td>
-                    <td colspan="2" class="grand-tot"><label for="tot_header">Closing Balance:</label></td>
+                    <td colspan="2" class="grand-tot"><label for="tot_header">Total Net Balance:</label></td>
                     <td class="grand-tot"><label for="tot"><?= number_format($totAmount, 2, '.', ','); ?></label></td>
                 </tr>
             </tfoot>
@@ -159,7 +159,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 {
                     orderable: true,
                     className: 'reorder',
-                    targets: [0, 1, 4, 10]
+                    targets: [0, 1, 2, 4, 10]
                 },
                 {
                     orderable: false,

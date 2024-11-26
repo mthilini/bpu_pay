@@ -40,9 +40,9 @@ class AcctMainledgSearch extends AcctMainledg
      *
      * @return ActiveDataProvider
      */
-    public function zsearch($params)
+    public function search($params)
     {
-        $query = AcctMainledg::find()->innerJoinWith('acctZledgDesc');
+        $query = AcctMainledg::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -70,63 +70,4 @@ class AcctMainledgSearch extends AcctMainledg
         return $dataProvider;
     }
 
-    public function lsearch($params)
-    {
-        $query = AcctMainledg::find()->innerJoinWith('acctLedgerDesc');
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
-
-        $this->load($params);
-
-        if (!$this->validate()) {
-            return $dataProvider;
-        }
-
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'mainDate' => $this->mainDate,
-            'mainVchRct' => $this->mainVchRct,
-        ]);
-
-        $query->andFilterWhere(['like', 'mainSub', $this->mainSub])
-            ->andFilterWhere(['like', 'mainCat', $this->mainCat])
-            ->andFilterWhere(['like', 'mainCashBk', $this->mainCashBk])
-            ->andFilterWhere(['like', 'mainRmks', $this->mainRmks])
-            ->andFilterWhere(['like', 'mainPayRct', $this->mainPayRct])
-            ->andFilterWhere(['like', 'mainDept', $this->mainDept]);
-
-        return $dataProvider;
-    }
-
-    public function vsearch($params)
-    {
-        $query = AcctMainledg::find()->innerJoinWith('acctVoteDesc');
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
-
-        $this->load($params);
-
-        if (!$this->validate()) {
-            return $dataProvider;
-        }
-
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'mainDate' => $this->mainDate,
-            'mainVchRct' => $this->mainVchRct,
-        ]);
-
-        $query->andFilterWhere(['like', 'mainSub', $this->mainSub])
-            ->andFilterWhere(['like', 'mainCat', $this->mainCat])
-            ->andFilterWhere(['like', 'mainCashBk', $this->mainCashBk])
-            ->andFilterWhere(['like', 'mainRmks', $this->mainRmks])
-            ->andFilterWhere(['like', 'mainPayRct', $this->mainPayRct])
-            ->andFilterWhere(['like', 'mainDept', $this->mainDept]);
-
-        return $dataProvider;
-    }
 }

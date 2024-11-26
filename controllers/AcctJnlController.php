@@ -11,6 +11,7 @@ use yii\web\Controller;
 
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\data\SqlDataProvider;
 use yii\db\Query;
 use yii\helpers\ArrayHelper;
 
@@ -32,10 +33,6 @@ class AcctJnlController extends Controller
         ]);
 
         $request = Yii::$app->request->get();
-        $query->andFilterWhere([
-            'jnlPayRct' => 'R'
-        ]);
-
         if (!empty($request)) {
             if (!empty($request['from']) && !empty($request['to'])) {
                 if ($request['from'] <= $request['to']) {
@@ -51,12 +48,13 @@ class AcctJnlController extends Controller
         } else {
             $dataProvider = null;
         }
-        $query->orderBy([
-            'jnlDate' => SORT_ASC,
-            'jnlNo' => SORT_ASC,
-            'jnlSub' => SORT_ASC
-        ]);
-        // echo $query->createCommand()->getRawSql();exit;
+        $query->andFilterWhere(['jnlPayRct' => 'R'])
+            ->orderBy([
+                'jnlDate' => SORT_ASC,
+                'jnlNo' => SORT_ASC,
+                'jnlSub' => SORT_ASC
+            ]);
+
         $cashbooksQuery = AcctJnl::find()->select('jnlCashBk')->where(['jnlPayRct' => 'R'])->orderBy('jnlCashBk')->distinct()->all();
         $cashbookItems = [];
         foreach ($cashbooksQuery as $cashbook) {
@@ -83,10 +81,6 @@ class AcctJnlController extends Controller
         ]);
 
         $request = Yii::$app->request->get();
-        $query->andFilterWhere([
-            'jnlPayRct' => 'P'
-        ]);
-
         if (!empty($request)) {
             if (!empty($request['from']) && !empty($request['to'])) {
                 if ($request['from'] <= $request['to']) {
@@ -102,11 +96,13 @@ class AcctJnlController extends Controller
         } else {
             $dataProvider = null;
         }
-        $query->orderBy([
-            'jnlDate' => SORT_ASC,
-            'jnlNo' => SORT_ASC,
-            'jnlSub' => SORT_ASC
-        ]);
+
+        $query->andFilterWhere(['jnlPayRct' => 'P'])
+            ->orderBy([
+                'jnlDate' => SORT_ASC,
+                'jnlNo' => SORT_ASC,
+                'jnlSub' => SORT_ASC
+            ]);
 
         $cashbooksQuery = AcctJnl::find()->select('jnlCashBk')->where(['jnlPayRct' => 'P'])->orderBy('jnlCashBk')->distinct()->all();
         $cashbookItems = [];
@@ -127,6 +123,7 @@ class AcctJnlController extends Controller
 
         $searchModel = new AcctJnlSearch();
         $query = $searchModel->search([])->query;
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => false,
@@ -148,6 +145,7 @@ class AcctJnlController extends Controller
         } else {
             $dataProvider = null;
         }
+
         $query->orderBy([
             'jnlDate' => SORT_ASC,
             'jnlNo' => SORT_ASC,
@@ -172,7 +170,7 @@ class AcctJnlController extends Controller
     {
 
         $searchModel = new AcctJnlSearch();
-        $query = $searchModel->lsearch([])->query;
+        $query = $searchModel->search([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -180,10 +178,6 @@ class AcctJnlController extends Controller
         ]);
 
         $request = Yii::$app->request->get();
-        $query->andFilterWhere([
-            'jnlPayRct' => 'R'
-        ]);
-
         if (!empty($request)) {
             if (!empty($request['from']) && !empty($request['to'])) {
                 if ($request['from'] <= $request['to']) {
@@ -199,14 +193,17 @@ class AcctJnlController extends Controller
         } else {
             $dataProvider = null;
         }
-        $query->orderBy([
-            'jnlDate' => SORT_ASC,
-            'jnlNo' => SORT_ASC,
-            'jnlSub' => SORT_ASC
-        ]);
+
+        $query->andFilterWhere(['jnlPayRct' => 'R'])
+            ->andFilterWhere(['NOT LIKE', 'jnlLedg', '%-%', false])
+            ->orderBy([
+                'jnlDate' => SORT_ASC,
+                'jnlNo' => SORT_ASC,
+                'jnlSub' => SORT_ASC
+            ]);
 
         $ledgerItems = ArrayHelper::map(AcctLedger::find()->orderBy('ledgCode')->all(), 'id', 'ledgCode');
-        // echo $query->createCommand()->getRawSql();exit;
+
         return $this->render('credit-ledg-report', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -219,7 +216,7 @@ class AcctJnlController extends Controller
     {
 
         $searchModel = new AcctJnlSearch();
-        $query = $searchModel->lsearch([])->query;
+        $query = $searchModel->search([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -227,10 +224,6 @@ class AcctJnlController extends Controller
         ]);
 
         $request = Yii::$app->request->get();
-        $query->andFilterWhere([
-            'jnlPayRct' => 'P'
-        ]);
-
         if (!empty($request)) {
             if (!empty($request['from']) && !empty($request['to'])) {
                 if ($request['from'] <= $request['to']) {
@@ -246,11 +239,14 @@ class AcctJnlController extends Controller
         } else {
             $dataProvider = null;
         }
-        $query->orderBy([
-            'jnlDate' => SORT_ASC,
-            'jnlNo' => SORT_ASC,
-            'jnlSub' => SORT_ASC
-        ]);
+
+        $query->andFilterWhere(['jnlPayRct' => 'P'])
+            ->andFilterWhere(['NOT LIKE', 'jnlLedg', '%-%', false])
+            ->orderBy([
+                'jnlDate' => SORT_ASC,
+                'jnlNo' => SORT_ASC,
+                'jnlSub' => SORT_ASC
+            ]);
 
         $ledgerItems = ArrayHelper::map(AcctLedger::find()->orderBy('ledgCode')->all(), 'id', 'ledgCode');
 
@@ -266,7 +262,7 @@ class AcctJnlController extends Controller
     {
 
         $searchModel = new AcctJnlSearch();
-        $query = $searchModel->lsearch([])->query;
+        $query = $searchModel->search([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -274,7 +270,6 @@ class AcctJnlController extends Controller
         ]);
 
         $request = Yii::$app->request->get();
-
         if (!empty($request)) {
             if (!empty($request['from']) && !empty($request['to'])) {
                 if ($request['from'] <= $request['to']) {
@@ -290,11 +285,13 @@ class AcctJnlController extends Controller
         } else {
             $dataProvider = null;
         }
-        $query->orderBy([
-            'jnlDate' => SORT_ASC,
-            'jnlNo' => SORT_ASC,
-            'jnlSub' => SORT_ASC
-        ]);
+
+        $query->andFilterWhere(['NOT LIKE', 'jnlLedg', '%-%', false])
+            ->orderBy([
+                'jnlDate' => SORT_ASC,
+                'jnlNo' => SORT_ASC,
+                'jnlSub' => SORT_ASC
+            ]);
 
         $ledgerItems = ArrayHelper::map(AcctLedger::find()->orderBy('ledgCode')->all(), 'id', 'ledgCode');
 
@@ -310,7 +307,7 @@ class AcctJnlController extends Controller
     {
 
         $searchModel = new AcctJnlSearch();
-        $query = $searchModel->vsearch([])->query;
+        $query = $searchModel->search([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -318,10 +315,6 @@ class AcctJnlController extends Controller
         ]);
 
         $request = Yii::$app->request->get();
-        $query->andFilterWhere([
-            'jnlPayRct' => 'R'
-        ]);
-
         if (!empty($request)) {
             if (!empty($request['from']) && !empty($request['to'])) {
                 if ($request['from'] <= $request['to']) {
@@ -337,11 +330,14 @@ class AcctJnlController extends Controller
         } else {
             $dataProvider = null;
         }
-        $query->orderBy([
-            'jnlDate' => SORT_ASC,
-            'jnlNo' => SORT_ASC,
-            'jnlSub' => SORT_ASC
-        ]);
+
+        $query->andFilterWhere(['jnlPayRct' => 'R'])
+            ->andFilterWhere(['LIKE', 'jnlLedg', '%-%', false])
+            ->orderBy([
+                'jnlDate' => SORT_ASC,
+                'jnlNo' => SORT_ASC,
+                'jnlSub' => SORT_ASC
+            ]);
 
         $voteItems = ArrayHelper::map(AcctVotes::find()->orderBy('voteVote')->all(), 'id', 'voteVote');
 
@@ -357,7 +353,7 @@ class AcctJnlController extends Controller
     {
 
         $searchModel = new AcctJnlSearch();
-        $query = $searchModel->vsearch([])->query;
+        $query = $searchModel->search([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -365,10 +361,6 @@ class AcctJnlController extends Controller
         ]);
 
         $request = Yii::$app->request->get();
-        $query->andFilterWhere([
-            'jnlPayRct' => 'P'
-        ]);
-
         if (!empty($request)) {
             if (!empty($request['from']) && !empty($request['to'])) {
                 if ($request['from'] <= $request['to']) {
@@ -384,11 +376,14 @@ class AcctJnlController extends Controller
         } else {
             $dataProvider = null;
         }
-        $query->orderBy([
-            'jnlDate' => SORT_ASC,
-            'jnlNo' => SORT_ASC,
-            'jnlSub' => SORT_ASC
-        ]);
+
+        $query->andFilterWhere(['jnlPayRct' => 'P'])
+            ->andFilterWhere(['LIKE', 'jnlLedg', '%-%', false])
+            ->orderBy([
+                'jnlDate' => SORT_ASC,
+                'jnlNo' => SORT_ASC,
+                'jnlSub' => SORT_ASC
+            ]);
 
         $voteItems = ArrayHelper::map(AcctVotes::find()->orderBy('voteVote')->all(), 'id', 'voteVote');
 
@@ -404,7 +399,7 @@ class AcctJnlController extends Controller
     {
 
         $searchModel = new AcctJnlSearch();
-        $query = $searchModel->vsearch([])->query;
+        $query = $searchModel->search([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -412,7 +407,6 @@ class AcctJnlController extends Controller
         ]);
 
         $request = Yii::$app->request->get();
-
         if (!empty($request)) {
             if (!empty($request['from']) && !empty($request['to'])) {
                 if ($request['from'] <= $request['to']) {
@@ -428,11 +422,13 @@ class AcctJnlController extends Controller
         } else {
             $dataProvider = null;
         }
-        $query->orderBy([
-            'jnlDate' => SORT_ASC,
-            'jnlNo' => SORT_ASC,
-            'jnlSub' => SORT_ASC
-        ]);
+
+        $query->andFilterWhere(['LIKE', 'jnlLedg', '%-%', false])
+            ->orderBy([
+                'jnlDate' => SORT_ASC,
+                'jnlNo' => SORT_ASC,
+                'jnlSub' => SORT_ASC
+            ]);
 
         $voteItems = ArrayHelper::map(AcctVotes::find()->orderBy('voteVote')->all(), 'id', 'voteVote');
 

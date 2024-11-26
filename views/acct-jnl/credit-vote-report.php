@@ -39,7 +39,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     $models = $dataProvider->getModels();
                     foreach ($models as $key => $model) {
                         $i++;
-                        $totCredit += $model->jnlAmount;
+                        $amount = $model->jnlAmount;
+                        $totCredit += $amount;
                 ?>
                         <tr>
                             <td class="dt-center"><?= $i ?></td>
@@ -49,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td style="white-space: nowrap;"><?= $model->jnlLedg ?></td>
                             <td><?= $model->acctVoteDesc->voteDesc ?></td>
                             <td><?= $model->jnlCat ?></td>
-                            <td><?= number_format($model->jnlAmount, 2, '.', ',') ?></td>
+                            <td><?= number_format($amount, 2, '.', ',') ?></td>
                             <td><?= $model->jnlRmks ?></td>
                             <td><?= $model->jnlCashBk ?></td>
                             <td><?= $model->jnlDept ?></td>
@@ -139,7 +140,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 {
                     orderable: true,
                     className: 'reorder',
-                    targets: [0, 1, 4, 9]
+                    targets: [0, 1, 2, 4, 9]
                 },
                 {
                     orderable: false,

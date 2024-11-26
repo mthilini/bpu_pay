@@ -187,7 +187,7 @@ class AcctMainledgController extends Controller
     {
 
         $searchModel = new AcctMainledgSearch();
-        $query = $searchModel->zsearch([])->query;
+        $query = $searchModel->search([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -210,13 +210,14 @@ class AcctMainledgController extends Controller
         } else {
             $dataProvider = null;
         }
-        $query->orderBy([
-            'mainDate' => SORT_ASC,
-            'mainVchRct' => SORT_ASC,
-            'mainSub' => SORT_ASC
-        ]);
 
-        // echo $query->createCommand()->getRawSql();exit;
+        $query->andFilterWhere(['NOT LIKE', 'mainCashBk', 'J%', false])
+            ->orderBy([
+                'mainDate' => SORT_ASC,
+                'mainVchRct' => SORT_ASC,
+                'mainSub' => SORT_ASC
+            ]);
+
         $cashbookItems = ArrayHelper::map(AcctBankaccts::find()->orderBy('bactAcctCode')->all(), 'id', 'bactAcctCode');
 
         return $this->render('cash-report', [
@@ -231,7 +232,7 @@ class AcctMainledgController extends Controller
     {
 
         $searchModel = new AcctMainledgSearch();
-        $query = $searchModel->lsearch([])->query;
+        $query = $searchModel->search([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -254,13 +255,16 @@ class AcctMainledgController extends Controller
         } else {
             $dataProvider = null;
         }
-        $query->orderBy([
-            'mainDate' => SORT_ASC,
-            'mainVchRct' => SORT_ASC,
-            'mainSub' => SORT_ASC
-        ]);
+        $query->andFilterWhere(['NOT LIKE', 'mainCashBk', 'J%', false])
+            ->andFilterWhere(['NOT LIKE', 'mainLedg', '%-%', false])
+            ->orderBy([
+                'mainDate' => SORT_ASC,
+                'mainVchRct' => SORT_ASC,
+                'mainSub' => SORT_ASC
+            ]);
 
-        echo $query->createCommand()->getRawSql();exit;
+        // echo $query->createCommand()->getRawSql();
+        // exit;
         $ledgersItems = ArrayHelper::map(AcctLedger::find()->orderBy('ledgCode')->all(), 'id', 'ledgCode');
 
         return $this->render('ledg-report', [
@@ -275,7 +279,7 @@ class AcctMainledgController extends Controller
     {
 
         $searchModel = new AcctMainledgSearch();
-        $query = $searchModel->vsearch([])->query;
+        $query = $searchModel->search([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -298,11 +302,13 @@ class AcctMainledgController extends Controller
         } else {
             $dataProvider = null;
         }
-        $query->orderBy([
-            'mainDate' => SORT_ASC,
-            'mainVchRct' => SORT_ASC,
-            'mainSub' => SORT_ASC
-        ]);
+        $query->andFilterWhere(['NOT LIKE', 'mainCashBk', 'J%', false])
+            ->andFilterWhere(['LIKE', 'mainLedg', '%-%', false])
+            ->orderBy([
+                'mainDate' => SORT_ASC,
+                'mainVchRct' => SORT_ASC,
+                'mainSub' => SORT_ASC
+            ]);
 
         $voteItems = ArrayHelper::map(AcctVotes::find()->orderBy('voteVote')->all(), 'id', 'voteVote');
 

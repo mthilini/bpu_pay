@@ -191,7 +191,7 @@ class AcctRctsledgController extends Controller
     {
 
         $searchModel = new AcctRctsledgSearch();
-        $query = $searchModel->zsearch([])->query;
+        $query = $searchModel->search([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -234,7 +234,7 @@ class AcctRctsledgController extends Controller
     {
 
         $searchModel = new AcctRctsledgSearch();
-        $query = $searchModel->lsearch([])->query;
+        $query = $searchModel->search([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -257,11 +257,12 @@ class AcctRctsledgController extends Controller
         } else {
             $dataProvider = null;
         }
-        $query->orderBy([
-            'rctDate' => SORT_ASC,
-            'rctNo' => SORT_ASC,
-            'rctSub' => SORT_ASC
-        ]);
+        $query->andFilterWhere(['NOT LIKE', 'rctLedger', '%-%', false])
+            ->orderBy([
+                'rctDate' => SORT_ASC,
+                'rctNo' => SORT_ASC,
+                'rctSub' => SORT_ASC
+            ]);
 
         $ledgerItems = ArrayHelper::map(AcctLedger::find()->orderBy('ledgCode')->all(), 'id', 'ledgCode');
 
@@ -277,7 +278,7 @@ class AcctRctsledgController extends Controller
     {
 
         $searchModel = new AcctRctsledgSearch();
-        $query = $searchModel->vsearch([])->query;
+        $query = $searchModel->search([])->query;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -300,11 +301,12 @@ class AcctRctsledgController extends Controller
         } else {
             $dataProvider = null;
         }
-        $query->orderBy([
-            'rctDate' => SORT_ASC,
-            'rctNo' => SORT_ASC,
-            'rctSub' => SORT_ASC
-        ]);
+        $query->andFilterWhere(['LIKE', 'rctLedger', '%-%', false])
+            ->orderBy([
+                'rctDate' => SORT_ASC,
+                'rctNo' => SORT_ASC,
+                'rctSub' => SORT_ASC
+            ]);
 
         $voteItems = ArrayHelper::map(AcctVotes::find()->orderBy('voteVote')->all(), 'id', 'voteVote');
 
