@@ -6,17 +6,66 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
 <div class="container-fluid">
 
     <div class="row">
-        <div class="col-12 col-sm-6 col-md-3">
-            <!-- <video width="320" height="240" autoplay>
-                <source src="https://www.youtube.com/watch?v=oYvsx711VAE" type="video/mp4">
-                <source src="https://www.youtube.com/watch?v=oYvsx711VAE" type="video/ogg">
-                Your browser does not support the video tag.
-            </video> -->
-            <!-- <video width="100%" height="400" controls>
-                <source src="https://www.youtube.com/watch?v=oYvsx711VAE" type="video/mp4">
-            </video> -->
-            <iframe width="420" height="315" src="https://www.youtube.com/watch?v=oYvsx711VAE" frameborder="0" allowfullscreen></iframe>
-        </div>
+
+        <section id="home" class="carousel">
+            <div class="slides">
+                <div class="slide">
+                    <img src="assets/slides/slide1.jpg" alt="Slide 1">
+                    <div class="slide-content">
+                        <h3>Welcome to University</h3>
+                        <p>Discover our commitment to excellence in education and the success of every student.</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="assets/slides/slide2.jpg" alt="Slide 2">
+                    <div class="slide-content">
+                        <h3>Explore Our Programs</h3>
+                        <p>We offer a wide range of programs designed to prepare students for future challenges.</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="assets/slides/slide3.jpg" alt="Slide 3">
+                    <div class="slide-content">
+                        <h3>Join Our Community</h3>
+                        <p>Become a part of a vibrant community focused on learning and personal growth.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div>
 
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        let currentIndex = 0;
+        const slides = document.querySelectorAll(".slide");
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((slide, idx) => {
+                slide.classList.remove("active");
+                if (idx === index) {
+                    slide.classList.add("active");
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateSlide();
+        }
+
+        function updateSlide() {
+            const offset = -currentIndex * 100;
+            document.querySelector(
+                ".slides"
+            ).style.transform = `translateX(${offset}%)`;
+            showSlide(currentIndex);
+        }
+        setInterval(nextSlide, 5000);
+
+        updateSlide();
+    });
+</script>

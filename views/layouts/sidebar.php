@@ -33,6 +33,11 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <?php
+
+            use Codeception\Util\Template;
+            use yii\bootstrap4\Html;
+                            use yii\helpers\BaseUrl;
+
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
                     // [
@@ -140,7 +145,7 @@
                     // ],
                     [
                         'label' => 'Cashbook Reports',
-                        'icon' => 'fas fa-file-alt',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/cr.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                         'items' => [
                             ['label' => 'Payments', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-paycash/report']],
                             ['label' => 'Receipts', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rcts-cash/report']],
@@ -149,7 +154,7 @@
                     ],
                     [
                         'label' => 'Ledger Reports',
-                        'icon' => 'fas fa-file-alt',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/lr.png" width="30" height="30" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                         'items' => [
                             ['label' => 'Payments (Cashbook Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-payledg/cash-report']],
                             ['label' => 'Receipts (Cashbook Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rctsledg/cash-report']],
@@ -164,7 +169,7 @@
                     ],
                     [
                         'label' => 'Journal Reports',
-                        'icon' => 'fas fa-file-alt',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/jr.png" width="23" height="23" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                         'items' => [
                             ['label' => 'Debits (Cashbook Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/debit-cash-report']],
                             ['label' => 'Credits (Cashbook Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/credit-cash-report']],
@@ -179,14 +184,14 @@
                     ],
                     [
                         'label' => 'Trial Account',
-                        'icon' => 'fas fa-file-alt',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/ta.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                         'items' => [
                             ['label' => 'Trial Balance', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-trialdtl/report']],
                         ]
                     ],
                     [
                         'label' => 'Log Files',
-                        'icon' => 'fas fa-file-alt',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/l.png" width="23" height="23" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                         'items' => [
                             ['label' => 'Data Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-zlog/report']],
                             ['label' => 'User Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-zloguser/report']],
