@@ -1,214 +1,122 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <!-- <a href="index3.html" class="brand-link">
-        <img src="<?= $assetDir ?>/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a> -->
 
-    <!-- Sidebar -->
     <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="<?= $assetDir ?>/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-            </div>
-            <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
-            </div>
-        </div> -->
 
-        <!-- SidebarSearch Form -->
-        <!-- href be escaped -->
-        <!-- <div class="form-inline">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
-                </div>
-            </div>
-        </div> -->
-
-        <!-- Sidebar Menu -->
         <nav class="mt-2">
             <?php
 
             use Codeception\Util\Template;
             use yii\bootstrap4\Html;
-                            use yii\helpers\BaseUrl;
+            use yii\helpers\BaseUrl;
 
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
-                    // [
-                    //     'label' => 'Starter Pages',
-                    //     'icon' => 'tachometer-alt',
-                    //     'badge' => '<span class="right badge badge-info">2</span>',
-                    //     'items' => [
-                    //         ['label' => 'Active Page', 'url' => ['site/index'], 'iconStyle' => 'far'],
-                    //         ['label' => 'Inactive Page', 'iconStyle' => 'far'],
-                    //     ]
-                    // ],
-                    // ['label' => 'Simple Link', 'icon' => 'th', 'badge' => '<span class="right badge badge-danger">New</span>'],
-                    // ['label' => 'Yii2 PROVIDED', 'header' => true],
-                    // ['label' => 'Login', 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
-                    // ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
-                    // ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank'],
-                    ['label' => 'Reports', 'header' => true],
-                    // [
-                    //     'label' => 'Cash Book',
-                    //     'icon' => 'fas fa-book',
-                    //     'items' => [
-                    //         ['label' => 'Cashbook Details', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-bankaccts/index']],
-                    //         ['label' => 'Payments', 'icon' => 'fas fa-caret-right', 'url' => ['/cash-book/payment']],
-                    //         ['label' => 'Receipts', 'icon' => 'fas fa-caret-right', 'url' => ['/cash-book/receipt']],
-                    //         ['label' => 'Journal', 'icon' => 'fas fa-caret-right', 'url' => ['/cash-book/journal']]
-                    //     ]
-                    // ],
-                    // [
-                    //     'label' => 'General Ledger',
-                    //     'icon' => 'fas fa-file-invoice',
-                    //     'items' => [
-                    //         ['label' => 'Main Ledgers', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledgmain/index']],
-                    //         ['label' => 'Sub Ledgers', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledgsub/index']],
-                    //         ['label' => 'Account Ledgers', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledger/index']],
-                    //         ['label' => 'Account Program', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-prog/index']],
-                    //         ['label' => 'Account Project', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-proj/index']],
-                    //         ['label' => 'Account Votes', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-votes/index']],
-                    //         ['label' => 'Payment Ledger', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-payledg/index']],
-                    //         ['label' => 'Receipt Ledger', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rctsledg/index']],
-                    //     ]
-                    // ],
-                    // [
-                    //     'label' => 'Payroll',
-                    //     'icon' => 'fas fa-cash-register',
-                    //     'items' => [
-                    //         ['label' => 'Employee Details', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-fin-details/index']],
-                    //         ['label' => 'Standing Order Allowances', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-seml/index']],
-                    //         ['label' => 'SA-5 Allowances', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-sa5/index']],
-                    //         ['label' => 'Standing Order Deductions', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-sded/index']],
-                    //         ['label' => 'Banks', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-bank/index']],
-                    //         ['label' => 'Fixed Salary Fields', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-fields/index']],
-                    //         ['label' => 'Bank Standing Orders', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-sbnk/index']],
-                    //         ['label' => 'Pay Income', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-income/index']],
-                    //         ['label' => 'Pay Deductions', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-deductions/index']],
-                    //         ['label' => 'Pay Standing-Tax', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-stax/index']],
-                    //         ['label' => 'Pay Tax Type', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-taxtype/index']],
-                    //     ]
-                    // ],
-                    // [
-                    //     'label' => 'Fund Management',
-                    //     'icon' => 'fas fa-donate',
-                    //     'items' => [
-                    //         ['label' => 'Fund Types', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-fm-funds/index']],
-                    //         ['label' => 'Opening EPF Balances (2022)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-fm-epf-contr/index']],
-                    //     ]
-                    // ],
-                    // [
-                    //     'label' => 'System Data',
-                    //     'icon' => 'fas fa-server',
-                    //     'items' => [
-                    //         ['label' => 'Users', 'icon' => 'fas fa-caret-right', 'url' => ['/tbl-user/index']],
-                    //         ['label' => 'Pay Fields', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-fields/index']],
-                    //         ['label' => 'Pay A5 Types', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-a5type/index']],
-                    //     ]
-                    // ],
-                    // [
-                    //     'label' => 'Reports',
-                    //     'icon' => 'fas fa-file-alt',
-                    //     'items' => [
-                    //         ['label' => 'Cashbook Details Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-bankaccts/report']],
-                    //         ['label' => 'Main Ledgers Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledgmain/report']],
-                    //         ['label' => 'Sub Ledgers Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledgsub/report']],
-                    //         ['label' => 'Account Ledgers Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-ledger/report']],
-                    //         ['label' => 'Account Programs Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-prog/report']],
-                    //         ['label' => 'Account Projects Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-proj/report']],
-                    //         ['label' => 'Account Votes Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-votes/report']],
-
-                    //         ['label' => 'Employee Details (Finance) Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-fin-details/report']],
-                    //         ['label' => 'Standing Order Allowances Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-seml/report']],
-                    //         ['label' => 'SA-5 Allowances Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-sa5/report']],
-                    //         ['label' => 'Standing Order Deductions Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-sded/report']],
-                    //         ['label' => 'Bank Standing Orders Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-sbnk/report']],
-                    //         ['label' => 'Pay Incomes Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-income/report']],
-                    //         ['label' => 'Pay Deductions Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-deductions/report']],
-                    //         ['label' => 'Pay Standing-Tax Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-stax/report']],
-
-                    //         ['label' => 'Payment Cash Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-paycash/report']],
-                    //         ['label' => 'Receipt Cash Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rcts-cash/report']],
-                    //         ['label' => 'Main Cash Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-maincash/report']],
-                    //         ['label' => 'Payment Ledgers Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-payledg/report']],
-                    //         ['label' => 'Receipt Ledgers Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rctsledg/report']],
-                    //         ['label' => 'Main Ledgers Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-mainledg/report']],
-                    //         ['label' => 'Trial Balance Report', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-trialbal/report']],
-                    //     ]
-                    // ],
+                    ['label' => 'Monthly Reports', 'header' => true],
+                    ['label' => 'Final Summaries', 'header' => true],
+                    ['label' => 'Reconciliations', 'header' => true],
+                    ['label' => 'Annual Reports', 'header' => true],
+                    ['label' => 'Payee Tax', 'header' => true],
                     [
-                        'label' => 'Cashbook Reports',
-                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/cr.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'label' => 'Information',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/info-main.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'header' => true
+                    ],
+                    [
+                        'label' => 'Basic Salary',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/salary.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        // 'items' => [
+                        //     ['label' => 'Payments', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-paycash/report']],
+                        //     ['label' => 'Receipts', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rcts-cash/report']],
+                        //     ['label' => 'Payments & Receipts', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-maincash/report']],
+                        // ]
+                    ],
+                    [
+                        'label' => 'Emoluments',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/emo.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                         'items' => [
-                            ['label' => 'Payments', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-paycash/report']],
-                            ['label' => 'Receipts', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rcts-cash/report']],
-                            ['label' => 'Payments & Receipts', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-maincash/report']],
+                            ['label' => 'Emolument List', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-payhd/emolunment-report']],
                         ]
                     ],
                     [
-                        'label' => 'Ledger Reports',
-                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/lr.png" width="30" height="30" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'label' => 'Deductions',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/tax-deduct.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                         'items' => [
-                            ['label' => 'Payments (Cashbook Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-payledg/cash-report']],
-                            ['label' => 'Receipts (Cashbook Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rctsledg/cash-report']],
-                            ['label' => 'Payments & Receipts (Cashbook Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-mainledg/cash-report']],
-                            ['label' => 'Payments (Ledger Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-payledg/ledg-report']],
-                            ['label' => 'Receipts (Ledger Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rctsledg/ledg-report']],
-                            ['label' => 'Payments & Receipts (Ledger Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-mainledg/ledg-report']],
-                            ['label' => 'Payments (Vote Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-payledg/vote-report']],
-                            ['label' => 'Receipts (Vote Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rctsledg/vote-report']],
-                            ['label' => 'Payments & Receipts (Vote Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-mainledg/vote-report']],
+                            ['label' => 'Deduction List', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-payhd/deduction-report']],
                         ]
                     ],
                     [
-                        'label' => 'Journal Reports',
-                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/jr.png" width="23" height="23" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'label' => 'Bank Standing Orders',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/order.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
+                    [
+                        'label' => 'Other Allowances',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/allowance.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                         'items' => [
-                            ['label' => 'Debits (Cashbook Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/debit-cash-report']],
-                            ['label' => 'Credits (Cashbook Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/credit-cash-report']],
-                            ['label' => 'Debits & Credits (Cashbook Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/credit-debit-cash-report']],
-                            ['label' => 'Debits (Ledger Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/debit-ledg-report']],
-                            ['label' => 'Credits (Ledger Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/credit-ledg-report']],
-                            ['label' => 'Debits & Credits (Ledger Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/credit-debit-ledg-report']],
-                            ['label' => 'Debits (Vote Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/debit-vote-report']],
-                            ['label' => 'Credits (Vote Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/credit-vote-report']],
-                            ['label' => 'Debits & Credits (Vote Wise)', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnl/credit-debit-vote-report']],
+                            ['label' => 'A5 List', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-payhd/sa5-report']],
+                            ['label' => 'A13 List', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-payhd/sa13-report']],
+                            ['label' => 'A14 List', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-payhd/sa14-report']],
                         ]
                     ],
                     [
-                        'label' => 'Trial Account',
-                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/ta.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
-                        'items' => [
-                            ['label' => 'Trial Balance', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-trialdtl/report']],
-                        ]
+                        'label' => 'Tax Deductions',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/tax1.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                     ],
                     [
-                        'label' => 'Log Files',
-                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/l.png" width="23" height="23" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
-                        'items' => [
-                            ['label' => 'Data Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-zlog/report']],
-                            ['label' => 'User Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-zloguser/report']],
-                            ['label' => 'Payments Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-payhdr/report']],
-                            ['label' => 'Receipts Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rctshdr/report']],
-                            ['label' => 'Journals Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnlhdr/report']],
-                        ]
+                        'label' => 'Loans',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/loan.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                     ],
-                    // ['label' => 'LABELS', 'header' => true],
-                    // ['label' => 'Important', 'iconStyle' => 'far', 'iconClassAdded' => 'text-danger'],
-                    // ['label' => 'Warning', 'iconClass' => 'nav-icon far fa-circle text-warning'],
-                    // ['label' => 'Informational', 'iconStyle' => 'far', 'iconClassAdded' => 'text-info'],
+                    [
+                        'label' => 'Other Income Received',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/income.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
+                    [
+                        'label' => 'Temporary Employee Date',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/date.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
+                    [
+                        'label' => 'EPF and ETF Arreares',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/arrears.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
+                    [
+                        'label' => '......................................................................',
+                        'template' => '<a class="nav-link">{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
+                    [
+                        'label' => 'Personal Information',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/personal-information.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
+                    [
+                        'label' => 'All Personal Information (to Excel)',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/excel.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
+                    [
+                        'label' => 'Employee (Dept. Wise)',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/connection.png" width="23" height="23" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        // 'items' => [
+                        //     ['label' => 'Data Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-zlog/report']],
+                        //     ['label' => 'User Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-zloguser/report']],
+                        //     ['label' => 'Payments Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-payhdr/report']],
+                        //     ['label' => 'Receipts Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rctshdr/report']],
+                        //     ['label' => 'Journals Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnlhdr/report']],
+                        // ]
+                    ],
+                    [
+                        'label' => 'Employee Details',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/emp-details.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
+                    [
+                        'label' => 'Employee Remarks',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/remarks.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
+                    [
+                        'label' => 'Field Information',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/info.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
                 ],
             ]);
             ?>
         </nav>
-        <!-- /.sidebar-menu -->
+
     </div>
-    <!-- /.sidebar -->
+
 </aside>

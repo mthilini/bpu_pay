@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\PayFields;
 use app\models\PaySeml;
 use app\models\PaySemlSearch;
 use Yii;
@@ -173,7 +174,6 @@ class PaySemlController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
 
     public function actionReport()
     {

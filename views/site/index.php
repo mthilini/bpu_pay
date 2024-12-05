@@ -1,5 +1,5 @@
 <?php
-$this->title = 'BPU Finance System';
+$this->title = 'BPU Payroll System';
 $this->params['breadcrumbs'] = [['label' => $this->title]];
 ?>
 

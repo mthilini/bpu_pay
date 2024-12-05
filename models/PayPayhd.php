@@ -7,48 +7,42 @@ use Yii;
 /**
  * This is the model class for table "pay_payhd".
  *
- * @property int $id
- * @property string $empNIC
- * @property string $empTitle
- * @property string $empSurname
- * @property string $empInitials
- * @property string $empNames
- * @property string $empGender
- * @property string $empAddress1
- * @property string $empAddress2
- * @property string $empAddress3
- * @property string $empDept
- * @property string $empDesig
- * @property string $empSalCode
- * @property float $empBasic
- * @property string $empDtAppt
- * @property string $empDtAssm
- * @property string $empDtIncr
- * @property string $empDtConf
- * @property string $empDtBirth
- * @property string $empUPFNo
- * @property string $empETFNo
- * @property string $empUPNo
- * @property string $empUPContr
- * @property string $empBankCode
- * @property string $empAcctNo
- * @property string $empAcctName
- * @property string $empStatus
- * @property string $empAcademic
- * @property string $empTempEmp
- * @property string $empDtTemp
- * @property string $empGrade
- * @property string $empResearch
- * @property string $empTax
- * @property string $empTaxTbl
- * @property float $empLoanAmt
- * @property string $empLoanDate
- *
- * @property PayDeductions[] $payDeductions
- * @property PayIncome[] $payIncomes
- * @property PayRmks[] $payRmks
- * @property PaySa5[] $paySa5s
- * @property PayStax[] $payStaxes
+ * @property string|null $empNIC
+ * @property string|null $empTitle
+ * @property string|null $empSurname
+ * @property string|null $empInitials
+ * @property string|null $empNames
+ * @property string|null $empGender
+ * @property string|null $empAddress1
+ * @property string|null $empAddress2
+ * @property string|null $empAddress3
+ * @property string|null $empDept
+ * @property string|null $empDesig
+ * @property string|null $empSalCode
+ * @property string|null $empSalScale
+ * @property float|null $empBasic
+ * @property string|null $empDtAppt
+ * @property string|null $empDtAssm
+ * @property string|null $empDtIncr
+ * @property string|null $empDtConf
+ * @property string|null $empDtBirth
+ * @property string|null $empUPFNo
+ * @property string|null $empETFNo
+ * @property string|null $empUPNo
+ * @property string|null $empUPContr
+ * @property string|null $empBankCode
+ * @property string|null $empAcctNo
+ * @property string|null $empAcctName
+ * @property string|null $empStatus
+ * @property string|null $empAcademic
+ * @property string|null $empTempEmp
+ * @property string|null $empDtTemp
+ * @property string|null $empGrade
+ * @property string|null $empResearch
+ * @property string|null $empTax
+ * @property string|null $empTaxTbl
+ * @property float|null $empLoanAmt
+ * @property string|null $empLoanDate
  */
 class PayPayhd extends \yii\db\ActiveRecord
 {
@@ -60,6 +54,11 @@ class PayPayhd extends \yii\db\ActiveRecord
         return 'pay_payhd';
     }
 
+    public static function primaryKey()
+    {
+        return ["empNIC"];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -68,21 +67,18 @@ class PayPayhd extends \yii\db\ActiveRecord
         return [
             [['empBasic', 'empLoanAmt'], 'number'],
             [['empDtAppt', 'empDtAssm', 'empDtIncr', 'empDtConf', 'empDtBirth', 'empDtTemp', 'empLoanDate'], 'safe'],
-            [['empNIC', 'empAcctNo'], 'string', 'max' => 12],
-            [['empTitle'], 'string', 'max' => 2],
-            [['empSurname'], 'string', 'max' => 50],
-            [['empInitials'], 'string', 'max' => 30],
-            [['empNames'], 'string', 'max' => 150],
+            [['empNIC'], 'string', 'max' => 50],
+            [['empTitle', 'empAddress3'], 'string', 'max' => 15],
+            [['empSurname', 'empAddress1', 'empAddress2'], 'string', 'max' => 25],
+            [['empInitials', 'empAcctNo'], 'string', 'max' => 12],
+            [['empNames'], 'string', 'max' => 75],
             [['empGender', 'empUPContr', 'empStatus', 'empAcademic', 'empTempEmp', 'empGrade', 'empResearch', 'empTax', 'empTaxTbl'], 'string', 'max' => 1],
-            [['empAddress1', 'empAddress2', 'empAddress3'], 'string', 'max' => 100],
-            [['empDept', 'empDesig'], 'string', 'max' => 3],
-            [['empSalCode'], 'string', 'max' => 15],
-            [['empUPFNo', 'empETFNo', 'empUPNo'], 'string', 'max' => 8],
+            [['empDept'], 'string', 'max' => 5],
+            [['empDesig'], 'string', 'max' => 3],
+            [['empSalCode', 'empUPFNo', 'empETFNo', 'empUPNo'], 'string', 'max' => 8],
+            [['empSalScale'], 'string', 'max' => 100],
             [['empBankCode'], 'string', 'max' => 7],
             [['empAcctName'], 'string', 'max' => 20],
-            [['empNIC'], 'unique'],
-            [['empUPFNo'], 'unique'],
-            [['empETFNo'], 'unique'],
         ];
     }
 
@@ -92,7 +88,6 @@ class PayPayhd extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
             'empNIC' => 'Emp Nic',
             'empTitle' => 'Emp Title',
             'empSurname' => 'Emp Surname',
@@ -105,6 +100,7 @@ class PayPayhd extends \yii\db\ActiveRecord
             'empDept' => 'Emp Dept',
             'empDesig' => 'Emp Desig',
             'empSalCode' => 'Emp Sal Code',
+            'empSalScale' => 'Emp Sal Scale',
             'empBasic' => 'Emp Basic',
             'empDtAppt' => 'Emp Dt Appt',
             'empDtAssm' => 'Emp Dt Assm',
@@ -131,53 +127,33 @@ class PayPayhd extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * Gets query for [[PayDeductions]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPayDeductions()
+    public function getPaySeml()
     {
-        return $this->hasMany(PayDeductions::class, ['empUPFNo' => 'empUPFNo']);
+        return $this->hasOne(PaySeml::className(), ['empUPFNo' => 'empUPFNo']);
     }
 
-    /**
-     * Gets query for [[PayIncomes]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPayIncomes()
+    public function getPaySded()
     {
-        return $this->hasMany(PayIncome::class, ['empUPFNo' => 'empUPFNo']);
+        return $this->hasOne(PaySded::className(), ['empUPFNo' => 'empUPFNo']);
     }
 
-    /**
-     * Gets query for [[PayRmks]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPayRmks()
+    public function getPaySa5()
     {
-        return $this->hasMany(PayRmks::class, ['empUPFNo' => 'empUPFNo']);
+        return $this->hasOne(PaySa5::className(), ['empUPFNo' => 'empUPFNo']);
     }
 
-    /**
-     * Gets query for [[PaySa5s]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPaySa5s()
+    public function getPaySa13()
     {
-        return $this->hasMany(PaySa5::class, ['empUPFNo' => 'empUPFNo']);
+        return $this->hasOne(PaySa13::className(), ['empUPFNo' => 'empUPFNo']);
     }
 
-    /**
-     * Gets query for [[PayStaxes]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPayStaxes()
+    public function getPaySa14()
     {
-        return $this->hasMany(PayStax::class, ['empUPFNo' => 'empUPFNo']);
+        return $this->hasOne(PaySa14::className(), ['empUPFNo' => 'empUPFNo']);
+    }
+
+    public function getPayDept()
+    {
+        return $this->hasOne(PayDept::className(), ['deptCode' => 'empDept']);
     }
 }
