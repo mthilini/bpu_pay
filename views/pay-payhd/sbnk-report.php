@@ -1,5 +1,5 @@
 <?php
-$this->title = 'A5 List';
+$this->title = 'Bank Standing Order List';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -7,7 +7,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="card-bofy m-2">
 
         <?=
-        $this->render('_sa5-search', [
+        $this->render('_sbnk-search', [
             'request' => $request,
             'payFields' => $payFields,
         ]);
@@ -23,6 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th>Start Date</th>
                     <th>End Date</th>
                     <th>Amount</th>
+                    <th>Account</th>
+                    <th>Account Name</th>
+                    <th>Savings</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     $models = $dataProvider->getModels();
                     foreach ($models as $key => $model) {
                         $i++;
-                        $amount = $model['sa5Amt'];
+                        $amount = $model['sbnkAmt'];
                         $totAmount += $amount;
                 ?>
                         <tr>
@@ -41,9 +44,12 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?= $model['empUPFNo']; ?></td>
                             <td><?= $model['empTitle'] . ' ' . $model['empSurname'] . ' ' . $model['empInitials']; ?></td>
                             <td><?= $model['deptName']; ?></td>
-                            <td><?= $model['sa5Start']; ?></td>
-                            <td><?= $model['sa5End']; ?></td>
+                            <td><?= $model['sbnkStart']; ?></td>
+                            <td><?= $model['sbnkEnd']; ?></td>
                             <td><?= number_format($amount, 2, '.', ','); ?></td>
+                            <td><?= $model['sbnkAcct']; ?></td>
+                            <td><?= $model['sbnkAName']; ?></td>
+                            <td><?= ($model['sbnkLoan'] == '0' ? 'Yes' : 'No'); ?></td>
                         </tr>
                 <?php
                     }
@@ -55,6 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th colspan="4">&nbsp;</th>
                     <th colspan="2" class="grand-tot balance"><label for="tot_header">Total Amount:</label></th>
                     <th class="grand-tot balance" style="text-align: right !important;"><label for="tot"><?= number_format($totAmount, 2, '.', ','); ?></label></th>
+                    <th colspan="3">&nbsp;</th>
                 </tr>
             </tfoot>
         </table>
@@ -64,9 +71,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <script>
     $(document).ready(function() {
         var date = ($('#date').val() != '') ? $('#date').val() : '';
-        var fldName = ($('#a5Code').val() != '') ? $('#a5Code').find(":selected").text() : 'All';
+        var fldName = ($('#bankBank').val() != '') ? $('#bankBank').find(":selected").text() : 'All';
 
-        var commonTle = 'Buddhist and Pali Universitry \n A5 List : ';
+        var commonTle = 'Buddhist and Pali Universitry \n Bank Standing Order List : ';
         var cceCommon = (fldName == 'All' ? date : (date + '\n (' + fldName + ')'));
         var pdfTle = (fldName == 'All' ? date : (date + '\n\n  ' + fldName));
         var printTle = (fldName == 'All' ? '' : fldName);
@@ -90,7 +97,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             extend: 'pdfHtml5',
                             title: commonTle + pdfTle,
                             bold: true,
-                            // orientation: "landscape",
+                            orientation: "landscape",
                             customize: function(doc) {
                                 // doc.styles.tableHeader.alignment = "left";
                                 var rowCount = doc.content[1].table.body.length;
@@ -118,7 +125,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     .css('font-weight', 'bold')
                                     .css('text-align', 'center')
                                     .prepend(
-                                        'Buddhist and Pali Universitry <br>A5 List : ' + date
+                                        'Buddhist and Pali Universitry <br>Bank Standing Order List : ' + date
                                     );
 
                                 $(win.document.body).find('table tbody td:nth-child(1)').css('text-align', 'right');
@@ -142,7 +149,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     className: 'text-center',
                 },
                 {
-                    targets: [0, 1, 6],
+                    targets: [0, 1, 6, 7],
                     className: 'text-right',
                 },
                 {

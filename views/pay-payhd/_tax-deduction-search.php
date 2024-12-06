@@ -13,19 +13,19 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin([
         'action' => ['report'],
         'method' => 'get',
-        'action' => ['/pay-payhd/sa13-report'],
+        'action' => ['/pay-payhd/tax-deduction-report'],
     ]); ?>
 
     <div class="m-2">
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4">
                 <label>Field</label>
-                <select name="a13Code" id="a13Code" class="form-control">
+                <select name="taxCode" id="taxCode" class="form-control">
                     <option value="0">All</option>
                     <?php if ($payFields != null) {
                         foreach ($payFields as $key => $payField) {
                     ?>
-                            <option value="<?= $payField['a13Code']; ?>" <?= (!empty($request['a13Code']) && $request['a13Code'] == $payField['a13Code']) ? 'selected="selected"' : '' ?>><?= $payField['a13Desc']; ?></option>
+                            <option value="<?= $payField['taxCode']; ?>" <?= (!empty($request['taxCode']) && $request['taxCode'] == $payField['taxCode']) ? 'selected="selected"' : '' ?>><?= $payField['taxDesc']; ?></option>
                     <?php }
                     }
                     ?>
@@ -37,7 +37,7 @@ use yii\widgets\ActiveForm;
             </div>
             <div class="form-group col-lg-2 col-md-3 col-sm-3">
                 <?= Html::submitButton('Search', ['class' => 'btn btn-primary btn-sm']) ?>
-                <?= Html::a('Reset', ['/pay-payhd/sa13-report'], ['class' => 'btn btn-secondary btn-sm']) ?>
+                <?= Html::a('Reset', ['/pay-payhd/tax-deduction-report'], ['class' => 'btn btn-secondary btn-sm']) ?>
             </div>
         </div>
     </div>

@@ -64,26 +64,31 @@ $this->params['breadcrumbs'][] = $this->title;
 <script>
     $(document).ready(function() {
         var date = ($('#date').val() != '') ? $('#date').val() : '';
-        var fldName = ($('#a13Code').val() != '') ? $('#a13Code').find(":selected").text() : '';
+        var fldName = ($('#a13Code').val() != '') ? $('#a13Code').find(":selected").text() : 'All';
+
+        var commonTle = 'Buddhist and Pali Universitry \n A13 List : ';
+        var cceCommon = (fldName == 'All' ? date : (date + '\n (' + fldName + ')'));
+        var pdfTle = (fldName == 'All' ? date : (date + '\n\n  ' + fldName));
+        var printTle = (fldName == 'All' ? '' : fldName);
 
         $('#report').DataTable({
             layout: {
                 topStart: {
                     buttons: [{
                             extend: 'copyHtml5',
-                            title: 'Buddhist and Pali Universitry \n A13 List : ' + date + '\n (' + fldName + ')',
+                            title: commonTle + cceCommon,
                         },
                         {
                             extend: 'csvHtml5',
-                            title: 'Buddhist and Pali Universitry \n A13 List : ' + date + '\n (' + fldName + ')',
+                            title: commonTle + cceCommon,
                         },
                         {
                             extend: 'excelHtml5',
-                            title: 'Buddhist and Pali Universitry \n A13 List : ' + date + '\n (' + fldName + ')',
+                            title: commonTle + cceCommon,
                         },
                         {
                             extend: 'pdfHtml5',
-                            title: 'Buddhist and Pali Universitry \n A13 List : ' + date + '\n\n  ' + fldName,
+                            title: commonTle + pdfTle,
                             bold: true,
                             // orientation: "landscape",
                             customize: function(doc) {
@@ -102,7 +107,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                         {
                             extend: 'print',
-                            title: fldName,
+                            title: printTle,
                             orientation: "landscape",
                             exportOptions: {
                                 stripHtml: false

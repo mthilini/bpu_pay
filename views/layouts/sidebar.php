@@ -47,6 +47,9 @@
                     [
                         'label' => 'Bank Standing Orders',
                         'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/order.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'items' => [
+                            ['label' => 'Bank Standing Order List', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-payhd/sbnk-report']],
+                        ]
                     ],
                     [
                         'label' => 'Other Allowances',
@@ -60,6 +63,9 @@
                     [
                         'label' => 'Tax Deductions',
                         'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/tax1.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'items' => [
+                            ['label' => 'Tax Deduction List', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-payhd/tax-deduction-report']],
+                        ]
                     ],
                     [
                         'label' => 'Loans',

@@ -1,5 +1,5 @@
 <?php
-$this->title = 'A5 List';
+$this->title = 'Tax Deduction List';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -7,7 +7,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="card-bofy m-2">
 
         <?=
-        $this->render('_sa5-search', [
+        $this->render('_tax-deduction-search', [
             'request' => $request,
             'payFields' => $payFields,
         ]);
@@ -22,28 +22,35 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th>Department</th>
                     <th>Start Date</th>
                     <th>End Date</th>
-                    <th>Amount</th>
+                    <th>Tax Amount</th>
+                    <th>Income</th>
+                    <th>Type</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 $totAmount = 0.00;
+                $totIncome = 0.00;
                 if ($dataProvider != null) {
                     $i = 0;
                     $models = $dataProvider->getModels();
                     foreach ($models as $key => $model) {
                         $i++;
-                        $amount = $model['sa5Amt'];
+                        $amount = $model['staxAmt'];
+                        $income = $model['staxIncome'];
                         $totAmount += $amount;
+                        $totIncome += $income;
                 ?>
                         <tr>
                             <td class="dt-center"><?= $i; ?></td>
                             <td><?= $model['empUPFNo']; ?></td>
                             <td><?= $model['empTitle'] . ' ' . $model['empSurname'] . ' ' . $model['empInitials']; ?></td>
                             <td><?= $model['deptName']; ?></td>
-                            <td><?= $model['sa5Start']; ?></td>
-                            <td><?= $model['sa5End']; ?></td>
+                            <td><?= $model['staxStart']; ?></td>
+                            <td><?= $model['staxEnd']; ?></td>
                             <td><?= number_format($amount, 2, '.', ','); ?></td>
+                            <td><?= number_format($income, 2, '.', ','); ?></td>
+                            <td><?= $model['staxMoney']; ?></td>
                         </tr>
                 <?php
                     }
@@ -53,8 +60,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <tfoot>
                 <tr>
                     <th colspan="4">&nbsp;</th>
-                    <th colspan="2" class="grand-tot balance"><label for="tot_header">Total Amount:</label></th>
+                    <th colspan="2" class="grand-tot balance"><label for="tot_header">Total :</label></th>
                     <th class="grand-tot balance" style="text-align: right !important;"><label for="tot"><?= number_format($totAmount, 2, '.', ','); ?></label></th>
+                    <th class="grand-tot balance" style="text-align: right !important;"><label for="tot"><?= number_format($totIncome, 2, '.', ','); ?></label></th>
+                    <th>&nbsp;</th>
                 </tr>
             </tfoot>
         </table>
@@ -64,9 +73,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <script>
     $(document).ready(function() {
         var date = ($('#date').val() != '') ? $('#date').val() : '';
-        var fldName = ($('#a5Code').val() != '') ? $('#a5Code').find(":selected").text() : 'All';
+        var fldName = ($('#taxCode').val() != '') ? $('#taxCode').find(":selected").text() : 'All';
 
-        var commonTle = 'Buddhist and Pali Universitry \n A5 List : ';
+        var commonTle = 'Buddhist and Pali Universitry \n Tax Deduction List : ';
         var cceCommon = (fldName == 'All' ? date : (date + '\n (' + fldName + ')'));
         var pdfTle = (fldName == 'All' ? date : (date + '\n\n  ' + fldName));
         var printTle = (fldName == 'All' ? '' : fldName);
@@ -100,9 +109,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                     doc.content[1].table.body[i][4].alignment = 'center';
                                     doc.content[1].table.body[i][5].alignment = 'center';
                                     doc.content[1].table.body[i][6].alignment = 'right';
+                                    doc.content[1].table.body[i][7].alignment = 'right';
                                 };
                                 doc.content[1].table.body[rowCount - 1][4].alignment = 'right';
                                 doc.content[1].table.body[rowCount - 1][6].alignment = 'right';
+                                doc.content[1].table.body[rowCount - 1][7].alignment = 'right';
                             }
                         },
                         {
@@ -118,7 +129,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     .css('font-weight', 'bold')
                                     .css('text-align', 'center')
                                     .prepend(
-                                        'Buddhist and Pali Universitry <br>A5 List : ' + date
+                                        'Buddhist and Pali Universitry <br>Tax Deduction List : ' + date
                                     );
 
                                 $(win.document.body).find('table tbody td:nth-child(1)').css('text-align', 'right');
@@ -126,6 +137,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 $(win.document.body).find('table tbody td:nth-child(5)').css('text-align', 'center');
                                 $(win.document.body).find('table tbody td:nth-child(6)').css('text-align', 'center');
                                 $(win.document.body).find('table tbody td:nth-child(7)').css('text-align', 'right');
+                                $(win.document.body).find('table tbody td:nth-child(8)').css('text-align', 'right');
                                 $(win.document.body).find('table tfoot th').css('text-align', 'right');
                                 $(win.document.body).find('table tfoot th').addClass("align-right");
                             },
@@ -142,7 +154,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     className: 'text-center',
                 },
                 {
-                    targets: [0, 1, 6],
+                    targets: [0, 1, 6, 7],
                     className: 'text-right',
                 },
                 {

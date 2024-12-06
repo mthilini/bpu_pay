@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
             <div class="col-lg-4 col-md-4 col-sm-4">
                 <label>Field</label>
                 <select name="a5Code" id="a5Code" class="form-control">
-                    <option></option>
+                    <option value="0">All</option>
                     <?php if ($payFields != null) {
                         foreach ($payFields as $key => $payField) {
                     ?>

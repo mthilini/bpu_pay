@@ -152,6 +152,16 @@ class PayPayhd extends \yii\db\ActiveRecord
         return $this->hasOne(PaySa14::className(), ['empUPFNo' => 'empUPFNo']);
     }
 
+    public function getPayStax()
+    {
+        return $this->hasOne(PayStax::className(), ['empUPFNo' => 'empUPFNo']);
+    }
+
+    public function getPaySbnk()
+    {
+        return $this->hasOne(PaySbnk::className(), ['empUPFNo' => 'empUPFNo']);
+    }
+
     public function getPayDept()
     {
         return $this->hasOne(PayDept::className(), ['deptCode' => 'empDept']);
