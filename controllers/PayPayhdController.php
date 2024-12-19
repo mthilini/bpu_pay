@@ -18,6 +18,7 @@ use app\models\PaySded;
 use app\models\PaySeml;
 use app\models\PayStax;
 use app\models\PayTaxtype;
+use mPDF;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\db\Query;
@@ -217,7 +218,7 @@ class PayPayhdController extends Controller
                 if (!empty($request['a14Code'])) {
                     $query->andFilterWhere([PaySa14::tableName() . '.sa14Fld' => $request['a14Code']]);
                 }
-                
+
                 $query->orderBy([
                     'empUPFNo' => SORT_ASC,
                     'empSurname' => SORT_ASC
@@ -322,6 +323,86 @@ class PayPayhdController extends Controller
             'dataProvider' => $dataProvider,
             'request' => $request,
             'payFields' => $payFields
+        ]);
+    }
+
+    public function actionEmployeeDetailReport()
+    {
+        $upfListQuery = PayPayhd::find()->select('empUPFNo')->orderBy('empUPFNo');
+        $upfListProvider = new ActiveDataProvider([
+            'query' => $upfListQuery,
+            'pagination' => false,
+        ]);
+
+        $request = Yii::$app->request->get();
+        return $this->render('employee-detail-report', [
+            'request' => $request,
+            'upfList' => $upfListProvider
+        ]);
+    }
+
+    public function actionEmployeeDetailPdf()
+    {
+        $searchModel = new PayPayhdSearch();
+        $query = $searchModel->search([])->query;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $request = Yii::$app->request->get();
+        if (!empty($request) && !empty($request['upfNo'])) {
+            $query->andFilterWhere([
+                'empUPFNo' => $request['upfNo']
+            ]);
+        } else {
+            $dataProvider = null;
+        }
+
+        return $this->renderPartial('employee-detail-pdf', [
+            'dataProvider' => $dataProvider,
+            'request' => $request
+        ]);
+    }
+
+    public function actionEmployeeRemarkReport()
+    {
+        $upfListQuery = PayPayhd::find()->select('empUPFNo')->orderBy('empUPFNo');
+        $upfListProvider = new ActiveDataProvider([
+            'query' => $upfListQuery,
+            'pagination' => false,
+        ]);
+
+        $request = Yii::$app->request->get();
+        return $this->render('employee-remark-report', [
+            'request' => $request,
+            'upfList' => $upfListProvider
+        ]);
+    }
+
+    public function actionEmployeeRemarkPdf()
+    {
+        $searchModel = new PayPayhdSearch();
+        $query = $searchModel->search([])->query;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $request = Yii::$app->request->get();
+        if (!empty($request) && !empty($request['upfNo'])) {
+            $query->andFilterWhere([
+                'empUPFNo' => $request['upfNo']
+            ]);
+        } else {
+            $dataProvider = null;
+        }
+
+        return $this->renderPartial('employee-remark-pdf', [
+            'dataProvider' => $dataProvider,
+            'request' => $request
         ]);
     }
 }

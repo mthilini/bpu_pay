@@ -56,7 +56,7 @@ class PayPayhd extends \yii\db\ActiveRecord
 
     public static function primaryKey()
     {
-        return ["empNIC"];
+        return ["empUPFNo"];
     }
 
     /**
@@ -129,41 +129,56 @@ class PayPayhd extends \yii\db\ActiveRecord
 
     public function getPaySeml()
     {
-        return $this->hasOne(PaySeml::className(), ['empUPFNo' => 'empUPFNo']);
+        return $this->hasMany(PaySeml::className(), ['empUPFNo' => 'empUPFNo']);
     }
 
     public function getPaySded()
     {
-        return $this->hasOne(PaySded::className(), ['empUPFNo' => 'empUPFNo']);
+        return $this->hasMany(PaySded::className(), ['empUPFNo' => 'empUPFNo']);
     }
 
     public function getPaySa5()
     {
-        return $this->hasOne(PaySa5::className(), ['empUPFNo' => 'empUPFNo']);
+        return $this->hasMany(PaySa5::className(), ['empUPFNo' => 'empUPFNo']);
     }
 
     public function getPaySa13()
     {
-        return $this->hasOne(PaySa13::className(), ['empUPFNo' => 'empUPFNo']);
+        return $this->hasMany(PaySa13::className(), ['empUPFNo' => 'empUPFNo']);
     }
 
     public function getPaySa14()
     {
-        return $this->hasOne(PaySa14::className(), ['empUPFNo' => 'empUPFNo']);
+        return $this->hasMany(PaySa14::className(), ['empUPFNo' => 'empUPFNo']);
     }
 
     public function getPayStax()
     {
-        return $this->hasOne(PayStax::className(), ['empUPFNo' => 'empUPFNo']);
+        return $this->hasMany(PayStax::className(), ['empUPFNo' => 'empUPFNo']);
     }
 
     public function getPaySbnk()
     {
-        return $this->hasOne(PaySbnk::className(), ['empUPFNo' => 'empUPFNo']);
+        return $this->hasMany(PaySbnk::className(), ['empUPFNo' => 'empUPFNo']);
+    }
+
+    public function getPayRmks()
+    {
+        return $this->hasMany(PayRmks::className(), ['empUPFNo' => 'empUPFNo']);
     }
 
     public function getPayDept()
     {
         return $this->hasOne(PayDept::className(), ['deptCode' => 'empDept']);
+    }
+
+    public function getPayDesig()
+    {
+        return $this->hasOne(PayDesig::className(), ['desigCode' => 'empDesig']);
+    }
+
+    public function getPayBank()
+    {
+        return $this->hasOne(PayBank::className(), ['bankBank' => 'empBankCode']);
     }
 }

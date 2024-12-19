@@ -5,17 +5,50 @@
         <nav class="mt-2">
             <?php
 
-            use Codeception\Util\Template;
-            use yii\bootstrap4\Html;
-            use yii\helpers\BaseUrl;
-
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
                     ['label' => 'Monthly Reports', 'header' => true],
                     ['label' => 'Final Summaries', 'header' => true],
                     ['label' => 'Reconciliations', 'header' => true],
+                    [
+                        'label' => 'University',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/university.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'items' => [
+                            ['label' => 'University Reconciliations', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-ipr/university-recon-report']],
+                        ]
+                    ],
+                    [
+                        'label' => 'Program Project',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/project.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'items' => [
+                            ['label' => 'Program Project Reconciliations', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-ipr/ppr-recon-report']],
+                        ]
+                    ],
+                    [
+                        'label' => 'Individual Detail',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/individual.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'items' => [
+                            ['label' => 'Individual Detail Reconciliations', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-ipr/university-recon-report']],
+                        ]
+                    ],
+                    [
+                        'label' => '',
+                        'template' => '<a class="nav-link">{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
+                    [
+                        'label' => '',
+                        'template' => '<a class="nav-link">{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
                     ['label' => 'Annual Reports', 'header' => true],
                     ['label' => 'Payee Tax', 'header' => true],
+                    [
+                        'label' => '',
+                        'template' => '<a href="{url}" class="nav-link">{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
+                    [
+                        'label' => '',
+                        'template' => '<a class="nav-link">{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
                     [
                         'label' => 'Information',
                         'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/info-main.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
@@ -90,10 +123,16 @@
                     [
                         'label' => 'Personal Information',
                         'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/personal-information.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'items' => [
+                            ['label' => 'Personal Information', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-payhd/employee-detail-report']],
+                        ]
                     ],
                     [
                         'label' => 'All Personal Information (to Excel)',
                         'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/excel.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'items' => [
+                            ['label' => 'Generate Excel File', 'icon' => 'fas fa-file-excel', 'url' => ['/excel/personal-info-report']],
+                        ]
                     ],
                     [
                         'label' => 'Employee (Dept. Wise)',
@@ -109,14 +148,23 @@
                     [
                         'label' => 'Employee Details',
                         'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/emp-details.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        // 'items' => [
+                        //     ['label' => 'Employee Detail', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-payhd/employee-detail-report']],
+                        // ]
                     ],
                     [
                         'label' => 'Employee Remarks',
                         'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/remarks.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'items' => [
+                            ['label' => 'Employee Remark', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-payhd/employee-remark-report']],
+                        ]
                     ],
                     [
                         'label' => 'Field Information',
                         'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/info.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'items' => [
+                            ['label' => 'Field Information List', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-fields/report']],
+                        ]
                     ],
                 ],
             ]);

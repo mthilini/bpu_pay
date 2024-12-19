@@ -1,0 +1,171 @@
+<?php
+
+namespace app\controllers;
+
+use app\models\PayDept;
+use app\models\PayDeptSearch;
+use app\models\PayIpr;
+use app\models\PayIprprv;
+use app\models\PayPayhd;
+use app\models\PayPayhdSearch;
+use Yii;
+use yii\data\ActiveDataProvider;
+use yii\web\Controller;
+
+class PayIprController extends Controller
+{
+
+    public function actionUniversityReconReport()
+    {
+        return $this->render('university-recon-report');
+    }
+
+    public function actionUniversityReconReportPdf()
+    {
+
+        $request = Yii::$app->request->get();
+        $sumPr = $this->getPayPr($request);
+        $sumPrPrv = $this->getPayPrPrv($request);
+
+        $sumArray = array_merge($sumPr, $sumPrPrv);
+
+        return $this->renderPartial('university-recon-report-pdf', [
+            'sumArray' => $sumArray,
+        ]);
+    }
+
+    public function actionPprReconReport()
+    {
+
+        $request = Yii::$app->request->get();
+        return $this->render('ppr-recon-report', [
+            'request' => $request,
+        ]);
+    }
+
+    public function actionPprReconReportPdf()
+    {
+
+        $request = Yii::$app->request->get();
+        $sumPr = $this->getPayPr($request);
+        $sumPrPrv = $this->getPayPrPrv($request);
+
+        $sumArray = array_merge($sumPr, $sumPrPrv);
+
+        return $this->renderPartial('ppr-recon-report-pdf', [
+            'sumArray' => $sumArray,
+        ]);
+    }
+
+    public function getPayPr($request)
+    {
+        $upfNoArr = [];
+        if (!empty($request)) {
+            $upfNosQuery = PayPayhd::find()->select(PayPayhd::tableName() . '.empUPFNo')
+                ->innerJoin(PayDept::tableName(), PayDept::tableName() . '.deptCode = ' . PayPayhd::tableName() . '.empDept')
+                ->andFilterWhere([PayDept::tableName() . '.deptProg' => $request['deptProg']])
+                ->andFilterWhere([PayDept::tableName() . '.deptProj' => $request['deptProj']])
+                ->orderBy(PayPayhd::tableName() . '.empUPFNo');
+
+            $dataProvider = new ActiveDataProvider([
+                'query' => $upfNosQuery,
+                'pagination' => false,
+            ]);
+
+            $models = $dataProvider->getModels();
+            foreach ($models as $key => $model) {
+                $upfNoArr[] = $model->empUPFNo;
+            }
+        }
+
+        $columns = [];
+        $fields = (new \yii\db\Query())->select('COLUMN_NAME')->from('INFORMATION_SCHEMA.COLUMNS')->where(['TABLE_NAME' => PayIpr::tableName()])->distinct('COLUMN_NAME')->all();
+
+        for ($i = 0; $i < count($fields); $i++) {
+            $columns[] = $fields[$i]['COLUMN_NAME'];
+        }
+        $columnsCount = count($columns);
+        if (($key = array_search('id', $columns)) !== false) {
+            unset($columns[$key]);
+        }
+        if (($key = array_search('empUPFNo', $columns)) !== false) {
+            unset($columns[$key]);
+        }
+        if (($key = array_search('iprDate', $columns)) !== false) {
+            unset($columns[$key]);
+        }
+
+        $query = PayIpr::find();
+        for ($i = 0; $i < $columnsCount; $i++) {
+            if (isset($columns[$i])) {
+                $column = $columns[$i];
+                $query->addSelect("SUM($column) AS sum_$column");
+            }
+        }
+
+        if (!empty($upfNoArr)) {
+            $query->WHERE(['in', 'empUPFNo', $upfNoArr]);
+        }
+
+        $command = $query->createCommand();
+        $sumPr = $command->queryAll();
+
+        return (!empty($sumPr) ? $sumPr[0] : []);
+    }
+
+    public function getPayPrPrv($request)
+    {
+        $upfNoArr = [];
+        if (!empty($request)) {
+            $upfNosQuery = PayPayhd::find()->select(PayPayhd::tableName() . '.empUPFNo')
+                ->innerJoin(PayDept::tableName(), PayDept::tableName() . '.deptCode = ' . PayPayhd::tableName() . '.empDept')
+                ->andFilterWhere([PayDept::tableName() . '.deptProg' => $request['deptProg']])
+                ->andFilterWhere([PayDept::tableName() . '.deptProj' => $request['deptProj']])
+                ->orderBy(PayPayhd::tableName() . '.empUPFNo');
+
+            $dataProvider = new ActiveDataProvider([
+                'query' => $upfNosQuery,
+                'pagination' => false,
+            ]);
+
+            $models = $dataProvider->getModels();
+            foreach ($models as $key => $model) {
+                $upfNoArr[] = $model->empUPFNo;
+            }
+        }
+
+        $columnsPrv = [];
+        $fieldsPrv = (new \yii\db\Query())->select('COLUMN_NAME')->from('INFORMATION_SCHEMA.COLUMNS')->where(['TABLE_NAME' => PayIprprv::tableName()])->distinct('COLUMN_NAME')->all();
+
+        for ($i = 0; $i < count($fieldsPrv); $i++) {
+            $columnsPrv[] = $fieldsPrv[$i]['COLUMN_NAME'];
+        }
+        $columnsPrvCount = count($columnsPrv);
+        if (($key = array_search('id', $columnsPrv)) !== false) {
+            unset($columnsPrv[$key]);
+        }
+        if (($key = array_search('empUPFNo', $columnsPrv)) !== false) {
+            unset($columnsPrv[$key]);
+        }
+        if (($key = array_search('iprpDate', $columnsPrv)) !== false) {
+            unset($columnsPrv[$key]);
+        }
+
+        $query = PayIprprv::find();
+        for ($i = 0; $i < $columnsPrvCount; $i++) {
+            if (isset($columnsPrv[$i])) {
+                $column = $columnsPrv[$i];
+                $query->addSelect("SUM($column) AS sum_$column");
+            }
+        }
+
+        if (!empty($upfNoArr)) {
+            $query->WHERE(['in', 'empUPFNo', $upfNoArr]);
+        }
+
+        $command = $query->createCommand();
+        $sumPrPrv = $command->queryAll();
+
+        return (!empty($sumPrPrv) ? $sumPrPrv[0] : []);
+    }
+}

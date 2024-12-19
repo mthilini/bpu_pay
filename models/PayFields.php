@@ -27,6 +27,11 @@ class PayFields extends \yii\db\ActiveRecord
         return 'pay_fields';
     }
 
+    public static function primaryKey()
+    {
+        return ["fldCode"];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -36,7 +41,7 @@ class PayFields extends \yii\db\ActiveRecord
             [['fldCode', 'fldName'], 'required'],
             [['fldUPF', 'fldETF'], 'boolean'],
             [['fldType'], 'integer'],
-            [['fldCode'], 'string', 'max' => 2, 'min'=>2],
+            [['fldCode'], 'string', 'max' => 2, 'min' => 2],
             [['fldName'], 'string', 'max' => 30],
             [['fldCat'], 'string', 'max' => 1],
         ];
@@ -48,7 +53,6 @@ class PayFields extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
             'fldCode' => 'Field Code',
             'fldName' => 'Field Name',
             'fldUPF' => 'UPF',
@@ -57,26 +61,9 @@ class PayFields extends \yii\db\ActiveRecord
             'fldCat' => 'Category',
         ];
     }
-    //
-    /**
-     * Gets query for [PayFieldType]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
+    
     public function getPayFieldType()
     {
         return $this->hasOne(PayFieldType::className(), ['typeCode' => 'fldType']);
     }
-    //
-    //
-    public function behaviors(){
-        return [
-            'auditEntryBehaviors' => [
-                'class' => AuditEntryBehaviors::class
-             ],
-        ];
-    }
-    //
-    //
 }
-

@@ -23,6 +23,11 @@ class PayDept extends \yii\db\ActiveRecord
     {
         return 'pay_dept';
     }
+    
+    public static function primaryKey()
+    {
+        return ["deptCode"];
+    }
 
     /**
      * {@inheritdoc}
@@ -30,8 +35,7 @@ class PayDept extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'deptCode', 'deptName'], 'required'],
-            [['id'], 'integer'],
+            [['deptCode', 'deptName'], 'required'],
             [['deptCode', 'deptProj'], 'string', 'max' => 3],
             [['deptName'], 'string', 'max' => 30],
             [['deptProg'], 'string', 'max' => 2],
@@ -45,7 +49,6 @@ class PayDept extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
             'deptCode' => 'Dept Code',
             'deptName' => 'Dept Name',
             'deptProg' => 'Dept Prog',

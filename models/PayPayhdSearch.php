@@ -76,10 +76,8 @@ class PayPayhdSearch extends PayPayhd
             ->andFilterWhere(['like', 'empUPNo', $this->empUPNo])
             ->andFilterWhere(['like', 'empSalScale', $this->empSalScale])
             ->andFilterWhere(['like', 'empBankCode', $this->empBankCode])
-            ->andFilterWhere(['like', 'empAcctName', $this->empAcctName])
-        ;
+            ->andFilterWhere(['like', 'empAcctName', $this->empAcctName]);
 
-        // echo $query->createCommand()->getRawSql();exit;
         return $dataProvider;
     }
 }

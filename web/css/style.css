@@ -413,6 +413,26 @@ th {
     margin-bottom: 10px;
 }
 
-.fa-copyright{
+.fa-copyright {
     color: #20c997;
+}
+
+.border-none {
+    border-style: none;
+}
+
+.bt-none {
+    border-top: none !important;
+}
+
+.bb-none {
+    border-bottom: none !important;
+}
+
+.bl-none {
+    border-left: none !important;
+}
+
+.br-none {
+    border-right: none !important;
 }

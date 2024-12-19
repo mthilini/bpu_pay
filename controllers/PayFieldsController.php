@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\models\PayFields;
 use app\models\PayFieldsSearch;
+use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -172,5 +174,26 @@ class PayFieldsController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionReport()
+    {
+
+        $searchModel = new PayFieldsSearch();
+        $query = $searchModel->search([])->query;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => false,
+        ]);
+
+        $query->orderBy([
+            'fldCode' => SORT_ASC
+        ]);
+
+        return $this->render('report', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider
+        ]);
     }
 }
