@@ -28,7 +28,7 @@
                         'label' => 'Individual Detail',
                         'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/individual.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                         'items' => [
-                            ['label' => 'Individual Detail Reconciliations', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-ipr/university-recon-report']],
+                            ['label' => 'Individual Detail Reconciliations', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-ipr/individual-detail-recon-report']],
                         ]
                     ],
                     [

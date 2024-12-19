@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var app\models\PayPayhdSearch $model */
+/** @var app\models\PayPayIprSearch $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="pay-payhd-search">
+<div class="pay-payipr-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['report'],
