@@ -31,6 +31,7 @@ class PayIprController extends Controller
 
         return $this->renderPartial('university-recon-report-pdf', [
             'sumArray' => $sumArray,
+            'request' => $request,
         ]);
     }
 
@@ -54,6 +55,7 @@ class PayIprController extends Controller
 
         return $this->renderPartial('ppr-recon-report-pdf', [
             'sumArray' => $sumArray,
+            'request' => $request,
         ]);
     }
 
@@ -77,6 +79,7 @@ class PayIprController extends Controller
 
         return $this->renderPartial('individual-detail-recon-report-pdf', [
             'sumArray' => $sumArray,
+            'request' => $request,
         ]);
     }
 

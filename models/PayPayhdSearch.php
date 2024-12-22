@@ -39,19 +39,22 @@ class PayPayhdSearch extends PayPayhd
         }
 
         $query->andFilterWhere([
+            'empNIC' => $this->empNIC,
             'empBasic' => $this->empBasic,
             'empLoanAmt' => $this->empLoanAmt,
+            'empUPFNo' => $this->empUPFNo,
+            'empETFNo' => $this->empETFNo,
+            'empUPNo' => $this->empUPNo,
+            'empDtAppt' => $this->empDtAppt,
+            'empDtAssm' => $this->empDtAssm,
+            'empDtIncr' => $this->empDtIncr,
+            'empDtConf' => $this->empDtConf,
+            'empDtBirth' => $this->empDtBirth,
+            'empDtTemp' => $this->empDtTemp,
+            'empLoanDate' => $this->empLoanDate
         ]);
 
-        $query->andFilterWhere(['like', 'empDtAppt', $this->empDtAppt])
-            ->andFilterWhere(['like', 'empDtAssm', $this->empDtAssm])
-            ->andFilterWhere(['like', 'empDtIncr', $this->empDtIncr])
-            ->andFilterWhere(['like', 'empDtConf', $this->empDtConf])
-            ->andFilterWhere(['like', 'empDtBirth', $this->empDtBirth])
-            ->andFilterWhere(['like', 'empDtTemp', $this->empDtTemp])
-            ->andFilterWhere(['like', 'empLoanDate', $this->empLoanDate])
-            ->andFilterWhere(['like', 'empNIC', $this->empNIC])
-            ->andFilterWhere(['like', 'empTitle', $this->empTitle])
+        $query->andFilterWhere(['like', 'empTitle', $this->empTitle])
             ->andFilterWhere(['like', 'empAddress3', $this->empAddress3])
             ->andFilterWhere(['like', 'empSurname', $this->empSurname])
             ->andFilterWhere(['like', 'empAddress1', $this->empAddress1])
@@ -71,9 +74,6 @@ class PayPayhdSearch extends PayPayhd
             ->andFilterWhere(['like', 'empDept', $this->empDept])
             ->andFilterWhere(['like', 'empDesig', $this->empDesig])
             ->andFilterWhere(['like', 'empSalCode', $this->empSalCode])
-            ->andFilterWhere(['like', 'empUPFNo', $this->empUPFNo])
-            ->andFilterWhere(['like', 'empETFNo', $this->empETFNo])
-            ->andFilterWhere(['like', 'empUPNo', $this->empUPNo])
             ->andFilterWhere(['like', 'empSalScale', $this->empSalScale])
             ->andFilterWhere(['like', 'empBankCode', $this->empBankCode])
             ->andFilterWhere(['like', 'empAcctName', $this->empAcctName]);

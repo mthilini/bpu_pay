@@ -40,6 +40,30 @@
                         'template' => '<a class="nav-link">{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                     ],
                     ['label' => 'Annual Reports', 'header' => true],
+                    [
+                        'label' => 'Individual',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/indiv.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'items' => [
+                            ['label' => 'Individual Pay Records', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/pay-indi-annual-report']],
+                            ['label' => 'Emolument List - Individual', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/emolu-indi-annual-report']],
+                            ['label' => 'Deduction List - Individual', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/deduct-indi-annual-report']],
+                        ]
+                    ],
+                    [
+                        'label' => 'Annual',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/indiv.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'items' => [
+                            ['label' => 'Annual Emolument Summary', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/pay-indi-annual-report']],
+                        ]
+                    ],
+                    [
+                        'label' => '',
+                        'template' => '<a class="nav-link">{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
+                    [
+                        'label' => '',
+                        'template' => '<a class="nav-link">{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
                     ['label' => 'Payee Tax', 'header' => true],
                     [
                         'label' => '',
