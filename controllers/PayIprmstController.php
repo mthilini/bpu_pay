@@ -326,7 +326,7 @@ class PayIprmstController extends Controller
     public function actionUniFinSummaryReportPdf()
     {
         $request = Yii::$app->request->get();
-        $summary = $this->getFinalSummary($request['month'], $request['year'], $request['empAcademic'], $request['option']);
+        $summary = $this->getFinalSummary($request['month'], $request['year'], $request['empAcademic'], $request['option'], '');
 
         return $this->renderPartial('uni-fin-summary-report-pdf', [
             'request' => $request,
@@ -334,7 +334,27 @@ class PayIprmstController extends Controller
         ]);
     }
 
-    public function getFinalSummary($month, $year, $empAcademic, $option)
+    // Programme Final Summaries
+    public function actionProgFinSummaryReport()
+    {
+        $request = Yii::$app->request->get();
+
+        return $this->render('prog-fin-summary-report', [
+            'request' => $request,
+        ]);
+    }
+    public function actionProgFinSummaryReportPdf()
+    {
+        $request = Yii::$app->request->get();
+        $summary = $this->getFinalSummary($request['month'], $request['year'], $request['empAcademic'], $request['option'], $request['deptProg']);
+
+        return $this->renderPartial('prog-fin-summary-report-pdf', [
+            'request' => $request,
+            'summary' => $summary
+        ]);
+    }
+
+    public function getFinalSummary($month, $year, $empAcademic, $option, $deptProg = '')
     {
         $columns = [];
         $fields = (new \yii\db\Query())->select('COLUMN_NAME')->from('INFORMATION_SCHEMA.COLUMNS')->where(['TABLE_NAME' => PayIprmst::tableName()])->distinct('COLUMN_NAME')->all();
@@ -342,7 +362,7 @@ class PayIprmstController extends Controller
         for ($i = 0; $i < count($fields); $i++) {
             $columns[] = $fields[$i]['COLUMN_NAME'];
         }
-        
+
         $columnsCount = count($columns);
         if (($key = array_search('id', $columns)) !== false) {
             unset($columns[$key]);
@@ -354,7 +374,13 @@ class PayIprmstController extends Controller
             unset($columns[$key]);
         }
 
-        $query = PayIprmst::find()->select([PayDept::tableName() . '.deptProg']);
+        $query = PayIprmst::find();
+        if (!empty($deptProg)) {
+            $query->select([PayDept::tableName() . '.deptProj']);
+        } else {
+            $query->select([PayDept::tableName() . '.deptProg']);
+        }
+
         for ($i = 0; $i < $columnsCount; $i++) {
             if (isset($columns[$i])) {
                 $column = $columns[$i];
@@ -369,6 +395,9 @@ class PayIprmstController extends Controller
         if (!empty($empAcademic)) {
             $query->andFilterWhere([PayPayhd::tableName() . '.empAcademic' => $empAcademic]);
         }
+        if (!empty($deptProg)) {
+            $query->andFilterWhere([PayDept::tableName() . '.deptProg' => $deptProg]);
+        }
 
         if ($option == 'monthly') {
             $query->andFilterWhere(['MONTH(' . PayIprmst::tableName() . '.iprmDate)' => $month]);
@@ -376,14 +405,21 @@ class PayIprmstController extends Controller
             $query->andFilterWhere(['<=', 'MONTH(' . PayIprmst::tableName() . '.iprmDate)', $month]);
         }
 
-        $query->groupBy(PayDept::tableName() . '.deptProg')
-            ->orderBy([
-                'CAST(' . PayDept::tableName() . '.deptProg AS signed)' => SORT_ASC
-            ]);
+        if (!empty($deptProg)) {
+            $query->groupBy(PayDept::tableName() . '.deptProj')
+                ->orderBy([
+                    'CAST(' . PayDept::tableName() . '.deptProj AS signed)' => SORT_ASC
+                ]);
+        } else {
+            $query->groupBy(PayDept::tableName() . '.deptProg')
+                ->orderBy([
+                    'CAST(' . PayDept::tableName() . '.deptProg AS signed)' => SORT_ASC
+                ]);
+        }
 
         $command = $query->createCommand();
         $summary = $command->queryAll();
-        
+
         return (!empty($summary) ? $summary : []);
     }
 }

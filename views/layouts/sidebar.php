@@ -14,21 +14,21 @@
                         'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/university.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                         'items' => [
                             ['label' => 'University Summaries', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/uni-fin-summary-report']],
-                            ['label' => 'University - Journal Summaries', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/prog-fin-summary-report']],
+                            // ['label' => 'University - Journal Summaries', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/ppr-recon-report']],
                         ]
                     ],
                     [
                         'label' => 'Program',
                         'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/project.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                         'items' => [
-                            ['label' => 'Program Summaries', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-ipr/ppr-recon-report']],
+                            ['label' => 'Program Summaries', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/prog-fin-summary-report']],
                         ]
                     ],
                     [
                         'label' => 'Division',
                         'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/connection.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                         'items' => [
-                            ['label' => 'Division Summaries', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-ipr/individual-detail-recon-report']],
+                            // ['label' => 'Division Summaries', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-ipr/individual-detail-recon-report']],
                         ]
                     ],
                     [
