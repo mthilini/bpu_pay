@@ -436,3 +436,12 @@ th {
 .br-none {
     border-right: none !important;
 }
+
+.nav-link {
+    margin-bottom: 0px !important;
+}
+
+.nav-header {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}

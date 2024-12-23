@@ -9,6 +9,36 @@
                 'items' => [
                     ['label' => 'Monthly Reports', 'header' => true],
                     ['label' => 'Final Summaries', 'header' => true],
+                    [
+                        'label' => 'University',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/university.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'items' => [
+                            ['label' => 'University Summaries', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/uni-fin-summary-report']],
+                            ['label' => 'University - Journal Summaries', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/prog-fin-summary-report']],
+                        ]
+                    ],
+                    [
+                        'label' => 'Program',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/project.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'items' => [
+                            ['label' => 'Program Summaries', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-ipr/ppr-recon-report']],
+                        ]
+                    ],
+                    [
+                        'label' => 'Division',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/connection.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'items' => [
+                            ['label' => 'Division Summaries', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-ipr/individual-detail-recon-report']],
+                        ]
+                    ],
+                    [
+                        'label' => '',
+                        'template' => '<a class="nav-link">{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
+                    [
+                        'label' => '',
+                        'template' => '<a class="nav-link">{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
                     ['label' => 'Reconciliations', 'header' => true],
                     [
                         'label' => 'University',
@@ -44,16 +74,16 @@
                         'label' => 'Individual',
                         'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/indiv.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                         'items' => [
-                            ['label' => 'Individual Pay Records', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/pay-indi-annual-report']],
-                            ['label' => 'Emolument List - Individual', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/emolu-indi-annual-report']],
-                            ['label' => 'Deduction List - Individual', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/deduct-indi-annual-report']],
+                            ['label' => 'Pay Records', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/pay-indi-annual-report']],
+                            ['label' => 'Emolument List', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/emolu-indi-annual-report']],
+                            ['label' => 'Deduction List', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/deduct-indi-annual-report']],
                         ]
                     ],
                     [
-                        'label' => 'Annual',
-                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/indiv.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'label' => 'Summary',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/annual-emol-summary.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                         'items' => [
-                            ['label' => 'Annual Emolument Summary', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/pay-indi-annual-report']],
+                            ['label' => 'Emolument Summary', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/emolu-summary-annual-report']],
                         ]
                     ],
                     [
@@ -160,7 +190,7 @@
                     ],
                     [
                         'label' => 'Employee (Dept. Wise)',
-                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/connection.png" width="23" height="23" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/division.png" width="23" height="23" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                         // 'items' => [
                         //     ['label' => 'Data Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-zlog/report']],
                         //     ['label' => 'User Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-zloguser/report']],
