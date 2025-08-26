@@ -112,7 +112,7 @@ class PayIprController extends Controller
         }
 
         if (!empty($upfNoArr)) {
-            $query->WHERE(['in', 'empUPFNo', $upfNoArr]);
+            $query->andFilterWhere(['in', 'empUPFNo', $upfNoArr]);
         }
 
         $command = $query->createCommand();
@@ -150,7 +150,7 @@ class PayIprController extends Controller
         }
 
         if (!empty($upfNoArr)) {
-            $query->WHERE(['in', 'empUPFNo', $upfNoArr]);
+            $query->andFilterWhere(['in', 'empUPFNo', $upfNoArr]);
         }
 
         $command = $query->createCommand();

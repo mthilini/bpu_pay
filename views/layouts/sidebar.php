@@ -8,27 +8,43 @@
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
                     ['label' => 'Monthly Reports', 'header' => true],
+                    [
+                        'label' => 'Pay Advice',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/payslip.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'items' => [
+                            ['label' => 'Pay Advice Monthly Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/pay-advice-report']],
+                        ]
+                    ],
+                    [
+                        'label' => '',
+                        'template' => '<a class="nav-link">{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
+                    [
+                        'label' => '',
+                        'template' => '<a class="nav-link">{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
                     ['label' => 'Final Summaries', 'header' => true],
                     [
                         'label' => 'University',
                         'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/university.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                         'items' => [
-                            ['label' => 'University Summaries', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/uni-fin-summary-report']],
-                            // ['label' => 'University - Journal Summaries', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/ppr-recon-report']],
+                            ['label' => 'University', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/uni-fin-summary-report']],
+                            ['label' => 'University - Journal', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/uni-jnlfin-summary-report']],
                         ]
                     ],
                     [
                         'label' => 'Program',
                         'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/project.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                         'items' => [
-                            ['label' => 'Program Summaries', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/prog-fin-summary-report']],
+                            ['label' => 'Program', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/prog-fin-summary-report']],
+                            ['label' => 'Program - Journal', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/prog-jnlfin-summary-report']],
                         ]
                     ],
                     [
                         'label' => 'Division',
                         'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/connection.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                         'items' => [
-                            // ['label' => 'Division Summaries', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-ipr/individual-detail-recon-report']],
+                            ['label' => 'Division Summaries', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-iprmst/division-summary-report']],
                         ]
                     ],
                     [
@@ -103,6 +119,18 @@
                         'label' => '',
                         'template' => '<a class="nav-link">{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
                     ],
+                    ['label' => 'APIT Tax', 'header' => true],
+                    [
+                        'label' => 'Tax Forms',
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/form.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'items' => [
+                            ['label' => 'T10 Form', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-payhd/t10-format-report']],
+                        ]
+                    ],
+                    [
+                        'label' => '',
+                        'template' => '<a class="nav-link">{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                    ],
                     [
                         'label' => 'Information',
                         'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/info-main.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
@@ -111,11 +139,9 @@
                     [
                         'label' => 'Basic Salary',
                         'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/salary.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
-                        // 'items' => [
-                        //     ['label' => 'Payments', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-paycash/report']],
-                        //     ['label' => 'Receipts', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rcts-cash/report']],
-                        //     ['label' => 'Payments & Receipts', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-maincash/report']],
-                        // ]
+                        'items' => [
+                            ['label' => 'Basic Salary Report', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-payhd/basic-salary-report']],
+                        ]
                     ],
                     [
                         'label' => 'Emoluments',
@@ -190,21 +216,19 @@
                     ],
                     [
                         'label' => 'Employee (Dept. Wise)',
-                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/division.png" width="23" height="23" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
-                        // 'items' => [
-                        //     ['label' => 'Data Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-zlog/report']],
-                        //     ['label' => 'User Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-zloguser/report']],
-                        //     ['label' => 'Payments Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-payhdr/report']],
-                        //     ['label' => 'Receipts Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-rctshdr/report']],
-                        //     ['label' => 'Journals Log', 'icon' => 'fas fa-caret-right', 'url' => ['/acct-jnlhdr/report']],
-                        // ]
+                        'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/division.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
+                        'items' => [
+                            ['label' => 'With Gross Pay', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-payhd/emp-withgross-report']],
+                            ['label' => 'Without Gross Pay', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-payhd/emp-withoutgross-report']],
+                            ['label' => 'Employee List', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-payhd/emp-employee-report']],
+                        ]
                     ],
                     [
                         'label' => 'Employee Details',
                         'template' => '<a href="{url}" class="nav-link"><img src="../assets/sidebar/emp-details.png" width="25" height="25" style="margin-right: 10px;" >{label} <span class="d-block font-weight-normal opacity-50"></span> </a>',
-                        // 'items' => [
-                        //     ['label' => 'Employee Detail', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-payhd/employee-detail-report']],
-                        // ]
+                        'items' => [
+                            ['label' => 'Employee Detail', 'icon' => 'fas fa-caret-right', 'url' => ['/pay-payhd/emp-detail-report']],
+                        ]
                     ],
                     [
                         'label' => 'Employee Remarks',

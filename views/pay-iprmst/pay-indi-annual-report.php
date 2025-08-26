@@ -7,7 +7,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="card-bofy m-2">
 
         <?=
-        $this->render('_pay-indi-annual-report-search', [
+        $this->render('_pay-indi-annual-search', [
             'request' => $request,
         ]);
         ?>

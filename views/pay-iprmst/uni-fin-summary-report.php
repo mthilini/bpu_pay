@@ -1,5 +1,5 @@
 <?php
-$this->title = 'University Final Summaries';
+$this->title = 'University Final Summary';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
